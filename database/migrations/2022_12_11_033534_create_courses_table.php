@@ -16,6 +16,14 @@ return new class extends Migration
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->integer('courseNumber')->unique();
+            $table->string('description');
+            $table->integer('creditsLecture');
+            $table->integer('creditsLab');
+            $table->string('departmentCode');
+            $table->string('syllabusLink');
+            $table->integer('creditsTotal');
+
         });
     }
 
