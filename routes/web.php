@@ -22,3 +22,4 @@ Route::get('/', function () {
 //routes for courses
 //Route::resource('courses','CourseController');
 Route::get('/courses',[CourseController::class,'index']);
+Route::get('/courses/create',[CourseController::class,'create']);
