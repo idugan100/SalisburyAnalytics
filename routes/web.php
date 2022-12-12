@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CourseController;
-
+use Database\Factories\CourseFactory;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +20,4 @@ Route::get('/', function () {
 });
 
 //routes for courses
-//Route::resource('courses','CourseController');
-Route::get('/courses',[CourseController::class,'index']);
-Route::get('/courses/create',[CourseController::class,'create']);
+Route::resource('courses',CourseController::class);
