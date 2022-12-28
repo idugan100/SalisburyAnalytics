@@ -1,3 +1,5 @@
+
+<x-header>
 <h1>All Courses</h1>
 @foreach ($courses as $course)
     <h3>{{$course->departmentCode . "-" . $course->courseNumber}}</h3>
@@ -6,6 +8,7 @@
     <a href={{$course->syllabusLink}} target="_blank"> Syllabus</a>
     <p>{{$course->creditsLecture . " hours lecture"}}</p>
     <p>{{$course->creditsLab . " hours lab"}}</p>
+    {{--delete button--}}
     <form method="POST" action="{{ route('courses.destroy', $course->id) }}">
         @csrf
         @method('delete')
@@ -15,3 +18,4 @@
 
     <hr>
 @endforeach
+</x-header>

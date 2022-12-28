@@ -1,3 +1,4 @@
+<x-header>
 <h2>Add a course</h2>
 <form method="POST" action="{{route('courses.store')}}">
     @csrf
@@ -33,3 +34,4 @@
     </div>
     <button type="submit">Submit</button>
 </form>
+</x-header>
