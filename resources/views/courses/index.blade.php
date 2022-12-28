@@ -1,6 +1,6 @@
 
 <x-header>
-<h1>All Courses</h1>
+<h2 class="bg-yellow-500 text-center font-bold text-white font-xl">All Courses</h2>
 @foreach ($courses as $course)
     <h3>{{$course->departmentCode . "-" . $course->courseNumber}}</h3>
     <h4>{{$course->creditsTotal . " total credit hours"}}</h4>
