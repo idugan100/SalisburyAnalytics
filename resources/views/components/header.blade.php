@@ -9,6 +9,8 @@
 </head>
 <body>
     <h1 class="text-3xl font-bold font-sans bg-red-900 text-white text-center">SU Reviews</h1>
+    <x-navbar></x-navbar>
+
     {{$slot}}
 </body>
 </html>

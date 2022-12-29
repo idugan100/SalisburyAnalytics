@@ -1,6 +1,8 @@
 
 <x-header>
 <h2 class="bg-yellow-500 text-center font-bold text-white font-xl">All Courses</h2>
+@if (!empty($courses))
+    
 @foreach ($courses as $course)
     <h3>{{$course->departmentCode . "-" . $course->courseNumber}}</h3>
     <h4>{{$course->creditsTotal . " total credit hours"}}</h4>
@@ -18,4 +20,6 @@
 
     <hr>
 @endforeach
+@endif
+
 </x-header>
