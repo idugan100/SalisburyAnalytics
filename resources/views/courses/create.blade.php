@@ -1,5 +1,5 @@
 <x-header>
-<h2>Add a course</h2>
+    <h2 class="bg-yellow-500 text-center font-bold text-white font-xl">Add Course</h2>
 <form method="POST" action="{{route('courses.store')}}">
     @csrf
    
