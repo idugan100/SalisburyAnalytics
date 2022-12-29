@@ -12,7 +12,7 @@
     <form method="POST" action="{{ route('courses.destroy', $course->id) }}">
         @csrf
         @method('delete')
-        <button>delete</button>
+        <button class="bg-gray-200 hover:bg-red-900 hover:text-white rounded p-1">Delete</button>
 
     </form>
 
