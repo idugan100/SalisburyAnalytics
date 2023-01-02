@@ -40,10 +40,15 @@ class ProfessorController extends Controller
      */
     public function store(StoreProfessorRequest $request)
     {
+        $validated=$request->validate([
+            "firstName"=>"required",
+            "lastName"=>"required",
+            "department"=>"required"
+        ]);
         $professor= new Professor();
-        $professor->firstName=$request->firstName;
-        $professor->lastName=$request->lastName;
-        $professor->department=$request->department;
+        $professor->firstName=$validated['firstName'];
+        $professor->lastName=$validated['lastName'];
+        $professor->department=$validated['department'];
         $professor->save();
         return redirect(route("professors.index"));
 
