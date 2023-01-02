@@ -73,7 +73,7 @@ class ProfessorController extends Controller
      */
     public function edit(Professor $professor)
     {
-        //
+        return(view("professors.edit",["professor"=>$professor]));
     }
 
     /**
@@ -85,7 +85,7 @@ class ProfessorController extends Controller
      */
     public function update(UpdateProfessorRequest $request, Professor $professor)
     {
-        //
+        dd("update route hit");
     }
 
     /**
