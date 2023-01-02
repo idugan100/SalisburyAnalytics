@@ -1,6 +1,6 @@
 <x-header>
 
-    <h2 class="bg-yellow-500 text-center font-bold text-white font-xl">Edit Professor</h2>
+    <h2 class="bg-yellow-500 text-center font-bold text-white text-xl">Edit Professor</h2>
     <div class="flex justify-center ">
         <form method="POST" action="{{route("professors.update",$professor->id)}}" >
             @csrf

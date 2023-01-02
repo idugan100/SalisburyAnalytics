@@ -1,5 +1,5 @@
 <x-header>
-    <h2 class="bg-yellow-500 text-center font-bold text-white font-xl">New Professor</h2>
+    <h2 class="bg-yellow-500 text-center font-bold text-white text-xl">New Professor</h2>
     <div class="flex justify-center ">
         <form method="POST" action="{{route('professors.store')}}" >
             @csrf

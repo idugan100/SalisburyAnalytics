@@ -1,6 +1,6 @@
 
 <x-header>
-<h2 class="bg-yellow-500 text-center font-bold text-white font-xl">All Courses</h2>
+<h2 class="bg-yellow-500 text-center font-bold text-white text-xl">All Courses</h2>
 @if (!empty($courses))
     <div class="flex justify-center border" >
         <div class="max-w-3xl p-6">
