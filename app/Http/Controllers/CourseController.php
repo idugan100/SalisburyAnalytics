@@ -40,15 +40,25 @@ class CourseController extends Controller
      */
     public function store(StoreCourseRequest $request)
     {
+        $validated=$request->validate([
+            "courseTitle"=>"required",
+            "description"=>"required",
+            "courseNumber"=>"required",
+            "departmentCode"=>"required",
+            "creditsLecture"=>"required",
+            "creditsLab"=>"required",
+            "creditsTotal"=>"required",
+            "syllabusLink"=>"required"
+        ]);
         $course=new Course;
-        $course->courseTitle=$request->courseTitle;
-        $course->description=$request->description;
-        $course->courseNumber=$request->courseNumber;
-        $course->departmentCode=$request->departmentCode;
-        $course->creditsLecture=$request->creditsLecture;
-        $course->creditsLab=$request->creditsLab;
-        $course->creditsTotal=$request->creditsTotal;
-        $course->syllabusLink=$request->syllabusLink;
+        $course->courseTitle=$validated['courseTitle'];
+        $course->description=$validated['description'];
+        $course->courseNumber=$validated['courseNumber'];
+        $course->departmentCode=$validated['departmentCode'];
+        $course->creditsLecture=$validated['creditsLecture'];
+        $course->creditsLab=$validated['creditsLab'];
+        $course->creditsTotal=$validated['creditsTotal'];
+        $course->syllabusLink=$validated['syllabusLink'];
         $course->save();
         return redirect(route('courses.index'));
     }
