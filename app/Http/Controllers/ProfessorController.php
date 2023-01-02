@@ -40,7 +40,13 @@ class ProfessorController extends Controller
      */
     public function store(StoreProfessorRequest $request)
     {
-        //
+        $professor= new Professor();
+        $professor->firstName=$request->firstName;
+        $professor->lastName=$request->lastName;
+        $professor->department=$request->department;
+        $professor->save();
+        return redirect(route("professors.index"));
+
     }
 
     /**

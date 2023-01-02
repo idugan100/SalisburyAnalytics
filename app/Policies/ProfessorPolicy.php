@@ -41,7 +41,7 @@ class ProfessorPolicy
      */
     public function create(User $user)
     {
-        //
+        
     }
 
     /**
