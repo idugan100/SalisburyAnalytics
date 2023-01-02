@@ -91,6 +91,7 @@ class ProfessorController extends Controller
      */
     public function destroy(Professor $professor)
     {
-        //
+        $professor->delete();
+        return(redirect(route("professors.index")));
     }
 }
