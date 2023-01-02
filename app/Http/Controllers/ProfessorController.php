@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreProfessorRequest;
 use App\Http\Requests\UpdateProfessorRequest;
+use Illuminate\Support\Facades\DB;
+
 use App\Models\Professor;
 
 class ProfessorController extends Controller
@@ -15,7 +17,9 @@ class ProfessorController extends Controller
      */
     public function index()
     {
-        //
+        $professors=DB::table('professors')->get();
+
+        return(view("professors.index",["professors"=>$professors]));
     }
 
     /**
