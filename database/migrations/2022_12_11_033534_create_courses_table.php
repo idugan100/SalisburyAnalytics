@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->integer('courseNumber')->unique();
+            $table->string('courseTitle');
             $table->string('description');
             $table->integer('creditsLecture');
             $table->integer('creditsLab');

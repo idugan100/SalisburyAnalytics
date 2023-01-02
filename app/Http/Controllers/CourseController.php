@@ -41,6 +41,7 @@ class CourseController extends Controller
     public function store(StoreCourseRequest $request)
     {
         $course=new Course;
+        $course->courseTitle=$request->courseTitle;
         $course->description=$request->description;
         $course->courseNumber=$request->courseNumber;
         $course->departmentCode=$request->departmentCode;

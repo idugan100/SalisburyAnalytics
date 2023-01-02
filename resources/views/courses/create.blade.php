@@ -3,6 +3,11 @@
 <div class="flex justify-center ">
 <form method="POST" action="{{route('courses.store')}}" >
     @csrf
+
+    <div class="m-4">
+        <label class="mr-2">Course Title</label>
+        <input class="border-2 border-black" name="courseTitle" type="text">
+    </div>
    
     <div class="m-4">
         <label class="mr-2">Department Code</label>

@@ -5,7 +5,8 @@
     <div class="flex justify-center border" >
         <div class="max-w-3xl p-6">
 @foreach ($courses as $course)
-            <div class="p-3">
+    <div class="p-3">
+        <h3 class="text-2xl font-bold underline">{{$course->courseTitle }}</h3>
         <h3 class="text-2xl font-bold underline">{{$course->departmentCode . "-" . $course->courseNumber}}</h3>
         <h4>{{$course->creditsTotal . " total credit hours"}}</h4>
         <p>{{$course->description}}</p>
