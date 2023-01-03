@@ -9,4 +9,7 @@ class Professor extends Model
 {
     use HasFactory;
     protected $fillable=['firstName','lastName','deparment'];
+    public function reviews(){
+        return $this->hasMany(Review::class);
+    }
 }
