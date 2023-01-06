@@ -2,7 +2,7 @@
     <h2 class="bg-yellow-500 text-center font-bold text-white text-xl">All Professors</h2>
   <form class="flex justify-center" action="{{route('professors.index')}}">
     @method('get')
-    <input class="border-2 p-2 border-black " name ="search" type="text">
+    <input placeholder ="John Smith" class="border-2 p-2 border-black " name ="search" type="text">
     <button class="p-2 border-2 border-black hover:bg-black hover:text-white" type="submit">Search</button>
   </form>
     @if (!empty($professors))
