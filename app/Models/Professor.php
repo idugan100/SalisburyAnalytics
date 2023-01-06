@@ -13,9 +13,9 @@ class Professor extends Model
     public function scopeFilter( $query, $searchTerm){
         
         
-        if($searchTerm){
+        if(array_key_exists('search', $searchTerm)){
             //todo logic for less then two search terms e.g. firstname only
-            $explodedTerms=explode( " ", $searchTerm);
+            $explodedTerms=explode( " ", $searchTerm['search']);
             $searchedPosts=$query
                 ->where('firstName' , 'LIKE' , "%" . $explodedTerms[0]. "%")
                 ->where('lastName', 'LIKE', "%" . $explodedTerms[1] . "%");

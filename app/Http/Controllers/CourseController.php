@@ -19,7 +19,7 @@ class CourseController extends Controller
     public function index(Request $request)
     {   
         $validated=$request->validate([
-            'search'=>['nullable']
+            'search'=>['nullable','regex:/.*-.*/']
         ]);
         //todo logic for when $validated['search'] isn't there
         
