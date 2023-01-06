@@ -17,12 +17,13 @@ class CourseController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {
+    {   
         $validated=$request->validate([
-            'search'=>['nullable','regex:/(.*^-$.*)/']
+            'search'=>['nullable']
         ]);
         //todo logic for when $validated['search'] isn't there
-        $posts=Course::filter($validated['search'])->get();
+        
+        $posts=Course::filter($validated)->get();
         return view('courses.index',[
             'courses'=>$posts
         ]);
