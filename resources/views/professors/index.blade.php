@@ -5,10 +5,10 @@
     <button class="p-2 border-2 border-black hover:bg-black hover:text-white" type="submit">Search</button>
   </form>
     @if (!empty($professors))
-        <div class="flex justify-center border-2">
+        <div class="flex justify-center ">
             <div >
         @foreach ($professors as $professor)
-                <div class="m-3 border-2">
+                <div class="m-3 border-2 flex shadow-md">
                 <h3 class=" text-2xl p-2 max-w-sm">{{$professor->firstName . " " . $professor->lastName . " - " . $professor->department}}</h3>
                 <form  class="m-2" method="POST" action="{{ route('professors.destroy', $professor->id) }}">
                     @csrf
