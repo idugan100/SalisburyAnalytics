@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamps();
             $table->integer('courseNumber')->unique();
             $table->string('courseTitle');
-            $table->string('description');
+            $table->longtext('description');
             $table->integer('creditsLecture');
             $table->integer('creditsLab');
             $table->string('departmentCode');
