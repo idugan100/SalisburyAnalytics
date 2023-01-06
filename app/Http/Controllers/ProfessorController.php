@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreProfessorRequest;
 use App\Http\Requests\UpdateProfessorRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 use App\Models\Professor;
@@ -15,11 +16,14 @@ class ProfessorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $professors=DB::table('professors')->get();
+        $professor=Professor::filter("G F")->get();
+        
 
-        return(view("professors.index",["professors"=>$professors]));
+        
+
+        return(view("professors.index",["professors"=>$professor]));
     }
 
     /**
@@ -105,4 +109,5 @@ class ProfessorController extends Controller
         $professor->delete();
         return(redirect(route("professors.index")));
     }
+
 }
