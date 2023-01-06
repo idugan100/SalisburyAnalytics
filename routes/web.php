@@ -24,6 +24,15 @@ Route::get('/', function () {
 Route::resource('courses',CourseController::class);
 
 Route::resource('professors',ProfessorController::class);
-Auth::routes();
+
+Auth::routes([
+
+    'register' => false, // Register Routes...
+  
+    'reset' => false, // Reset Password Routes...
+  
+    'verify' => false, // Email Verification Routes...
+  
+  ]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
