@@ -17,8 +17,9 @@ class ProfessorController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {
-        $professor=Professor::filter("G F")->get();
+    {   
+        
+        $professor=Professor::filter($request->search)->get();
         
 
         

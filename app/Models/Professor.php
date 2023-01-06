@@ -14,7 +14,7 @@ class Professor extends Model
         
         
         if($searchTerm){
-            
+            //todo logic for less then two search terms e.g. firstname only
             $explodedTerms=explode( " ", $searchTerm);
             $searchedPosts=$query
                 ->where('firstName' , 'LIKE' , "%" . $explodedTerms[0]. "%")
@@ -22,7 +22,7 @@ class Professor extends Model
             return $searchedPosts;
         }
         else{
-            dd("else");
+            
 
             return $query;
         }
