@@ -9,9 +9,10 @@ class Course extends Model
 {
     use HasFactory;
     protected $fillable=['description','creditLab','creditLecture','creditsTotal', 'courseNumber', 'departmentCode','syllabusLink'];
-    public function scopeFilter($query,$searchTerm){
-        if($searchTerm){
-            $explodedSearchTerm=explode("-", $searchTerm);
+    public function scopeFilter($query,array $searchTerm){
+        if(array_key_exists('search',$searchTerm)){
+            
+            $explodedSearchTerm=explode("-", $searchTerm['search']);
             return $query->where("departmentCode","=",$explodedSearchTerm[0])
                 ->where("courseNumber", "=", $explodedSearchTerm[1]);
            
