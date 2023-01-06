@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+
 use App\Models\Course;
 
 class CourseController extends Controller
@@ -14,9 +16,9 @@ class CourseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $posts=DB::table('courses')->get();
+        $posts=Course::filter($request->search)->get();
         return view('courses.index',[
             'courses'=>$posts
         ]);
