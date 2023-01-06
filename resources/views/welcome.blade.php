@@ -6,6 +6,9 @@
                 are filled with rants that are unhelpful and often baseless. By partnering directly with universities we can provide the most accurate, extensive
                 and constuctive educational review site.
             </p>
+            <p>As or right now, there is a school policy that forbids the public access of any staff evaluation information.
+                If you'd like this site to be fully functional, please contact the SGA, SU senate or a department chair.
+            </p>
             <p>
                 This site is specifically for Salisbury Univeristy. If you would be interested in this service at your school let us know and we'll get to work!
             </p>

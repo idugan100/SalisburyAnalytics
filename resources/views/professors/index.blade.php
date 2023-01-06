@@ -1,10 +1,15 @@
 <x-header>
     <h2 class="bg-yellow-500 text-center font-bold text-white text-xl">All Professors</h2>
+  <form class="flex justify-center" action="{{route('professors.index')}}">
+    @method('get')
+    <input class="border-2 p-2 border-black " name ="search" type="text">
+    <button class="p-2 border-2 border-black hover:bg-black hover:text-white" type="submit">Search</button>
+  </form>
     @if (!empty($professors))
-        <div class="flex justify-center border-2">
+        <div class="flex justify-center ">
             <div >
         @foreach ($professors as $professor)
-                <div class="m-3 border-2">
+                <div class="m-3 border-2 flex shadow-md">
                 <h3 class=" text-2xl p-2 max-w-sm">{{$professor->firstName . " " . $professor->lastName . " - " . $professor->department}}</h3>
                 <form  class="m-2" method="POST" action="{{ route('professors.destroy', $professor->id) }}">
                     @csrf
