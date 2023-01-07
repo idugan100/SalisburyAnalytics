@@ -13,7 +13,7 @@ class UpdateProfessorRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return auth()->user()->email=="isaacd4444@gmail.com";
     }
 
     /**

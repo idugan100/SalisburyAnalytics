@@ -92,7 +92,8 @@ class CourseController extends Controller
      */
     public function edit(Course $course)
     {
-        //
+        
+        return view("courses.edit",['course'=>$course]);
     }
 
     /**
@@ -104,7 +105,27 @@ class CourseController extends Controller
      */
     public function update(UpdateCourseRequest $request, Course $course)
     {
-        //
+        $validated=$request->validate([
+            "courseTitle"=>"required",
+            "description"=>"required",
+            "courseNumber"=>"required",
+            "departmentCode"=>"required",
+            "creditsLecture"=>"required",
+            "creditsLab"=>"required",
+            "creditsTotal"=>"required",
+            "syllabusLink"=>"required"
+        ]);
+        
+        $course->courseTitle=$validated['courseTitle'];
+        $course->description=$validated['description'];
+        $course->courseNumber=$validated['courseNumber'];
+        $course->departmentCode=$validated['departmentCode'];
+        $course->creditsLecture=$validated['creditsLecture'];
+        $course->creditsLab=$validated['creditsLab'];
+        $course->creditsTotal=$validated['creditsTotal'];
+        $course->syllabusLink=$validated['syllabusLink'];
+        $course->save();
+        return redirect(route("courses.index"));
     }
 
     /**

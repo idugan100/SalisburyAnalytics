@@ -104,7 +104,10 @@ class ProfessorController extends Controller
             'lastName'=>'required',
             'department'=>'required'
         ]);
+        
         $professor->update($validated);
+        $professor->department=$validated['department'];
+        $professor->save();
         return redirect(route('professors.index'));
     }
 

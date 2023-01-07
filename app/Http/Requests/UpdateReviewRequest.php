@@ -13,7 +13,7 @@ class UpdateReviewRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return auth()->user()->email=="isaacd4444@gmail.com";
     }
 
     /**
