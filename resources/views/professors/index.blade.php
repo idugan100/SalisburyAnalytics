@@ -19,12 +19,14 @@
     @foreach ($professors as $professor)
         <div class="m-3 border-2 flex shadow-md">
         <h3 class=" text-2xl p-2 max-w-sm">{{$professor->firstName . " " . $professor->lastName . " - " . $professor->department}}</h3>
-        <form  class="m-2" method="POST" action="{{ route('professors.destroy', $professor->id) }}">
-            @csrf
-            @method('delete')
-            <button class="bg-gray-200 hover:bg-red-900 hover:text-white rounded p-1">Delete</button>
-        </form>     
-        <a class="m-2 bg-gray-200 hover:bg-blue-900 hover:text-white rounded p-1" href="{{route('professors.edit',$professor->id)}}">edit</a>
+        @auth
+            <form  class="m-2" method="POST" action="{{ route('professors.destroy', $professor->id) }}">
+                @csrf
+                @method('delete')
+                <button class="bg-gray-200 hover:bg-red-900 hover:text-white rounded p-1">Delete</button>
+            </form>     
+            <a class="m-2 bg-gray-200 hover:bg-blue-900 hover:text-white rounded p-1" href="{{route('professors.edit',$professor->id)}}">edit</a>
+        @endauth
         </div>        
     @endforeach
 
