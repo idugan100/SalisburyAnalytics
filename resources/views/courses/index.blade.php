@@ -28,11 +28,14 @@
             <p>{{$course->creditsLecture . " hours lecture"}}</p>
             <p>{{$course->creditsLab . " hours lab"}}</p>
         {{--delete button--}}
+        @auth
             <form  class="my-2" method="POST" action="{{ route('courses.destroy', $course->id) }}">
                 @csrf
                 @method('delete')
                 <button class="bg-gray-200 hover:bg-red-900 hover:text-white rounded p-1">Delete</button>
             </form>
+        @endauth
+            
             <hr>
         </div>
     @endforeach
