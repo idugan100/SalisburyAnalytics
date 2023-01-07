@@ -29,11 +29,14 @@
             <p>{{$course->creditsLab . " hours lab"}}</p>
         {{--delete button--}}
         @auth
+        <div class="flex">
             <form  class="my-2" method="POST" action="{{ route('courses.destroy', $course->id) }}">
                 @csrf
                 @method('delete')
                 <button class="bg-gray-200 hover:bg-red-900 hover:text-white rounded p-1">Delete</button>
             </form>
+            <a class="m-2 bg-gray-200 hover:bg-blue-900 hover:text-white rounded p-1"href="{{route("courses.edit",$course->id)}}">Edit</a>
+        </div>
         @endauth
             
             <hr>
