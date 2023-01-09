@@ -38,8 +38,10 @@
             <a class="m-2 bg-gray-200 hover:bg-blue-900 hover:text-white rounded p-1"href="{{route("courses.edit",$course->id)}}">Edit</a>
         </div>
         @endauth
+        <a class="my-2 bg-gray-200 hover:bg-blue-900 hover:text-white rounded p-1"href="{{route("courses.show",$course->id)}}">Reviews</a>
+
             
-            <hr>
+        <hr class="my-2">
         </div>
     @endforeach
     </div>
