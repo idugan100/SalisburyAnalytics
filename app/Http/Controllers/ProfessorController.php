@@ -76,7 +76,7 @@ class ProfessorController extends Controller
      */
     public function show(Professor $professor)
     {
-        //
+        return view('professors.show',["professor"=>$professor]);
     }
 
     /**
