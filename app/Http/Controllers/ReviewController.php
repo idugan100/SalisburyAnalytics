@@ -8,6 +8,9 @@ use App\Models\Review;
 
 class ReviewController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth', ['except' => ['index']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +18,7 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        //
+        return (view('reviews.index'));
     }
 
     /**
