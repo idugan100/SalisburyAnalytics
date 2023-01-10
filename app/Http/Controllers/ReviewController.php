@@ -21,7 +21,8 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        return (view('reviews.index'));
+        $reviews=Review::all();
+        return (view('reviews.index',["reviews"=>$reviews]));
     }
 
     /**
@@ -58,7 +59,7 @@ class ReviewController extends Controller
         $review->question=$validated['question'];
         $review->response=$validated['response'];
         $review->save();
-        return view("reviews.index");
+        return redirect(route("reviews.index"));
     }
 
     private function getProfessorId($professorName)
