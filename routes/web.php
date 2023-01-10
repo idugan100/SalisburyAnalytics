@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ProfessorController;
-use App\Models\Review;
+use App\Http\Controllers\ReviewController;
+
 use Database\Factories\CourseFactory;
 
 /*
@@ -26,7 +27,7 @@ Route::resource('courses',CourseController::class);
 
 Route::resource('professors',ProfessorController::class);
 
-Route::resource('reviews',Review::class);
+Route::resource('reviews',ReviewController::class);
 
 Auth::routes([
 
