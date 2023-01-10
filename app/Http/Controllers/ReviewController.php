@@ -28,7 +28,6 @@ class ReviewController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
@@ -39,7 +38,6 @@ class ReviewController extends Controller
      */
     public function store(StoreReviewRequest $request)
     {
-        //
     }
 
     /**
@@ -50,7 +48,6 @@ class ReviewController extends Controller
      */
     public function show(Review $review)
     {
-        //
     }
 
     /**
@@ -61,7 +58,6 @@ class ReviewController extends Controller
      */
     public function edit(Review $review)
     {
-        //
     }
 
     /**
@@ -73,7 +69,6 @@ class ReviewController extends Controller
      */
     public function update(UpdateReviewRequest $request, Review $review)
     {
-        //
     }
 
     /**
@@ -84,6 +79,7 @@ class ReviewController extends Controller
      */
     public function destroy(Review $review)
     {
-        //
+        $review->delete();
+        return back();
     }
 }
