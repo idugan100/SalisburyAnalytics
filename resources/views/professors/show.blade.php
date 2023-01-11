@@ -7,6 +7,13 @@
                     <h3 class="text-lg font-bold underline">{{$item->question}}</h3>
                     <p>{{$item->response}}</p>
                     <p class="bg-black text-white">{{$item->course->departmentCode . "-" . $item->course->courseNumber}}</p>
+                    @auth
+                    <form  class="my-2" method="POST" action="{{ route('reviews.destroy', $item->id) }}">
+                        @csrf
+                        @method('DELETE')
+                        <button class="bg-gray-200 hover:bg-red-900 hover:text-white rounded p-1">Delete</button>
+                    </form>
+                    @endauth
                 </div>   
             @endforeach
         </div>
