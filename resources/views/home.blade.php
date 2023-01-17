@@ -16,6 +16,9 @@
 
                     {{ __('You are logged in!') }}
                 </div>
+                <div class="card-body alert alert-info">
+                    <a href="/">To home page</a>
+                </div>
             </div>
         </div>
     </div>

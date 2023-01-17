@@ -7,8 +7,8 @@
     <title>Univeristy Voices</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <h1 class="text-3xl font-bold font-sans bg-red-900 text-white text-center">SU Reviews</h1>
+<body class="bg-gray-200 ">
+    <h1 class="text-3xl font-bold bg-black text-white font-sans border-b-4 border-black text-center">Screech</h1>
     <x-navbar></x-navbar>
 
     {{$slot}}
