@@ -25,15 +25,15 @@
     </div> 
     <div class="m-4">
         <label class="mr-2">Syllabus Link</label>
-        <input class="border-2 border-black" name="syllabusLink" type="text" value="{{$course->syllabusLink}}" required>
+        <input class="border-2 border-black" name="syllabusLink" type="text" value="{{$course->syllabusLink}}" >
     </div>
     <div class="m-4">
         <label class="mr-2">Lab Hours Per Week</label>
-        <input class="border-2 border-black" name="creditsLab" type="number" value="{{$course->creditsLab}}" required>
+        <input class="border-2 border-black" name="creditsLab" type="number" value="{{$course->creditsLab}}" >
     </div>
     <div class="m-4">
         <label class="mr-2">Lecture Hours Per Week</label>
-        <input class="border-2 border-black" name="creditsLecture" type="number" value="{{$course->creditsLecture}}" required>
+        <input class="border-2 border-black" name="creditsLecture" type="number" value="{{$course->creditsLecture}}" >
     </div>
     <div class="m-4">
         <label class="mr-2">Credit Hours</label>

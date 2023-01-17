@@ -110,10 +110,10 @@ class CourseController extends Controller
             "description"=>"required",
             "courseNumber"=>"required",
             "departmentCode"=>"required",
-            "creditsLecture"=>"required",
-            "creditsLab"=>"required",
+            "creditsLecture"=>"nullable",
+            "creditsLab"=>"nullable",
             "creditsTotal"=>"required",
-            "syllabusLink"=>"required"
+            "syllabusLink"=>"nullable"
         ]);
         
         $course->courseTitle=$validated['courseTitle'];

@@ -1,5 +1,5 @@
 <x-header>
-    <h2 class="bg-yellow-500 text-center font-bold text-white text-xl">{{"Reviews For" . $course->departmentCode . "-" . $course->courseNumber}}</h2>
+    <h2 class="bg-black text-center font-bold text-white text-xl">{{"Reviews For " . $course->departmentCode . "-" . $course->courseNumber}}</h2>
     <div class=" grid grid-cols-3 bg-gray-100">
         <div class="col-start-2">
             @foreach ($course->reviews as $review)
@@ -11,7 +11,7 @@
                     <form  class="my-2" method="POST" action="{{ route('reviews.destroy', $review->id) }}">
                         @csrf
                         @method('DELETE')
-                        <button class="bg-gray-200 hover:bg-red-900 hover:text-white rounded p-1">Delete</button>
+                        <button class="hover:underline rounded p-1">Delete</button>
                     </form>
                     @endauth
                 </div>   
