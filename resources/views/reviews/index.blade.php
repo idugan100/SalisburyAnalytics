@@ -1,5 +1,5 @@
 <x-header>
-    <h2 class="bg-yellow-500 text-center font-bold text-white text-xl">All Reviews</h2>
+    <h2 class="bg-black text-center font-bold text-white text-xl">All Reviews</h2>
     <div class="grid grid-cols-3">
         @foreach ($reviews as $review)
         <div class="col-start-2 m-3 border-2 p-2 shadow-md">

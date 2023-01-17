@@ -1,13 +1,13 @@
-<nav class="p-3 bg-gray-500 text-white">
+<nav class="p-3   text-xl font-sans font-bold px-5 py-2 rounded-lg">
     @auth
-        <a class="bg-red-900 p-1 rounded" href="{{route("courses.create")}}">New Course</a>
-        <a href="{{route("professors.create")}}" class="bg-red-900 p-1 rounded">New Professor</a> 
-        <a href="{{route("reviews.create")}}" class="bg-red-900 p-1 rounded">New Review</a> 
+        <a class=" hover:underline px-5 py-2 rounded-lg bold" href="{{route("courses.create")}}">new course</a>
+        <a href="{{route("professors.create")}}" class=" hover:underline px-5 py-2 rounded-lg bold ">new professor</a> 
+        <a href="{{route("reviews.create")}}" class=" hover:underline px-5 py-2 rounded-lg bold ">new review</a> 
     @endauth
-    <a href="{{route("reviews.index")}}" class="bg-red-900 p-1 rounded">All Reviews</a>
-    <a href="{{route("professors.index")}}" class="bg-red-900 p-1 rounded">All Professors</a>
-    <a href="{{route("courses.index")}}" class="bg-red-900 p-1 rounded">All Courses</a>
-    <a class="bg-red-900 p-1 rounded" href="/">About</a>
+    <a href="{{route("reviews.index")}}" class=" hover:underline px-5 py-2 rounded-lg bold ">all reviews</a>
+    <a href="{{route("professors.index")}}" class="hover:underline px-5 py-2 rounded-lg bold ">all professors</a>
+    <a href="{{route("courses.index")}}" class=" hover:underline px-5 py-2 rounded-lg bold ">all courses</a>
+    <a class=" hover:underline px-5 py-2 rounded-lg font-bold " href="/">about</a>
 
 
 

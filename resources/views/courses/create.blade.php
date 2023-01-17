@@ -1,5 +1,5 @@
 <x-header>
-    <h2 class="bg-yellow-500 text-center font-bold text-white text-xl">Add Course</h2>
+    <h2 class="bg-black text-white text-center font-bold  text-xl">Add Course</h2>
 <div class="flex justify-center ">
 <form method="POST" action="{{route('courses.store')}}" >
     @csrf
@@ -24,15 +24,15 @@
     </div> 
     <div class="m-4">
         <label class="mr-2">Syllabus Link</label>
-        <input class="border-2 border-black" name="syllabusLink" type="text" required>
+        <input class="border-2 border-black" name="syllabusLink" type="text" >
     </div>
     <div class="m-4">
         <label class="mr-2">Lab Hours Per Week</label>
-        <input class="border-2 border-black" name="creditsLab" type="number" required>
+        <input class="border-2 border-black" name="creditsLab" type="number" >
     </div>
     <div class="m-4">
         <label class="mr-2">Lecture Hours Per Week</label>
-        <input class="border-2 border-black" name="creditsLecture" type="number" required>
+        <input class="border-2 border-black" name="creditsLecture" type="number" >
     </div>
     <div class="m-4">
         <label class="mr-2">Credit Hours</label>
