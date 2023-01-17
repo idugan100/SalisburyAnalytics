@@ -28,8 +28,8 @@
        
         {{--delete button--}}
         <div class="border-b-2 border-black"></div>
-        @auth
         <div class="flex">
+        @auth
             <form  class="my-2" method="POST" action="{{ route('courses.destroy', $course->id) }}">
                 @csrf
                 @method('delete')
