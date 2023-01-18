@@ -15,10 +15,23 @@ class Professor extends Model
         
         if(array_key_exists('search', $searchTerm)){
             //todo logic for less then two search terms e.g. firstname only
+            $secondTerm=False;
             $explodedTerms=explode( " ", $searchTerm['search']);
+            if(count($explodedTerms)==2){
+                $secondTerm=True;
+                $var=$explodedTerms[1];
+            }
+            
             $searchedPosts=$query
                 ->where('firstName' , 'LIKE' , "%" . $explodedTerms[0]. "%")
-                ->where('lastName', 'LIKE', "%" . $explodedTerms[1] . "%");
+                ->orwhere('lastName', 'LIKE', "%" . $explodedTerms[0] . "%")
+                ->when($secondTerm, function ($query, $var) {
+                    return $query->orwhere('firstName' , 'LIKE' , "%" . $var. "%");
+                })
+                ->when($secondTerm, function ($query, $var) {
+                    return $query->orwhere('lastName' , 'LIKE' , "%" . $var. "%");
+                });
+                
             return $searchedPosts;
         }
         else{

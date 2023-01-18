@@ -25,7 +25,7 @@ class ProfessorController extends Controller
     public function index(Request $request)
     {   
         $validated=$request->validate([
-            "search"=>['nullable','regex:/[a-zA-Z] [a-zA-Z]/']
+            "search"=>['nullable','regex:/[a-zA-Z]+[a-zA-Z]*/']
         ]);
         
         $professor=Professor::filter($validated)->get();
