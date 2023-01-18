@@ -15,8 +15,6 @@
 
             <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSd-mBtpKJJ-377ex-86Aa8DpzBnRd6PUoJBcqsfUUJ9hhnvNA/viewform?embedded=true" width="640" height="1468" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
             
-            <br>
-            <p>Feel free to contact me at idugan1@salisbury.edu with questions, concerns, and feedback.</p>
 
         </div>
 
