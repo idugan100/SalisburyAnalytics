@@ -8,11 +8,12 @@
     <button class="p-2 hover:underline rounded-md  font-bold" type="submit">Search</button>
 </form>
 
-@error('search')
-    <div class="flex justify-center text-red-800 text-lg">Please enter the professors first and last name</div>
-@enderror
-
-@if (!empty($professors))
+    @error('search')
+        <div class="flex justify-center  text-lg">Please enter the professors first and last name</div>
+    @enderror
+@if(count($professors)==0)
+  <p class="flex justify-center text-lg" >We couldn't find that professor. Please double check your spelling.</p>
+@elseif (!empty($professors))
     <div class="flex justify-center ">
     <div >
 
