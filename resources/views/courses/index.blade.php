@@ -19,30 +19,23 @@
     <div class="flex justify-center" >
     <div class="max-w-3xl p-6">
     @foreach ($courses as $course)
-        <div class="p-3">
-            <h3 class="text-2xl font-bold   ">{{$course->courseTitle }}</h3>
-            <h3 class="text-2xl font-bold ">{{$course->departmentCode . "-" . $course->courseNumber}}</h3>
-            <div class="border-b-2 border-black"></div>
-            <p class="  m-1 text-md text-md">{{$course->description}}</p>
-           
-       
+        <div class="bg-white rounded-lg m-2 p-3 shadow-md">
+            <h3 class="text-2xl px-2 font-bold underline  ">{{$course->courseTitle }}</h3>
+            <h3 class="text-2xl px-2 font-bold underline">{{$course->departmentCode . "-" . $course->courseNumber}}</h3>
+            <p class="  m-1 text-md text-md">{{$course->description}}</p>       
         {{--delete button--}}
-        <div class="border-b-2 border-black"></div>
-        <div class="flex">
-        @auth
-            <form  class="my-2" method="POST" action="{{ route('courses.destroy', $course->id) }}">
-                @csrf
-                @method('delete')
-                <button class="hover:underline rounded p-1">Delete</button>
-            </form>
-            <a class="m-2 hover:underline rounded p-1"href="{{route("courses.edit",$course->id)}}">Edit</a>
-            @endauth
-            <a class="my-2 hover:underline rounded p-1"href="{{route("courses.show",$course->id)}}">Reviews</a>
-            </div>
-        
 
-            
-        <hr class="my-2">
+            <div class="flex bg-gray-200 rounded-md">
+            @auth
+                <form  class="my-2" method="POST" action="{{ route('courses.destroy', $course->id) }}">
+                    @csrf
+                    @method('delete')
+                    <button class="hover:underline rounded p-1">Delete</button>
+                </form>
+                <a class="m-2 hover:underline rounded p-1"href="{{route("courses.edit",$course->id)}}">Edit</a>
+            @endauth
+            <a class="mb-1 hover:underline rounded p-1"href="{{route("courses.show",$course->id)}}">Reviews</a>
+        </div>            
         </div>
     @endforeach
     </div>
