@@ -14,28 +14,26 @@
 @if(count($professors)==0)
   <p class="flex justify-center text-lg" >We couldn't find that professor. Please double check your spelling.</p>
 @elseif (!empty($professors))
-    <div class="flex justify-center ">
-    <div >
+    <div class="grid lg:grid-cols-6 grid-cols-3">
 
     @foreach ($professors as $professor)
-        <div class="  m-3  flex">
-        <h3 class=" text-xl p-2  font-bold max-w-sm">{{$professor->firstName . " " . $professor->lastName . " - " . $professor->department}}</h3>
-        @auth
-            <form  class="m-2" method="POST" action="{{ route('professors.destroy', $professor->id) }}">
-                @csrf
-                @method('delete')
-                <button class="hover:underline rounded p-1">delete</button>
-            </form>     
-            <a class="m-2  hover:underline  rounded p-1" href="{{route('professors.edit',$professor->id)}}">edit</a>
-        @endauth
-        <a class="m-2 hover:underline rounded p-1" href="{{route('professors.show',$professor->id)}}">reviews</a>
-
+        <div class="  bg-white rounded-lg m-2 p-2 shadow-md">
+            <h3 class=" text-xl p-2  font-bold max-w-sm">{{$professor->firstName . " " . $professor->lastName . " - " . $professor->department}}</h3>
+            <div class="flex bg-gray-200 rounded-md">
+                @auth
+                    <form  class="m-1" method="POST" action="{{ route('professors.destroy', $professor->id) }}">
+                        @csrf
+                        @method('delete')
+                        <button class="hover:underline rounded ">delete</button>
+                    </form>     
+                    <a class="m-1  hover:underline  rounded " href="{{route('professors.edit',$professor->id)}}">edit</a>
+                @endauth
+                <a class="m-1 hover:underline rounded " href="{{route('professors.show',$professor->id)}}">reviews</a>
+            </div>
         </div>   
-        <div class="border-b-2 border-black"></div>
      
     @endforeach
 
-    </div>
     </div>
 @endif
 
