@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreReviewRequest;
-use App\Http\Requests\UpdateReviewRequest;
-use App\Models\Professor;
 use App\Models\Course;
 use App\Models\Review;
+use App\Models\Professor;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Auth\Events\Validated;
+use App\Http\Requests\StoreReviewRequest;
+use App\Http\Requests\UpdateReviewRequest;
 
 class ReviewController extends Controller
 {
@@ -21,7 +22,7 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        $reviews=Review::all();
+        $reviews=Review::latest()->get();
         return (view('reviews.index',["reviews"=>$reviews]));
     }
 
@@ -32,7 +33,14 @@ class ReviewController extends Controller
      */
     public function create()
     {
-        return view("reviews.create");
+        $courseList=DB::table('courses')
+            ->select("departmentCode","id", "courseNumber")
+            ->groupByRaw("departmentCode, courseNumber")
+            ->get();
+        $professorList=DB::table('professors')
+            ->select('id','firstName','lastName')
+            ->get();
+        return view("reviews.create",['professorList'=>$professorList,'courseList'=>$courseList]);
     }
 
     /**
@@ -45,17 +53,17 @@ class ReviewController extends Controller
     public function store(StoreReviewRequest $request)
     {
         //validation
+        
         $validated=$request->validate([
             'question'=>'required',
             'response'=>'required',
-            'departmentCode'=>'regex:/.*-.*/',
-            'professorName'=>'regex:/[a-zA-Z] [a-zA-Z]/'
+            'courseID'=>'required',
+            'professorID'=>'required'
         ]);
-        $professorID=$this->getProfessorId($validated['professorName']);
-        $courseID=$this->getCourseId($validated['departmentCode']);
+        
         $review = new Review;
-        $review->course_id=$courseID;
-        $review->professor_id=$professorID;
+        $review->course_id=$validated['courseID'];
+        $review->professor_id=$validated['professorID'];
         $review->question=$validated['question'];
         $review->response=$validated['response'];
         $review->save();
