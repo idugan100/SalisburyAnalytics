@@ -34,7 +34,7 @@
                 </form>
                 <a class="m-2 hover:underline rounded p-1"href="{{route("courses.edit",$course->id)}}">Edit</a>
             @endauth
-            <a class="mb-1 hover:underline rounded p-1"href="{{route("courses.show",$course->id)}}">Reviews</a>
+            <a class="mb-1 bg-green-300 rounded p-1"href="{{route("courses.show",$course->id)}}">Reviews</a>
         </div>            
         </div>
     @endforeach

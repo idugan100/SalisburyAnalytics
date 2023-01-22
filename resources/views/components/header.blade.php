@@ -8,7 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-200 ">
-    <h1 class="text-3xl font-bold bg-black text-white font-sans border-b-4 border-black text-center">Screech</h1>
+    <h1 class="text-6xl p-4 font-bold bg-black text-sky-500   font-sans border-b-4 border-black text-center">Screech</h1>
     <x-navbar></x-navbar>
 
     {{$slot}}
