@@ -1,6 +1,5 @@
 <x-header>
-    <h2 class="bg-black text-center font-bold text-white text-2xl">about</h2>
-
+<x-subHeader title="about"/>
     <div class="flex justify-center">
         <div class="max-w-3xl p-2">
             <p class="text-lg m-2 ">This site is a forum for course and professor information that is focused on postive and informative feedback. Many educational review sites 

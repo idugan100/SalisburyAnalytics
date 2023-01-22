@@ -1,7 +1,7 @@
 
 <x-header>
 
-<h2 class="bg-black text-center font-bold text-white text-2xl">all courses</h2>
+<x-subHeader title="all courses"/>
 
 <form class=" mt-3 flex justify-center" action="{{route('courses.index')}}">
     @method('get')
