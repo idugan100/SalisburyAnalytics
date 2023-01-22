@@ -1,7 +1,7 @@
 
- <div class="bg-white rounded-lg m-2 p-3 shadow-md">
-    <h3 class="text-lg font-bold underline">{{$review->question}}</h3>
-    <p>{{$review->response}}</p>
+ <div class="bg-white  rounded-lg m-6 contrast-125 p-3 shadow-lg shadow-sky-500">
+    <h3 class=" text-lg font-bold underline">{{$review->question}}</h3>
+    <p class="m-2">{{$review->response}}</p>
     <div class="bg-gray-200 rounded p-1 my-2">{{$review->course->departmentCode . "-" . $review->course->courseNumber . " | " . $review->professor->firstName . " ". $review->professor->lastName}}</div>
     @auth
     <form  class="m-2" method="POST" action="{{ route('reviews.destroy', $review->id) }}">
@@ -11,3 +11,5 @@
     </form>
     @endauth
 </div>   
+
+

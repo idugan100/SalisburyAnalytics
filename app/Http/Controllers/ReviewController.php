@@ -70,26 +70,8 @@ class ReviewController extends Controller
         return redirect(route("reviews.index"));
     }
 
-    private function getProfessorId($professorName)
-    {
-        $explodedName=explode(" ",$professorName);
-        //checks on $exploded name
-        $professor=Professor::where("firstName",$explodedName[0])
-            ->where("lastName",$explodedName[1])
-            ->get();
-        return $professor[0]->id;
-    }
-    private function getCourseId($courseCode)
-    {
-        $explodedCourse=explode("-",$courseCode);
-        //checks on $exploded course code
-        $course=Course::where("departmentCode",$explodedCourse[0])
-            ->where("courseNumber",$explodedCourse[1])
-            ->get();
-        return $course[0]->id;
+
         
-        
-    }
     /**
      * Display the specified resource.
      *
