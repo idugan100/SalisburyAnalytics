@@ -1,5 +1,5 @@
 <x-header>
-    <h2 class="bg-black text-center font-bold text-white p-2 text-3xl">{{"Reviews For " . $professor->firstName . " " . $professor->lastName}}</h2>
+    <h2 class="bg-black text-center font-bold text-white p-2 text-2xl">{{"Reviews For " . $professor->firstName . " " . $professor->lastName}}</h2>
     <div class=" grid grid-cols-4">
         @if (count($professor->reviews)==0)
             <div class="flex justify-center col-start-2  text-lg">Sorry no reviews found for this professor</div>
