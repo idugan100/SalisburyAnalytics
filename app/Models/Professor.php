@@ -14,23 +14,21 @@ class Professor extends Model
         
         
         if(array_key_exists('search', $searchTerm)){
-            //todo logic for less then two search terms e.g. firstname only
-            $secondTerm=False;
-            $explodedTerms=explode( " ", $searchTerm['search']);
-            if(count($explodedTerms)==2){
-                $secondTerm=True;
-                $var=$explodedTerms[1];
-            }
             
-            $searchedPosts=$query
-                ->where('firstName' , 'LIKE' , "%" . $explodedTerms[0]. "%")
-                ->orwhere('lastName', 'LIKE', "%" . $explodedTerms[0] . "%")
-                ->when($secondTerm, function ($query, $var) {
-                    return $query->orwhere('firstName' , 'LIKE' , "%" . $var. "%");
-                })
-                ->when($secondTerm, function ($query, $var) {
-                    return $query->orwhere('lastName' , 'LIKE' , "%" . $var. "%");
-                });
+            $explodedTerms=explode( " ", $searchTerm['search']);
+
+            if(count($explodedTerms)<2){
+                $searchedPosts=$query
+                    ->orwhere('firstName' , 'LIKE' , "%" . $explodedTerms[0]. "%")
+                    ->orwhere('lastName', 'LIKE', "%" . $explodedTerms[0] . "%");
+            }
+            else{
+                $searchedPosts=$query
+                    ->orwhere('firstName' , 'LIKE' , "%" . $explodedTerms[0]. "%")
+                    ->orwhere('lastName', 'LIKE', "%" . $explodedTerms[0] . "%")
+                    ->orwhere('firstName' , 'LIKE' , "%" . $explodedTerms[1]. "%")
+                    ->orwhere('lastName' , 'LIKE' , "%" . $explodedTerms[1]. "%");
+            }
                 
             return $searchedPosts;
         }
