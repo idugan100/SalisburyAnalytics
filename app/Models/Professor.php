@@ -12,7 +12,6 @@ class Professor extends Model
     
     public function scopeFilter( $query, $searchTerm){
         
-        
         if(array_key_exists('search', $searchTerm)){
             
             $explodedTerms=explode( " ", $searchTerm['search']);
