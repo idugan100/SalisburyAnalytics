@@ -1,5 +1,6 @@
 <x-header>
-    <h2 class="bg-black text-center font-bold text-white text-xl">New Review</h2>
+    <x-subHeader title="new review"/>
+
     <form  class= "grid grid-cols-3"action="{{route("reviews.store")}}" method="post">
         @csrf
         <div class="col-start-2">

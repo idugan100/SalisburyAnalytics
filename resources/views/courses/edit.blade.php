@@ -1,5 +1,5 @@
 <x-header>
-    <h2 class="bg-yellow-500 text-center font-bold text-white text-xl">Edit Course</h2>
+    <x-subHeader title="edit course"/>
 <div class="flex justify-center ">
 <form method="POST" action="{{route('courses.update',$course->id)}}" >
     @csrf

@@ -1,6 +1,6 @@
 <x-header>
-    <h2 class="bg-black text-center font-bold text-white text-xl">New Professor</h2>
-    <div class="flex justify-center ">
+    <x-subHeader title="new professor"/>
+        <div class="flex justify-center ">
         <form method="POST" action="{{route('professors.store')}}" >
             @csrf
            
