@@ -41,8 +41,8 @@
                                 <th scope="row">{{$review->course->departmentCode . "-" . $review->course->courseNumber}}</th>
                                 <td>{{$review->response}}</td>
                                 <td>
-                                    <a class="btn btn-success btn-sm m-2 "href="">Approve</a>
-                                    <a class="btn btn-danger btn-sm m-2"href="">Reject</a>
+                                    <a class="btn btn-success btn-sm m-2 "href="{{route("review.approve",$review)}}">Approve</a>
+                                    <a class="btn btn-danger btn-sm m-2"href="{{route("review.reject",$review)}}">Reject</a>
 
                                 </td>
                               </tr>
