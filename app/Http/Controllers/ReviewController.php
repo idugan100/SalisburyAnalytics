@@ -114,4 +114,17 @@ class ReviewController extends Controller
         $review->delete();
         return back();
     }
+
+    public function approve(Review $review)
+    {
+        $review->approved_flag=1;
+        $review->save();
+        return redirect(route("home"));
+    }
+    public function reject(Review $review)
+    {
+        $review->approved_flag=2;
+        $review->save();
+        return redirect(route("home"));
+    }
 }

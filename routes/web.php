@@ -28,6 +28,8 @@ Route::resource('courses',CourseController::class);
 Route::resource('professors',ProfessorController::class);
 
 Route::resource('reviews',ReviewController::class);
+Route::get('/reviews/approve/{review}',[ReviewController::class,'approve'])->name('review.approve');
+Route::get('/reviews/reject/{review}',[ReviewController::class,'reject'])->name("review.reject");
 
 Auth::routes([
 
@@ -40,3 +42,4 @@ Auth::routes([
   ]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
