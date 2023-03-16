@@ -22,7 +22,7 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        $reviews=Review::latest()->get();
+        $reviews=Review::where('approved_flag',1)->latest()->get();
         return (view('reviews.index',["reviews"=>$reviews]));
     }
 

@@ -6,7 +6,9 @@
         @endif
         <div class="col-start-2">
             @foreach ($course->reviews as $review)
-            <x-reviewCard :review="$review"></x-reviewCard>   
+                @if ($review->approved_flag==True)
+                    <x-reviewCard :review="$review"></x-reviewCard>   
+                @endif 
             @endforeach
         </div>
         
