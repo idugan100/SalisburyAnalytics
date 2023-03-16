@@ -13,7 +13,7 @@ use App\Http\Requests\UpdateReviewRequest;
 class ReviewController extends Controller
 {
     public function __construct(){
-        $this->middleware('auth', ['except' => ['index']]);
+        $this->middleware('auth', ['except' => ['index','create','store']]);
     }
     /**
      * Display a listing of the resource.
