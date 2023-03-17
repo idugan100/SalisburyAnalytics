@@ -24,7 +24,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $reviews=Review::where('approved_flag',0)->latest()->paginate(10);
-        return view('home', compact('reviews'));
+        
     }
 }

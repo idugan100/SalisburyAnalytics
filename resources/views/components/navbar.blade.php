@@ -2,7 +2,7 @@
     @auth
         <a class=" decoration-sky-500 decoration-4 hover:underline px-5 py-2 rounded-lg decoration-blue-400 bold" href="{{route("courses.create")}}">new course</a>
         <a href="{{route("professors.create")}}" class="decoration-sky-500 decoration-4 hover:underline px-5 py-2 rounded-lg bold ">new professor</a> 
-        <a href="/home" class=" decoration-sky-500 decoration-4 hover:underline px-5 py-2 rounded-lg bold ">home</a> 
+        <a href="{{route("reviews.processing")}}" class=" decoration-sky-500 decoration-4 hover:underline px-5 py-2 rounded-lg bold ">home</a> 
 
     @endauth
     <a href="{{route("reviews.index")}}" class=" decoration-sky-500 decoration-4 hover:underline px-5 py-2 rounded-lg bold ">all reviews</a>
