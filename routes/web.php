@@ -25,11 +25,23 @@ Route::get('/', function () {
 //routes for courses
 Route::resource('courses',CourseController::class);
 
+//crud review routes
 Route::resource('professors',ProfessorController::class);
 
 Route::resource('reviews',ReviewController::class);
+
+//admin review routes
+Route::get('/processing', [ReviewController::class, 'processing'])->name('reviews.processing');
+Route::get('/approved',[ReviewController::class,'approved'])->name('reviews.approved');
+Route::get('/rejected',[ReviewController::class,'rejected'])->name("reviews.rejected");
+//review actions
 Route::get('/reviews/approve/{review}',[ReviewController::class,'approve'])->name('review.approve');
 Route::get('/reviews/reject/{review}',[ReviewController::class,'reject'])->name("review.reject");
+Route::get('/reviews/reprocess/{review}/{origin}',[ReviewController::class,'reprocess'])->name("review.reprocess");
+
+
+
+
 
 Auth::routes([
 
@@ -41,5 +53,4 @@ Auth::routes([
   
   ]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

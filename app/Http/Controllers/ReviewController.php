@@ -119,12 +119,33 @@ class ReviewController extends Controller
     {
         $review->approved_flag=1;
         $review->save();
-        return redirect(route("home"));
+        return redirect(route("reviews.processing"));
     }
     public function reject(Review $review)
     {
         $review->approved_flag=2;
         $review->save();
-        return redirect(route("home"));
+        return redirect(route("reviews.processing"));
+    }
+    public function reprocess(Review $review, $origin){
+        $review->approved_flag=0;
+        $review->save();
+        if($origin=="rejected"){
+            return redirect(route('reviews.rejected'));
+        }
+        return redirect(route('reviews.approved'));
+
+    }
+    public function rejected(){
+        $reviews=Review::where('approved_flag',2)->paginate(10);
+        return view("rejected_reviews", compact('reviews'));
+    }
+    public function approved(){
+        $reviews=Review::where('approved_flag',1)->paginate(10);
+        return view("approved", compact('reviews'));
+    }
+    public function processing(){
+        $reviews=Review::where('approved_flag',0)->latest()->paginate(10);
+        return view('processing', compact('reviews'));
     }
 }
