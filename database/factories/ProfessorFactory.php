@@ -17,9 +17,9 @@ class ProfessorFactory extends Factory
     public function definition()
     {
         return [
-            'firstName'=>"Annie",
-            "lastName"=>'Lu',
-            "department"=>"Computer Science"
+            'firstName'=>fake()->firstName(),
+            "lastName"=>fake()->lastName(),
+            "department"=>"COSC"
         ];
     }
 }

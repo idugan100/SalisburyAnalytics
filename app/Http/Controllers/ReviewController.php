@@ -70,6 +70,7 @@ class ReviewController extends Controller
         $review->professor_id=$validated['professorID'];
         $review->question=$validated['question'];
         $review->response=$validated['response'];
+        $review->approval_flag=self::PROCESSING_FLAG;
         $review->save();
         return redirect(route("reviews.index"));
     }
