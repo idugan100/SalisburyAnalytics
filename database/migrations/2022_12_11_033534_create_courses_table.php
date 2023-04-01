@@ -18,12 +18,12 @@ return new class extends Migration
             $table->timestamps();
             $table->integer('courseNumber');
             $table->string('courseTitle');
-            $table->longtext('description');
-            $table->integer('creditsLecture');
-            $table->integer('creditsLab');
+            $table->longtext('description')->nullable();
+            $table->integer('creditsLecture')->nullable();
+            $table->integer('creditsLab')->nullable();
             $table->string('departmentCode');
-            $table->string('syllabusLink');
-            $table->integer('creditsTotal');
+            $table->string('syllabusLink')->nullable();
+            $table->integer('creditsTotal')->nullable();
 
         });
     }
