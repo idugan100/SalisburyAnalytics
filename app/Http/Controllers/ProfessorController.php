@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreProfessorRequest;
-use App\Http\Requests\UpdateProfessorRequest;
+use App\Models\Review;
+use App\Models\Professor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-use App\Models\Professor;
+use App\Http\Requests\StoreProfessorRequest;
+use App\Http\Requests\UpdateProfessorRequest;
 
 class ProfessorController extends Controller
 {
@@ -76,7 +77,8 @@ class ProfessorController extends Controller
      */
     public function show(Professor $professor)
     {
-        return view('professors.show',["professor"=>$professor]);
+        $reviews=$professor->reviews()->where('approved_flag',ReviewController::APPROVED_FLAG)->get();
+        return view('professors.show',compact('professor','reviews'));
     }
 
     /**

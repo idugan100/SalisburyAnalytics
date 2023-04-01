@@ -81,7 +81,8 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
-        return view('courses.show',["course"=>$course]);
+        $reviews=$course->reviews()->where('approved_flag',ReviewController::APPROVED_FLAG)->get();
+        return view('courses.show',compact('course','reviews'));
     }
 
     /**
