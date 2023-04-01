@@ -12,6 +12,10 @@ use App\Http\Requests\UpdateReviewRequest;
 
 class ReviewController extends Controller
 {
+    const PROCESSING_FLAG=0;
+    const APPROVED_FLAG=1;
+    const REJECTED_FLAG=2;
+
     public function __construct(){
         $this->middleware('auth', ['except' => ['index','create','store']]);
     }
@@ -117,18 +121,18 @@ class ReviewController extends Controller
 
     public function approve(Review $review)
     {
-        $review->approved_flag=1;
+        $review->approved_flag=self::APPROVED_FLAG;
         $review->save();
         return redirect(route("reviews.processing"));
     }
     public function reject(Review $review)
     {
-        $review->approved_flag=2;
+        $review->approved_flag=self::REJECTED_FLAG;
         $review->save();
         return redirect(route("reviews.processing"));
     }
     public function reprocess(Review $review, $origin){
-        $review->approved_flag=0;
+        $review->approved_flag=self::PROCESSING_FLAG;
         $review->save();
         if($origin=="rejected"){
             return redirect(route('reviews.rejected'));
@@ -137,15 +141,15 @@ class ReviewController extends Controller
 
     }
     public function rejected(){
-        $reviews=Review::where('approved_flag',2)->paginate(10);
+        $reviews=Review::where('approved_flag',self::REJECTED_FLAG)->paginate(10);
         return view("rejected_reviews", compact('reviews'));
     }
     public function approved(){
-        $reviews=Review::where('approved_flag',1)->paginate(10);
+        $reviews=Review::where('approved_flag',self::APPROVED_FLAG)->paginate(10);
         return view("approved", compact('reviews'));
     }
     public function processing(){
-        $reviews=Review::where('approved_flag',0)->latest()->paginate(10);
+        $reviews=Review::where('approved_flag',self::PROCESSING_FLAG)->latest()->paginate(10);
         return view('processing', compact('reviews'));
     }
 }
