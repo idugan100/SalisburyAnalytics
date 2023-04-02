@@ -59,7 +59,7 @@ class ReviewController extends Controller
         //validation
         
         $validated=$request->validate([
-            'question'=>'required',
+            'question'=>'nullable',
             'response'=>'required',
             'courseID'=>'required',
             'professorID'=>'required'
@@ -70,7 +70,7 @@ class ReviewController extends Controller
         $review->professor_id=$validated['professorID'];
         $review->question=$validated['question'];
         $review->response=$validated['response'];
-        $review->approval_flag=self::PROCESSING_FLAG;
+        $review->approved_flag=self::PROCESSING_FLAG;
         $review->save();
         return redirect(route("reviews.index"));
     }
