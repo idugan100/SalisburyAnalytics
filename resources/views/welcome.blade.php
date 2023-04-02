@@ -1,18 +1,17 @@
 <x-header>
 <x-subHeader title="about"/>
     <div class="flex justify-center">
-        <div class="max-w-3xl p-2">
-            <p class="text-lg m-2 ">This site is a forum for course and professor information that is focused on postive and informative feedback. Many educational review sites 
-                are filled with rants that are unhelpful and often baseless. By partnering directly with universities we can provide the most accurate, extensive
-                and constuctive educational review site. if you fill out the below form, we'll make sure your review fits with our vision and make it public!
+        <div class="max-w-3xl bg-white mt-16  rounded-lg shadow-lg shadow-sky-600 p-2 divide-y-4 divide-sky-500 divide-dotted">
+            <p class="text-lg m-4 p-4">This site is a forum for course and professor information that is focused on constructive and quantitative feedback. Many educational review sites 
+                are filled with unhelpful rants. Through the Public Information Act, we can provide detailed grade and course information about Salisbury University. 
+                We also anonmyously host appropriate student reviews!
             </p>
-            <p class="text-lg m-2">
-                This site is specifically for Salisbury Univeristy. If you would be interested in this service at your school let us know and we'll get to work!
+            <p class="text-lg m-4 p-4">
+                This site is specifically for Salisbury Univeristy. If you would be interested in this service at your school, let me know and we'll get to work!
             </p>
             
-            <p class="text-lg m-2">Feel free to contact me at idugan1@salisbury.edu with questions, concerns, and feedback.</p>
+            <p class="text-lg m-4 p-4">Please contact me at idugan1@salisbury.edu with questions, concerns, and feedback.</p>
 
-            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSd-mBtpKJJ-377ex-86Aa8DpzBnRd6PUoJBcqsfUUJ9hhnvNA/viewform?embedded=true" width="640" height="1468" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
             
 
         </div>
