@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Review extends Model
 {
     use HasFactory;
-    protected $fillable = ['question','response','professor_id','course_id'];
+    protected $fillable = ['question','response','professor_id','course_id','approved_flag'];
 
  
 

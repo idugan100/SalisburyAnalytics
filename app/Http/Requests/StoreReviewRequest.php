@@ -13,7 +13,7 @@ class StoreReviewRequest extends FormRequest
      */
     public function authorize()
     {
-        return auth()->user()->email=="isaacd4444@gmail.com";
+        return true;
     }
 
     /**
