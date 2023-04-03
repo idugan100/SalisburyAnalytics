@@ -68,7 +68,7 @@ class ReviewController extends Controller
         $review = new Review;
         $review->course_id=$validated['courseID'];
         $review->professor_id=$validated['professorID'];
-        $review->question=$validated['question'];
+        $review->question= isset($validated['question'])? $validated['question']:null;
         $review->response=$validated['response'];
         $review->approved_flag=self::PROCESSING_FLAG;
         $review->save();
