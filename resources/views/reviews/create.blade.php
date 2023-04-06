@@ -5,7 +5,7 @@
     <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
         <div class="relative p-4 shadow-lg shadow-black bg-white hover:bg-sky-500 group rounded-lg shadow dark:bg-gray-800 sm:p-5">
             <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 group-hover:border-gray-300 border-sky-500">
-                <h3 class="text-lg font-bold text-black dark:text-white">
+                <h3 class="text-2xl font-bold text-black dark:text-white">
                     Add Review
                 </h3>
                 <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="defaultModal">
@@ -17,7 +17,7 @@
                 @csrf
                 <div class="grid gap-4 mb-4 sm:grid-cols-2">
                       <div>
-                        <label for="category2" class="block mb-2 font-bold text-sm  text-black dark:text-white">Course</label>
+                        <label for="category2" class="block mb-2 font-bold text-md text-black dark:text-white">Course</label>
                         <select id="category2" name="courseID" class="bg-gray-200 border border-gray-200 text-black text-sm rounded-lg focus:ring-sky-500 focus:border-sky-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                             <option selected="">Select course</option>
                             @foreach ($courseList as $course)
@@ -26,7 +26,7 @@
                         </select>
                     </div>
                     <div>
-                        <label for="category" class="block mb-2 text-sm font-bold text-black dark:text-white">Professor</label>
+                        <label for="category" class="block mb-2 text-md font-bold text-black dark:text-white">Professor</label>
                         <select id="category" name="professorID" class="bg-gray-200 border border-gray-200 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-sky-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                             <option value="" selected>Select professor</option>
                             @foreach ($professorList as $professor)
@@ -35,7 +35,7 @@
                         </select>
                     </div>
                     <div class="sm:col-span-2">
-                        <label for="description" class="block mb-2 text-sm font-bold text-gray-900 dark:text-white">Review</label>
+                        <label for="description" class="block mb-2 text-md font-bold text-gray-900 dark:text-white">Review</label>
                         <textarea id="description" name="response" rows="4" class="block p-2.5 w-full text-sm text-black bg-gray-200 rounded-lg border border-gray-300 focus:ring-sky-500 focus:border-sky-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Write your review here"></textarea>                    
                     </div>
                 </div>
