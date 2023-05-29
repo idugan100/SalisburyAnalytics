@@ -39,7 +39,6 @@ class ReviewController extends Controller
     {
         $courseList=DB::table('courses')
             ->select("departmentCode","id", "courseNumber")
-            ->groupByRaw("departmentCode, courseNumber")
             ->get();
         $professorList=DB::table('professors')
             ->select('id','firstName','lastName')
