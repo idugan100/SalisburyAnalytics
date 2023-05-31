@@ -3,6 +3,8 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Box\Spout\Reader\Common\Creator\ReaderEntityFactory;
+
 
 class ImportData extends Command
 {
@@ -27,8 +29,21 @@ class ImportData extends Command
      */
     public function handle()
     {
-        $filepath = $this->ask('Enter the filepath you are going to import: ');
-        echo "import completed";
+        $file_path = $this->ask('Enter the filepath you are going to import: ');
+
+        $reader = ReaderEntityFactory::createReaderFromFile($file_path);
+
+        $reader->open($file_path);
+        $row_counter=0;
+        foreach ($reader->getSheetIterator() as $sheet) {
+            foreach ($sheet->getRowIterator() as $row) {
+                // do stuff with the row
+                $cells = $row->getCells();
+                $row_counter++;
+            }
+        }
+
+        echo "import completed ". $row_counter . " records processed";
         return Command::SUCCESS;
     }
 }
