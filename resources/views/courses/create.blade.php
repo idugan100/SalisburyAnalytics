@@ -20,7 +20,7 @@
     <label>Course Description</label>
 
     <div class="m-4">
-        <textarea class="border-2 border-black" name="description" cols="30" rows="10" required></textarea>
+        <textarea class="border-2 border-black" name="description" cols="30" rows="10" ></textarea>
     </div> 
     <div class="m-4">
         <label class="mr-2">Syllabus Link</label>
@@ -36,7 +36,7 @@
     </div>
     <div class="m-4">
         <label class="mr-2">Credit Hours</label>
-        <input class="border-2 border-black" name="creditsTotal" type="number" required>
+        <input class="border-2 border-black" name="creditsTotal" type="number">
     </div>
     <button class="bg-gray-200 hover:bg-blue-900 hover:text-white rounded p-1" type="submit">Submit</button>
     @if ($errors->any())
