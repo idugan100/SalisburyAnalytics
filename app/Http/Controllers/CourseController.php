@@ -52,12 +52,12 @@ class CourseController extends Controller
     {
         $validated=$request->validate([
             "courseTitle"=>"required",
-            "description"=>"required",
+            "description"=>"nullable",
             "courseNumber"=>"required",
             "departmentCode"=>"required",
             "creditsLecture"=>"nullable",
             "creditsLab"=>"nullable",
-            "creditsTotal"=>"required",
+            "creditsTotal"=>"nullable",
             "syllabusLink"=>"nullable"
         ]);
         $course=new Course;
