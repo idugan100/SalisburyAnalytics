@@ -3,7 +3,9 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Exception;
 use Box\Spout\Reader\Common\Creator\ReaderEntityFactory;
+use Illuminate\Support\Facades\DB;
 
 
 class ImportData extends Command
@@ -27,35 +29,43 @@ class ImportData extends Command
      *
      * @return int
      */
-
-     //TOdo implemnt transactions -https://laravel.com/docs/10.x/database#database-transactions
-     //TODO implement try catch
     public function handle()
     {
-        $file_path = $this->ask('Enter the filepath you are going to import: ');
+        try{
+            DB::beginTransaction();
 
-        $reader = ReaderEntityFactory::createReaderFromFile($file_path);
+            $file_path = $this->ask('Enter the filepath you are going to import: ');
+    
+            $reader = ReaderEntityFactory::createReaderFromFile($file_path);
+            $reader->open($file_path);
+            $headers=$this->getHeaders($reader);
+            $confirm_headers = $this->confirm('Are the following headers correct: ' . implode("," ,$headers));
+            // TODO add exit if they are not confirmed
 
-        $reader->open($file_path);
-        $headers=$this->getHeaders($reader);
-        $confirm_headers = $this->confirm('Are the following headers correct: ' . implode("," ,$headers));
-        //add exit if they are not confirmed
-        $row_counter=0;
-        foreach ($reader->getSheetIterator() as $sheet) {
-            foreach ($sheet->getRowIterator() as $row_number => $row) {
-                if($row_number>1){ //not done for header row
-                    $data=$this->rowToArray($row);
-                    $this->table($headers,[$data]);
-                    $course_ID=$this->insertCourse($data);
-                    $professor_ID=$this->insertProfessor($data);
-                    $this->createGradeLineIterm($course_ID,$professor_ID);
+            $row_counter=0;
+            foreach ($reader->getSheetIterator() as $sheet) {
+                foreach ($sheet->getRowIterator() as $row_number => $row) {
+                    if($row_number>1){ //not done for header row
+                        $data=$this->rowToArray($row);
+                        $this->table($headers,[$data]);
+                        $course_ID=$this->insertCourse($data);
+                        $professor_ID=$this->insertProfessor($data);
+                        $this->createGradeLineIterm($course_ID,$professor_ID);
+                    }
+                    $row_counter++;
                 }
-                $row_counter++;
             }
+    
+            $this->info( "import completed ". $row_counter . " records processed");
+            DB::commit();
+            return Command::SUCCESS;
         }
-
-        $this->info( "import completed ". "{{set up counter here}}" . " records processed");
-        return Command::SUCCESS;
+        catch(Exception $e){
+            DB::rollBack();
+            $this->error("Error: " .$e->getMessage());
+            return 1;
+        }
+        
     }
 
     private function getHeaders($reader){
