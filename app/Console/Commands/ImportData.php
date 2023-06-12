@@ -35,9 +35,9 @@ class ImportData extends Command
             DB::beginTransaction();
 
             $file_path = $this->ask('Enter the filepath you are going to import: ');
-    
             $reader = ReaderEntityFactory::createReaderFromFile($file_path);
             $reader->open($file_path);
+            
             $headers=$this->getHeaders($reader);
             $confirm_headers = $this->confirm('Are the following headers correct: ' . implode("," ,$headers));
             // TODO add exit if they are not confirmed
