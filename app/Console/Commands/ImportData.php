@@ -7,6 +7,7 @@ use Exception;
 use Box\Spout\Reader\Common\Creator\ReaderEntityFactory;
 use Illuminate\Support\Facades\DB;
 use App\Models\Course;
+use App\Models\Professor;
 
 
 class ImportData extends Command
@@ -51,7 +52,7 @@ class ImportData extends Command
                         $this->table($headers,[$data]);
                         $course_ID=$this->insertCourse($data);
                         $professor_ID=$this->insertProfessor($data);
-                        $this->createGradeLineItem($course_ID,$professor_ID);
+                        $this->createGradeLineItem($course_ID, $professor_ID, $data);
                     }
                     $row_counter++;
                 }
@@ -109,13 +110,30 @@ class ImportData extends Command
     }
 
     private function insertProfessor($data){
-        //implement insertion
-        echo("inserting professor \n");
-        return 5;
+        $name_array=explode(",",$data[3]);
+        $professor=Professor::where("lastName",$name_array[0])->where("firstName",$name_array[1])->first();
+        if($professor){
+            echo("Professor " . $name_array[1] . " " . $name_array[0] . " found\n");
+            return $professor->id;
+        }
+        else{
+            $new_professor= new Professor;
+            $new_professor->firstName = $name_array[1];
+            $new_professor->lastName = $name_array[0];
+            $new_professor->save();
+            echo("Inserting professor " . $name_array[1] . " " . $name_array[0] . "\n");
+            return $new_professor->id;
+        }
     }
 
-    private function createGradeLineItem($course_ID, $professor_ID){
-        //implement insertion
+    private function createGradeLineItem($course_ID, $professor_ID, $data){
+        DB::table('courses_x_professors_with_grades')->insert([
+            "course_ID" => $course_ID,
+            "professor_ID" => $professor_ID,
+            "semester" => $data[0],
+            "quantity" => $data[5],
+            "grade" => $data[4]
+            ]);
         echo("inserting grade line item \n");
     }
 }

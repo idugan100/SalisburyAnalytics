@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamps();
             $table->string('firstName');
             $table->string('lastName');
-            $table->string('department');
+            $table->string('department')->nullable();
 
         });
     }
