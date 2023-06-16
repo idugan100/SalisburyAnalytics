@@ -34,11 +34,12 @@ class ImportData extends Command
     public function handle()
     {
         try{
-            DB::beginTransaction();
+           
 
             $file_path = $this->ask('Enter the filepath you are going to import: ');
             $reader = ReaderEntityFactory::createReaderFromFile($file_path);
             $reader->open($file_path);
+
 
             $headers=$this->getHeaders($reader);
             $confirm_headers = $this->confirm('Are the following headers correct: ' . implode(", " ,$headers));
@@ -48,18 +49,20 @@ class ImportData extends Command
             foreach ($reader->getSheetIterator() as $sheet) {
                 foreach ($sheet->getRowIterator() as $row_number => $row) {
                     if($row_number>1){ //not done for header row
+                        DB::beginTransaction();
                         $data=$this->rowToArray($row);
                         $this->table($headers,[$data]);
                         $course_ID=$this->insertCourse($data);
                         $professor_ID=$this->insertProfessor($data);
                         $this->createGradeLineItem($course_ID, $professor_ID, $data);
+                        DB::commit();
                     }
                     $row_counter++;
                 }
             }
     
             $this->info( "import completed ". $row_counter . " records processed");
-            DB::commit();
+            
             return Command::SUCCESS;
         }
         catch(Exception $e){
@@ -127,13 +130,26 @@ class ImportData extends Command
     }
 
     private function createGradeLineItem($course_ID, $professor_ID, $data){
-        DB::table('courses_x_professors_with_grades')->insert([
-            "course_ID" => $course_ID,
-            "professor_ID" => $professor_ID,
-            "semester" => $data[0],
-            "quantity" => $data[5],
-            "grade" => $data[4]
-            ]);
-        echo("inserting grade line item \n");
+        $line_items=DB::table('courses_x_professors_with_grades')
+            ->where("course_ID",$course_ID)
+            ->where("professor_ID",$professor_ID)
+            ->where("semester",$data[0])
+            ->where("quantity",$data[5])
+            ->where("grade",$data[4])
+            ->get();
+        if(count($line_items)==0){
+            DB::table('courses_x_professors_with_grades')->insert([
+                "course_ID" => $course_ID,
+                "professor_ID" => $professor_ID,
+                "semester" => $data[0],
+                "quantity" => $data[5],
+                "grade" => $data[4]
+                ]);
+            echo("inserting grade line item \n");
+        }
+        else{
+            echo("line item already entered \n");
+        }
+        
     }
 }
