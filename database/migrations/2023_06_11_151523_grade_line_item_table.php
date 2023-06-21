@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('professor_ID');
             $table->integer('course_ID');
             $table->integer('quantity');
-            $table->char('grade',1);
+            $table->char('grade',2);
         });
     }
 
