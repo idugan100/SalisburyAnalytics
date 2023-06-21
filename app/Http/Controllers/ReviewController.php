@@ -39,9 +39,12 @@ class ReviewController extends Controller
     {
         $courseList=DB::table('courses')
             ->select("departmentCode","id", "courseNumber")
+            ->orderBy("departmentCode",'asc')
+            ->orderBY("courseNumber","asc")
             ->get();
         $professorList=DB::table('professors')
             ->select('id','firstName','lastName')
+            ->orderBy("lastName","asc")
             ->get();
         return view("reviews.create",['professorList'=>$professorList,'courseList'=>$courseList]);
     }
