@@ -19,7 +19,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string("question")->nullable();
-            $table->string("response");
+            $table->mediumText("response");
             $table->foreignIdFor(Professor::class)->nullable();
             $table->foreignIdFor(Course::class)->nullable();
         });
