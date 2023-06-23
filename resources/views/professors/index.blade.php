@@ -20,8 +20,13 @@
             @foreach ($professors as $professor)
                 <x-professorCard :professor="$professor"></x-professorCard>
             @endforeach
-            </div>
+        </div>
+        
     </div>
 @endif
+<div class="border-solid border-2 mt-4 border-black flex flex-col">
+    {{$professors->links()}}
+
+</div>
 
 </x-header>

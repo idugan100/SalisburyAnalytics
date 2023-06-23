@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 use App\Http\Requests\StoreProfessorRequest;
 use App\Http\Requests\UpdateProfessorRequest;
+use App\Charts\GradeDistribution;
 
 class ProfessorController extends Controller
 {
@@ -23,18 +24,19 @@ class ProfessorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request, GradeDistribution $chart)
     {   
         $validated=$request->validate([
             "search"=>['nullable','regex:/[a-zA-Z]+[a-zA-Z]*/']
         ]);
 
-        $professor=Professor::filter($validated)->get();
+        $professors=Professor::filter($validated)->paginate(16);
+        foreach($professors as $professor){
+            $professor->chart=$chart->build($professor);
+            
+        };
         
-
-        
-
-        return(view("professors.index",["professors"=>$professor]));
+        return(view("professors.index",["professors"=>$professors]));
     }
 
     /**
