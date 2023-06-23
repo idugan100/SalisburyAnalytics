@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Course extends Model
 {
     use HasFactory;
-    protected $fillable=['description','creditLab','creditLecture','creditsTotal', 'courseNumber', 'departmentCode','syllabusLink','avg_gpa'];
+    protected $fillable=['description','creditLab','creditLecture','creditsTotal', 'courseNumber', 'departmentCode','syllabusLink','avg_gpa',"qty_A","qty_B","qty_C","qty_D","qty_F","qty_W"];
     public function scopeFilter($query,array $searchTerm){
         if(array_key_exists('search',$searchTerm)){
             
