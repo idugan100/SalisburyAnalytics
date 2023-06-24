@@ -16,6 +16,5 @@
         @endauth
     </div>
     <a class="m-2  border-4 border-sky-500 hover:text-gray-300 bg-sky-500 rounded font-bold px-1" href="{{route('courses.show',$review->course->id)}}">reviews</a>
-    <a class="m-2  border-4 border-sky-500 hover:text-gray-300 bg-sky-500 rounded font-bold px-1" href="">charts</a>
 
 </div> 

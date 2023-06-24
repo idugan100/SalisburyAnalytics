@@ -31,6 +31,10 @@ class CourseController extends Controller
         $courses=Course::filter($validated)->paginate(16);
         foreach($courses as $course){
             $course->chart=$chart->build($course);
+            $course->semesters=DB::table("courses_x_professors_with_grades")
+                                ->select("semester")
+                                ->where("course_ID",$course->id)
+                                ->distinct()->get()->toArray();
         }
 
         return view('courses.index',[
