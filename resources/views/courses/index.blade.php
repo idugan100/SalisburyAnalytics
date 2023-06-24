@@ -24,5 +24,8 @@
     </div>
     </div>
 @endif
+<div class="border-solid border-2 mt-4 border-black flex flex-col">
+    {{$courses->links()}}
 
+</div>
 </x-header>
