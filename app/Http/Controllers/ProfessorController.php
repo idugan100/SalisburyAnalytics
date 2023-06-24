@@ -33,6 +33,10 @@ class ProfessorController extends Controller
         $professors=Professor::filter($validated)->paginate(16);
         foreach($professors as $professor){
             $professor->chart=$chart->build($professor);
+            $professor->semesters=DB::table("courses_x_professors_with_grades")
+                                ->select("semester")
+                                ->where("professor_ID",$professor->id)
+                                ->distinct()->get()->toArray();
             
         };
         
