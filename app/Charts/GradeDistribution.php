@@ -3,7 +3,6 @@
 namespace App\Charts;
 
 use ArielMejiaDev\LarapexCharts\LarapexChart;
-use App\Models\Professor;
 
 class GradeDistribution
 {
@@ -14,12 +13,12 @@ class GradeDistribution
         $this->chart = $chart;
     }
 
-    public function build(Professor $professor): \ArielMejiaDev\LarapexCharts\BarChart
+    public function build( $entity): \ArielMejiaDev\LarapexCharts\BarChart
     {
         //dd($message);
         return $this->chart->barChart()
             ->setTitle('Grade Distribution')
-            ->addData('Professor Total', [$professor->qty_W, $professor->qty_F, $professor->qty_D, $professor->qty_C, $professor->qty_B, $professor->qty_A])
+            ->addData('Total given', [$entity->qty_W, $entity->qty_F, $entity->qty_D, $entity->qty_C, $entity->qty_B, $entity->qty_A])
             ->setXAxis(['W', 'F', 'D', 'C', 'B', 'A'])
             ->setHeight (300);
     }

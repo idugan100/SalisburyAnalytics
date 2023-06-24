@@ -6,6 +6,8 @@ use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Charts\GradeDistribution;
+
 
 use App\Models\Course;
 
@@ -19,16 +21,20 @@ class CourseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request, GradeDistribution $chart)
     {   
         $validated=$request->validate([
             'search'=>['nullable','regex:/.*-.*/']
         ]);
         //todo logic for when $validated['search'] isn't there
         
-        $posts=Course::filter($validated)->get();
+        $courses=Course::filter($validated)->paginate(16);
+        foreach($courses as $course){
+            $course->chart=$chart->build($course);
+        }
+
         return view('courses.index',[
-            'courses'=>$posts
+            'courses'=>$courses
         ]);
     }
 
