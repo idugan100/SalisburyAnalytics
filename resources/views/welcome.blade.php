@@ -10,7 +10,6 @@
             </p>
             
             <p class="text-2xl m-4 p-4">Please contact me at idugan1@salisbury.edu with questions, concerns, and feedback.</p>
-
             
 
         </div>
