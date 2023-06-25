@@ -45,7 +45,7 @@
                 <div class="flex flex-wrap p-2">
                     @foreach ($professor->semesters as $semester_object)
                         <span class="py-1 px-2 m-1 rounded-full text-sm bg-gray-200 hover:bg-gray-300 hover:drop-shadow-md duration-300">
-                            {{$semester_object->semester}}
+                            {{$semester_object->semester . " " . $semester_object->year}}
                         </span>
                     @endforeach
                 </div>
