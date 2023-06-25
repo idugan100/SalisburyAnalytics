@@ -32,9 +32,9 @@ class CourseController extends Controller
         foreach($courses as $course){
             $course->chart=$chart->build($course);
             $course->semesters=DB::table("courses_x_professors_with_grades")
-                                ->select("semester")
+                                ->select("semester","year")
                                 ->where("course_ID",$course->id)
-                                ->distinct()->get()->toArray();
+                                ->distinct()->orderBy('year')->orderBy("semester","desc")->get()->toArray();
             $course->topProfessors=DB::table("courses_x_professors_with_grades")
                                     ->join("professors","professor_ID","professors.id")
                                     ->select("firstName", "lastName")

@@ -30,13 +30,13 @@ class ProfessorController extends Controller
             "search"=>['nullable','regex:/[a-zA-Z]+[a-zA-Z]*/']
         ]);
 
-        $professors=Professor::filter($validated)->paginate(16);
+        $professors=Professor::filter($validated)->orderBy('lastName')->paginate(16);
         foreach($professors as $professor){
             $professor->chart=$chart->build($professor);
             $professor->semesters=DB::table("courses_x_professors_with_grades")
-                                ->select("semester")
+                                ->select("semester","year")
                                 ->where("professor_ID",$professor->id)
-                                ->distinct()->get()->toArray();
+                                ->distinct()->orderBy('year')->orderBy("semester","desc")->get()->toArray();
             $professor->topCourses=DB::table("courses_x_professors_with_grades")
                                         ->join("courses","course_ID","courses.id")
                                         ->select("courseTitle", "departmentCode", "courseNumber")

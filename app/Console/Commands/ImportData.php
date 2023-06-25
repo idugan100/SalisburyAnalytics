@@ -138,12 +138,21 @@ class ImportData extends Command
             ->where("grade",$data[4])
             ->get();
         if(count($line_items)==0){
+            $date_array=explode(" ",$data[0]);
+            $year=2000+$date_array[1];
+            if($date_array[0]=="Spr"){
+                $semester="Spring";
+            }
+            else{
+                $semester="Fall";
+            }
             DB::table('courses_x_professors_with_grades')->insert([
                 "course_ID" => $course_ID,
                 "professor_ID" => $professor_ID,
-                "semester" => $data[0],
+                "semester" => $semester,
                 "quantity" => $data[5],
-                "grade" => $data[4]
+                "grade" => $data[4],
+                "year"=> $year
                 ]);
             echo("inserting grade line item \n");
         }
