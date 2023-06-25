@@ -37,6 +37,14 @@ class ProfessorController extends Controller
                                 ->select("semester")
                                 ->where("professor_ID",$professor->id)
                                 ->distinct()->get()->toArray();
+            $professor->topCourses=DB::table("courses_x_professors_with_grades")
+                                        ->join("courses","course_ID","courses.id")
+                                        ->select("courseTitle", "departmentCode", "courseNumber")
+                                        ->where("professor_ID",$professor->id)
+                                        ->groupBy("course_ID")
+                                        ->orderByRaw("sum(quantity) desc")
+                                        ->limit(4)->get()->toArray();
+                                        
             
         };
         

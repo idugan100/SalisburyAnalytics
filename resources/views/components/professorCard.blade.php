@@ -44,7 +44,19 @@
                 </h3>
                 <div class="flex flex-wrap p-2">
                     @foreach ($professor->semesters as $semester_object)
-                        <span class="py-1 px-2 m-1 rounded-full text-sm bg-gray-200 hover:bg-gray-300 hover:drop-shadow-md duration-300">{{$semester_object->semester}}</span>
+                        <span class="py-1 px-2 m-1 rounded-full text-sm bg-gray-200 hover:bg-gray-300 hover:drop-shadow-md duration-300">
+                            {{$semester_object->semester}}
+                        </span>
+                    @endforeach
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                    Frequently Teaches 
+                </h3>
+                <div class="flex flex-wrap p-2">
+                    @foreach ($professor->topCourses as $top_course)
+                        <span class="py-1 px-2 m-1 rounded-full text-sm bg-gray-200 hover:bg-gray-300 hover:drop-shadow-md duration-300">
+                            {{$top_course->courseTitle . " (".$top_course->departmentCode ."-".$top_course->courseNumber .")"}}
+                        </span>
                     @endforeach
                 </div>
             </div>
