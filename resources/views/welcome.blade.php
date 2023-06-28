@@ -10,6 +10,8 @@
             </p>
             
             <p class="text-2xl m-4 p-4">Please contact me at idugan1@salisbury.edu with questions, concerns, and feedback.</p>
+            <iframe class="w-full h-full"src="https://www.ratemyprofessors.com/professor/2660289" frameborder="0"></iframe>
+
             
 
         </div>
