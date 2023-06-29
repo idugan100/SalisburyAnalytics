@@ -6,7 +6,6 @@
     <div class=" py-1 px-2 m-2  text-md font-bold bg-gray-300 rounded border-3 boder-gray-300"> {{"Average GPA: " . $professor->avg_gpa}}</div>
     <div class=" py-1 px-2 m-2  text-md font-bold bg-gray-300 rounded border-3 boder-gray-300"> {{"Students Taught: " . $professor->qty_A + $professor->qty_B + $professor->qty_C + $professor->qty_D + $professor->qty_F + $professor->qty_W}}</div>
     <div class="px-2 py-1 m-2  text-md font-bold bg-gray-300 rounded border-3 boder-gray-300"> {{"Number of Reviews: " . count($professor->reviews)}}</div>
-    <div class="px-2 py-1 m-2  text-md font-bold bg-gray-300 rounded border-3 boder-gray-300"> {{"Rmp Link: " . $professor->rmp_link}}</div>
 
     <div class="flex rounded-md">
         @auth
@@ -82,10 +81,8 @@
                 </button>
             </div>
             <!-- Modal body -->
-            <div class="p-6 space-y-6 border-2 border-black ">
-
-
-                <iframe  src="{{$professor->rmp_link}}"  height="500" width="600"></iframe>
+            <div class="p-6 space-y-6 ">
+                <iframe  src="{{$professor->rmp_link}}" sandbox height="500" width="600"></iframe>
             </div>
             
         </div>
