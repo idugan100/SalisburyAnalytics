@@ -81,8 +81,8 @@
                 </button>
             </div>
             <!-- Modal body -->
-            <div class="p-6 space-y-6 ">
-                <iframe  src="{{$professor->rmp_link}}" sandbox height="500" width="600"></iframe>
+            <div class="p-6 space-y-6 flex justify-center ">
+                <iframe  src="{{$professor->rmp_link}}" sandbox height="450" width="600"></iframe>
             </div>
             
         </div>
