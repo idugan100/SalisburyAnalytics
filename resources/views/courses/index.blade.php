@@ -1,11 +1,11 @@
 
 <x-header>
 
-<x-subHeader title="all courses"/>
+<x-subHeader title="search courses"/>
 
 <form class=" mt-3 flex justify-center" action="{{route('courses.index')}}">
     @method('get')
-    <input placeholder="COSC-120" class="border-2 p-2 border-black " name ="search" type="text">
+    <input placeholder="COSC-120" class="border-2 p-2 border-black "  value="{{$search}}" name ="search" type="text">
     <button class="p-2 border-2 border-black hover:bg-black hover:text-white" type="submit">Search</button>
 </form>
 
