@@ -44,8 +44,11 @@ class CourseController extends Controller
                                     ->limit(4)->get()->toArray();
         }
 
+        $search_term= $request->search ?? null;
+
         return view('courses.index',[
-            'courses'=>$courses
+            'courses'=>$courses,
+            'search'=> $search_term
         ]);
     }
 

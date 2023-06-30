@@ -47,8 +47,9 @@ class ProfessorController extends Controller
                                         
             
         };
+        $search_term= $request->search ?? null;
         
-        return(view("professors.index",["professors"=>$professors]));
+        return(view("professors.index",["professors"=>$professors,"search"=>$search_term]));
     }
 
     /**
