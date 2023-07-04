@@ -17,7 +17,9 @@
             <a class="m-2  border-4 border-sky-500 hover:text-gray-300 bg-sky-500 rounded font-bold px-1" href="{{route('professors.edit',$professor->id)}}">edit</a>
         @endauth
         <a class="m-2  border-4 border-sky-500 hover:text-gray-300 bg-sky-500 rounded font-bold px-1" href="{{route('professors.show',$professor->id)}}">reviews</a>
-        <button data-modal-target="{{"Rmp-Modal-".$professor->id}}" data-modal-toggle="{{"Rmp-Modal-".$professor->id}}" class="m-2  border-4 border-sky-500 hover:text-gray-300 bg-sky-500 rounded font-bold px-1" type="button">rmp</button>
+        @if ($professor->rmp_link!="")
+            <button data-modal-target="{{"Rmp-Modal-".$professor->id}}" data-modal-toggle="{{"Rmp-Modal-".$professor->id}}" class="m-2  border-4 border-sky-500 hover:text-gray-300 bg-sky-500 rounded font-bold px-1" type="button">rmp</button>
+        @endif
         <button data-modal-target="{{"Professor-Modal-".$professor->id}}" data-modal-toggle="{{"Professor-Modal-".$professor->id}}" class="m-2  border-4 border-sky-500 hover:text-gray-300 bg-sky-500 rounded font-bold px-1" type="button">charts</button>
     </div>
 </div>   

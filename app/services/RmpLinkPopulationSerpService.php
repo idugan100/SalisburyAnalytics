@@ -30,7 +30,7 @@ class RmpLinkPopulationSerpService
                 }
 
             }catch(Exception $e){
-               dd($e->getMessage(),$professor,$decoded_response->error);
+               dd($e->getMessage(),$professor,);
             }
             
 

@@ -2,9 +2,10 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Professor;
 use Illuminate\Console\Command;
-use App\services\RmpLinkPopulationGoogleService;
 use App\services\RmpLinkPopulationSerpService;
+use App\services\RmpLinkPopulationGoogleService;
 
 
 class GetRMPLinks extends Command
@@ -30,7 +31,7 @@ class GetRMPLinks extends Command
      */
     public function handle()
     {
-        $professors = Professor::all();
+        $professors = Professor::where("rmp_link","")->get();
         $bar = $this->output->createProgressBar(count($professors));
         $provider=$this->choice(
             'What search API would you like to use?',
@@ -45,7 +46,7 @@ class GetRMPLinks extends Command
             
            
         }
-        elseif($provdier=="Google"){
+        elseif($provider=="Google"){
             $response = new RmpLinkPopulationGoogleService();
             foreach($professors as $professor){
                 $response->getLinks($professor);
