@@ -1,6 +1,6 @@
-<div class="  contrast-125 group p-3 shadow-lg  shadow-black  bg-white hover:bg-sky-500 rounded-lg m-2 p-5 ">
+<div class="  contrast-125 group p-3 shadow-lg  shadow-black  bg-white hover:bg-red-700 rounded-lg m-2 p-5 ">
     <h3 class=" text-2xl py-1 px-2 font-bold ">{{$review->course->departmentCode . "-" . $review->course->courseNumber}}</h3>
-    <hr class="border-1 border-sky-500 ">
+    <hr class="border-1 border-yellow-500 ">
 
     <div class=" py-1 px-2 m-2  text-md font-bold bg-gray-300 rounded border-3 boder-gray-300"> {{$review->professor->firstName . " ". $review->professor->lastName}}</div>
     <div class="px-2 py-1 m-2  text-md font-bold bg-gray-300 rounded border-3 boder-gray-300"> {{$review->response}}</div>
@@ -15,6 +15,6 @@
             <a class="m-2  border-4 border-sky-500 hover:text-gray-300 bg-sky-500 rounded font-bold px-1" href="{{route('reviews.edit',$review->id)}}">edit</a>
         @endauth
     </div>
-    <a class="m-2  border-4 border-sky-500 hover:text-gray-300 bg-sky-500 rounded font-bold px-1" href="{{route('courses.show',$review->course->id)}}">reviews</a>
+    <a class="m-2  border-4 border-yellow-500 hover:text-gray-300 bg-yellow-500 rounded font-bold px-1" href="{{route('courses.show',$review->course->id)}}">reviews</a>
 
 </div> 
