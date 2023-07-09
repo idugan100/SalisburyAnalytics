@@ -12,11 +12,11 @@
 @enderror
 
 @if(count($professors)==0)
-  <p class="flex justify-center text-lg" >We couldn't find that professor. Please double check your spelling.</p>
+  <p class="flex justify-center flex-wrap text-lg" >We couldn't find that professor. Please double check your spelling.</p>
   
 @elseif (!empty($professors))
     <div class="flex justify-center">
-        <div class=" grid lg:grid-cols-4 gap-4 grid-cols-3">
+        <div class=" grid lg:grid-cols-4 md:grid-cols-3 gap-4 grid-cols-1">
             @foreach ($professors as $professor)
                 <x-professorCard :professor="$professor"></x-professorCard>
             @endforeach
