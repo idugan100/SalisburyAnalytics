@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ProfessorController;
 use App\Http\Controllers\ReviewController;
+use App\Models\UsageLog;
 
 use Database\Factories\CourseFactory;
 
@@ -19,6 +20,11 @@ use Database\Factories\CourseFactory;
 */
 
 Route::get('/', function () {
+
+    $usage_log=UsageLog::whereDate('created_at', now())->first();
+    $usage_log->about_views++;
+    $usage_log->save();
+
     return view('welcome');
 });
 
