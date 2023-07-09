@@ -29,39 +29,44 @@
                         <a class="nav-link " href="{{route('reviews.processing')}}">Processing</a>
                         </li>
                         <li class="nav-item">
-                        <a class="nav-link active" href="{{route('reviews.rejected')}}">Rejected</a>
+                        <a class="nav-link " href="{{route('reviews.rejected')}}">Rejected</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link  " href="{{route('usage.index')}}">Usage</a>
+                            <a class="nav-link active " href="{{route('usage.index')}}">Usage</a>
                         </li>
                         
                     </ul>
-                <div class="card-header">Rejected Reviews</div>
+                <div class="card-header">Usage</div>
                 <div class="card-body">
                     <table class="table ">
                         <thead>
                           <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Professor</th>
-                            <th scope="col">Course</th>
-                            <th scope="col">Review</th>
-                            <th scope="col">Action</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Total Views</th>
+                            <th scope="col">Course Views</th>
+                            <th scope="col">Review Views</th>
+                            <th scope="col">Professor Views</th>
+                            <th scope="col">About Views</th>
+
                           </tr>
                         </thead>
                         <tbody>
-                            @foreach ($reviews as $review)
+                            @foreach ($usage_logs as $usage_log)
                             <tr>
-                                <th class="table-danger" scope="  row">{{$review->id}}</th>
-                                <td class="table-danger">{{$review->professor->firstName . " " . $review->professor->lastName}}</td>
-                                <td class="table-danger" scope="row">{{$review->course->departmentCode . "-" . $review->course->courseNumber}}</th>
-                                <td class="table-danger">{{$review->response}}</td>
-                                <td class="table-danger">
-                                    <a class="btn btn-primary btn-sm m-2 "href="{{route("review.reprocess",["review"=>$review,"origin"=>"rejected"])}}">Reprocess</a>
-                                </td>
+                                <th  scope="row">{{$usage_log->id}}</th>
+                                <td>{{$usage_log->created_at}}</td>
+                                <td>{{$usage_log->course_views+$usage_log->professor_views+$usage_log->review_views+$usage_log->about_views}}</td>
+                                <td>{{$usage_log->course_views}}</td>
+                                <td>{{$usage_log->review_views}}</td>
+                                <td>{{$usage_log->professor_views}}</td>
+                                <td>{{$usage_log->about_views}}</td>
+                                
+                                
                               </tr>
                             @endforeach
                             <div>
-                                {{$reviews->links()}}
+                                {{$usage_logs->links()}}
 
                             </div>
                           

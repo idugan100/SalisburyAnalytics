@@ -1,12 +1,13 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CourseController;
-use App\Http\Controllers\ProfessorController;
-use App\Http\Controllers\ReviewController;
 use App\Models\UsageLog;
-
 use Database\Factories\CourseFactory;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UsageController;
+use App\Http\Controllers\CourseController;
+
+use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\ProfessorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +41,8 @@ Route::resource('reviews',ReviewController::class);
 Route::get('/processing', [ReviewController::class, 'processing'])->name('reviews.processing');
 Route::get('/approved',[ReviewController::class,'approved'])->name('reviews.approved');
 Route::get('/rejected',[ReviewController::class,'rejected'])->name("reviews.rejected");
+Route::get('/usage',[UsageController::class,'index'])->name("usage.index");
+
 //review actions
 Route::get('/reviews/approve/{review}',[ReviewController::class,'approve'])->name('review.approve');
 Route::get('/reviews/reject/{review}',[ReviewController::class,'reject'])->name("review.reject");
