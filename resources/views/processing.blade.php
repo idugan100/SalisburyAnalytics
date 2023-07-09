@@ -31,6 +31,9 @@
                         <li class="nav-item">
                         <a class="nav-link" href="{{route('reviews.rejected')}}">Rejected</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="{{route('usage.index')}}">Usage</a>
+                        </li>
                         
                     </ul>
                 <div class="card-header">Processing Reviews</div>
