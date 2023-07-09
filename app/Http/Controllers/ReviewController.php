@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use App\Models\Review;
 use App\Models\Professor;
+use App\Models\UsageLog;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Auth\Events\Validated;
 use App\Http\Requests\StoreReviewRequest;
@@ -26,6 +27,10 @@ class ReviewController extends Controller
      */
     public function index()
     {
+        $usage_log=UsageLog::whereDate('created_at', now())->first();
+        $usage_log->review_views++;
+        $usage_log->save();
+
         $reviews=Review::where('approved_flag',1)->latest()->get();
         return (view('reviews.index',["reviews"=>$reviews]));
     }
@@ -37,6 +42,10 @@ class ReviewController extends Controller
      */
     public function create()
     {
+        $usage_log=UsageLog::whereDate('created_at', now())->first();
+        $usage_log->review_views++;
+        $usage_log->save();
+        
         $courseList=DB::table('courses')
             ->select("departmentCode","id", "courseNumber")
             ->orderBy("departmentCode",'asc')

@@ -7,6 +7,8 @@ use App\Http\Requests\UpdateCourseRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Charts\GradeDistribution;
+use App\Models\UsageLog;
+
 
 
 use App\Models\Course;
@@ -23,6 +25,10 @@ class CourseController extends Controller
      */
     public function index(Request $request, GradeDistribution $chart)
     {   
+        $usage_log=UsageLog::whereDate('created_at', now())->first();
+        $usage_log->course_views++;
+        $usage_log->save();
+
         $validated=$request->validate([
             'search'=>['nullable','regex:/.*-.*/']
         ]);
@@ -101,6 +107,10 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
+        $usage_log=UsageLog::whereDate('created_at', now())->first();
+        $usage_log->course_views++;
+        $usage_log->save();
+
         $reviews=$course->reviews()->where('approved_flag',ReviewController::APPROVED_FLAG)->get();
         return view('courses.show',compact('course','reviews'));
     }
