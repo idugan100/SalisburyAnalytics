@@ -7,6 +7,7 @@
     <title>su grade analytics</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.css"  rel="stylesheet" />
+    <link rel="icon" sizes="32x32" href="{{ URL::asset('bar_chart_logo.jpg') }}" type="image/x-icon"/>
 </head>
 <body class="bg-gray-200 ">
     <h1 class="text-6xl p-4 font-bold bg-yellow-500 text-red-700    border-y-4 border-black text-center">salisbury analytics</h1>
