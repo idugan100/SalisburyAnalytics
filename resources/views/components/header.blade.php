@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>su grade analytics</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Grade distribution and reviews for courses and professors at Salisbury University.">
+    <meta name="keywords" content="Salisbury, Grades, Distribution, Courses, Professors, Analytics">
+    <title>salisbury analytics</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.css"  rel="stylesheet" />
     <link rel="icon" sizes="32x32" href="{{ URL::asset('bar_chart_logo.jpg') }}" type="image/x-icon"/>
