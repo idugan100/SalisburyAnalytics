@@ -20,7 +20,7 @@ use App\Http\Controllers\ProfessorController;
 |
 */
 
-Route::get('/', function () {
+Route::get('/about', function () {
 
     $usage_log=UsageLog::whereDate('created_at', now())->first();
     $usage_log->about_views++;
@@ -30,6 +30,7 @@ Route::get('/', function () {
 });
 
 //routes for courses
+Route::get('/', [CourseController::class,"index"]);
 Route::resource('courses',CourseController::class);
 
 //crud review routes
