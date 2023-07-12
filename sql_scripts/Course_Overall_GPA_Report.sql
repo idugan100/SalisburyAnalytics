@@ -1,5 +1,5 @@
 Select sum(T.GPA)/sum(T.quantity) as 'Course GPA' from
-(Select grade, quantity,
+(Select grade, quantity, 
         CASE 
 		WHEN grade='A' THEN 4 
         WHEN grade="B" THEN 3 
@@ -10,4 +10,4 @@ Select sum(T.GPA)/sum(T.quantity) as 'Course GPA' from
         END * quantity as 'GPA'
 from courses_x_professors_with_grades
 join courses on course_ID=courses.id
-where  grade in ("A","B","C","D","F","W") )as `T`;
+where departmentCode="ACCT" and courseNumber="201" and grade in ("A","B","C","D","F","W") )as `T`;
