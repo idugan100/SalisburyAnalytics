@@ -3,14 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Review;
-use App\Models\Professor;
+use App\services\IsBot;
 use App\Models\UsageLog;
+use App\Models\Professor;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
+use App\Charts\GradeDistribution;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreProfessorRequest;
 use App\Http\Requests\UpdateProfessorRequest;
-use App\Charts\GradeDistribution;
 
 class ProfessorController extends Controller
 {
@@ -27,7 +28,7 @@ class ProfessorController extends Controller
      */
     public function index(Request $request, GradeDistribution $chart)
     {   $usage_log=UsageLog::whereDate('created_at', now())->first();
-        $usage_log->professor_views++;
+        IsBot::check($request->userAgent()) ? $usage_log->professor_views_bot++ : $usage_log->professor_views++;
         $usage_log->save();
 
         $validated=$request->validate([
@@ -94,10 +95,10 @@ class ProfessorController extends Controller
      * @param  \App\Models\Professor  $professor
      * @return \Illuminate\Http\Response
      */
-    public function show(Professor $professor)
+    public function show(Request $request, Professor $professor)
     {
         $usage_log=UsageLog::whereDate('created_at', now())->first();
-        $usage_log->professor_views++;
+        IsBot::check($request->userAgent()) ? $usage_log->review_views_bot++ : $usage_log->review_views++;
         $usage_log->save();
 
         $reviews=$professor->reviews()->where('approved_flag',ReviewController::APPROVED_FLAG)->get();

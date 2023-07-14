@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\Review;
-use App\Models\Professor;
+use App\services\IsBot;
 use App\Models\UsageLog;
+use App\Models\Professor;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Auth\Events\Validated;
 use App\Http\Requests\StoreReviewRequest;
@@ -25,10 +27,10 @@ class ReviewController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $usage_log=UsageLog::whereDate('created_at', now())->first();
-        $usage_log->review_views++;
+        IsBot::check($request->userAgent()) ? $usage_log->review_views_bot++ : $usage_log->review_views++;
         $usage_log->save();
 
         $reviews=Review::where('approved_flag',1)->latest()->get();
@@ -40,10 +42,10 @@ class ReviewController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         $usage_log=UsageLog::whereDate('created_at', now())->first();
-        $usage_log->review_views++;
+        IsBot::check($request->userAgent()) ? $usage_log->review_views_bot++ : $usage_log->review_views++;
         $usage_log->save();
         
         $courseList=DB::table('courses')
