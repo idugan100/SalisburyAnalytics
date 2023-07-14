@@ -55,12 +55,29 @@
                             @foreach ($usage_logs as $usage_log)
                             <tr>
                                 <th  scope="row">{{$usage_log->id}}</th>
-                                <td>{{$usage_log->created_at}}</td>
-                                <td>{{$usage_log->course_views+$usage_log->professor_views+$usage_log->review_views+$usage_log->about_views}}</td>
-                                <td>{{$usage_log->course_views}}</td>
-                                <td>{{$usage_log->review_views}}</td>
-                                <td>{{$usage_log->professor_views}}</td>
-                                <td>{{$usage_log->about_views}}</td>
+                                <td>
+                                    {{$usage_log->created_at}}
+                                </td>
+                                <td>
+                                    <div class="bg-success bg-opacity-25 px-2"> {{$usage_log->course_views+$usage_log->professor_views+$usage_log->review_views+$usage_log->about_views}}</div>
+                                    <div class="bg-danger bg-opacity-25 px-2">{{$usage_log->course_views_bot+$usage_log->professor_views_bot+$usage_log->review_views_bot+$usage_log->about_views_bot}}</div>
+                                </td>
+                                <td>
+                                    <div class="bg-success bg-opacity-25 px-2"> {{$usage_log->course_views}}</div>
+                                    <div class="bg-danger bg-opacity-25 px-2">{{$usage_log->course_views_bot}}</div>
+                                </td>
+                                <td>
+                                    <div class="bg-success bg-opacity-25 px-2"> {{$usage_log->review_views}}</div>
+                                    <div class="bg-danger bg-opacity-25 px-2">{{$usage_log->review_views_bot}}</div> 
+                                </td>
+                                <td>
+                                    <div class="bg-success bg-opacity-25 px-2"> {{$usage_log->professor_views}}</div>
+                                    <div class="bg-danger bg-opacity-25 px-2">{{$usage_log->professor_views_bot}}</div>
+                                </td>
+                                <td>
+                                    <div class="bg-success bg-opacity-25 px-2"> {{$usage_log->about_views}}</div>
+                                    <div class="bg-danger bg-opacity-25 px-2">{{$usage_log->about_views_bot}}</div>
+                                </td>
                                 
                                 
                               </tr>
