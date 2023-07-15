@@ -5,10 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Charts\GpaOverTime;
+use App\Models\UsageLog;
+use App\services\IsBot;
 
 class GpaOverTimeController extends Controller
 {
     public function index(Request $request, GpaOverTime $chart){
+
+        $usage_log=UsageLog::whereDate('created_at', now())->first();
+        IsBot::check($request->userAgent()) ? $usage_log->report_views_bot++ : $usage_log->report_views++;
+        $usage_log->save();
+
         $gpa_by_semester=DB::select("Select sum(T.GPA)/sum(T.quantity) as 'GPA', semester, `year` from
             (Select  quantity, `year`, semester,
                     CASE 

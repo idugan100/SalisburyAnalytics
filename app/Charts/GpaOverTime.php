@@ -17,9 +17,9 @@ class GpaOverTime
     {
         $gpa_array=[];
         $semester_array=[];
-        foreach($$gpa_by_semester_points as $point){
+        foreach($gpa_by_semester_points as $point){
             $gpa_array[]=$point->GPA;
-            $semester_array[]=$point->semester . " " . $datum->year;
+            $semester_array[]=$point->semester . " " . $point->year;
         }
 
         return $this->chart->lineChart()
