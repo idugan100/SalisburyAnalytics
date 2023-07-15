@@ -20,7 +20,7 @@ class GradeDistribution
             ->setTitle('Grade Distribution')
             ->addData('Total given', [$entity->qty_W, $entity->qty_F, $entity->qty_D, $entity->qty_C, $entity->qty_B, $entity->qty_A])
             ->setXAxis(['W', 'F', 'D', 'C', 'B', 'A'])
-            ->setHeight (250)
+            ->setHeight(250)
             ->setColors(["#8b0000"]);
     }
 }
