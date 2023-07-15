@@ -1,11 +1,13 @@
 <?php
 
+use App\services\IsBot;
 use App\Models\UsageLog;
+use Illuminate\Http\Request;
 use Database\Factories\CourseFactory;
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\UsageController;
 use App\Http\Controllers\CourseController;
-
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ProfessorController;
 
@@ -20,10 +22,10 @@ use App\Http\Controllers\ProfessorController;
 |
 */
 
-Route::get('/about', function () {
+Route::get('/about', function (Request $request) {
 
     $usage_log=UsageLog::whereDate('created_at', now())->first();
-    $usage_log->about_views++;
+    IsBot::check($request->userAgent()) ? $usage_log->about_views_bot++ : $usage_log->about_views++;
     $usage_log->save();
 
     return view('welcome');
