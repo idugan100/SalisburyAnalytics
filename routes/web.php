@@ -10,6 +10,7 @@ use App\Http\Controllers\UsageController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ProfessorController;
+use App\Http\Controllers\GpaOverTimeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +52,8 @@ Route::get('/reviews/approve/{review}',[ReviewController::class,'approve'])->nam
 Route::get('/reviews/reject/{review}',[ReviewController::class,'reject'])->name("review.reject");
 Route::get('/reviews/reprocess/{review}/{origin}',[ReviewController::class,'reprocess'])->name("review.reprocess");
 
+//grade inflation report
+Route::get("/gpa_over_time",[GpaOverTimeController::class,"index"])->name("gpa");
 
 
 

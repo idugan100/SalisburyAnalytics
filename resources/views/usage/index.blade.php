@@ -43,11 +43,12 @@
                           <tr>
                             <th scope="col">#</th>
                             <th scope="col">Date</th>
-                            <th scope="col">Total Views</th>
-                            <th scope="col">Course Views</th>
-                            <th scope="col">Review Views</th>
-                            <th scope="col">Professor Views</th>
-                            <th scope="col">About Views</th>
+                            <th scope="col">Total </th>
+                            <th scope="col">Course</th>
+                            <th scope="col">Review</th>
+                            <th scope="col">Professor</th>
+                            <th scope="col">About</th>
+                            <th scope="col">Reports</th>
 
                           </tr>
                         </thead>
@@ -59,8 +60,8 @@
                                     {{$usage_log->created_at}}
                                 </td>
                                 <td>
-                                    <div class="bg-success bg-opacity-25 px-2"> {{$usage_log->course_views+$usage_log->professor_views+$usage_log->review_views+$usage_log->about_views}}</div>
-                                    <div class="bg-danger bg-opacity-25 px-2">{{$usage_log->course_views_bot+$usage_log->professor_views_bot+$usage_log->review_views_bot+$usage_log->about_views_bot}}</div>
+                                    <div class="bg-success bg-opacity-25 px-2"> {{$usage_log->course_views+$usage_log->professor_views+$usage_log->review_views+$usage_log->about_views+$usage_log->report_views}}</div>
+                                    <div class="bg-danger bg-opacity-25 px-2">{{$usage_log->course_views_bot+$usage_log->professor_views_bot+$usage_log->review_views_bot+$usage_log->about_views_bot+$usage_log->report_views_bot}}</div>
                                 </td>
                                 <td>
                                     <div class="bg-success bg-opacity-25 px-2"> {{$usage_log->course_views}}</div>
@@ -77,6 +78,10 @@
                                 <td>
                                     <div class="bg-success bg-opacity-25 px-2"> {{$usage_log->about_views}}</div>
                                     <div class="bg-danger bg-opacity-25 px-2">{{$usage_log->about_views_bot}}</div>
+                                </td>
+                                <td>
+                                    <div class="bg-success bg-opacity-25 px-2"> {{$usage_log->report_views}}</div>
+                                    <div class="bg-danger bg-opacity-25 px-2">{{$usage_log->report_views_bot}}</div>
                                 </td>
                                 
                                 

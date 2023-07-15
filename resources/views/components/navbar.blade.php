@@ -9,6 +9,7 @@
     <a href="{{route("professors.index")}}" class=" inline-block decoration-yellow-500 decoration-4 hover:underline px-5 py-2 rounded-lg bold ">all professors</a>
     <a href="{{route("courses.index")}}" class=" inline-block decoration-yellow-500 decoration-4 hover:underline px-5 py-2 rounded-lg bold ">all courses</a>
     <a href="{{route("reviews.create")}}" class=" inline-block decoration-yellow-500 decoration-4 hover:underline px-5 py-2 rounded-lg bold ">add review</a> 
+    <a href="/gpa_over_time" class=" inline-block decoration-yellow-500 decoration-4 hover:underline px-5 py-2 rounded-lg bold ">gpa tracker</a> 
     <a class=" inline-block hover:underline px-5 py-2 decoration-yellow-500 decoration-4 rounded-lg font-bold " href="/about">about</a>
 
 
