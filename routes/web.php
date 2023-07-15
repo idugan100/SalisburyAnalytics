@@ -1,11 +1,13 @@
 <?php
 
+use App\services\IsBot;
 use App\Models\UsageLog;
+use Illuminate\Http\Request;
 use Database\Factories\CourseFactory;
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\UsageController;
 use App\Http\Controllers\CourseController;
-
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ProfessorController;
 use App\Http\Controllers\GpaOverTimeController;
@@ -21,16 +23,17 @@ use App\Http\Controllers\GpaOverTimeController;
 |
 */
 
-Route::get('/', function () {
+Route::get('/about', function (Request $request) {
 
     $usage_log=UsageLog::whereDate('created_at', now())->first();
-    $usage_log->about_views++;
+    IsBot::check($request->userAgent()) ? $usage_log->about_views_bot++ : $usage_log->about_views++;
     $usage_log->save();
 
     return view('welcome');
 });
 
 //routes for courses
+Route::get('/', [CourseController::class,"index"]);
 Route::resource('courses',CourseController::class);
 
 //crud review routes

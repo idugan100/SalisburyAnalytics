@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Charts\GradeDistribution;
 use App\Models\UsageLog;
+use App\services\IsBot;
 
 
 
@@ -26,8 +27,9 @@ class CourseController extends Controller
     public function index(Request $request, GradeDistribution $chart)
     {   
         $usage_log=UsageLog::whereDate('created_at', now())->first();
-        $usage_log->course_views++;
+        IsBot::check($request->userAgent()) ? $usage_log->course_views_bot++ : $usage_log->course_views++;
         $usage_log->save();
+
 
         $validated=$request->validate([
             'search'=>['nullable','regex:/.*-.*/']
@@ -105,10 +107,10 @@ class CourseController extends Controller
      * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function show(Course $course)
+    public function show(Request $request, Course $course)
     {
         $usage_log=UsageLog::whereDate('created_at', now())->first();
-        $usage_log->course_views++;
+        IsBot::check($request->userAgent()) ? $usage_log->review_views_bot++ : $usage_log->review_views++;
         $usage_log->save();
 
         $reviews=$course->reviews()->where('approved_flag',ReviewController::APPROVED_FLAG)->get();
