@@ -42,6 +42,8 @@ Route::get('/processing', [ReviewController::class, 'processing'])->name('review
 Route::get('/approved',[ReviewController::class,'approved'])->name('reviews.approved');
 Route::get('/rejected',[ReviewController::class,'rejected'])->name("reviews.rejected");
 Route::get('/usage',[UsageController::class,'index'])->name("usage.index");
+Route::get('/usage_details/{usagelog}',[UsageController::class,'details'])->name("usage.details");
+
 
 //review actions
 Route::get('/reviews/approve/{review}',[ReviewController::class,'approve'])->name('review.approve');
