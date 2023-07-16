@@ -1,7 +1,6 @@
 <?php
 
-use App\services\IsBot;
-use App\Models\UsageLog;
+use App\services\TrackUsage;
 use Illuminate\Http\Request;
 use Database\Factories\CourseFactory;
 use Illuminate\Support\Facades\Route;
@@ -25,10 +24,7 @@ use App\Http\Controllers\GpaOverTimeController;
 
 Route::get('/about', function (Request $request) {
 
-    $usage_log=UsageLog::whereDate('created_at', now())->first();
-    IsBot::check($request->userAgent()) ? $usage_log->about_views_bot++ : $usage_log->about_views++;
-    $usage_log->save();
-
+    TrackUsage::log($request,"about");
     return view('welcome');
 });
 
