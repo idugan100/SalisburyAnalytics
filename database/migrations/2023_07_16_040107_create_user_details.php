@@ -16,10 +16,10 @@ return new class extends Migration
         Schema::create('user_details', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->intger("usage_log_id");
+            $table->integer("usage_log_id");
             $table->string("user_agent");
-            $table->string("ip_adress");
-            $table->sting("page_visited");
+            $table->string("ip_address");
+            $table->string("page_visited");
         });
     }
 
