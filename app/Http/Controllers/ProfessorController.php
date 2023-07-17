@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Review;
-use App\services\IsBot;
-use App\Models\UsageLog;
+use App\services\TrackUsage;
 use App\Models\Professor;
 use Illuminate\Http\Request;
 
@@ -27,9 +26,8 @@ class ProfessorController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request, GradeDistribution $chart)
-    {   $usage_log=UsageLog::whereDate('created_at', now())->first();
-        IsBot::check($request->userAgent()) ? $usage_log->professor_views_bot++ : $usage_log->professor_views++;
-        $usage_log->save();
+    {   
+        TrackUsage::log($request,"professor");
 
         $validated=$request->validate([
             "search"=>['nullable','regex:/[a-zA-Z]+[a-zA-Z]*/']
@@ -97,9 +95,7 @@ class ProfessorController extends Controller
      */
     public function show(Request $request, Professor $professor)
     {
-        $usage_log=UsageLog::whereDate('created_at', now())->first();
-        IsBot::check($request->userAgent()) ? $usage_log->review_views_bot++ : $usage_log->review_views++;
-        $usage_log->save();
+        TrackUsage::log($request,"review");
 
         $reviews=$professor->reviews()->where('approved_flag',ReviewController::APPROVED_FLAG)->get();
         return view('professors.show',compact('professor','reviews'));
