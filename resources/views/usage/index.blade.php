@@ -60,7 +60,11 @@
                                     {{$usage_log->created_at}}
                                 </td>
                                 <td>
-                                    <div class="bg-success bg-opacity-25 px-2"> {{$usage_log->course_views+$usage_log->professor_views+$usage_log->review_views+$usage_log->about_views+$usage_log->report_views}}</div>
+                                    <div class="bg-success bg-opacity-25 px-2">
+                                        <a href="{{route("usage.details",$usage_log)}}">
+                                            {{$usage_log->course_views+$usage_log->professor_views+$usage_log->review_views+$usage_log->about_views+$usage_log->report_views}}
+                                        </a>
+                                    </div>
                                     <div class="bg-danger bg-opacity-25 px-2">{{$usage_log->course_views_bot+$usage_log->professor_views_bot+$usage_log->review_views_bot+$usage_log->about_views_bot+$usage_log->report_views_bot}}</div>
                                 </td>
                                 <td>
