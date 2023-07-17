@@ -1,7 +1,6 @@
 <?php
 
-use App\services\IsBot;
-use App\Models\UsageLog;
+use App\services\TrackUsage;
 use Illuminate\Http\Request;
 use Database\Factories\CourseFactory;
 use Illuminate\Support\Facades\Route;
@@ -25,10 +24,7 @@ use App\Http\Controllers\GpaOverTimeController;
 
 Route::get('/about', function (Request $request) {
 
-    $usage_log=UsageLog::whereDate('created_at', now())->first();
-    IsBot::check($request->userAgent()) ? $usage_log->about_views_bot++ : $usage_log->about_views++;
-    $usage_log->save();
-
+    TrackUsage::log($request,"about");
     return view('welcome');
 });
 
@@ -46,6 +42,8 @@ Route::get('/processing', [ReviewController::class, 'processing'])->name('review
 Route::get('/approved',[ReviewController::class,'approved'])->name('reviews.approved');
 Route::get('/rejected',[ReviewController::class,'rejected'])->name("reviews.rejected");
 Route::get('/usage',[UsageController::class,'index'])->name("usage.index");
+Route::get('/usage_details/{usagelog}',[UsageController::class,'details'])->name("usage.details");
+
 
 //review actions
 Route::get('/reviews/approve/{review}',[ReviewController::class,'approve'])->name('review.approve');

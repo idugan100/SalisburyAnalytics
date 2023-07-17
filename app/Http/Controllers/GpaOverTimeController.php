@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
-use App\services\IsBot;
-use App\Models\UsageLog;
+use App\services\TrackUsage;
 use App\Charts\GpaOverTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -13,9 +12,7 @@ class GpaOverTimeController extends Controller
 {
     public function index(Request $request, GpaOverTime $chart){
 
-        $usage_log=UsageLog::whereDate('created_at', now())->first();
-        IsBot::check($request->userAgent()) ? $usage_log->report_views_bot++ : $usage_log->report_views++;
-        $usage_log->save();
+        TrackUsage::log($request,"report");
 
         $departments=Course::select("departmentCode")->distinct()->orderBy("departmentCode","asc")->get();
         $selected_department=$request->Department;

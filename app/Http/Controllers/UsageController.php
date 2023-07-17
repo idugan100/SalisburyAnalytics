@@ -15,4 +15,10 @@ class UsageController extends Controller
         $usage_logs=UsageLog::latest()->paginate(20);
         return view ("usage.index",compact("usage_logs"));
     }
+
+    public function details(UsageLog $usagelog){
+        $user_details=$usagelog->details()->get();
+        
+        return view("usage.user_details",compact("user_details"));
+    }
 }

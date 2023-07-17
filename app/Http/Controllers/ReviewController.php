@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\Review;
-use App\services\IsBot;
-use App\Models\UsageLog;
+use App\services\TrackUsage;
 use App\Models\Professor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -29,9 +28,7 @@ class ReviewController extends Controller
      */
     public function index(Request $request)
     {
-        $usage_log=UsageLog::whereDate('created_at', now())->first();
-        IsBot::check($request->userAgent()) ? $usage_log->review_views_bot++ : $usage_log->review_views++;
-        $usage_log->save();
+        TrackUsage::log($request,"review");
 
         $reviews=Review::where('approved_flag',1)->latest()->get();
         return (view('reviews.index',["reviews"=>$reviews]));
@@ -44,9 +41,7 @@ class ReviewController extends Controller
      */
     public function create(Request $request)
     {
-        $usage_log=UsageLog::whereDate('created_at', now())->first();
-        IsBot::check($request->userAgent()) ? $usage_log->review_views_bot++ : $usage_log->review_views++;
-        $usage_log->save();
+        TrackUsage::log($request,"review");
         
         $courseList=DB::table('courses')
             ->select("departmentCode","id", "courseNumber")
