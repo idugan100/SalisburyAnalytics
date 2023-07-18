@@ -18,15 +18,7 @@ class EnrollmentOverTimeController extends Controller
         $selected_department=$request->Department;
         $query=
             "Select sum(quantity) as 'Enrollment', semester, `year` from
-            (Select  quantity, `year`, semester,
-                    CASE 
-                    WHEN grade='A' THEN 4 
-                    WHEN grade='B' THEN 3 
-                    WHEN grade='C' THEN 2
-                    WHEN grade='D' THEN 1
-                    WHEN grade='F' THEN 0
-                    else 0
-                    END * quantity as 'GPA'
+            (Select  quantity, `year`, semester
             from courses_x_professors_with_grades
             join courses on course_ID=courses.id
             where  departmentCode like '%%".$selected_department."%%')as `T`
