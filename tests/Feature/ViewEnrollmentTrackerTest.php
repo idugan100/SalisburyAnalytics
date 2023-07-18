@@ -7,7 +7,7 @@ use App\Models\UsageLog;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class ViewAllReviewsTest extends TestCase
+class ViewEnrollmentTracker extends TestCase
 {
     use RefreshDatabase;
     /**
@@ -15,22 +15,22 @@ class ViewAllReviewsTest extends TestCase
      *
      * @return void
      */
-    public function test_all_reviews_view()
+    public function test_enrollment_tracker_view()
     {
         $usage_log= new UsageLog();
         $usage_log->save();
-        $response = $this->get('/reviews');
+        $response = $this->get('/enrollment_over_time');
 
         $response->assertStatus(200);
     }
 
-    public function test_all_reviews_usage_tracking()
+    public function test_enrollment_tracker_usage_tracking()
     {
         $usage_log= new UsageLog();
         $usage_log->save();
-        $response = $this->get('/reviews');
+        $response = $this->get('/enrollment_over_time');
 
 
-        $this->assertSame(1,UsageLog::where("created_at",now())->first()->review_views);
+        $this->assertSame(1,UsageLog::where("created_at",now())->first()->report_views);
     }
 }
