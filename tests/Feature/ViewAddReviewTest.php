@@ -24,7 +24,7 @@ class ViewAddReviewTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_gpa_tracker_usage_tracking()
+    public function test_all_reviews_usage_tracking()
     {
         $usage_log= new UsageLog();
         $usage_log->save();
