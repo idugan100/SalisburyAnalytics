@@ -32,7 +32,7 @@ class EnrollmentOverTimeController extends Controller
             
       
         $enrollment_chart=$chart->build($enrollment_by_semester);
-        // dd("hello");
+
         return view("enrollmentOverTime.index", compact('enrollment_chart', 'departments', 'selected_department'));
     }
 }
