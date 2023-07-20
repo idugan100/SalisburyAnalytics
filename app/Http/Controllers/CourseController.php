@@ -27,12 +27,16 @@ class CourseController extends Controller
     {   
         TrackUsage::log($request,"course");
 
-        $validated=$request->validate([
-            'search'=>['nullable','regex:/.*-.*/']
-        ]);
-        //todo logic for when $validated['search'] isn't there
-        
-        $courses=Course::filter($validated)->paginate(16);
+        if($request->department != null && $request->courseNumber==null){
+            $courses=Course::where("departmentCode", $request->department)->paginate(100);
+        }
+        elseif($request->department != null && $request->courseNumber!=null){
+            $courses=Course::where("courseNumber", $request->courseNumber)->where("departmentCode", $request->department)->paginate(100);
+        }
+        else{
+            $courses=Course::paginate(16);
+        }
+
         foreach($courses as $course){
             $course->chart=$chart->build($course);
             $course->semesters=DB::table("courses_x_professors_with_grades")
@@ -48,11 +52,11 @@ class CourseController extends Controller
                                     ->limit(4)->get()->toArray();
         }
 
-        $search_term= $request->search ?? null;
 
         return view('courses.index',[
             'courses'=>$courses,
-            'search'=> $search_term
+            'result_department'=>$request->department ?? "",
+            'result_courseNumber'=>$request->courseNumber ?? ""
         ]);
     }
 

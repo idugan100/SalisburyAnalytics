@@ -3,7 +3,7 @@
 
 <x-subHeader title="search courses"/>
 
-<livewire:search-courses :search="$search" />
+<livewire:search-courses :selected_department="$result_department" :selected_course='$result_courseNumber'/>
 
 @error('search')
     <div class="flex justify-center  text-lg">Please enter your search in the following format: DEPT-123</div>
