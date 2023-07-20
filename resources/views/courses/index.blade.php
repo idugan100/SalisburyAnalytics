@@ -3,11 +3,7 @@
 
 <x-subHeader title="search courses"/>
 
-<form class=" mt-3 flex justify-center" action="{{route('courses.index')}}">
-    @method('get')
-    <input placeholder="COSC-120" class="border-2 p-2 border-black "  value="{{$search}}" name ="search" type="text">
-    <button class="p-2 border-2 border-black hover:bg-black hover:text-white" type="submit">Search</button>
-</form>
+<livewire:search-courses :selected_department="$result_department" :selected_course='$result_courseNumber'/>
 
 @error('search')
     <div class="flex justify-center  text-lg">Please enter your search in the following format: DEPT-123</div>
