@@ -10,6 +10,7 @@ class SearchCourses extends Component
     public $search;
     public $selected_department;
     public $courses;
+    public $selected_course;
 
     public function mount(){
         $this->courses=[];
