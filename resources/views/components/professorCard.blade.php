@@ -5,7 +5,6 @@
     <h4 class="text-md   py-1 px-2  m-2 group-hover:text-gray-300 font-bold">{{$professor->department}}</h4>
     <div class=" py-1 px-2 m-2  text-md font-bold bg-gray-300 rounded border-3 boder-gray-300"> {{"Average GPA: " . $professor->avg_gpa}}</div>
     <div class=" py-1 px-2 m-2  text-md font-bold bg-gray-300 rounded border-3 boder-gray-300"> {{"Students Taught: " . $professor->qty_A + $professor->qty_B + $professor->qty_C + $professor->qty_D + $professor->qty_F + $professor->qty_W}}</div>
-    <div class="px-2 py-1 m-2  text-md font-bold bg-gray-300 rounded border-3 boder-gray-300"> {{"Number of Reviews: " . count($professor->reviews)}}</div>
 
     <div class="flex flex-wrap rounded-md">
         @auth
@@ -57,7 +56,7 @@
                 </h3>
                 <div class="flex flex-wrap p-2">
                     @foreach ($professor->topCourses as $top_course)
-                        <a href="{{route("courses.index",["search"=>$top_course->departmentCode ."-".$top_course->courseNumber])}}"class="py-1 px-2 m-1 rounded-full text-sm bg-gray-200 hover:bg-gray-300 hover:drop-shadow-md duration-300">
+                        <a href="{{route("courses.index",["department"=>$top_course->departmentCode ,"courseNumber"=>$top_course->courseNumber])}}"class="py-1 px-2 m-1 rounded-full text-sm bg-gray-200 hover:bg-gray-300 hover:drop-shadow-md duration-300">
                             {{$top_course->courseTitle . " (".$top_course->departmentCode ."-".$top_course->courseNumber .")"}}
                         </a>
                     @endforeach

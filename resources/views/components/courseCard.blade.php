@@ -58,7 +58,7 @@
                 </h3>
                 <div class="flex flex-wrap p-2">
                     @foreach ($course->topProfessors as $top_professor)
-                        <a href="{{route("professors.index",[ 'search' => $top_professor->firstName . " " .$top_professor->lastName])}}" class="py-1 px-2 m-1 rounded-full text-sm bg-gray-200 hover:bg-gray-300 hover:drop-shadow-md duration-300">
+                        <a href="{{route("professors.index",[ 'department' => $course->departmentCode,"professor_id"=>$top_professor->id])}}" class="py-1 px-2 m-1 rounded-full text-sm bg-gray-200 hover:bg-gray-300 hover:drop-shadow-md duration-300">
                             {{$top_professor->firstName . " " . $top_professor->lastName}}
                         </a>
                     @endforeach
