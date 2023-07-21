@@ -83,7 +83,7 @@
             </div>
             <!-- Modal body -->
             <div class="p-6 space-y-6 flex justify-center ">
-                <iframe  src="{{$professor->rmp_link}}" sandbox height="450" width="600"></iframe>
+                <iframe loading="lazy" src="{{$professor->rmp_link}}" sandbox height="450" width="600"></iframe>
             </div>
             
         </div>
