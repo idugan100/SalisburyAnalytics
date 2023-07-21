@@ -45,7 +45,7 @@ class CourseController extends Controller
                                 ->distinct()->orderBy('year')->orderBy("semester","desc")->get()->toArray();
             $course->topProfessors=DB::table("courses_x_professors_with_grades")
                                     ->join("professors","professor_ID","professors.id")
-                                    ->select("firstName", "lastName")
+                                    ->select("firstName", "lastName","professors.id")
                                     ->where("course_ID",$course->id)
                                     ->groupBy("professor_ID")
                                     ->orderByRaw("sum(quantity) desc")
