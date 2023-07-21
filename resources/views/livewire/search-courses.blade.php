@@ -4,7 +4,7 @@
         <select class="border-2 p-2 border-black " name="department" wire:model="selected_department">
             <option  value="{{null}}" >select department</option>
            @foreach ($departments as $department)
-               <option value="{{$department->departmentCode}}" >{{$department->departmentCode}}</option>
+               <option value="{{$department["departmentCode"]}}" >{{$department["departmentCode"]}}</option>
            @endforeach
         </select>
         <select class="border-2 p-2 border-black w-1/3" name="courseNumber" wire:model="selected_course">
