@@ -29,11 +29,24 @@ class ProfessorController extends Controller
     {   
         TrackUsage::log($request,"professor");
 
-        $validated=$request->validate([
-            "search"=>['nullable','regex:/[a-zA-Z]+[a-zA-Z]*/']
-        ]);
+        if($request->department != null && $request->professor_id==null){
+            $professors=DB::table("courses_x_professors_with_grades")
+            ->join("courses","course_id","courses.id")
+            ->join("professors","professor_id","professors.id")
+            ->select("professors.*")
+            ->where("departmentCode",$request->department)
+            ->groupBy("professor_id","firstName","lastName")
+            ->orderBy("lastName","ASC")
+            ->paginate(100);
+        }
+        elseif($request->department != null && $request->professor_id!=null){
 
-        $professors=Professor::filter($validated)->orderBy('lastName')->paginate(16);
+            $professors=Professor::where("id",$request->professor_id)->paginate(1);
+        }
+        else{
+            $professors=Professor::paginate(16);
+        }
+
         foreach($professors as $professor){
             $professor->chart=$chart->build($professor);
             $professor->semesters=DB::table("courses_x_professors_with_grades")
@@ -50,9 +63,12 @@ class ProfessorController extends Controller
                                         
             
         };
-        $search_term= $request->search ?? null;
         
-        return(view("professors.index",["professors"=>$professors,"search"=>$search_term]));
+        return(view("professors.index",
+            ["professors"=>$professors,
+            "result_department"=>$request->department ?? "",
+            "result_professor"=>$request->professor_id ?? ""]
+        ));
     }
 
     /**
