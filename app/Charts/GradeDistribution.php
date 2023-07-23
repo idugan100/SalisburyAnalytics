@@ -15,7 +15,7 @@ class GradeDistribution
 
     public function build( $entity): \ArielMejiaDev\LarapexCharts\BarChart
     {
-        //dd($message);
+        // dd($entity);
         return $this->chart->barChart()
             ->setTitle('Grade Distribution')
             ->addData('Total given', [$entity->qty_W, $entity->qty_F, $entity->qty_D, $entity->qty_C, $entity->qty_B, $entity->qty_A])

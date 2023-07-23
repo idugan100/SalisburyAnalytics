@@ -6,7 +6,6 @@ use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use App\Charts\GradeDistribution;
 use App\services\TrackUsage;
 
 
@@ -23,7 +22,7 @@ class CourseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, GradeDistribution $chart)
+    public function index(Request $request)
     {   
         TrackUsage::log($request,"course");
 
@@ -38,7 +37,6 @@ class CourseController extends Controller
         }
 
         foreach($courses as $course){
-            $course->chart=$chart->build($course);
             $course->semesters=DB::table("courses_x_professors_with_grades")
                                 ->select("semester","year")
                                 ->where("course_ID",$course->id)

@@ -21,4 +21,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
     @livewireScripts
 </body>
+<style>
+    input.peer:checked + label {
+  background-color: #8b0000;
+  color:white;
+}
+</style>
 </html>
