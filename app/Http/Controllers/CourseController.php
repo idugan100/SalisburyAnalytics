@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreCourseRequest;
-use App\Http\Requests\UpdateCourseRequest;
-use Illuminate\Support\Facades\DB;
+use App\Models\Course;
+use App\Models\Review;
+use App\services\TrackUsage;
 use Illuminate\Http\Request;
 use App\Charts\GradeDistribution;
-use App\services\TrackUsage;
+use Illuminate\Support\Facades\DB;
 
 
 
-use App\Models\Course;
+use App\Http\Requests\StoreCourseRequest;
+use App\Http\Requests\UpdateCourseRequest;
 
 class CourseController extends Controller
 {
@@ -50,6 +51,7 @@ class CourseController extends Controller
                                     ->groupBy("professor_ID")
                                     ->orderByRaw("sum(quantity) desc")
                                     ->limit(4)->get()->toArray();
+            $course->reviews=Review::where("course_id",$course->id)->get();
         }
 
 
@@ -111,7 +113,22 @@ class CourseController extends Controller
     {        
         // dd($request);
         TrackUsage::log($request,"course");
-        $grade_distribution_chart=$chart->build($course);
+
+        if(isset($request->selected_semester)){
+            $grade_distribution = DB::table("courses_x_professors_with_grades")
+                ->selectRaw("sum(quantity) as 'total', grade")
+                ->where("course_ID",$course->id)
+                ->whereIn("grade",['A','B','C','D','F','W'])
+                ->whereRaw("concat(semester,year) = ? ", [$request->selected_semester])->groupBy("grade")->get();
+                
+            $grade_distribution_chart=$chart->build($this->convert_query_results_to_object($grade_distribution));
+        }
+        else{
+            $grade_distribution_chart=$chart->build($course);
+
+        }
+        
+        
         $semesters=DB::table("courses_x_professors_with_grades")
                                 ->select("semester","year")
                                 ->where("course_ID",$course->id)
@@ -124,10 +141,7 @@ class CourseController extends Controller
                                 ->orderByRaw("sum(quantity) desc")
                                 ->get()->toArray();
 
-
-        
-
-        return view('courses.show',["chart"=>$grade_distribution_chart,"topProfessors"=>$topProfessors,"semesters"=>$semesters, "course"=>$course]);
+        return view('courses.show',["prev_semester"=>($request->selected_semester ?? ""),"chart"=>$grade_distribution_chart,"topProfessors"=>$topProfessors,"semesters"=>$semesters, "course"=>$course]);
     }
 
     /**
@@ -171,6 +185,7 @@ class CourseController extends Controller
         $course->creditsTotal=$validated['creditsTotal'];
         $course->syllabusLink=$validated['syllabusLink'];
         $course->save();
+
         return redirect(route("courses.index"));
     }
 
@@ -186,5 +201,41 @@ class CourseController extends Controller
         return redirect(route("courses.index"));
 
         
+    }
+
+    private function convert_query_results_to_object($grade_distribution){
+        $entity=(object)[];
+        $entity->qty_A=0;
+        $entity->qty_B=0;
+        $entity->qty_C=0;
+        $entity->qty_D=0;
+        $entity->qty_F=0;
+        $entity->qty_W=0;
+
+        foreach($grade_distribution as $grade_total){
+            switch ($grade_total->grade) {
+                case 'A':
+                    $entity->qty_A= (int) $grade_total->total;
+                    break;
+                case 'B':
+                    $entity->qty_B= (int) $grade_total->total;
+                    break;
+                case 'C':
+                    $entity->qty_C= (int) $grade_total->total;
+                    break;
+                case 'D':
+                    $entity->qty_D= (int) $grade_total->total;
+                    break;
+                case 'F':
+                    $entity->qty_F= (int) $grade_total->total;
+                    break;
+                case 'W':
+                    $entity->qty_W= (int) $grade_total->total;
+                    break;
+            }
+
+        }
+
+        return $entity;
     }
 }

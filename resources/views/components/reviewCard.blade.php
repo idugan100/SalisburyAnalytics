@@ -15,6 +15,4 @@
             <a class="m-2  border-4 border-yellow-500 hover:text-gray-300 bg-yellow-500 rounded font-bold px-1" href="{{route('reviews.edit',$review->id)}}">edit</a>
         @endauth
     </div>
-    <a class="m-2  border-4 border-yellow-500 hover:text-gray-300 bg-yellow-500 rounded font-bold px-1" href="{{route('courses.show',$review->course->id)}}">reviews</a>
-
 </div> 
