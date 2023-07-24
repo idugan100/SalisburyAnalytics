@@ -76,6 +76,9 @@
                                                 value="{{$top_professor->id}}" 
                                                 class="peer sr-only  " 
                                                 name='selected_professor'
+                                                @if ($prev_professor==$top_professor->id)
+                                                    checked
+                                                @endif
                                             >
                                         <label  
                                             for="{{$top_professor->id}}" 
@@ -84,6 +87,23 @@
                                         </label>
                                     </span>
                                 @endforeach
+                                <span class=" m-1 p-1">
+                                    <input 
+                                            type="radio" 
+                                            id="allprof" 
+                                            value="" 
+                                            class="peer sr-only  " 
+                                            name='selected_professor'
+                                            @if ($prev_professor=="")
+                                                checked
+                                            @endif
+                                        >
+                                    <label  
+                                        for="allprof" 
+                                        class="   bg-gray-300 rounded p-1">
+                                        All Professors
+                                    </label>
+                                </span>
                             </div>
                         </form>
                     </div>
