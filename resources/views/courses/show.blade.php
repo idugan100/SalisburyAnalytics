@@ -17,7 +17,6 @@
                         <form action="{{route("courses.show",$course)}}">
                             <div class="flex justify-end">
                                 <button class="bg-yellow-500 m-2 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded" type="submit">filter</button>
-                                <button class="bg-yellow-500 m-2 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded" type="reset"> clear filters</button>
                             </div>
                             
                             <h3 class="text-lg mt-3 font-semibold text-gray-900 ">
@@ -34,6 +33,10 @@
                                                 value="{{$semester_object->semester .  $semester_object->year}}" 
                                                 class="peer sr-only  " 
                                                 name='selected_semester'
+
+                                                @if ($prev_semester==$semester_object->semester . $semester_object->year)
+                                                    checked
+                                                @endif
                                             >
                                         <label  
                                             for="{{$semester_object->semester .  $semester_object->year}}" 
@@ -42,6 +45,24 @@
                                         </label>
                                     </span>
                                 @endforeach
+                                <span class=" m-1 p-1">
+                                    <input 
+                                            type="radio" 
+                                            id="all" 
+                                            value="" 
+                                            class="peer sr-only  " 
+                                            name='selected_semester'
+
+                                            @if ($prev_semester=="")
+                                                checked
+                                            @endif
+                                        >
+                                    <label  
+                                        for="all" 
+                                        class="   bg-gray-300 rounded p-1">
+                                        All Semesters
+                                    </label>
+                                </span>
                             </div>
                             <h3 class="text-lg font-semibold text-gray-900 ">
                                 Taught By
