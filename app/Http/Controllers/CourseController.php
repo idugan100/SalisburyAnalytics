@@ -109,6 +109,7 @@ class CourseController extends Controller
      */
     public function show(Request $request, Course $course, GradeDistribution $chart)
     {        
+        // dd($request);
         TrackUsage::log($request,"course");
         $grade_distribution_chart=$chart->build($course);
         $semesters=DB::table("courses_x_professors_with_grades")
