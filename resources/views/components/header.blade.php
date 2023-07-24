@@ -22,3 +22,9 @@
     @livewireScripts
 </body>
 </html>
+<style>
+    input.peer:checked + label {
+  background-color: #8b0000;
+  color:white;
+}
+</style>

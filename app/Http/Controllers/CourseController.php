@@ -121,7 +121,7 @@ class CourseController extends Controller
                                 ->where("course_ID",$course->id)
                                 ->groupBy("professor_ID")
                                 ->orderByRaw("sum(quantity) desc")
-                                ->limit(4)->get()->toArray();
+                                ->get()->toArray();
 
 
         

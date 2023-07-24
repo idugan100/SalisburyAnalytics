@@ -19,19 +19,47 @@
                         </h3>
                         <div class="flex flex-wrap p-2">
                             @foreach ($semesters as $semester_object)
-                                <span class="py-1 px-2 m-1 rounded-full text-sm bg-gray-200 hover:bg-gray-300 hover:drop-shadow-md duration-300">
+                                {{-- <span class="py-1 px-2 m-1 rounded-full text-sm bg-gray-200 hover:bg-gray-300 hover:drop-shadow-md duration-300">
                                     {{$semester_object->semester . " " . $semester_object->year}}
+                                </span> --}}
+                                <span class=" m-1 p-1">
+                                    <input 
+                                            type="radio" 
+                                            id="{{$semester_object->semester . $semester_object->year}}" 
+                                            value="{{$semester_object->semester .  $semester_object->year}}" 
+                                            class="peer sr-only  " 
+                                            name='selected_semester'
+                                        >
+                                    <label  
+                                        for="{{$semester_object->semester .  $semester_object->year}}" 
+                                        class="   bg-gray-300 rounded p-1">
+                                        {{$semester_object->semester . " " .  $semester_object->year}}
+                                    </label>
                                 </span>
                             @endforeach
                         </div>
                         <h3 class="text-lg font-semibold text-gray-900 ">
-                            Frequently Taught By
+                            Taught By
                         </h3>
                         <div class="flex flex-wrap p-2">
                             @foreach ($topProfessors as $top_professor)
-                                <a href="{{route("professors.index",[ 'department' => $course->departmentCode,"professor_id"=>$top_professor->id])}}" class="py-1 px-2 m-1 rounded-full text-sm bg-gray-200 hover:bg-gray-300 hover:drop-shadow-md duration-300">
+                                {{-- <a href="{{route("professors.index",[ 'department' => $course->departmentCode,"professor_id"=>$top_professor->id])}}" class="py-1 px-2 m-1 rounded-full text-sm bg-gray-200 hover:bg-gray-300 hover:drop-shadow-md duration-300">
                                     {{$top_professor->firstName . " " . $top_professor->lastName}}
-                                </a>
+                                </a> --}}
+                                <span class=" m-1 p-1">
+                                    <input 
+                                            type="radio" 
+                                            id="{{$top_professor->id}}" 
+                                            value="{{$top_professor->id}}" 
+                                            class="peer sr-only  " 
+                                            name='selected_professor'
+                                        >
+                                    <label  
+                                        for="{{$top_professor->id}}" 
+                                        class="   bg-gray-300 rounded p-1">
+                                        {{$top_professor->firstName . " " .  $top_professor->lastName}}
+                                    </label>
+                                </span>
                             @endforeach
                         </div>
                     </div>
