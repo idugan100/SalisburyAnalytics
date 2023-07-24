@@ -114,7 +114,7 @@ class CourseController extends Controller
         // dd($request);
         TrackUsage::log($request,"course");
 
-        if(isset($request->selected_semester)){
+        if(isset($request->selected_semester) && !isset($request->selected_professor)){
             $grade_distribution = DB::table("courses_x_professors_with_grades")
                 ->selectRaw("sum(quantity) as 'total', grade")
                 ->where("course_ID",$course->id)
@@ -122,6 +122,27 @@ class CourseController extends Controller
                 ->whereRaw("concat(semester,year) = ? ", [$request->selected_semester])->groupBy("grade")->get();
                 
             $grade_distribution_chart=$chart->build($this->convert_query_results_to_object($grade_distribution));
+        }
+        elseif(isset($request->selected_semester) && isset($request->selected_professor)){
+            $grade_distribution = DB::table("courses_x_professors_with_grades")
+            ->selectRaw("sum(quantity) as 'total', grade")
+            ->where("course_ID",$course->id)
+            ->whereIn("grade",['A','B','C','D','F','W'])
+            ->whereRaw("concat(semester,year) = ? ", [$request->selected_semester])
+            ->where("professor_id",$request->selected_professor)
+            ->groupBy("grade")->get();
+            
+        $grade_distribution_chart=$chart->build($this->convert_query_results_to_object($grade_distribution));
+        }
+        elseif(!isset($request->selected_semester) && isset($request->selected_professor)){
+            $grade_distribution = DB::table("courses_x_professors_with_grades")
+            ->selectRaw("sum(quantity) as 'total', grade")
+            ->where("course_ID",$course->id)
+            ->whereIn("grade",['A','B','C','D','F','W'])
+            ->where("professor_id",$request->selected_professor)
+            ->groupBy("grade")->get();
+            
+        $grade_distribution_chart=$chart->build($this->convert_query_results_to_object($grade_distribution));
         }
         else{
             $grade_distribution_chart=$chart->build($course);
@@ -141,7 +162,7 @@ class CourseController extends Controller
                                 ->orderByRaw("sum(quantity) desc")
                                 ->get()->toArray();
 
-        return view('courses.show',["prev_semester"=>($request->selected_semester ?? ""),"chart"=>$grade_distribution_chart,"topProfessors"=>$topProfessors,"semesters"=>$semesters, "course"=>$course]);
+        return view('courses.show',["prev_semester"=>($request->selected_semester ?? ""),"prev_professor"=>($request->selected_professor ?? ""),"chart"=>$grade_distribution_chart,"topProfessors"=>$topProfessors,"semesters"=>$semesters, "course"=>$course]);
     }
 
     /**
