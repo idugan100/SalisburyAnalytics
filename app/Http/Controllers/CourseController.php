@@ -107,13 +107,26 @@ class CourseController extends Controller
      * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, Course $course)
+    public function show(Request $request, Course $course, GradeDistribution $chart)
     {        
-        TrackUsage::log($request,"review");
+        TrackUsage::log($request,"course");
+        $grade_distribution_chart=$chart->build($course);
+        $semesters=DB::table("courses_x_professors_with_grades")
+                                ->select("semester","year")
+                                ->where("course_ID",$course->id)
+                                ->distinct()->orderBy('year')->orderBy("semester","desc")->get()->toArray();
+        $topProfessors=DB::table("courses_x_professors_with_grades")
+                                ->join("professors","professor_ID","professors.id")
+                                ->select("firstName", "lastName","professors.id")
+                                ->where("course_ID",$course->id)
+                                ->groupBy("professor_ID")
+                                ->orderByRaw("sum(quantity) desc")
+                                ->limit(4)->get()->toArray();
 
 
-        $reviews=$course->reviews()->where('approved_flag',ReviewController::APPROVED_FLAG)->get();
-        return view('courses.show',compact('course','reviews'));
+        
+
+        return view('courses.show',["chart"=>$grade_distribution_chart,"topProfessors"=>$topProfessors,"semesters"=>$semesters, "course"=>$course]);
     }
 
     /**
