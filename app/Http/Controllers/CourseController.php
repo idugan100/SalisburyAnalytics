@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 
 
 use App\Http\Requests\StoreCourseRequest;
+use App\Http\Controllers\ReviewController;
 use App\Http\Requests\UpdateCourseRequest;
 
 class CourseController extends Controller
@@ -40,20 +41,8 @@ class CourseController extends Controller
 
         foreach($courses as $course){
             $course->chart=$chart->build($course);
-            $course->semesters=DB::table("courses_x_professors_with_grades")
-                                ->select("semester","year")
-                                ->where("course_ID",$course->id)
-                                ->distinct()->orderBy('year')->orderBy("semester","desc")->get()->toArray();
-            $course->topProfessors=DB::table("courses_x_professors_with_grades")
-                                    ->join("professors","professor_ID","professors.id")
-                                    ->select("firstName", "lastName","professors.id")
-                                    ->where("course_ID",$course->id)
-                                    ->groupBy("professor_ID")
-                                    ->orderByRaw("sum(quantity) desc")
-                                    ->limit(4)->get()->toArray();
-            $course->reviews=Review::where("course_id",$course->id)->get();
+            $course->reviews=Review::where("course_id",$course->id)->where("approved_flag",ReviewController::APPROVED_FLAG)->get();
         }
-
 
         return view('courses.index',[
             'courses'=>$courses,
@@ -140,7 +129,7 @@ class CourseController extends Controller
                                 ->where("course_ID",$course->id)
                                 ->distinct()->orderBy('year')->orderBy("semester","desc")->get()->toArray();
 
-        $topProfessors=DB::table("courses_x_professors_with_grades")
+        $professors=DB::table("courses_x_professors_with_grades")
                                 ->join("professors","professor_ID","professors.id")
                                 ->select("firstName", "lastName","professors.id")
                                 ->where("course_ID",$course->id)
@@ -151,7 +140,7 @@ class CourseController extends Controller
                                     "prev_semester"=>($request->selected_semester ?? ""),
                                     "prev_professor"=>($request->selected_professor ?? ""),
                                     "chart"=>$grade_distribution_chart,
-                                    "topProfessors"=>$topProfessors,
+                                    "professors"=>$professors,
                                     "semesters"=>$semesters, 
                                     "course"=>$course]);
     }
