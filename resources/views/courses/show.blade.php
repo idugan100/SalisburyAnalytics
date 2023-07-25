@@ -2,8 +2,8 @@
     <x-subHeader :title="'grade distribution '.$course->departmentCode . '-' . $course->courseNumber"/>
         <div class="flex justify-center">
      
-                
-                <div class="relative max-w-5xl	m-4 bg-white rounded-lg shadow ">
+                {{-- card --}}
+                <div class="relative w-3/4 m-4 bg-white rounded-lg shadow ">
                     <div class="flex items-start justify-between p-4 border-b rounded-t ">
                         <h3 class="text-xl font-semibold text-gray-900 ">
                             {{"Grade Distribution for " . $course->departmentCode ."-" . $course->courseNumber }} 
@@ -11,19 +11,21 @@
                         
                     </div>
                     <div class="p-6 space-y-6">
+                        {{-- chart --}}
                         <div class="border border-4 p-2">
                             {{$chart->container()}}
                         </div>
+
+
                         <form action="{{route("courses.show",$course)}}">
                             <div class="flex justify-end">
                                 <button class="bg-yellow-500 m-2 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded" type="submit">filter</button>
                             </div>
                             
+                            {{-- semester filter --}}
                             <h3 class="text-lg mt-3 font-semibold text-gray-900 ">
                                 Semesters Taught 
                             </h3>
-                        
-
                             <div class="flex flex-wrap p-2">
                                 @foreach ($semesters as $semester_object)
                                     <span class=" m-1 p-1">
@@ -64,6 +66,8 @@
                                     </label>
                                 </span>
                             </div>
+
+                            {{-- professor filter --}}
                             <h3 class="text-lg font-semibold text-gray-900 ">
                                 Taught By
                             </h3>
