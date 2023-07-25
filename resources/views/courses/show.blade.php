@@ -72,22 +72,22 @@
                                 Taught By
                             </h3>
                             <div class="flex flex-wrap p-2">
-                                @foreach ($topProfessors as $top_professor)
+                                @foreach ($professors as $professor)
                                     <span class=" m-1 p-1">
                                         <input 
                                                 type="radio" 
-                                                id="{{$top_professor->id}}" 
-                                                value="{{$top_professor->id}}" 
+                                                id="{{$professor->id}}" 
+                                                value="{{$professor->id}}" 
                                                 class="peer sr-only  " 
                                                 name='selected_professor'
-                                                @if ($prev_professor==$top_professor->id)
+                                                @if ($prev_professor==$professor->id)
                                                     checked
                                                 @endif
                                             >
                                         <label  
-                                            for="{{$top_professor->id}}" 
+                                            for="{{$professor->id}}" 
                                             class="   bg-gray-300 rounded p-1">
-                                            {{$top_professor->firstName . " " .  $top_professor->lastName}}
+                                            {{$professor->firstName . " " .  $professor->lastName}}
                                         </label>
                                     </span>
                                 @endforeach
