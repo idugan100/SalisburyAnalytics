@@ -111,58 +111,49 @@ class CourseController extends Controller
      */
     public function show(Request $request, Course $course, GradeDistribution $chart)
     {        
-        // dd($request);
         TrackUsage::log($request,"course");
 
-        if(isset($request->selected_semester) && !isset($request->selected_professor)){
-            $grade_distribution = DB::table("courses_x_professors_with_grades")
+        $query= DB::table("courses_x_professors_with_grades")
                 ->selectRaw("sum(quantity) as 'total', grade")
                 ->where("course_ID",$course->id)
-                ->whereIn("grade",['A','B','C','D','F','W'])
-                ->whereRaw("concat(semester,year) = ? ", [$request->selected_semester])->groupBy("grade")->get();
-                
-            $grade_distribution_chart=$chart->build($this->convert_query_results_to_object($grade_distribution));
-        }
-        elseif(isset($request->selected_semester) && isset($request->selected_professor)){
-            $grade_distribution = DB::table("courses_x_professors_with_grades")
-            ->selectRaw("sum(quantity) as 'total', grade")
-            ->where("course_ID",$course->id)
-            ->whereIn("grade",['A','B','C','D','F','W'])
-            ->whereRaw("concat(semester,year) = ? ", [$request->selected_semester])
-            ->where("professor_id",$request->selected_professor)
-            ->groupBy("grade")->get();
+                ->whereIn("grade",['A','B','C','D','F','W']);
+        //apply filters
+        if(isset($request->selected_semester)){
             
-        $grade_distribution_chart=$chart->build($this->convert_query_results_to_object($grade_distribution));
+            $query = $query->whereRaw("concat(semester,year) = ? ", [$request->selected_semester]);    
         }
-        elseif(!isset($request->selected_semester) && isset($request->selected_professor)){
-            $grade_distribution = DB::table("courses_x_professors_with_grades")
-            ->selectRaw("sum(quantity) as 'total', grade")
-            ->where("course_ID",$course->id)
-            ->whereIn("grade",['A','B','C','D','F','W'])
-            ->where("professor_id",$request->selected_professor)
-            ->groupBy("grade")->get();
+        if(isset($request->selected_professor)){
             
-        $grade_distribution_chart=$chart->build($this->convert_query_results_to_object($grade_distribution));
+            $query = $query->where("professor_id",$request->selected_professor);
+        }
+        //build chart
+        if(isset($request->selected_professor) || isset($request->selected_semester)){
+           
+           $grade_distribution_chart=$chart->build($this->convert_query_results_to_object($query->groupBy("grade")->get()));
         }
         else{
             $grade_distribution_chart=$chart->build($course);
-
         }
-        
-        
+        //get data for options
         $semesters=DB::table("courses_x_professors_with_grades")
                                 ->select("semester","year")
                                 ->where("course_ID",$course->id)
                                 ->distinct()->orderBy('year')->orderBy("semester","desc")->get()->toArray();
+
         $topProfessors=DB::table("courses_x_professors_with_grades")
                                 ->join("professors","professor_ID","professors.id")
                                 ->select("firstName", "lastName","professors.id")
                                 ->where("course_ID",$course->id)
                                 ->groupBy("professor_ID")
-                                ->orderByRaw("sum(quantity) desc")
                                 ->get()->toArray();
 
-        return view('courses.show',["prev_semester"=>($request->selected_semester ?? ""),"prev_professor"=>($request->selected_professor ?? ""),"chart"=>$grade_distribution_chart,"topProfessors"=>$topProfessors,"semesters"=>$semesters, "course"=>$course]);
+        return view('courses.show',[
+                                    "prev_semester"=>($request->selected_semester ?? ""),
+                                    "prev_professor"=>($request->selected_professor ?? ""),
+                                    "chart"=>$grade_distribution_chart,
+                                    "topProfessors"=>$topProfessors,
+                                    "semesters"=>$semesters, 
+                                    "course"=>$course]);
     }
 
     /**
