@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('professors', function (Blueprint $table) {
-            $table->string("rmp_link");
+            $table->string("rmp_link")->nullable();
         });
     }
 
