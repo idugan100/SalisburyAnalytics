@@ -27,4 +27,13 @@
   background-color: #8b0000;
   color:white;
 }
+.no-highlights{
+      -webkit-tap-highlight-color: transparent;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
 </style>
