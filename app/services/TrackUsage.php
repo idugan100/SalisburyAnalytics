@@ -33,9 +33,18 @@ class TrackUsage
         $usage_log->save();
 
         if(!$is_bot){
+            
+            if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+                $ip = $_SERVER['HTTP_CLIENT_IP'];
+            } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+                $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+            } else {
+                $ip = $_SERVER['REMOTE_ADDR'];
+            }
+
             $user_detail=New UserDetail();
             $user_detail->user_agent=$request->userAgent();
-            $user_detail->ip_address=$request->ip();
+            $user_detail->ip_address=$ip;
             $user_detail->page_visited=$page_name;
             $user_detail->usage_log_id=$usage_log->id;
             $user_detail->save();
