@@ -83,7 +83,16 @@
             </div>
             <!-- Modal body -->
             <div class="p-6 space-y-6 flex justify-center ">
+<<<<<<< Updated upstream
                 <iframe loading="lazy" src="{{$professor->rmp_link}}" sandbox height="450" width="600"></iframe>
+=======
+                @if (isset($professor->rmp_link))
+                    <iframe loading="lazy" src="{{$professor->rmp_link}}" sandbox height="450" width="600"></iframe>
+
+                @else
+                    <p>this professor does not have a rate my professor page :(</p>
+                @endif
+>>>>>>> Stashed changes
             </div>
             
         </div>
