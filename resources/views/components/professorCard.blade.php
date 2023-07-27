@@ -1,10 +1,23 @@
-<div class=" w-64 contrast-125 group p-3 shadow-lg  shadow-black  bg-white hover:bg-red-700 rounded-lg m-2 p-5 ">
+<div class=" contrast-125 group p-3 shadow-lg  shadow-black  bg-white hover:bg-red-700 rounded-lg m-2 p-5 ">
     <h3 class=" text-2xl py-1 px-2 font-bold ">{{$professor->firstName . " " . $professor->lastName }}</h3>
     <hr class="border-1 border-yellow-500 ">
 
     <h4 class="text-md   py-1 px-2  m-2 group-hover:text-gray-300 font-bold">{{$professor->department}}</h4>
     <div class=" py-1 px-2 m-2  text-md font-bold bg-gray-300 rounded border-3 boder-gray-300"> {{"Average GPA: " . $professor->avg_gpa}}</div>
     <div class=" py-1 px-2 m-2  text-md font-bold bg-gray-300 rounded border-3 boder-gray-300"> {{"Students Taught: " . $professor->qty_A + $professor->qty_B + $professor->qty_C + $professor->qty_D + $professor->qty_F + $professor->qty_W}}</div>
+    <div class="px-2 py-1 m-2  text-md font-bold bg-gray-300 rounded border-3 boder-gray-300"> {{"Number of Reviews: " . count($professor->reviews)}}</div>
+
+    <div class=" py-1 px-2 m-2  text-md font-bold bg-gray-300 rounded border-3 boder-gray-300"> <span>Fequently Teaches: </span>
+        <ul class="list-disc py-1 px-2 m-2">
+            @foreach ($professor->topCourses as $top_course)
+                        
+                           <li>
+                            {{$top_course->courseTitle . " (".$top_course->departmentCode ."-".$top_course->courseNumber .")"}}
+                           </li> 
+                    @endforeach
+        </ul>
+                    
+    </div>
 
     <div class="flex flex-wrap rounded-md">
         @auth
@@ -15,11 +28,9 @@
             </form>     
             <a class="m-2  border-4 border-yellow-500 hover:text-gray-300 bg-yellow-500 rounded font-bold px-1" href="{{route('professors.edit',$professor->id)}}">edit</a>
         @endauth
+        <button data-modal-target="{{"Rmp-Modal-".$professor->id}}" data-modal-toggle="{{"Rmp-Modal-".$professor->id}}" class="m-2  border-4 border-yellow-500 hover:text-gray-300 bg-yellow-500 rounded font-bold px-1" type="button">rate my professor</button>
         <a class="m-2  border-4 border-yellow-500 hover:text-gray-300 bg-yellow-500 rounded font-bold px-1" href="{{route('professors.show',$professor->id)}}">reviews</a>
-        @if ($professor->rmp_link!="")
-            <button data-modal-target="{{"Rmp-Modal-".$professor->id}}" data-modal-toggle="{{"Rmp-Modal-".$professor->id}}" class="m-2  border-4 border-yellow-500 hover:text-gray-300 bg-yellow-500 rounded font-bold px-1" type="button">rmp</button>
-        @endif
-        <button data-modal-target="{{"Professor-Modal-".$professor->id}}" data-modal-toggle="{{"Professor-Modal-".$professor->id}}" class="m-2  border-4 border-yellow-500 hover:text-gray-300 bg-yellow-500 rounded font-bold px-1" type="button">charts</button>
+        <button data-modal-target="{{"Professor-Modal-".$professor->id}}" data-modal-toggle="{{"Professor-Modal-".$professor->id}}" class="m-2  border-4 border-yellow-500 hover:text-gray-300 bg-yellow-500 rounded font-bold px-1" type="button">grades</button>
     </div>
 </div>   
 
@@ -83,7 +94,12 @@
             </div>
             <!-- Modal body -->
             <div class="p-6 space-y-6 flex justify-center ">
-                <iframe loading="lazy" src="{{$professor->rmp_link}}" sandbox height="450" width="600"></iframe>
+                @if (isset($professor->rmp_link))
+                    <iframe loading="lazy" src="{{$professor->rmp_link}}" sandbox height="450" width="600"></iframe>
+
+                @else
+                    <p>this professor does not a a rate my professor page :(</p>
+                @endif
             </div>
             
         </div>
