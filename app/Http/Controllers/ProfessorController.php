@@ -60,6 +60,7 @@ class ProfessorController extends Controller
                                         ->groupBy("course_ID")
                                         ->orderByRaw("sum(quantity) desc")
                                         ->limit(4)->get()->toArray();
+            $professor->reviews=Review::where("professor_id",$professor->id)->where("approved_flag",ReviewController::APPROVED_FLAG)->get();
                                         
             
         };
