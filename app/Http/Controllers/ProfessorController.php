@@ -48,7 +48,6 @@ class ProfessorController extends Controller
         }
 
         foreach($professors as $professor){
-            $professor->chart=$chart->build($professor);
             $professor->semesters=DB::table("courses_x_professors_with_grades")
                                 ->select("semester","year")
                                 ->where("professor_ID",$professor->id)
