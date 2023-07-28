@@ -58,5 +58,3 @@
         </div>
     </div>
 </div>
-<script src="{{$course->chart->cdn()}}"></script>
-{{$course->chart->script()}}
