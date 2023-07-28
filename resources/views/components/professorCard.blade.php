@@ -29,8 +29,8 @@
             <a class="m-2  border-4 border-yellow-500 hover:text-gray-300 bg-yellow-500 rounded font-bold px-1" href="{{route('professors.edit',$professor->id)}}">edit</a>
         @endauth
         <button data-modal-target="{{"Rmp-Modal-".$professor->id}}" data-modal-toggle="{{"Rmp-Modal-".$professor->id}}" class="m-2  border-4 border-yellow-500 hover:text-gray-300 bg-yellow-500 rounded font-bold px-1" type="button">rate my professor</button>
-        <a class="m-2  border-4 border-yellow-500 hover:text-gray-300 bg-yellow-500 rounded font-bold px-1" href="{{route('professors.show',$professor->id)}}">grades</a>
         <button data-modal-target="{{"Review-Modal-".$professor->id}}" data-modal-toggle="{{"Review-Modal-".$professor->id}}" class="m-2  border-4 border-yellow-500 hover:text-gray-300 bg-yellow-500 rounded font-bold px-1" type="button">reviews</button>
+        <a class="m-2  border-4 border-yellow-500 hover:text-gray-300 bg-yellow-500 rounded font-bold px-1" href="{{route('professors.show',$professor->id)}}">grades</a>
     </div>
 </div>   
 
