@@ -3,8 +3,8 @@
     <hr class="border-1 border-yellow-500 ">
 
     <h4 class="text-md   py-1 px-2  m-2 group-hover:text-gray-300 font-bold">{{$course->departmentCode . "-" . $course->courseNumber}}</h4>
-    <div class=" py-1 px-2 m-2  text-md font-bold bg-gray-300 rounded border-3 boder-gray-300"> {{"Avergage GPA: " . $course->avg_gpa}}</div>
-    <div class=" py-1 px-2 m-2  text-md font-bold bg-gray-300 rounded border-3 boder-gray-300"> {{"Total Enrollment: " . $course->qty_A + $course->qty_B + $course->qty_B + $course->qty_C + $course->qty_D + $course->qty_F + $course->qty_W}}</div>
+    <div class=" py-1 px-2 m-2  text-md font-bold bg-gray-300 rounded border-3 boder-gray-300"> {{"Average GPA: " . $course->avg_gpa}}</div>
+    <div class=" py-1 px-2 m-2  text-md font-bold bg-gray-300 rounded border-3 boder-gray-300"> {{"Total Enrollment: " . $course->qty_A +  $course->qty_B + $course->qty_C + $course->qty_D + $course->qty_F + $course->qty_W}}</div>
     <div class="px-2 py-1 m-2  text-md font-bold bg-gray-300 rounded border-3 boder-gray-300"> {{"Number of Reviews: " . count($course->reviews)}}</div>
     @if ($course->description!=null)
     <div class="px-2 py-1 m-2  text-md font-bold bg-gray-300 rounded border-3 boder-gray-300"> {{$course->description}}</div>
