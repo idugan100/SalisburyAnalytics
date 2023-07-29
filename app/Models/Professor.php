@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Professor extends Model
 {
     use HasFactory;
-    protected $fillable=['firstName','lastName','deparment','qty_A','qty_B','qty_C','qty_D','qty_F','qty_W'];
+    protected $fillable=['firstName','lastName','deparment','avg_GPA'];
     
     public function reviews(){
         return $this->hasMany(Review::class);

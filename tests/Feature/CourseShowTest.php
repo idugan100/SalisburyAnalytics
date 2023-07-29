@@ -37,12 +37,6 @@ class CourseShowTest extends TestCase
         $course->courseTitle="Cost Accounting I";
         $course->description="Emphasizes the use of accounting information for budgeting, planning and control, and decision making. Topics include integrated budgeting, variance analysis, job-order costing, activity-based costing, relevant costs for decision making, etc.";
         $course->avg_GPA=3.12;
-        $course->qty_A=5;
-        $course->qty_B=5;
-        $course->qty_C=5;
-        $course->qty_D=5;
-        $course->qty_F=5;
-        $course->qty_W=5;
         $course->save();
 
     }
