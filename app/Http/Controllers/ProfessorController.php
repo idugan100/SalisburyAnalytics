@@ -60,8 +60,11 @@ class ProfessorController extends Controller
                                         ->orderByRaw("sum(quantity) desc")
                                         ->limit(4)->get()->toArray();
             $professor->reviews=Review::where("professor_id",$professor->id)->where("approved_flag",ReviewController::APPROVED_FLAG)->get();
-                                        
-            
+            $professor->students_taught=DB::table("courses_x_professors_with_grades")
+                                        ->selectRaw("sum(quantity) as total")
+                                        ->where("professor_ID",$professor->id)
+                                        ->whereIn("grade",['A','B','C','D','F','W'])
+                                        ->first()->total;                                        
         };
         
         return(view("professors.index",
@@ -126,13 +129,9 @@ class ProfessorController extends Controller
             $query = $query->where("course_ID",$request->selected_course);
         }
         //build chart
-        if(isset($request->selected_course) || isset($request->selected_semester)){
-        
-            $grade_distribution_chart=$chart->build($this->convert_query_results_to_object($query->groupBy("grade")->get()));
-        }
-        else{
-            $grade_distribution_chart=$chart->build($professor);
-        }
+
+        $grade_distribution_chart=$chart->build($query->groupBy("grade")->get()->toArray());
+
         //get data for options
         $semesters=DB::table("courses_x_professors_with_grades")
                                 ->select("semester","year")
@@ -200,39 +199,4 @@ class ProfessorController extends Controller
     }
 
 
-    private function convert_query_results_to_object($grade_distribution){
-        $entity=(object)[];
-        $entity->qty_A=0;
-        $entity->qty_B=0;
-        $entity->qty_C=0;
-        $entity->qty_D=0;
-        $entity->qty_F=0;
-        $entity->qty_W=0;
-
-        foreach($grade_distribution as $grade_total){
-            switch ($grade_total->grade) {
-                case 'A':
-                    $entity->qty_A= (int) $grade_total->total;
-                    break;
-                case 'B':
-                    $entity->qty_B= (int) $grade_total->total;
-                    break;
-                case 'C':
-                    $entity->qty_C= (int) $grade_total->total;
-                    break;
-                case 'D':
-                    $entity->qty_D= (int) $grade_total->total;
-                    break;
-                case 'F':
-                    $entity->qty_F= (int) $grade_total->total;
-                    break;
-                case 'W':
-                    $entity->qty_W= (int) $grade_total->total;
-                    break;
-            }
-
-        }
-
-        return $entity;
-    }
 }
