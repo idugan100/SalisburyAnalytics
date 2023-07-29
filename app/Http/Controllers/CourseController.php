@@ -113,7 +113,7 @@ class CourseController extends Controller
         }
         if(isset($request->selected_professor)){
             
-            $query = $query->where("professor_id",$request->selected_professor);
+            $query = $query->where("professor_ID",$request->selected_professor);
         }
         //build chart
         if(isset($request->selected_professor) || isset($request->selected_semester)){
