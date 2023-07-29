@@ -91,16 +91,27 @@
                                 
                               </tr>
                             @endforeach
-                            <div>
-                                {{$usage_logs->links()}}
-
-                            </div>
+                           
                           
                         </tbody>
                       </table>
+                      <p>
+                        {{$usage_logs->links()}}
+
+                      </p>
+
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+   const svgElements = document.querySelectorAll("svg");
+
+// Step 2: Remove each SVG element
+svgElements.forEach((svgElement) => {
+  svgElement.parentNode.removeChild(svgElement);
+});
+</script>
 @endsection
