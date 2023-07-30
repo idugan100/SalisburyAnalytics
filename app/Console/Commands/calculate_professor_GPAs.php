@@ -42,11 +42,10 @@ class calculate_professor_GPAs extends Command
                             WHEN grade='C' THEN 2
                             WHEN grade='D' THEN 1
                             WHEN grade='F' THEN 0
-                            else 0
                             END * quantity as 'GPA'
                     from courses_x_professors_with_grades
                     join professors on professor_ID=professors.id
-                    where lastName=\"". $professor->lastName . "\" and firstName=\"" . $professor->firstName . "\" and grade in ('A','B','C','D','F','W') )as `T`");
+                    where lastName=\"". $professor->lastName . "\" and firstName=\"" . $professor->firstName . "\" and grade in ('A','B','C','D','F') )as `T`");
 
             $professor->avg_gpa= (float) $avg_gpa[0]->Course_GPA;
             $professor->save();
