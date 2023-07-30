@@ -64,7 +64,16 @@ class ProfessorController extends Controller
                                         ->selectRaw("sum(quantity) as total")
                                         ->where("professor_ID",$professor->id)
                                         ->whereIn("grade",['A','B','C','D','F','W'])
-                                        ->first()->total;                                        
+                                        ->first()->total;
+            $professor->withdraw_pct = DB::table("courses_x_professors_with_grades")
+                                        ->selectRaw("round (sum(quantity)*100/
+                                            (select sum(quantity) 
+                                                from courses_x_professors_with_grades
+                                                where professor_id=? and grade in ('A','B','C','D','F','W'))
+                                                    ,1) as 'withdraw_percentage'",[$professor->id])  
+                                        ->where("professor_id",$professor->id)
+                                        ->where("grade","W")
+                                        ->first()->withdraw_percentage;
         };
         
         return(view("professors.index",

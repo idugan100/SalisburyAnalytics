@@ -46,6 +46,15 @@ class CourseController extends Controller
                                         ->where("course_ID",$course->id)
                                         ->whereIn("grade",['A','B','C','D','F','W'])
                                         ->first()->total;
+            $course->withdraw_pct = DB::table("courses_x_professors_with_grades")
+                                    ->selectRaw("round (sum(quantity)*100/
+                                        (select sum(quantity) 
+                                            from courses_x_professors_with_grades
+                                            where course_id=? and grade in ('A','B','C','D','F','W'))
+                                                ,1) as 'withdraw_percentage'",[$course->id])  
+                                    ->where("course_id",$course->id)
+                                    ->where("grade","W")
+                                    ->first()->withdraw_percentage;
         }
 
         return view('courses.index',[
