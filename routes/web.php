@@ -27,7 +27,7 @@ Route::get('/about', function (Request $request) {
 
     TrackUsage::log($request,"about");
     return view('welcome');
-});
+})->name("home");
 
 //routes for courses
 Route::get('/', [CourseController::class,"index"]);
@@ -58,13 +58,33 @@ Route::get("/gpa_over_time",[GpaOverTimeController::class,"index"])->name("gpa")
 Route::get("/enrollment_over_time",[EnrollmentOverTimeController::class,"index"])->name("enrollment");
 
 
+//stripe
+Route::get('/billing-portal', function (Request $request) {
+    return $request->user()->redirectToBillingPortal(route('courses.index'));
+});
+
+Route::get('/product-checkout', function (Request $request) {
+    return view('checkout', [
+        'intent' => auth()->user()->createSetupIntent()
+    ]);
+});
+
+Route::post('/create-subscription', function (Request $request) {
+    // dd($request->token);
+    $request->user()->newSubscription(
+        'default', env("PLAN_ID")
+    )->create($request->token);
+    return redirect(route("courses.index"));
+});
+
+
 
 
 Auth::routes([
 
-    'register' => false, // Register Routes...
+    'register' => true, // Register Routes...
   
-    'reset' => false, // Reset Password Routes...
+    'reset' => true, // Reset Password Routes...
   
     'verify' => false, // Email Verification Routes...
   
