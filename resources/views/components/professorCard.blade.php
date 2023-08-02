@@ -22,12 +22,14 @@
 
     <div class="flex flex-wrap rounded-md">
         @auth
-            <form  class="" method="POST" action="{{ route('professors.destroy', $professor->id) }}">
-                @csrf
-                @method('delete')
-                <button class="m-2  border-4 border-yellow-500 hover:text-gray-300 bg-yellow-500 rounded font-bold px-1">delete</button>
-            </form>     
-            <a class="m-2  border-4 border-yellow-500 hover:text-gray-300 bg-yellow-500 rounded font-bold px-1" href="{{route('professors.edit',$professor->id)}}">edit</a>
+            @if (auth()->user()->email == env("ADMIN_EMAIL"))
+                <form  class="" method="POST" action="{{ route('professors.destroy', $professor->id) }}">
+                    @csrf
+                    @method('delete')
+                    <button class="m-2  border-4 border-yellow-500 hover:text-gray-300 bg-yellow-500 rounded font-bold px-1">delete</button>
+                </form>     
+                <a class="m-2  border-4 border-yellow-500 hover:text-gray-300 bg-yellow-500 rounded font-bold px-1" href="{{route('professors.edit',$professor->id)}}">edit</a>
+            @endif
         @endauth
         <button data-modal-target="{{"Rmp-Modal-".$professor->id}}" data-modal-toggle="{{"Rmp-Modal-".$professor->id}}" class="m-2  border-4 border-yellow-500 hover:text-gray-300 bg-yellow-500 rounded font-bold px-1" type="button">rate my professor</button>
         <button data-modal-target="{{"Review-Modal-".$professor->id}}" data-modal-toggle="{{"Review-Modal-".$professor->id}}" class="m-2  border-4 border-yellow-500 hover:text-gray-300 bg-yellow-500 rounded font-bold px-1" type="button">reviews</button>
