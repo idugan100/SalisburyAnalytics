@@ -35,7 +35,7 @@
             @auth
                 @if(auth()->user()->email==env("ADMIN_EMAIL"))
                     <li>
-                        <a href="{{route("reviews.processing")}}" class=" no-highlights decoration-yellow-500 decoration-4 hover:underline block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-red-700 md:p-0 font-bold  ">dashboard</a>
+                        <a href="{{route("reviews.processing")}}" class=" no-highlights decoration-yellow-500 decoration-4 hover:underline block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-red-700 md:p-0 font-bold  ">admin</a>
                     </li> 
                 @endif
 
