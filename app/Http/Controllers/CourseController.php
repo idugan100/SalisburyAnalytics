@@ -11,14 +11,19 @@ use Illuminate\Support\Facades\DB;
 
 
 
+use App\Http\Middleware\EnsureIsAdmin;
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Controllers\ReviewController;
 use App\Http\Requests\UpdateCourseRequest;
+use App\Http\Middleware\EnsureIsSubscribed;
 
 class CourseController extends Controller
 {
     public function __construct(){
         $this->middleware('auth', ['except' => ['index','show']]);
+        $this->middleware(EnsureIsSubscribed::class, ['only' => ['show']]);
+        $this->middleware(EnsureIsAdmin::class,['only' =>["create","store","edit","update","destroy"]]);
+
     }
     /**
      * Display a listing of the resource.
