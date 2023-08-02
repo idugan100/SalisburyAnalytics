@@ -35,12 +35,6 @@
             @auth
                 @if(auth()->user()->email==env("ADMIN_EMAIL"))
                     <li>
-                        <a href="{{route("courses.create")}}" class=" no-highlights decoration-yellow-500 decoration-4 hover:underline block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-red-700 md:p-0 font-bold ">new course</a>
-                    </li>
-                    <li>
-                        <a href="{{route("professors.create")}}" class=" no-highlights decoration-yellow-500 decoration-4 hover:underline block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-red-700 md:p-0 font-bold  ">new professor</a>
-                    </li>
-                    <li>
                         <a href="{{route("reviews.processing")}}" class=" no-highlights decoration-yellow-500 decoration-4 hover:underline block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-red-700 md:p-0 font-bold  ">dashboard</a>
                     </li> 
                 @endif
@@ -55,28 +49,29 @@
                           </span> 
                     </li>  
                     
-                @endif
-                    <li>
-                        <a class=" decoration-yellow-500 decoration-4 hover:underline block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-red-700 md:p-0 font-bold  " href="{{ route('logout') }}"
-                        onclick="event.preventDefault();
-                                      document.getElementById('logout-form').submit();">
-                         {{ __('logout') }}
-                     </a>
-
-                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                         @csrf
-                     </form>
-                    </li>    
-                @if (auth()->user()->hasPaymentMethod())
+                @else
                     <li>
                         <a href="/billing-portal" class=" no-highlights decoration-yellow-500 decoration-4 hover:underline block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-red-700 md:p-0 font-bold  ">billing info</a>
                     </li>
                 @endif
+                <li>
+                    <a class=" decoration-yellow-500 decoration-4 hover:underline block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-red-700 md:p-0 font-bold  " href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                        {{ __('logout') }}
+                    </a>
 
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                </li>    
         @endauth
         @guest
             <li>
-                <a href="{{route("login")}}" class=" no-highlights decoration-yellow-500 decoration-4 hover:underline block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-red-700 md:p-0 font-bold  ">access premium</a>
+                <a href="{{route("premium")}}" class=" no-highlights decoration-yellow-500 decoration-4 hover:underline block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-red-700 md:p-0 font-bold  ">get premium</a>
+            </li>
+            <li>
+                <a href="{{route("login")}}" class=" no-highlights decoration-yellow-500 decoration-4 hover:underline block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-red-700 md:p-0 font-bold  ">login</a>
             </li>
         @endguest
         </ul>

@@ -1,5 +1,11 @@
 <x-header>
     <x-subHeader title="enter payment information to unlock premium"/>
+
+    <div class="flex justify-center m-4">
+        <h3 class="font-bold text-xl">unlock premium features for $3 a month</h3>
+    </div>
+       
+
         <div class="flex justify-center" >
             <div class="max-w-3xl p-6">
                 <form id="payment-form" action="/create-subscription" method="POST" class="border-red-700 p-3 border-4">
@@ -24,6 +30,25 @@
                     </button>
                 </form>
             </div>
+        </div>
+        <div class="m-4">
+           
+            <ul class="md:flex justify-center flex-wrap">
+                <li class="m-2 border-black h-1/6 border-2 w-42 p-2 flex flex-col ">
+                    <img src="{{ URL::asset('gpa_chart_image.png') }}" class="h-32" alt="">
+                    <div>
+                        grade point average and enrollment over time charts
+                    </div>
+                </li>
+                <li class="m-2 border-black border-2 h-1/6 w-42 p-2  flex flex-col"> 
+                    <img src="{{ URL::asset('grade_distribution_image.png') }}" alt="" class="h-32">
+                    <div>grade distributions for individual courses and professors</div>
+                </li>
+                <li class="m-2 border-black border-2 h-1/6 w-42 p-2  flex flex-col">
+                    <img src="{{ URL::asset('course_cards_image.png') }}" alt="" class="h-32">
+                    <div>lists of easiest and hardest courses/professors</div>
+                </li>
+            </ul>
         </div>
 
 
