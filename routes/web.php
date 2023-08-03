@@ -11,6 +11,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Middleware\EnsureIsSubscribed;
 use App\Http\Controllers\ProfessorController;
+use App\Http\Controllers\QueryToolController;
 use App\Http\Controllers\GpaOverTimeController;
 use App\Http\Controllers\EnrollmentOverTimeController;
 
@@ -58,6 +59,9 @@ Route::get("/gpa_over_time",[GpaOverTimeController::class,"index"])->name("gpa")
 
 //enrollment report
 Route::get("/enrollment_over_time",[EnrollmentOverTimeController::class,"index"])->name("enrollment")->middleware(EnsureIsSubscribed::class);
+
+//query tool
+Route::get("/query_tool",[QueryToolController::class,"index"])->name("qtool")->middleware(EnsureIsSubscribed::class);
 
 
 //stripe
