@@ -17,7 +17,7 @@
         </li>
         <li class="m-2 border-black border-2 h-72 w-80 p-2  flex flex-col bg-white rounded">
             <img src="{{ URL::asset('course_cards_image.png') }}" alt="" class="h-44  w-80">
-            <div>data analyzer that allows you to create custom reports about professors, courses, departments, enrollment, gpa, withdraw rate and more</div>
+            <div>query tool that allows you to create custom reports about professors, courses, departments, enrollment, gpa, withdraw rate and more</div>
         </li>
     </ul>
     <div class="flex justify-center">
