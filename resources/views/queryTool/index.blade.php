@@ -3,7 +3,7 @@
     <x-subHeader title="query tool"/>
     <form action="{{route("qtool")}}">
         @csrf
-        <div class="p-2" x-data="{ dept_filter: false }" >
+        <div class="p-2" x-data="{ dept_filter: true }" >
             <span>select</span>
             <select name="quantity" id="" required>
                 <option value="1">1</option>
@@ -15,7 +15,7 @@
             <select name="entity" id=""  x-on:change=" dept_filter=$event.target.value!=='departments' " required>
                 <option value="professors">professors</option>
                 <option value="courses">courses</option>
-                <option value="departments" selected>departments</option>
+                {{-- <option value="departments" selected>departments</option> --}}
             </select>
             <span x-show="dept_filter"> from </span>
             <select x-show="dept_filter" name="department_filter">
@@ -28,13 +28,13 @@
             <span x-show="dept_filter">department </span>
             <span> with the </span>
             <select name="ordering" required>
-                <option value="highest">highest </option>
-                <option value="lowest">lowest</option>
+                <option value="desc">highest </option>
+                <option value="asc">lowest</option>
             </select>
             <select name="statistic" required>
-                <option value="gpa">gpa</option>
-                <option value="enrollment">total students</option>
-                <option value="enrollment">students per semester</option>
+                <option value="avg_gpa">average gpa</option>
+                <option value="total_enrollment">total students</option>
+                <option value="enrollment_per_semester">students per semester</option>
                 <option value="w_rate"> withdraw percentage</option>
                 <option value="A_rate"> A percentage</option>
                 <option value="B_rate"> B percentage</option>
