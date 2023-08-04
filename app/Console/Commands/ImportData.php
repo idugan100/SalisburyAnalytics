@@ -140,7 +140,7 @@ class ImportData extends Command
         if(count($line_items)==0){
             $date_array=explode(" ",$data[0]);
             $year=2000+$date_array[1];
-            if($date_array[0]=="Spr"){
+            if($date_array[0]=="Spr" || $date_array[0]=="Spring"){
                 $semester="Spring";
             }
             else{
