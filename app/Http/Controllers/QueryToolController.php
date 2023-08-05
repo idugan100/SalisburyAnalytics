@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\services\TrackUsage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class QueryToolController extends Controller
 {
     public function index(Request $request){
+        TrackUsage::log($request,"report");
         $departments=Course::select("departmentCode")->orderBy("departmentCode")->distinct()->get();
         if(isset($request->quantity)){
             $results=$this->getData($request);
