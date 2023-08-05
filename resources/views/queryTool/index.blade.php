@@ -3,8 +3,8 @@
     <x-subHeader title="query tool"/>
     <form action="{{route("qtool")}}">
         @csrf
-        <div class="p-2 flex justify-center content-center "  >
-            <span class="mt-4 font-bold">select</span>
+        <div class="p-2 flex justify-center content-center flex-wrap"  >
+            <span class="mt-4 font-bold">find the</span>
             <select class="m-2" name="quantity" id="" required>
                 <option value="1" @if ($prev_quantity=="1") selected @endif>1</option>
                 <option value="5" @if ($prev_quantity=="5") selected @endif>5</option>
@@ -41,7 +41,7 @@
                 <option value="D_rate" @if ($prev_statistic=="D_rate") selected @endif> D percentage</option>
                 <option value="F_rate" @if ($prev_statistic=="F_rate") selected @endif> F percentage</option>
             </select>
-            <button type="submit" class="p-2 bg-yellow-500 text-red-700 font-bold rounded m-2">submit</button>
+            <button type="submit" class="p-2 bg-yellow-500 text-red-700 font-bold rounded m-2">calculate</button>
         </div>
 </form>
 
