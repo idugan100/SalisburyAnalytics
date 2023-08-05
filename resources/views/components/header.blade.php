@@ -10,7 +10,6 @@
     <title>salisbury analytics</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.css"  rel="stylesheet" />
-    <script src="//unpkg.com/alpinejs" defer></script>
     <link rel="icon" sizes="32x32" href="{{ URL::asset('bar_chart_logo.jpg') }}" type="image/x-icon"/>
     @livewireStyles
 </head>
