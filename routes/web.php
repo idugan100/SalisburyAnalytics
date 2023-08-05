@@ -11,6 +11,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Middleware\EnsureIsSubscribed;
 use App\Http\Controllers\ProfessorController;
+use App\Http\Controllers\QueryToolController;
 use App\Http\Controllers\GpaOverTimeController;
 use App\Http\Controllers\EnrollmentOverTimeController;
 
@@ -59,13 +60,18 @@ Route::get("/gpa_over_time",[GpaOverTimeController::class,"index"])->name("gpa")
 //enrollment report
 Route::get("/enrollment_over_time",[EnrollmentOverTimeController::class,"index"])->name("enrollment")->middleware(EnsureIsSubscribed::class);
 
+//query tool
+Route::get("/query_tool",[QueryToolController::class,"index"])->name("qtool")->middleware(EnsureIsSubscribed::class);
+
 
 //stripe
 Route::get('/billing-portal', function (Request $request) {
+    TrackUsage::log($request,"about");
     return $request->user()->redirectToBillingPortal(route('courses.index'));
 })->middleware("auth");
 
 Route::get('/product-checkout', function (Request $request) {
+    TrackUsage::log($request,"about");
     return view('checkout', [
         'intent' => auth()->user()->createSetupIntent()
     ]);
@@ -79,7 +85,7 @@ Route::post('/create-subscription', function (Request $request) {
 })->middleware("auth");
 
 Route::get("/premium",function (Request $request) {
-
+    TrackUsage::log($request,"about");
     return view("premium");
 })->name("premium");
 
