@@ -34,13 +34,12 @@
             <select name="statistic" required>
                 <option value="avg_gpa">average gpa</option>
                 <option value="total_enrollment">total students</option>
-                <option value="enrollment_per_semester">students per semester</option>
-                <option value="w_rate"> withdraw percentage</option>
+                <option value="W_rate"> withdraw percentage</option>
                 <option value="A_rate"> A percentage</option>
                 <option value="B_rate"> B percentage</option>
                 <option value="C_rate"> C percentage</option>
-                <option value="d_rate"> D percentage</option>
-                <option value="f_rate"> F percentage</option>
+                <option value="D_rate"> D percentage</option>
+                <option value="F_rate"> F percentage</option>
             </select>
             <button type="submit" class="p-2 bg-yellow-500 text-red-700 font-bold rounded">submit</button>
         </div>
