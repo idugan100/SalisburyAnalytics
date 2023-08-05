@@ -36,13 +36,13 @@ class QueryToolController extends Controller
                         ->where("courses.departmentCode",$request->department_filter)
                         ->orderBy($request->statistic, $request->ordering)
                         ->limit($request->quantity)
-                        ->get();
+                        ->get()->toArray();
             }
             else{
                 return DB::table("courses")->select("courseTitle", "courseNumber", "courses.id", "departmentCode",$request->statistic)
                         ->orderBy("courses.".$request->statistic, $request->ordering)
                         ->limit($request->quantity)
-                        ->get();
+                        ->get()->toArray();
             }
         }
         elseif($request->entity=="professors"){
@@ -54,13 +54,13 @@ class QueryToolController extends Controller
                         ->groupBy("professor_id",$request->statistic)
                         ->orderBy($request->statistic, $request->ordering)
                         ->limit($request->quantity)
-                        ->get();
+                        ->get()->toArray();
             }
             else{
                 return DB::table("professors")->select("firstName", "lastName", "professors.id" ,$request->statistic)
                         ->orderBy($request->statistic, $request->ordering)
                         ->limit($request->quantity)
-                        ->get();
+                        ->get()->toArray();
             }
         }
     }
