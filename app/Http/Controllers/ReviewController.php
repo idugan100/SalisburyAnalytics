@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\Review;
-use App\services\TrackUsage;
 use App\Models\Professor;
+use App\services\TrackUsage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Auth\Events\Validated;
+use App\Http\Middleware\EnsureIsAdmin;
 use App\Http\Requests\StoreReviewRequest;
 use App\Http\Requests\UpdateReviewRequest;
 
@@ -20,6 +21,7 @@ class ReviewController extends Controller
 
     public function __construct(){
         $this->middleware('auth', ['except' => ['index','create','store']]);
+        $this->middleware(EnsureIsAdmin::class,["only"=>["destroy"]]);
     }
     /**
      * Display a listing of the resource.

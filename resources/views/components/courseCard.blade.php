@@ -13,12 +13,14 @@
 
     <div class="flex rounded-md">
         @auth
-            <form  class="" method="POST" action="{{ route('courses.destroy', $course->id) }}">
-                @csrf
-                @method('delete')
-                <button class="m-2  border-4 border-yellow-500 hover:text-gray-300 bg-yellow-500 rounded font-bold px-1">delete</button>
-            </form>     
-            <a class="m-2  border-4 border-yellow-500 hover:text-gray-300 bg-yellow-500 rounded font-bold px-1" href="{{route('courses.edit',$course->id)}}">edit</a>
+            @if (auth()->user()->email == env("ADMIN_EMAIL"))
+                <form  class="" method="POST" action="{{ route('courses.destroy', $course->id) }}">
+                    @csrf
+                    @method('delete')
+                    <button class="m-2  border-4 border-yellow-500 hover:text-gray-300 bg-yellow-500 rounded font-bold px-1">delete</button>
+                </form>     
+                <a class="m-2  border-4 border-yellow-500 hover:text-gray-300 bg-yellow-500 rounded font-bold px-1" href="{{route('courses.edit',$course->id)}}">edit</a>
+            @endif
         @endauth
         <button data-modal-target="{{"Review-Modal-".$course->id}}" data-modal-toggle="{{"Review-Modal-".$course->id}}" class="m-2  border-4 border-yellow-500 hover:text-gray-300 bg-yellow-500 rounded font-bold px-1" type="button">reviews</button>
         <a class="m-2  border-4 border-yellow-500 hover:text-gray-300 bg-yellow-500 rounded font-bold px-1" href="{{route('courses.show',$course->id)}}">grades</a>
@@ -28,7 +30,7 @@
 
 <!-- Modal content -->
 <div id="{{"Review-Modal-".$course->id}}" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
-    <div class="relative w-full max-w-2xl max-h-full">
+    <div class="relative w-full h-full max-w-2xl max-h-full">
         
         <div class="relative bg-white rounded-lg shadow ">
             <!-- Modal header -->
