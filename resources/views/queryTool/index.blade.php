@@ -48,9 +48,16 @@
 
 <div class="flex justify-center" >
     <div class="max-w-3xl p-6">
-        @foreach($results as $result)
-            <div class="border border-4 border-black">{{$result->id}}</div>
-        @endforeach
+        @if ($prev_entity=="courses")
+            @foreach($results as $result)
+                <div class="border p-2 rounded border-4  bg-white border-black m-1"><span class="font-bold">{{$result->$prev_statistic}}</span>{{  ", " . $result->departmentCode . "-" . $result->courseNumber . " (" .$result->courseTitle .")"}}</div>
+            @endforeach
+        @elseif($prev_entity=="professors")
+            @foreach($results as $result)
+                <div class="border bg-white p-2 rounded border-4 border-black m-1"><span class="font-bold">{{$result->$prev_statistic}}</span>{{ ", " . $result->firstName . " " . $result->lastName}}</div>
+            @endforeach
+        @endif
+        
     </div>
    
 </div>
