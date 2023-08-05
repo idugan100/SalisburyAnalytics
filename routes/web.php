@@ -66,10 +66,12 @@ Route::get("/query_tool",[QueryToolController::class,"index"])->name("qtool")->m
 
 //stripe
 Route::get('/billing-portal', function (Request $request) {
+    TrackUsage::log($request,"about");
     return $request->user()->redirectToBillingPortal(route('courses.index'));
 })->middleware("auth");
 
 Route::get('/product-checkout', function (Request $request) {
+    TrackUsage::log($request,"about");
     return view('checkout', [
         'intent' => auth()->user()->createSetupIntent()
     ]);
@@ -83,7 +85,7 @@ Route::post('/create-subscription', function (Request $request) {
 })->middleware("auth");
 
 Route::get("/premium",function (Request $request) {
-
+    TrackUsage::log($request,"about");
     return view("premium");
 })->name("premium");
 
