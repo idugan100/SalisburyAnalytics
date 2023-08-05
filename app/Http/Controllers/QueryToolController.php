@@ -12,12 +12,19 @@ class QueryToolController extends Controller
         $departments=Course::select("departmentCode")->orderBy("departmentCode")->distinct()->get();
         if(isset($request->quantity)){
             $results=$this->getData($request);
-            dd($results);
+            // dd($results);
         }
 
         return view("queryTool.index",
             [
-                "departments"=>$departments
+                "departments"=>$departments,
+                "results"=>$results??[],
+                "prev_entity"=>$request->entity??null,
+                "prev_statistic"=>$request->statistic??null,
+                "prev_quantity"=>$request->quantity??null,
+                "prev_ordering"=>$request->ordering??null,
+                "prev_department_filter"=>$request->department_filter??null
+
             ]);
     }
 
