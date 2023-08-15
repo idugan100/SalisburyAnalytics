@@ -12,11 +12,14 @@
                 </div>
                 <div class="p-6 space-y-6">
                     {{-- chart --}}
-                    <div class="border border-4 p-2 height-250" id="chart" >
-                        {{$chart->container()}}
-                        <script src="{{$chart->cdn()}}"></script>
-                        {{$chart->script()}}
+                    <div style="height: 300px;">
+                        <div class="border border-4 p-2 " id="chart" >
+                            {{$chart->container()}}
+                            <script src="{{$chart->cdn()}}"></script>
+                            {{$chart->script()}}
+                        </div>
                     </div>
+                   
 
 
                     <form action="{{route("professors.show",$professor)}}">
@@ -41,6 +44,7 @@
                                             hx-target="#chart"
                                             hx-select="#chart"
                                             hx-include="form"
+                                            hx-swap="outerHTML"
                                         >
                                     <label  
                                         for="{{$semester_object->semester .  $semester_object->year}}" 
@@ -64,6 +68,8 @@
                                         hx-target="#chart"
                                         hx-select="#chart"
                                         hx-include="form"
+                                        hx-swap="outerHTML"
+
                                     >
                                 <label  
                                     for="all" 
@@ -93,6 +99,7 @@
                                             hx-target="#chart"
                                             hx-select="#chart"
                                             hx-include="form"
+                                            hx-swap="outerHTML"
                                         >
                                     <label  
                                         for="{{$course->id}}" 
@@ -115,6 +122,7 @@
                                         hx-target="#chart"
                                         hx-select="#chart"
                                         hx-include="form"
+                                        hx-swap="outerHTML"
                                     >
                                 <label  
                                     for="allcourses" 
