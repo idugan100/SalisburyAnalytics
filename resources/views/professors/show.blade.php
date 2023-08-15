@@ -12,16 +12,12 @@
                 </div>
                 <div class="p-6 space-y-6">
                     {{-- chart --}}
-                    <div class="border border-4 p-2">
+                    <div class="border border-4 p-2" id="chart_containter">
                         {{$chart->container()}}
                     </div>
 
 
                     <form action="{{route("professors.show",$professor)}}">
-                        <div class="flex justify-end">
-                            <button class="bg-yellow-500 m-2 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded" type="submit">filter</button>
-                        </div>
-                        
                         {{-- semester filter --}}
                         <h3 class="text-lg mt-3 font-semibold text-gray-900 ">
                             Semesters Taught 
@@ -39,6 +35,8 @@
                                             @if ($prev_semester==$semester_object->semester . $semester_object->year)
                                                 checked
                                             @endif
+                                            hx-get="{{route("professors.show",$professor)}}" 
+                                            hx-target="body"
                                         >
                                     <label  
                                         for="{{$semester_object->semester .  $semester_object->year}}" 
@@ -58,6 +56,8 @@
                                         @if ($prev_semester=="")
                                             checked
                                         @endif
+                                        hx-get="{{route("professors.show",$professor)}}" 
+                                        hx-target="body"
                                     >
                                 <label  
                                     for="all" 
@@ -83,6 +83,8 @@
                                             @if ($prev_course==$course->id)
                                                 checked
                                             @endif
+                                            hx-get="{{route("professors.show",$professor)}}" 
+                                            hx-target="body"
                                         >
                                     <label  
                                         for="{{$course->id}}" 
@@ -101,6 +103,8 @@
                                         @if ($prev_course=="")
                                             checked
                                         @endif
+                                        hx-get="{{route("professors.show",$professor)}}" 
+                                        hx-target="body"
                                     >
                                 <label  
                                     for="allcourses" 
