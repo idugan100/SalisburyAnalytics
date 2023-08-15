@@ -12,16 +12,17 @@
                     </div>
                     <div class="p-6 space-y-6">
                         {{-- chart --}}
-                        <div class="border border-4 p-2">
-                            {{$chart->container()}}
+                        <div style="height: 300px;">
+                            <div class="border border-4 p-2 " id="chart" >
+                                {{$chart->container()}}
+                                <script src="{{$chart->cdn()}}"></script>
+                                {{$chart->script()}}
+                            </div>
                         </div>
 
 
                         <form action="{{route("courses.show",$course)}}">
-                            <div class="flex justify-end">
-                                <button class="bg-yellow-500 m-2 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded" type="submit">filter</button>
-                            </div>
-                            
+
                             {{-- semester filter --}}
                             <h3 class="text-lg mt-3 font-semibold text-gray-900 ">
                                 Semesters Taught 
@@ -39,6 +40,12 @@
                                                 @if ($prev_semester==$semester_object->semester . $semester_object->year)
                                                     checked
                                                 @endif
+
+                                                hx-get="{{route("courses.show",$course)}}" 
+                                                hx-target="#chart"
+                                                hx-select="#chart"
+                                                hx-include="form"
+                                                hx-swap="outerHTML"
                                             >
                                         <label  
                                             for="{{$semester_object->semester .  $semester_object->year}}" 
@@ -58,6 +65,11 @@
                                             @if ($prev_semester=="")
                                                 checked
                                             @endif
+                                            hx-get="{{route("courses.show",$course)}}" 
+                                            hx-target="#chart"
+                                            hx-select="#chart"
+                                            hx-include="form"
+                                            hx-swap="outerHTML"
                                         >
                                     <label  
                                         for="all" 
@@ -83,6 +95,11 @@
                                                 @if ($prev_professor==$professor->id)
                                                     checked
                                                 @endif
+                                                hx-get="{{route("courses.show",$course)}}" 
+                                                hx-target="#chart"
+                                                hx-select="#chart"
+                                                hx-include="form"
+                                                hx-swap="outerHTML"
                                             >
                                         <label  
                                             for="{{$professor->id}}" 
@@ -101,6 +118,11 @@
                                             @if ($prev_professor=="")
                                                 checked
                                             @endif
+                                            hx-get="{{route("courses.show",$course)}}" 
+                                            hx-target="#chart"
+                                            hx-select="#chart"
+                                            hx-include="form"
+                                            hx-swap="outerHTML"
                                         >
                                     <label  
                                         for="allprof" 
@@ -113,8 +135,5 @@
                     </div>
                 </div>
         </div>
-        <script src="{{$chart->cdn()}}"></script>
-        {{$chart->script()}}
-        
     </div>
 </x-header>
