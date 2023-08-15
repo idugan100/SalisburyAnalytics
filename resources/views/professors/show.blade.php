@@ -12,8 +12,10 @@
                 </div>
                 <div class="p-6 space-y-6">
                     {{-- chart --}}
-                    <div class="border border-4 p-2" id="chart_containter">
+                    <div class="border border-4 p-2 height-250" id="chart" >
                         {{$chart->container()}}
+                        <script src="{{$chart->cdn()}}"></script>
+                        {{$chart->script()}}
                     </div>
 
 
@@ -36,7 +38,9 @@
                                                 checked
                                             @endif
                                             hx-get="{{route("professors.show",$professor)}}" 
-                                            hx-target="body"
+                                            hx-target="#chart"
+                                            hx-select="#chart"
+                                            hx-include="form"
                                         >
                                     <label  
                                         for="{{$semester_object->semester .  $semester_object->year}}" 
@@ -57,7 +61,9 @@
                                             checked
                                         @endif
                                         hx-get="{{route("professors.show",$professor)}}" 
-                                        hx-target="body"
+                                        hx-target="#chart"
+                                        hx-select="#chart"
+                                        hx-include="form"
                                     >
                                 <label  
                                     for="all" 
@@ -84,7 +90,9 @@
                                                 checked
                                             @endif
                                             hx-get="{{route("professors.show",$professor)}}" 
-                                            hx-target="body"
+                                            hx-target="#chart"
+                                            hx-select="#chart"
+                                            hx-include="form"
                                         >
                                     <label  
                                         for="{{$course->id}}" 
@@ -104,7 +112,9 @@
                                             checked
                                         @endif
                                         hx-get="{{route("professors.show",$professor)}}" 
-                                        hx-target="body"
+                                        hx-target="#chart"
+                                        hx-select="#chart"
+                                        hx-include="form"
                                     >
                                 <label  
                                     for="allcourses" 
@@ -117,6 +127,5 @@
                 </div>
             </div>
     </div>
-    <script src="{{$chart->cdn()}}"></script>
-    {{$chart->script()}}
+   
 </x-header>
