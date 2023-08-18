@@ -12,8 +12,8 @@
                     </div>
                     <div class="p-6 space-y-6">
                         {{-- chart --}}
-                        <div style="height: 300px;">
-                            <div class="border border-4 p-2 " id="chart" >
+                        <div class="border border-4 p-2 " style="height: 300px;">
+                            <div  id="chart" >
                                 {{$chart->container()}}
                                 <script src="{{$chart->cdn()}}"></script>
                                 {{$chart->script()}}
