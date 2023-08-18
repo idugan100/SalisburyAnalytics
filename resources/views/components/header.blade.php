@@ -12,7 +12,6 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.css"  rel="stylesheet" />
     <link rel="icon" sizes="32x32" href="{{ URL::asset('bar_chart_logo.jpg') }}" type="image/x-icon"/>
     <script src="https://unpkg.com/htmx.org@1.9.4" integrity="sha384-zUfuhFKKZCbHTY6aRR46gxiqszMk5tcHjsVFxnUo8VMus4kHGVdIYVbOYYNlKmHV" crossorigin="anonymous"></script>
-    @livewireStyles
 </head>
 <body class="bg-gray-200 ">
     <h1 class="text-6xl p-4 font-bold bg-yellow-500 text-red-700    border-y-4 border-black text-center">salisbury analytics</h1>
@@ -20,7 +19,6 @@
 
     {{$slot}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
-    @livewireScripts
 </body>
 </html>
 <style>

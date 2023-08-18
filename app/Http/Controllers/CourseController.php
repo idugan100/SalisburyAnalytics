@@ -20,7 +20,7 @@ use App\Http\Middleware\EnsureIsSubscribed;
 class CourseController extends Controller
 {
     public function __construct(){
-        $this->middleware('auth', ['except' => ['index','show']]);
+        $this->middleware('auth', ['except' => ['index','show','course_options_by_department']]);
         $this->middleware(EnsureIsSubscribed::class, ['only' => ['show']]);
         $this->middleware(EnsureIsAdmin::class,['only' =>["create","store","edit","update","destroy"]]);
 
@@ -61,11 +61,17 @@ class CourseController extends Controller
                                     ->where("grade","W")
                                     ->first()->withdraw_percentage;
         }
+        $departments=Course::select("departmentCode")->orderBy("departmentCode","asc")->distinct()->get()->toArray();
+
+        $message=null;
+        if($request->department || $request->courseNumber){
+            $message="showing search results for " . ($request->department ?? "") . " " . ($request->courseNumber ?? "");
+        }
 
         return view('courses.index',[
             'courses'=>$courses,
-            'result_department'=>$request->department ?? "",
-            'result_courseNumber'=>$request->courseNumber ?? ""
+            'result_message'=>$message,
+            'departments'=>$departments
         ]);
     }
 
@@ -217,5 +223,12 @@ class CourseController extends Controller
         return redirect(route("courses.index"));
 
         
+    }
+
+    public function course_options_by_department(Request $request){
+
+        $courses=Course::where("departmentCode",$request->department)->orderBy("courseNumber")->get();
+        
+        return view("courses.search-courses",compact("courses"));
     }
 }
