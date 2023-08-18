@@ -13,7 +13,7 @@
        @endforeach
     </select>
 
-    <select class="border-2 p-2 border-black w-1/3" name="courseNumber" wire:model="selected_course" id="courseNumberSelect">
+    <select class="border-2 p-2 border-black w-1/3" name="courseNumber" id="courseNumberSelect">
         <option value="" >select course</option>
     </select>
     
