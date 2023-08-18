@@ -35,10 +35,13 @@ Route::get('/about', function (Request $request) {
 //routes for courses
 Route::get('/', [CourseController::class,"index"]);
 Route::resource('courses',CourseController::class);
+Route::get('/course_options_by_department',[CourseController::class,"course_options_by_department"]);
 
-//crud review routes
+//professor routes
 Route::resource('professors',ProfessorController::class);
+Route::get('/professor_options_by_department',[ProfessorController::class,"professor_options_by_department"]);
 
+//review routes
 Route::resource('reviews',ReviewController::class);
 
 //admin review routes

@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use App\Models\Review;
 use App\Models\Professor;
 use App\services\TrackUsage;
-use Illuminate\Http\Request;
 
+use Illuminate\Http\Request;
 use App\Charts\GradeDistribution;
 use Illuminate\Support\Facades\DB;
 use App\Http\Middleware\EnsureIsAdmin;
@@ -17,7 +18,7 @@ use App\Http\Requests\UpdateProfessorRequest;
 class ProfessorController extends Controller
 {
     public function __construct(){
-        $this->middleware('auth', ['except' => ['index','show']]);
+        $this->middleware('auth', ['except' => ['index','show','professor_options_by_department']]);
         $this->middleware(EnsureIsSubscribed::class, ['only' => ['show']]);
         $this->middleware(EnsureIsAdmin::class,['only' =>["create","store","edit","update","destroy"]]);
     }
@@ -79,11 +80,23 @@ class ProfessorController extends Controller
                                         ->where("grade","W")
                                         ->first()->withdraw_percentage;
         };
+
+        $departments=Course::select("departmentCode")->orderBy("departmentCode","asc")->distinct()->get()->toArray();
+
+        $message=null;
+        if($request->department){
+            if($request->professor_id){
+                $message="showing search results for " . ($professors[0]->firstName . " " . $professors[0]->lastName ?? "") . " (" . ($request->department ?? "") . ")";
+            }
+            else{
+                $message="showing search results for " . ($request->department ?? "");
+            }
+        }
         
         return(view("professors.index",
             ["professors"=>$professors,
-            "result_department"=>$request->department ?? "",
-            "result_professor"=>$request->professor_id ?? ""]
+            "departments"=>$departments,
+            "message"=>$message]
         ));
     }
 
@@ -209,6 +222,20 @@ class ProfessorController extends Controller
     {
         $professor->delete();
         return(redirect(route("professors.index")));
+    }
+
+    public function professor_options_by_department(Request $request){
+
+        $professors=DB::table("courses_x_professors_with_grades")
+                    ->join("courses","course_id","courses.id")
+                    ->join("professors","professor_id","professors.id")
+                    ->select("professors.id","firstName","lastName")
+                    ->where("departmentCode",$request->department)
+                    ->groupBy("professor_id","firstName","lastName")
+                    ->orderBy("lastName","ASC")
+                    ->get();
+        
+        return view("professors.search-professors",compact("professors"));
     }
 
 
