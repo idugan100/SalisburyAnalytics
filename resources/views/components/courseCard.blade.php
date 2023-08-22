@@ -46,7 +46,7 @@
             <!-- Modal body -->
             <div class="p-6 space-y-6">
                 <div class="flex justify-end">
-                    <a href="{{route("reviews.create")}}" class="m-2  border-4 border-yellow-500 hover:text-gray-300 bg-yellow-500 rounded font-bold px-1">add +</a>
+                    <a href="{{route("reviews.create")}}" class="m-2  border-4 border-yellow-500 hover:text-gray-300 bg-yellow-500 rounded font-bold px-1">+ add</a>
                 </div>
 
                     @if (count($course->reviews)==0)
