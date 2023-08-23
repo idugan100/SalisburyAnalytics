@@ -4,12 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\Review;
-use App\Models\Professor;
 use App\services\TrackUsage;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Auth\Events\Validated;
 use App\Http\Middleware\EnsureIsAdmin;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreReviewRequest;
 use App\Http\Requests\UpdateReviewRequest;
 
@@ -20,7 +19,7 @@ class ReviewController extends Controller
     const REJECTED_FLAG=2;
 
     public function __construct(){
-        $this->middleware('auth', ['except' => ['index','create','store']]);
+        $this->middleware('auth', ['except' => ['index','review_options_by_department','create','store']]);
         $this->middleware(EnsureIsAdmin::class,["only"=>["destroy"]]);
     }
     /**
@@ -45,16 +44,22 @@ class ReviewController extends Controller
     {
         TrackUsage::log($request,"review");
         
-        $courseList=DB::table('courses')
-            ->select("departmentCode","id", "courseNumber")
-            ->orderBy("departmentCode",'asc')
-            ->orderBY("courseNumber","asc")
+        $departmentList = Course::select("departmentCode")->orderBy("departmentCode","asc")->distinct()->get()->toArray();
+
+        return view("reviews.create",['departmentList'=>$departmentList]);
+    }
+
+    public function review_options_by_department(Request $request){
+        $professorList=DB::table("courses_x_professors_with_grades")
+            ->join("courses","course_id","courses.id")
+            ->join("professors","professor_id","professors.id")
+            ->select("professors.id","firstName","lastName")
+            ->where("departmentCode",$request->departmentCode)
+            ->groupBy("professor_id","firstName","lastName")
+            ->orderBy("lastName","ASC")
             ->get();
-        $professorList=DB::table('professors')
-            ->select('id','firstName','lastName')
-            ->orderBy("lastName","asc")
-            ->get();
-        return view("reviews.create",['professorList'=>$professorList,'courseList'=>$courseList]);
+        $courseList=Course::where("departmentCode",$request->departmentCode)->orderBy("courseNumber")->get();
+        return  view( "reviews.create-options",  compact("professorList","courseList"));
     }
 
     /**
