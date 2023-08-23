@@ -43,6 +43,7 @@ Route::get('/professor_options_by_department',[ProfessorController::class,"profe
 
 //review routes
 Route::resource('reviews',ReviewController::class);
+Route::get('/review_options_by_department',[ReviewController::class,"review_options_by_department"]);
 
 //admin review routes
 Route::get('/processing', [ReviewController::class, 'processing'])->name('reviews.processing')->middleware(EnsureIsAdmin::class);
