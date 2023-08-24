@@ -1,4 +1,4 @@
-<div class=" contrast-125 group p-3 shadow-lg  shadow-black  bg-white hover:bg-red-700 rounded-lg m-2 p-5 ">
+<div class=" contrast-125 group shadow-lg shadow-black bg-white hover:bg-red-700 rounded-lg m-2 p-5 ">
     <h3 class=" text-2xl py-1 px-2 font-bold ">{{$professor->firstName . " " . $professor->lastName }}</h3>
     <hr class="border-1 border-yellow-500 ">
 
@@ -72,7 +72,7 @@
 </div>
 
 <!-- RMP Modal content -->
-<div id="{{"Rmp-Modal-".$professor->id}}" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden h-full w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+<div id="{{"Rmp-Modal-".$professor->id}}" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden h-full w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 max-h-full">
     <div class="relative w-full h-full max-w-2xl max-h-full">
         
         <div class="relative bg-white rounded-lg shadow ">
