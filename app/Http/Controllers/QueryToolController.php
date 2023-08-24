@@ -11,6 +11,8 @@ class QueryToolController extends Controller
 {
     public function index(Request $request){
         TrackUsage::log($request,"report");
+        $request->flash();
+
         $departments=Course::select("departmentCode")->orderBy("departmentCode")->distinct()->get();
         if(isset($request->quantity)){
             $results=$this->getData($request);
@@ -19,13 +21,7 @@ class QueryToolController extends Controller
         return view("queryTool.index",
             [
                 "departments"=>$departments,
-                "results"=>$results??[],
-                "prev_entity"=>$request->entity??null,
-                "prev_statistic"=>$request->statistic??null,
-                "prev_quantity"=>$request->quantity??null,
-                "prev_ordering"=>$request->ordering??null,
-                "prev_department_filter"=>$request->department_filter??null
-
+                "results"=>$results??[]
             ]);
     }
 
