@@ -44,7 +44,7 @@ class ProfessorController extends Controller
             ->orderBy("lastName","ASC")
             ->paginate(100);
         }
-        elseif($request->department != null && $request->professor_id!=null){
+        elseif( $request->professor_id!=null){
 
             $professors=Professor::where("id",$request->professor_id)->paginate(1);
         }
@@ -86,11 +86,14 @@ class ProfessorController extends Controller
         $message=null;
         if($request->department){
             if($request->professor_id){
-                $message="showing search results for " . ($professors[0]->firstName . " " . $professors[0]->lastName ?? "") . " (" . ($request->department ?? "") . ")";
+                $message = "showing search results for " . ($professors[0]->firstName . " " . $professors[0]->lastName ?? "") . " (" . ($request->department ?? "") . ")";
             }
             else{
-                $message="showing search results for " . ($request->department ?? "");
+                $message = "showing search results for " . ($request->department ?? "");
             }
+        }
+        elseif($request->professor_id){
+            $message = "showing search results for " . $professors[0]->firstName . " " . $professors[0]->lastName;
         }
         
         return(view("professors.index",
