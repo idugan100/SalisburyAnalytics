@@ -4,9 +4,9 @@
     <form class=" mt-3 flex justify-center" action="{{route('enrollment')}}">
         @method('get')
         <select name="Department" class="p-2">
-            <option @if($selected_department=="")selected @endif value="">All</option>
+            <option @if(old("Department")=="")selected @endif value="">All</option>
             @foreach ($departments as $department)
-                <option  @if($selected_department==$department->departmentCode)selected @endif value="{{$department->departmentCode}}">{{$department->departmentCode}}</option>
+                <option  @if(old("Department")==$department->departmentCode)selected @endif value="{{$department->departmentCode}}">{{$department->departmentCode}}</option>
             @endforeach
         </select>
         <button class="p-2 border-2 border-black hover:bg-black hover:text-white" type="submit">Filter</button>
