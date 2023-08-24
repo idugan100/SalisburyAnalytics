@@ -50,11 +50,19 @@
     <div class="max-w-3xl p-6">
         @if ($prev_entity=="courses")
             @foreach($results as $result)
-                <div class="border p-2 rounded border-4  bg-white border-black m-1"><span class="font-bold">{{$result->$prev_statistic}}</span>{{  ", " . $result->departmentCode . "-" . $result->courseNumber . " (" .$result->courseTitle .")"}}</div>
+                <div class="border p-2 rounded border-4  bg-white border-black m-1">
+                    <span class="font-bold">{{$result->$prev_statistic}}</span>
+                    {{  ", " . $result->departmentCode . "-" . $result->courseNumber . " (" .$result->courseTitle .")"}} 
+                    <a class="text-red-700 font-bold mx-2" href="{{route("courses.index",['department' => $result->departmentCode, 'courseNumber' => $result->courseNumber])}}">&#8594</a>
+                </div>
             @endforeach
         @elseif($prev_entity=="professors")
             @foreach($results as $result)
-                <div class="border bg-white p-2 rounded border-4 border-black m-1"><span class="font-bold">{{$result->$prev_statistic}}</span>{{ ", " . $result->firstName . " " . $result->lastName}}</div>
+                <div class="border bg-white p-2 rounded border-4 border-black m-1">
+                    <span class="font-bold">{{$result->$prev_statistic}}</span>
+                    {{ ", " . $result->firstName . " " . $result->lastName}} 
+                    <a class="text-red-700 font-bold mx-2" href="{{route("professors.index",['professor_id' => $result->id])}}">&#8594</a>
+                </div>
             @endforeach
         @endif
         
