@@ -21,9 +21,6 @@
                 <a href="{{route("reviews.index")}}" class=" no-highlights decoration-yellow-500 decoration-4 hover:underline block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-red-700 md:p-0 font-bold">reviews</a>
             </li>
             <li>
-                <a href="{{route("reviews.create")}}" class=" no-highlights decoration-yellow-500 decoration-4 hover:underline block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-red-700 md:p-0 font-bold">add review</a>
-            </li>
-            <li>
                 <a href="{{route("gpa")}}" class="no-highlights decoration-yellow-500 decoration-4 hover:underline block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-red-700 md:p-0 font-bold">gpa tracker</a>
             </li>
             <li>
