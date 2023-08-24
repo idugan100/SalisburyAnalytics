@@ -13,6 +13,7 @@ class GpaOverTimeController extends Controller
     public function index(Request $request, GpaOverTime $chart){
 
         TrackUsage::log($request,"report");
+        $request->flash();
 
         $departments=Course::select("departmentCode")->distinct()->orderBy("departmentCode","asc")->get();
         $selected_department=$request->Department;
@@ -40,6 +41,6 @@ class GpaOverTimeController extends Controller
       
         $gpa_chart=$chart->build($gpa_by_semester);
         
-        return view("gpaOverTime.index", compact('gpa_chart', 'departments', 'selected_department'));
+        return view("gpaOverTime.index", compact('gpa_chart', 'departments'));
     }
 }
