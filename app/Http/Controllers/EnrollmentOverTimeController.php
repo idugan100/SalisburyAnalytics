@@ -13,6 +13,7 @@ class EnrollmentOverTimeController extends Controller
     public function index(Request $request, EnrollmentOverTime $chart){
 
         TrackUsage::log($request,"report");
+        $request->flash();
 
         $departments=Course::select("departmentCode")->distinct()->orderBy("departmentCode","asc")->get();
         $selected_department=$request->Department;
@@ -33,6 +34,6 @@ class EnrollmentOverTimeController extends Controller
       
         $enrollment_chart=$chart->build($enrollment_by_semester);
 
-        return view("enrollmentOverTime.index", compact('enrollment_chart', 'departments', 'selected_department'));
+        return view("enrollmentOverTime.index", compact('enrollment_chart', 'departments'));
     }
 }
