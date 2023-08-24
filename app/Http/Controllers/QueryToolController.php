@@ -14,7 +14,6 @@ class QueryToolController extends Controller
         $departments=Course::select("departmentCode")->orderBy("departmentCode")->distinct()->get();
         if(isset($request->quantity)){
             $results=$this->getData($request);
-            // dd($results);
         }
 
         return view("queryTool.index",
@@ -33,7 +32,6 @@ class QueryToolController extends Controller
     private function getData($request){
         if($request->entity=="courses"){
             if(isset($request->department_filter)){
-                // dd($request->department_filter);
                 return DB::table("courses")->select("courseTitle", "courseNumber", "courses.id", "departmentCode",$request->statistic)
                         ->where("courses.departmentCode",$request->department_filter)
                         ->orderBy($request->statistic, $request->ordering)
