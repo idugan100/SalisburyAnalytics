@@ -37,7 +37,7 @@
                                             class="peer sr-only  " 
                                             name='selected_semester'
 
-                                            @if ($prev_semester==$semester_object->semester . $semester_object->year)
+                                            @if (old("selected_semester")==$semester_object->semester . $semester_object->year)
                                                 checked
                                             @endif
                                             hx-get="{{route("professors.show",$professor)}}" 
@@ -61,7 +61,7 @@
                                         class="peer sr-only  " 
                                         name='selected_semester'
 
-                                        @if ($prev_semester=="")
+                                        @if (old("selected_semester")=="")
                                             checked
                                         @endif
                                         hx-get="{{route("professors.show",$professor)}}" 
@@ -92,7 +92,7 @@
                                             value="{{$course->id}}" 
                                             class="peer sr-only  " 
                                             name='selected_course'
-                                            @if ($prev_course==$course->id)
+                                            @if (old("selected_course")==$course->id)
                                                 checked
                                             @endif
                                             hx-get="{{route("professors.show",$professor)}}" 
@@ -115,7 +115,7 @@
                                         value="" 
                                         class="peer sr-only  " 
                                         name='selected_course'
-                                        @if ($prev_course=="")
+                                        @if (old("selected_course")=="")
                                             checked
                                         @endif
                                         hx-get="{{route("professors.show",$professor)}}" 

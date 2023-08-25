@@ -125,6 +125,7 @@ class CourseController extends Controller
     public function show(Request $request, Course $course, GradeDistribution $chart)
     {        
         TrackUsage::log($request,"course");
+        $request->flash();
 
         $query= DB::table("courses_x_professors_with_grades")
                 ->selectRaw("sum(quantity) as 'total', grade")
@@ -158,8 +159,6 @@ class CourseController extends Controller
                                 ->get()->toArray();
 
         return view('courses.show',[
-                                    "prev_semester"=>($request->selected_semester ?? ""),
-                                    "prev_professor"=>($request->selected_professor ?? ""),
                                     "chart"=>$grade_distribution_chart,
                                     "professors"=>$professors,
                                     "semesters"=>$semesters, 
