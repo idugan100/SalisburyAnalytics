@@ -17,8 +17,8 @@ class ViewCourseTest extends TestCase
      */
     public function test_course_view()
     {
-        $usage_log= new UsageLog();
-        $usage_log->save();
+        UsageLog::factory()->create();
+
         $response = $this->get('/courses');
 
         $response->assertStatus(200);
@@ -26,8 +26,8 @@ class ViewCourseTest extends TestCase
 
     public function test_course_usage_tracking()
     {
-        $usage_log= new UsageLog();
-        $usage_log->save();
+        UsageLog::factory()->create();
+
         $response = $this->get('/courses');
 
 

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Review>
  */
-class ReviewFactory extends Factory
+class UsageLogFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +17,6 @@ class ReviewFactory extends Factory
     public function definition()
     {
         return [
-            "response"=>fake()->sentence(),
         ];
     }
 }

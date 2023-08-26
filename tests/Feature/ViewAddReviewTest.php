@@ -17,8 +17,8 @@ class ViewAddReviewTest extends TestCase
      */
     public function test_create_review_view()
     {
-        $usage_log= new UsageLog();
-        $usage_log->save();
+        UsageLog::factory()->create();
+
         $response = $this->get('/reviews/create');
 
         $response->assertStatus(200);
@@ -26,8 +26,8 @@ class ViewAddReviewTest extends TestCase
 
     public function test_create_review_usage_tracking()
     {
-        $usage_log= new UsageLog();
-        $usage_log->save();
+        UsageLog::factory()->create();
+        
         $response = $this->get('/reviews/create');
 
 
