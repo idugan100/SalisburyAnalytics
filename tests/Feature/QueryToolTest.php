@@ -18,8 +18,8 @@ class QueryToolTest extends TestCase
      */
     public function test_query_tool_premium_redirect()
     {
-        $usage_log= new UsageLog();
-        $usage_log->save();
+        UsageLog::factory()->create();
+
 
         $response = $this->get('/query_tool');
 
@@ -33,8 +33,7 @@ class QueryToolTest extends TestCase
         $user->stripe_id=env("TEST_CUSTOMER_STRIPE_ID");
         $user->save();
         
-        $usage_log= new UsageLog();
-        $usage_log->save();
+        UsageLog::factory()->create();
 
         $user->newSubscription('default', env("PLAN_ID"))->create();
                  
@@ -47,8 +46,7 @@ class QueryToolTest extends TestCase
     public function test_show_query_tool_checkout_redirect_if_logged_in_and_not_subscribed(){
 
         $user = User::factory()->create();
-        $usage_log= new UsageLog();
-        $usage_log->save();
+        UsageLog::factory()->create();
 
         $response = $this->actingAs($user)
         ->get(route("qtool"));

@@ -17,8 +17,8 @@ class ViewProfessorsTest extends TestCase
      */
     public function test_professor_view()
     {
-        $usage_log= new UsageLog();
-        $usage_log->save();
+        UsageLog::factory()->create();
+
         $response = $this->get('/professors');
 
         $response->assertStatus(200);
@@ -26,8 +26,8 @@ class ViewProfessorsTest extends TestCase
 
     public function test_professor_usage_tracking()
     {
-        $usage_log= new UsageLog();
-        $usage_log->save();
+        UsageLog::factory()->create();
+
         $response = $this->get('/professors');
 
 

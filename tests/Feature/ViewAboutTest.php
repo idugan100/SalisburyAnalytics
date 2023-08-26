@@ -19,8 +19,8 @@ class ViewAboutTest extends TestCase
      */
     public function test_about_view()
     {
-        $usage_log= new UsageLog();
-        $usage_log->save();
+        UsageLog::factory()->create();
+
         $response = $this->get('/about');
 
         $response->assertStatus(200);
@@ -28,8 +28,8 @@ class ViewAboutTest extends TestCase
 
     public function test_about_usage_tracking()
     {
-        $usage_log= new UsageLog();
-        $usage_log->save();
+        UsageLog::factory()->create();
+
         $response = $this->get('/about');
 
 
