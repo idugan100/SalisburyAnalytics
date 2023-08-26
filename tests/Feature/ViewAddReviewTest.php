@@ -15,7 +15,7 @@ class ViewAddReviewTest extends TestCase
      *
      * @return void
      */
-    public function test_all_reviews_view()
+    public function test_create_review_view()
     {
         $usage_log= new UsageLog();
         $usage_log->save();
@@ -24,7 +24,7 @@ class ViewAddReviewTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_all_reviews_usage_tracking()
+    public function test_create_review_usage_tracking()
     {
         $usage_log= new UsageLog();
         $usage_log->save();

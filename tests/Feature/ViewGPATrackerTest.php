@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
+use App\Models\User;
 use App\Models\UsageLog;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -15,23 +16,45 @@ class ViewGPATrackerTest extends TestCase
      *
      * @return void
      */
-    public function test_gpa_tracker_view()
+    public function test_gpa_tracker_premium_redirect()
     {
         $usage_log= new UsageLog();
         $usage_log->save();
+        
         $response = $this->get('/gpa_over_time');
+
+        $response->assertStatus(302);
+        $response->assertRedirect("/premium");
+    }
+
+    public function test_show_gpa_tracker_when_subscribed()
+    {
+        $user = User::factory()->create();
+        $user->stripe_id=env("TEST_CUSTOMER_STRIPE_ID");
+        $user->save();
+        
+        $usage_log= new UsageLog();
+        $usage_log->save();
+
+        $user->newSubscription('default', env("PLAN_ID"))->create();
+                 
+        $response = $this->actingAs($user)
+        ->get(route("gpa"));
 
         $response->assertStatus(200);
     }
 
-    public function test_gpa_tracker_usage_tracking()
-    {
+    public function test_show_gpa_tracker_checkout_redirect_if_logged_in_and_not_subscribed(){
+
+        $user = User::factory()->create();
         $usage_log= new UsageLog();
         $usage_log->save();
-        $response = $this->get('/gpa_over_time');
 
+        $response = $this->actingAs($user)
+        ->get(route("gpa"));
 
-        $this->assertSame(1,UsageLog::where("created_at",now())->first()->report_views);
+        $response->assertStatus(302);
+        $response->assertRedirect("/product-checkout"); 
+
     }
-    
 }

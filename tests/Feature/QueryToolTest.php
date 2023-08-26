@@ -4,15 +4,11 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use App\Models\User;
-use App\Models\Course;
 use App\Models\UsageLog;
-use Laravel\Cashier\Cashier;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-
-class CourseShowTest extends TestCase
+class QueryToolTest extends TestCase
 {
     use RefreshDatabase;
     /**
@@ -20,19 +16,18 @@ class CourseShowTest extends TestCase
      *
      * @return void
      */
-    public function test_show_course_premium_redirect()
+    public function test_query_tool_premium_redirect()
     {
         $usage_log= new UsageLog();
         $usage_log->save();
-        Course::factory()->create();
 
-        $response = $this->get(route("courses.show",1));
+        $response = $this->get('/query_tool');
 
         $response->assertStatus(302);
-        $response->assertRedirect("/premium");    
+        $response->assertRedirect("/premium");
     }
 
-    public function test_show_course_when_subscribed()
+    public function test_show_query_tool_when_subscribed()
     {
         $user = User::factory()->create();
         $user->stripe_id=env("TEST_CUSTOMER_STRIPE_ID");
@@ -40,28 +35,27 @@ class CourseShowTest extends TestCase
         
         $usage_log= new UsageLog();
         $usage_log->save();
-        Course::factory()->create();
 
         $user->newSubscription('default', env("PLAN_ID"))->create();
                  
         $response = $this->actingAs($user)
-        ->get(route("courses.show",2));
+        ->get(route("qtool"));
 
         $response->assertStatus(200);
     }
 
-    public function test_show_course_checkout_redirect_if_logged_in_and_not_subscribed(){
+    public function test_show_query_tool_checkout_redirect_if_logged_in_and_not_subscribed(){
 
         $user = User::factory()->create();
         $usage_log= new UsageLog();
         $usage_log->save();
-        Course::factory()->create();
 
         $response = $this->actingAs($user)
-        ->get(route("courses.show",3));
+        ->get(route("qtool"));
 
         $response->assertStatus(302);
         $response->assertRedirect("/product-checkout"); 
 
     }
+
 }
