@@ -19,7 +19,15 @@ class ProfessorFactory extends Factory
         return [
             'firstName'=>fake()->firstName(),
             "lastName"=>fake()->lastName(),
-            "department"=>"COSC"
+            "department"=>"COSC",
+            "total_enrollment"=>fake()->numberBetween(100,499),
+            "avg_gpa"=>3.29,
+            "W_rate"=>fake()->numberBetween(10,20),
+            "F_rate"=>fake()->numberBetween(10,20),
+            "D_rate"=>fake()->numberBetween(10,20),
+            "C_rate"=>fake()->numberBetween(10,20),
+            "B_rate"=>fake()->numberBetween(10,20),
+            "A_rate"=>fake()->numberBetween(10,20),
         ];
     }
 }
