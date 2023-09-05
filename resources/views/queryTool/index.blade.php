@@ -41,7 +41,7 @@
                 <option value="D_rate" @if (old("statistic")=="D_rate") selected @endif> D percentage</option>
                 <option value="F_rate" @if (old("statistic")=="F_rate") selected @endif> F percentage</option>
             </select>
-            <button type="submit" class="p-2 bg-yellow-500 text-red-700 font-bold rounded m-2">calculate</button>
+            <button type="submit" class="p-2 bg-yellow-400 text-red-700 font-bold rounded m-2">calculate</button>
         </div>
 </form>
 

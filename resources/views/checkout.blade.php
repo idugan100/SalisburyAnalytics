@@ -24,7 +24,7 @@
                     <div id="error-message" class=" m-3 text-red-700">
                         
                     </div>
-                    <button id="card-button" class="bg-yellow-500 p-2 rounded hover:font-bold"data-secret="{{ $intent->client_secret }}">
+                    <button id="card-button" class="bg-yellow-400 p-2 rounded hover:font-bold"data-secret="{{ $intent->client_secret }}">
 
                         get premium :) 
                     </button>
