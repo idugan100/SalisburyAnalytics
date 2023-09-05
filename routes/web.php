@@ -93,6 +93,10 @@ Route::get("/premium",function (Request $request) {
     return view("premium");
 })->name("premium");
 
+//privacy policy
+Route::get("/privacy", function(){
+    return view("privacy");
+})->name("privacy");
 
 Auth::routes([
 
