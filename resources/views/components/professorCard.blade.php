@@ -87,7 +87,11 @@
                 </button>
             </div>
             <!-- Modal body -->
+            <div class="flex justify-end">
+                <a href="{{route("reviews.create")}}" class="m-2  border-4 border-yellow-400 hover:text-gray-300 bg-yellow-400 rounded font-bold px-1">+ add review</a>
+            </div>
             <div class="p-6 space-y-6 flex justify-center ">
+
                 @if (isset($professor->rmp_link))
                     <iframe loading="lazy" src="{{$professor->rmp_link}}" sandbox height="450" width="600" class="border-4 border-black "></iframe>
 
