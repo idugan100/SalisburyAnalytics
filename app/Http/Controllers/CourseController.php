@@ -44,23 +44,6 @@ class CourseController extends Controller
             $courses=Course::paginate(16);
         }
 
-        foreach($courses as $course){
-            $course->reviews=Review::where("course_id",$course->id)->where("approved_flag",ReviewController::APPROVED_FLAG)->get();
-            $course->total_enrollment=DB::table("courses_x_professors_with_grades")
-                                        ->selectRaw("sum(quantity) as total")
-                                        ->where("course_ID",$course->id)
-                                        ->whereIn("grade",['A','B','C','D','F','W'])
-                                        ->first()->total;
-            $course->withdraw_pct = DB::table("courses_x_professors_with_grades")
-                                    ->selectRaw("round (sum(quantity)*100/
-                                        (select sum(quantity) 
-                                            from courses_x_professors_with_grades
-                                            where course_id=? and grade in ('A','B','C','D','F','W'))
-                                                ,1) as 'withdraw_percentage'",[$course->id])  
-                                    ->where("course_id",$course->id)
-                                    ->where("grade","W")
-                                    ->first()->withdraw_percentage;
-        }
         $departments=Course::select("departmentCode")->orderBy("departmentCode","asc")->distinct()->get()->toArray();
 
         $message=null;
@@ -141,9 +124,8 @@ class CourseController extends Controller
             $query = $query->where("professor_ID",$request->selected_professor);
         }
         //build chart
-
-           
-           $grade_distribution_chart=$chart->build($query->groupBy("grade")->get());
+   
+        $grade_distribution_chart=$chart->build($query->groupBy("grade")->get());
 
         //get data for options
         $semesters=DB::table("courses_x_professors_with_grades")
