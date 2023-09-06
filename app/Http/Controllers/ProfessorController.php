@@ -65,20 +65,6 @@ class ProfessorController extends Controller
                                         ->orderByRaw("sum(quantity) desc")
                                         ->limit(4)->get()->toArray();
             $professor->reviews=Review::where("professor_id",$professor->id)->where("approved_flag",ReviewController::APPROVED_FLAG)->get();
-            $professor->students_taught=DB::table("courses_x_professors_with_grades")
-                                        ->selectRaw("sum(quantity) as total")
-                                        ->where("professor_ID",$professor->id)
-                                        ->whereIn("grade",['A','B','C','D','F','W'])
-                                        ->first()->total;
-            $professor->withdraw_pct = DB::table("courses_x_professors_with_grades")
-                                        ->selectRaw("round (sum(quantity)*100/
-                                            (select sum(quantity) 
-                                                from courses_x_professors_with_grades
-                                                where professor_id=? and grade in ('A','B','C','D','F','W'))
-                                                    ,1) as 'withdraw_percentage'",[$professor->id])  
-                                        ->where("professor_id",$professor->id)
-                                        ->where("grade","W")
-                                        ->first()->withdraw_percentage;
         };
 
         $departments=Course::select("departmentCode")->orderBy("departmentCode","asc")->distinct()->get()->toArray();
