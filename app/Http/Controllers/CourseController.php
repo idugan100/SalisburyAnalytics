@@ -44,6 +44,11 @@ class CourseController extends Controller
             $courses=Course::paginate(16);
         }
 
+        foreach($courses as $course){
+            $course->reviews=Review::where("course_id",$course->id)->where("approved_flag",ReviewController::APPROVED_FLAG)->get();
+
+        }
+
         $departments=Course::select("departmentCode")->orderBy("departmentCode","asc")->distinct()->get()->toArray();
 
         $message=null;
