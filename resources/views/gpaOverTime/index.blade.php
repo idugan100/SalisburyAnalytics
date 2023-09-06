@@ -19,7 +19,7 @@
         
         </select>
     </form>
-    <div class="m-5 border-solid border-yellow-500 p-4 border-4 rounded shadow" style="height: 380px;" >
+    <div class="m-5 border-solid border-yellow-400 p-4 border-4 rounded shadow" style="height: 380px;" >
         <div id="GPAchart">
             {{$gpa_chart->container()}}
             <script src="{{$gpa_chart->cdn()}}"></script>
