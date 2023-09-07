@@ -39,7 +39,7 @@ class GpaOverTimeController extends Controller
         $gpa_by_semester=DB::select($query);
             
       
-        $gpa_chart=$chart->build($gpa_by_semester);
+        $gpa_chart=$chart->build($gpa_by_semester, $selected_department);
         
         return view("gpaOverTime.index", compact('gpa_chart', 'departments'));
     }
