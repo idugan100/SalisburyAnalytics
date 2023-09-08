@@ -14,7 +14,7 @@
                 <div class="  mb-4">
                     <div class="p-2">
                         <label  class="block mb-2 font-bold text-md text-black">Department</label>
-                        <select  required name="departmentCode" class="bg-gray-200 border border-gray-200 text-black text-sm rounded-lg focus:ring-red-700 focus:border-red-700 block w-full p-2.5" hx-get="/review_options_by_department" hx-target="#courseProfessorSelection">
+                        <select  required name="departmentCode" class="bg-gray-200 border border-gray-200 text-black text-sm rounded-lg focus:ring-red-800 focus:border-red-800 block w-full p-2.5" hx-get="/review_options_by_department" hx-target="#courseProfessorSelection">
                             <option value="">Select department</option>
                             @foreach ($departmentList as $department)
                                 <option value="{{$department["departmentCode"]}}">{{$department["departmentCode"]}}</option>
@@ -24,13 +24,13 @@
                     <span class="col-span-2" id="courseProfessorSelection">
                         <div class="p-2">
                             <label for="courseSelection" class="block mb-2 font-bold text-md text-black">Course</label>
-                            <select  id="courseSelection" name="courseID" class="bg-gray-200 border border-gray-200 text-black text-sm rounded-lg focus:ring-red-700 focus:border-red-700 block w-full p-2.5" required>
+                            <select  id="courseSelection" name="courseID" class="bg-gray-200 border border-gray-200 text-black text-sm rounded-lg focus:ring-red-800 focus:border-red-800 block w-full p-2.5" required>
                                 <option value="">Select course</option>
                             </select>
                         </div>
                         <div class="p-2">
                             <label for="professorSelection" class="block mb-2 text-md font-bold text-black">Professor</label>
-                            <select  id="professorSelection" name="professorID" class="bg-gray-200 border border-gray-200 text-gray-900 text-sm rounded-lg focus:ring-red-700 focus:border-red-700 block w-full p-2.5" required>
+                            <select  id="professorSelection" name="professorID" class="bg-gray-200 border border-gray-200 text-gray-900 text-sm rounded-lg focus:ring-red-800 focus:border-red-800 block w-full p-2.5" required>
                                 <option value="" selected>Select professor</option>
                             </select>
                         </div>
@@ -39,7 +39,7 @@
                     
                     <div class="sm:col-span-3 p-2">
                         <label for="description" class="block mb-2 text-md font-bold text-gray-900">Review</label>
-                        <textarea id="description" name="response" rows="4" class="block p-2.5 w-full text-sm text-black bg-gray-200 rounded-lg border border-gray-300 focus:ring-red-700 focus:border-red-700" placeholder="Write your review here" required></textarea>                    
+                        <textarea id="description" name="response" rows="4" class="block p-2.5 w-full text-sm text-black bg-gray-200 rounded-lg border border-gray-300 focus:ring-red-800 focus:border-red-800" placeholder="Write your review here" required></textarea>                    
                     </div>
                 </div>
                 <button type="submit" class="m-2  border-4 border-yellow-400 hover:text-grey-300 bg-yellow-400 rounded font-bold px-1 flex">
