@@ -21,7 +21,7 @@
         </li>
     </ul>
     <div class="flex justify-center">
-        <a href="{{route("register")}}" class="bg-red-700 p-3 rounded text-yellow-400 font-bold">sign up now :)</a>
+        <a href="{{route("register")}}" class="bg-red-800 p-3 rounded text-yellow-400 font-bold">sign up now :)</a>
     </div>
 </div>
 </x-header>

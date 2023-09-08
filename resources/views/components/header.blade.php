@@ -15,7 +15,7 @@
     <script src="https://unpkg.com/htmx.org@1.9.4" integrity="sha384-zUfuhFKKZCbHTY6aRR46gxiqszMk5tcHjsVFxnUo8VMus4kHGVdIYVbOYYNlKmHV" crossorigin="anonymous"></script>
 </head>
 <body class="bg-gray-200 ">
-    <h1 class="text-6xl p-4 font-bold bg-yellow-400 text-red-700    border-y-4 border-black text-center">salisbury analytics</h1>
+    <h1 class="text-6xl p-4 font-bold bg-yellow-400 text-red-800    border-y-4 border-black text-center">salisbury analytics</h1>
     <x-navbar></x-navbar>
 
     {{$slot}}
