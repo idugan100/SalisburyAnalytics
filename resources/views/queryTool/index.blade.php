@@ -58,9 +58,12 @@
             @endforeach
         @elseif(old("entity")=="professors")
             @foreach($results as $result)
-                <div class="border bg-white p-2 rounded border-4 border-black m-1">
-                    <span class="font-bold">{{$result->{old("statistic")} }}</span>
-                    {{ ", " . $result->firstName . " " . $result->lastName}} 
+                <div class="flex justify-between bg-white p-2 rounded border-4 border-black m-1">
+                    <span>
+                        <span class="font-bold">{{$result->{old("statistic")} }}</span>
+                        <span>{{ ", " . $result->firstName . " " . $result->lastName}} </span>
+                    </span>
+                   
                     <a class="text-red-800 font-bold mx-2" href="{{route("professors.index",['professor_id' => $result->id])}}">&#8594</a>
                 </div>
             @endforeach
