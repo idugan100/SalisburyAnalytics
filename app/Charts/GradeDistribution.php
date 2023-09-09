@@ -32,7 +32,7 @@ class GradeDistribution
 
         return $this->chart->barChart()
             ->setTitle('Grade Distribution')
-            ->addData("Total given:",$total_array)
+            ->addData("Total given",$total_array)
             ->setXAxis($grade_array)
             ->setHeight(250)
             ->setColors(["#8b0000"]);

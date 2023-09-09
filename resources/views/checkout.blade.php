@@ -8,7 +8,7 @@
 
         <div class="flex justify-center" >
             <div class="max-w-3xl p-6">
-                <form id="payment-form" action="/create-subscription" method="POST" class=" bg-white border-red-700 p-3 border-4">
+                <form id="payment-form" action="/create-subscription" method="POST" class=" bg-white border-red-800 p-3 border-4">
                     @csrf
                     <div class="m-3">
                         <label  >Card Holder Name</label>
@@ -21,7 +21,7 @@
                         <label for="">Card details</label>
                         <div id="card-element" class="m-3"></div>
                     </div>
-                    <div id="error-message" class=" m-3 text-red-700">
+                    <div id="error-message" class=" m-3 text-red-800">
                         
                     </div>
                     <button id="card-button" class="bg-yellow-400 p-2 rounded hover:font-bold"data-secret="{{ $intent->client_secret }}">

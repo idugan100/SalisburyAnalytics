@@ -2,31 +2,43 @@
 
 namespace App\Charts;
 
+use Illuminate\Support\Facades\DB;
 use ArielMejiaDev\LarapexCharts\LarapexChart;
 
 class GpaOverTime
 {
     protected $chart;
+    protected $university_average_gpa=[3.03, 3.02, 2.97, 3.01, 2.98, 3.00, 2.98, 3.03, 3.01, 3.34, 3.04, 3.06, 2.99, 3.01, 3.01, 3.01];
+    protected $all_semesters= [ "Fall 2015", "Spring 2016", "Fall 2016", "Spring 2017", "Fall 2017", "Spring 2018", "Fall 2018", "Spring 2019", 
+                                "Fall 2019", "Spring 2020", "Fall 2020", "Spring 2021", "Fall 2021", "Spring 2022", "Fall 2022", "Spring 2023" ];
 
     public function __construct(LarapexChart $chart)
     {
         $this->chart = $chart;
     }
 
-    public function build($gpa_by_semester_points): \ArielMejiaDev\LarapexCharts\LineChart
+    public function build($gpa_by_semester_points, $department): \ArielMejiaDev\LarapexCharts\LineChart
     {
         $gpa_array=[];
-        $semester_array=[];
-        foreach($gpa_by_semester_points as $point){
-            $gpa_array[]=$point->GPA;
-            $semester_array[]=$point->semester . " " . $point->year;
+
+        // make array of deparment gpa points  or null if it was not taught that semester
+        foreach($this->all_semesters as $semester){
+            foreach($gpa_by_semester_points as $point){
+                if($semester == ($point->semester . " " . $point->year)){
+                    $gpa_array[]=$point->GPA;
+                    continue 2;
+                }
+            }
+            $gpa_array[]=null;
         }
+
 
         return $this->chart->lineChart()
             ->setTitle(' Average GPA Over Time at SU')
-            ->addData('GPA', $gpa_array)
-            ->setXAxis($semester_array)
+            ->addData(($department ?? "All"). " Courses", $gpa_array)
+            ->addData("All Courses", $this->university_average_gpa)
+            ->setXAxis($this->all_semesters)
             ->setHeight(350)
-            ->setColors(["#8b0000"]);
+            ->setColors(["#8b0000","#EAB308"]);
     }
 }
