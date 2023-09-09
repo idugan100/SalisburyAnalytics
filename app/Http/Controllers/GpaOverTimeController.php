@@ -30,16 +30,16 @@ class GpaOverTimeController extends Controller
                 from courses_x_professors_with_grades
                 join courses on course_ID=courses.id
                 where  grade in ('A','B','C','D','F')
-                and departmentCode like '%".$selected_department."%')as `T`
+                and departmentCode like ? )as `T`
                 group by
                 year, semester
                 order by 
                 year, semester DESC;";
 
-        $gpa_by_semester=DB::select($query);
+        $gpa_by_semester=DB::select($query,[($selected_department ?? "%")]);
             
       
-        $gpa_chart=$chart->build($gpa_by_semester);
+        $gpa_chart=$chart->build($gpa_by_semester, $selected_department);
         
         return view("gpaOverTime.index", compact('gpa_chart', 'departments'));
     }

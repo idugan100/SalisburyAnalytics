@@ -41,7 +41,7 @@
                 <option value="D_rate" @if (old("statistic")=="D_rate") selected @endif> D percentage</option>
                 <option value="F_rate" @if (old("statistic")=="F_rate") selected @endif> F percentage</option>
             </select>
-            <button type="submit" class="p-2 bg-yellow-400 text-red-700 font-bold rounded m-2">calculate</button>
+            <button type="submit" class="p-2 bg-yellow-400 text-red-800 font-bold rounded m-2">calculate</button>
         </div>
 </form>
 
@@ -53,15 +53,18 @@
                 <div class="border p-2 rounded border-4  bg-white border-black m-1">
                     <span class="font-bold">{{$result->{old("statistic")} }}</span>
                     {{  ", " . $result->departmentCode . "-" . $result->courseNumber . " (" .$result->courseTitle .")"}} 
-                    <a class="text-red-700 font-bold mx-2" href="{{route("courses.index",['department' => $result->departmentCode, 'courseNumber' => $result->courseNumber])}}">&#8594</a>
+                    <a class="text-red-800 font-bold mx-2" href="{{route("courses.index",['department' => $result->departmentCode, 'courseNumber' => $result->courseNumber])}}">&#8594</a>
                 </div>
             @endforeach
         @elseif(old("entity")=="professors")
             @foreach($results as $result)
-                <div class="border bg-white p-2 rounded border-4 border-black m-1">
-                    <span class="font-bold">{{$result->{old("statistic")} }}</span>
-                    {{ ", " . $result->firstName . " " . $result->lastName}} 
-                    <a class="text-red-700 font-bold mx-2" href="{{route("professors.index",['professor_id' => $result->id])}}">&#8594</a>
+                <div class="flex justify-between bg-white p-2 rounded border-4 border-black m-1">
+                    <span>
+                        <span class="font-bold">{{$result->{old("statistic")} }}</span>
+                        <span>{{ ", " . $result->firstName . " " . $result->lastName}} </span>
+                    </span>
+                   
+                    <a class="text-red-800 font-bold mx-2" href="{{route("professors.index",['professor_id' => $result->id])}}">&#8594</a>
                 </div>
             @endforeach
         @endif

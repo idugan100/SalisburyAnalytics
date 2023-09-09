@@ -17,19 +17,19 @@ class EnrollmentOverTimeController extends Controller
 
         $departments=Course::select("departmentCode")->distinct()->orderBy("departmentCode","asc")->get();
         $selected_department=$request->Department;
+
         $query=
             "Select sum(quantity) as 'Enrollment', semester, `year` from
             (Select  quantity, `year`, semester
             from courses_x_professors_with_grades
             join courses on course_ID=courses.id
-            where  departmentCode like '%%".$selected_department."%%')as `T`
+            where  departmentCode like ?)as `T`
             group by
             year, semester
             order by 
             year, semester DESC;";
                 
-
-        $enrollment_by_semester=DB::select($query);
+        $enrollment_by_semester=DB::select($query,[($selected_department ?? "%")]);
             
       
         $enrollment_chart=$chart->build($enrollment_by_semester);

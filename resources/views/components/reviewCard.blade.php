@@ -1,4 +1,4 @@
-<div class="  border-4 border-black  contrast-125 group p-3 shadow-lg  shadow-black  bg-white hover:bg-red-700 rounded-lg m-2 p-5 ">
+<div class="  border-4 border-black  contrast-125 group p-3 shadow-lg  shadow-black  bg-white hover:bg-red-800 rounded-lg m-2 p-5 ">
     <h3 class=" text-2xl py-1 px-2 font-bold ">{{$review->course->departmentCode . "-" . $review->course->courseNumber}}</h3>
     <hr class="border-1 border-yellow-400 ">
 
