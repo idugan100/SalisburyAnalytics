@@ -53,10 +53,6 @@ class ProfessorController extends Controller
         }
 
         foreach($professors as $professor){
-            $professor->semesters=DB::table("courses_x_professors_with_grades")
-                                ->select("semester","year")
-                                ->where("professor_ID",$professor->id)
-                                ->distinct()->orderBy('year')->orderBy("semester","desc")->get()->toArray();
             $professor->topCourses=DB::table("courses_x_professors_with_grades")
                                         ->join("courses","course_ID","courses.id")
                                         ->select("courseTitle", "departmentCode", "courseNumber")
