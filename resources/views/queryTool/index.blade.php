@@ -50,9 +50,11 @@
     <div class="max-w-3xl p-6">
         @if (old("entity")=="courses")
             @foreach($results as $result)
-                <div class="border p-2 rounded border-4  bg-white border-black m-1">
-                    <span class="font-bold">{{$result->{old("statistic")} }}</span>
-                    {{  ", " . $result->departmentCode . "-" . $result->courseNumber . " (" .$result->courseTitle .")"}} 
+                <div class="flex justify-between p-2 rounded border-4  bg-white border-black m-1">
+                    <span>
+                        <span class="font-bold">{{$result->{old("statistic")} }}</span>
+                        <span>{{  ", " . $result->departmentCode . "-" . $result->courseNumber . " (" .$result->courseTitle .")"}} </span>
+                    </span>
                     <a class="text-red-800 font-bold mx-2" href="{{route("courses.index",['department' => $result->departmentCode, 'courseNumber' => $result->courseNumber])}}">&#8594</a>
                 </div>
             @endforeach
