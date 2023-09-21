@@ -14,7 +14,7 @@ class BillingController extends Controller
 
     public function checkout(Request $request){
         TrackUsage::log($request,"about");
-        return view('checkout', [
+        return view('billing.checkout', [
             'intent' => auth()->user()->createSetupIntent()
         ]);
     }
@@ -28,6 +28,6 @@ class BillingController extends Controller
 
     public function premium_page(Request $request){
         TrackUsage::log($request,"about");
-        return view("premium");
+        return view("billing.premium");
     }
 }
