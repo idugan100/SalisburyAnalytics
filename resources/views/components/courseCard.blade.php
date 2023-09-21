@@ -32,9 +32,9 @@
 <div id="{{"Review-Modal-".$course->id}}" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
     <div class="relative w-full h-full max-w-2xl max-h-full">
         
-        <div class="relative bg-white rounded-lg shadow ">
+        <div class="relative bg-gray-300 mt-8 rounded-lg shadow ">
             <!-- Modal header -->
-            <div class="flex items-start justify-between p-4 border-b rounded-t ">
+            <div class="flex items-start justify-between p-4 border-b rounded-t border-red-800">
                 <h3 class="text-xl font-semibold text-gray-900 ">
                     {{"Reviews for " . $course->departmentCode ."-" . $course->courseNumber }} 
                 </h3>
