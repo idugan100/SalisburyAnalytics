@@ -32,7 +32,7 @@ class ReviewController extends Controller
         TrackUsage::log($request,"review");
 
         $reviews=Review::where('approved_flag',1)->latest()->get();
-        return (view('reviews.index',["reviews"=>$reviews]));
+        return (view('reviews.public.index',["reviews"=>$reviews]));
     }
 
     /**
@@ -46,7 +46,7 @@ class ReviewController extends Controller
         
         $departmentList = Course::select("departmentCode")->orderBy("departmentCode","asc")->distinct()->get()->toArray();
 
-        return view("reviews.create",['departmentList'=>$departmentList]);
+        return view("reviews.public.create",['departmentList'=>$departmentList]);
     }
 
     public function review_options_by_department(Request $request){
@@ -59,7 +59,7 @@ class ReviewController extends Controller
             ->orderBy("lastName","ASC")
             ->get();
         $courseList=Course::where("departmentCode",$request->departmentCode)->orderBy("courseNumber")->get();
-        return  view( "reviews.create-options",  compact("professorList","courseList"));
+        return  view( "reviews.public.create-options",  compact("professorList","courseList"));
     }
 
     /**
@@ -156,14 +156,14 @@ class ReviewController extends Controller
     }
     public function rejected(){
         $reviews=Review::where('approved_flag',self::REJECTED_FLAG)->latest('updated_at')->paginate(10);
-        return view("reviews.rejected_reviews", compact('reviews'));
+        return view("reviews.admin.rejected_reviews", compact('reviews'));
     }
     public function approved(){
         $reviews=Review::where('approved_flag',self::APPROVED_FLAG)->latest('updated_at')->paginate(10);
-        return view("reviews.approved", compact('reviews'));
+        return view("reviews.admin.approved", compact('reviews'));
     }
     public function processing(){
         $reviews=Review::where('approved_flag',self::PROCESSING_FLAG)->latest('updated_at')->paginate(10);
-        return view('reviews.processing', compact('reviews'));
+        return view('reviews.admin.processing', compact('reviews'));
     }
 }
