@@ -27,7 +27,6 @@ use App\Http\Controllers\EnrollmentOverTimeController;
 */
 
 Route::get('/about', function (Request $request) {
-
     TrackUsage::log($request,"about");
     return view('welcome');
 })->name("home");
@@ -53,14 +52,14 @@ Route::get('/professor_options_by_department',[ProfessorController::class,"profe
 Route::resource('reviews',ReviewController::class);
 Route::get('/review_options_by_department',[ReviewController::class,"review_options_by_department"]);
 
-//admin routes
-Route::get('/processing', [ReviewController::class, 'processing'])->name('reviews.processing')->middleware(EnsureIsAdmin::class);
-Route::get('/approved',[ReviewController::class,'approved'])->name('reviews.approved')->middleware(EnsureIsAdmin::class);
-Route::get('/rejected',[ReviewController::class,'rejected'])->name("reviews.rejected")->middleware(EnsureIsAdmin::class);
+//admin usage routes
 Route::get('/usage',[UsageController::class,'index'])->name("usage.index")->middleware(EnsureIsAdmin::class);
 Route::get('/usage_details/{usagelog}',[UsageController::class,'details'])->name("usage.details")->middleware(EnsureIsAdmin::class);
 
-//admin review actions
+//admin review routes
+Route::get('/processing', [ReviewController::class, 'processing'])->name('reviews.processing')->middleware(EnsureIsAdmin::class);
+Route::get('/approved',[ReviewController::class,'approved'])->name('reviews.approved')->middleware(EnsureIsAdmin::class);
+Route::get('/rejected',[ReviewController::class,'rejected'])->name("reviews.rejected")->middleware(EnsureIsAdmin::class);
 Route::get('/reviews/approve/{review}',[ReviewController::class,'approve'])->name('review.approve')->middleware(EnsureIsAdmin::class);
 Route::get('/reviews/reject/{review}',[ReviewController::class,'reject'])->name("review.reject")->middleware(EnsureIsAdmin::class);
 Route::get('/reviews/reprocess/{review}/{origin}',[ReviewController::class,'reprocess'])->name("review.reprocess")->middleware(EnsureIsAdmin::class);
@@ -81,6 +80,8 @@ Route::get('/product-checkout', [BillingController::class, "checkout"])->middlew
 Route::post('/create-subscription', [BillingController::class, "create_subscription"])->middleware("auth");
 Route::get("/premium", [BillingController::class , "premium_page"])->name("premium");
 
+
+//authentication routes
 Auth::routes([
     'register' => true, // Register Routes...
     'reset' => false, // Reset Password Routes...
