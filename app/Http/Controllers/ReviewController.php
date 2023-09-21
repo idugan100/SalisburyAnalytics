@@ -156,14 +156,14 @@ class ReviewController extends Controller
     }
     public function rejected(){
         $reviews=Review::where('approved_flag',self::REJECTED_FLAG)->latest('updated_at')->paginate(10);
-        return view("rejected_reviews", compact('reviews'));
+        return view("reviews.rejected_reviews", compact('reviews'));
     }
     public function approved(){
         $reviews=Review::where('approved_flag',self::APPROVED_FLAG)->latest('updated_at')->paginate(10);
-        return view("approved", compact('reviews'));
+        return view("reviews.approved", compact('reviews'));
     }
     public function processing(){
         $reviews=Review::where('approved_flag',self::PROCESSING_FLAG)->latest('updated_at')->paginate(10);
-        return view('processing', compact('reviews'));
+        return view('reviews.processing', compact('reviews'));
     }
 }
