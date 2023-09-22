@@ -1,8 +1,8 @@
 <div class=" contrast-125 group p-5 shadow-lg  shadow-black  bg-white hover:bg-red-800 rounded-lg m-2  ">
-    <h3 class=" text-2xl py-1 px-2 font-bold ">{{$review->course->departmentCode . "-" . $review->course->courseNumber}}</h3>
+    <h3 class=" text-2xl py-1 px-2 font-bold ">{{$review->course->departmentCode??null . "-" . $review->course->courseNumber??null }}</h3>
     <hr class="border-1 border-yellow-400 ">
 
-    <div class=" py-1 px-2 m-2  text-md font-bold bg-gray-300 rounded border-3 boder-gray-300"> {{$review->professor->firstName . " ". $review->professor->lastName}}</div>
+    <div class=" py-1 px-2 m-2  text-md font-bold bg-gray-300 rounded border-3 boder-gray-300"> {{$review->professor->firstName??null . " ". $review->professor->lastName??null}}</div>
     <div class="px-2 py-1 m-2  text-md font-bold bg-gray-300 rounded border-3 boder-gray-300"> {{$review->response}}</div>
 
     <div class="flex rounded-md">

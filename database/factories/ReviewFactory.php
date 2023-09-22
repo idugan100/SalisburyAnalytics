@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Http\Controllers\ReviewController;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,6 +19,7 @@ class ReviewFactory extends Factory
     {
         return [
             "response"=>fake()->sentence(),
+            "approved_flag"=>ReviewController::PROCESSING_FLAG
         ];
     }
 }
