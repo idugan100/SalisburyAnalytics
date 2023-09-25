@@ -39,7 +39,7 @@
                     </li> 
                 @endif
 
-                @if (!auth()->user()->hasPaymentMethod())                    
+                {{-- @if (!auth()->user()->hasPaymentMethod())                    
                     <li class="flex">
                         <a href="/product-checkout" class=" no-highlights decoration-yellow-400 decoration-4 hover:underline block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-red-800 md:p-0 font-bold  ">checkout</a>
                     
@@ -53,7 +53,7 @@
                     <li>
                         <a href="/billing-portal" class=" no-highlights decoration-yellow-400 decoration-4 hover:underline block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-red-800 md:p-0 font-bold  ">billing info</a>
                     </li>
-                @endif
+                @endif --}}
                 <li>
                     <a class=" decoration-yellow-400 decoration-4 hover:underline block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-red-800 md:p-0 font-bold  " href="{{ route('logout') }}"
                     onclick="event.preventDefault();
@@ -67,12 +67,12 @@
                 </li>    
         @endauth
         @guest
-            <li>
+            {{-- <li>
                 <a href="{{route("premium")}}" class=" no-highlights decoration-yellow-400 decoration-4 hover:underline block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-red-800 md:p-0 font-bold  ">get premium</a>
-            </li>
-            <li>
+            </li> --}}
+            {{-- <li>
                 <a href="{{route("login")}}" class=" no-highlights decoration-yellow-400 decoration-4 hover:underline block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-red-800 md:p-0 font-bold  ">login</a>
-            </li>
+            </li> --}}
         @endguest
         </ul>
       </div>

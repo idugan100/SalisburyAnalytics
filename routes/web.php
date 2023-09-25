@@ -65,27 +65,27 @@ Route::get('/reviews/reject/{review}',[ReviewController::class,'reject'])->name(
 Route::get('/reviews/reprocess/{review}/{origin}',[ReviewController::class,'reprocess'])->name("review.reprocess")->middleware(EnsureIsAdmin::class);
 
 //grade inflation report
-Route::get("/gpa_over_time",[GpaOverTimeController::class,"index"])->name("gpa")->middleware(EnsureIsSubscribed::class);
+Route::get("/gpa_over_time",[GpaOverTimeController::class,"index"])->name("gpa");//->middleware(EnsureIsSubscribed::class);
 
 //enrollment report
-Route::get("/enrollment_over_time",[EnrollmentOverTimeController::class,"index"])->name("enrollment")->middleware(EnsureIsSubscribed::class);
+Route::get("/enrollment_over_time",[EnrollmentOverTimeController::class,"index"])->name("enrollment");//->middleware(EnsureIsSubscribed::class);
 
 //query tool
-Route::get("/query_tool",[QueryToolController::class,"index"])->name("qtool")->middleware(EnsureIsSubscribed::class);
+Route::get("/query_tool",[QueryToolController::class,"index"])->name("qtool");//->middleware(EnsureIsSubscribed::class);
 
 
 //stripe
-Route::get('/billing-portal', [BillingController::class, "billing_portal"])->middleware("auth");
-Route::get('/product-checkout', [BillingController::class, "checkout"])->middleware("auth")->name("checkout");
-Route::post('/create-subscription', [BillingController::class, "create_subscription"])->middleware("auth");
-Route::get("/premium", [BillingController::class , "premium_page"])->name("premium");
+// Route::get('/billing-portal', [BillingController::class, "billing_portal"])->middleware("auth");
+// Route::get('/product-checkout', [BillingController::class, "checkout"])->middleware("auth")->name("checkout");
+// Route::post('/create-subscription', [BillingController::class, "create_subscription"])->middleware("auth");
+// Route::get("/premium", [BillingController::class , "premium_page"])->name("premium");
 
 
 //authentication routes
 Auth::routes([
-    'register' => true, // Register Routes...
+    'register' => false, // Register Routes...
     'reset' => false, // Reset Password Routes...
     'verify' => false, // Email Verification Routes...
   ]);
 
-
+  
