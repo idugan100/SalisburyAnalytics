@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\UsageLog;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UsageController extends Controller
 {
@@ -13,7 +14,13 @@ class UsageController extends Controller
 
     public function index(){
         $usage_logs=UsageLog::latest()->paginate(20);
-        return view ("usage.index",compact("usage_logs"));
+        $total_bot_views=DB::table("usage_log")
+                            ->selectRaw("sum(about_views_bot+course_views_bot+report_views_bot+professor_views_bot+review_views_bot) as total")
+                            ->get()[0]->total;
+        $total_human_views=DB::table("usage_log")
+                            ->selectRaw("sum(about_views+course_views+report_views+professor_views+review_views) as total")
+                            ->get()[0]->total;
+        return view ("usage.index",compact("usage_logs","total_bot_views","total_human_views"));
     }
 
     public function details(UsageLog $usagelog){

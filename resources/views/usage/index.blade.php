@@ -5,22 +5,20 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
+                <div class="card-header">Total Usage</div>
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+                    <div>{{"total views: " . $total_bot_views + $total_human_views}}</div>
+                    <div>{{"total bot views: " . $total_bot_views}}</div>
+                    <div>{{"total human views: " . $total_human_views}}</div>
+                </div>
 
-                    {{ __('You are logged in!') }}
-                </div>
-                <div class="card-body alert alert-info">
-                    <a href="/">To home page</a>
-                </div>
             </div>
             <div class="card">
+              
+                
+            </div>
+            <div class="card">
+
                     <ul class="nav nav-tabs">
                         <li class="nav-item">
                             <a class="nav-link " href="{{route('reviews.approved')}}">Approved</a>
