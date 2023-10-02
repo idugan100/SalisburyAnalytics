@@ -43,7 +43,7 @@
     </div>
     </div>
 @endif
-<div class="border-solid border-2 mt-4 border-black flex flex-col">
+<div class="mt-4 flex p-4 flex-col">
     {{$courses->links()}}
 
 </div>
