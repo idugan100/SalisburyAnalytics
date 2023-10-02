@@ -95,23 +95,17 @@
                           
                         </tbody>
                       </table>
-                      <p>
-                        {{$usage_logs->links()}}
-
-                      </p>
-
+                    <div>
+                        @if (!$usage_logs->onFirstPage())
+                            <a href="{{$usage_logs->previousPageUrl()}}" class="m-2">Previous</a>
+                        @endif
+                        @if($usage_logs->hasMorePages())
+                            <a href="{{$usage_logs->nextPageUrl()}}" class="m-2">Next </a>
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<script>
-   const svgElements = document.querySelectorAll("svg");
-
-// Step 2: Remove each SVG element
-svgElements.forEach((svgElement) => {
-  svgElement.parentNode.removeChild(svgElement);
-});
-</script>
 @endsection
