@@ -91,16 +91,9 @@ class CourseController extends Controller
             "creditsTotal"=>"nullable",
             "syllabusLink"=>"nullable"
         ]);
-        $course=new Course;
-        $course->courseTitle=$validated['courseTitle'];
-        $course->description=$validated['description'];
-        $course->courseNumber=$validated['courseNumber'];
-        $course->departmentCode=$validated['departmentCode'];
-        $course->creditsLecture=$validated['creditsLecture'];
-        $course->creditsLab=$validated['creditsLab'];
-        $course->creditsTotal=$validated['creditsTotal'];
-        $course->syllabusLink=$validated['syllabusLink'];
-        $course->save();
+
+        Course::create($validated);
+        
         return redirect(route('courses.index'));
     }
 
@@ -184,15 +177,7 @@ class CourseController extends Controller
             "syllabusLink"=>"nullable"
         ]);
         
-        $course->courseTitle=$validated['courseTitle'];
-        $course->description=$validated['description'];
-        $course->courseNumber=$validated['courseNumber'];
-        $course->departmentCode=$validated['departmentCode'];
-        $course->creditsLecture=$validated['creditsLecture'];
-        $course->creditsLab=$validated['creditsLab'];
-        $course->creditsTotal=$validated['creditsTotal'];
-        $course->syllabusLink=$validated['syllabusLink'];
-        $course->save();
+        $course->update($validated);
 
         return redirect(route("courses.index"));
     }

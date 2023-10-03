@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Course extends Model
 {
     use HasFactory;
-    protected $fillable=['description','creditLab','creditLecture','creditsTotal', 'courseNumber', 'departmentCode','syllabusLink','avg_gpa'];
+    protected $fillable=['description','courseTitle','creditLab','creditLecture','creditsTotal', 'courseNumber', 'departmentCode','syllabusLink','avg_gpa'];
     
     public function reviews(){
         return $this->hasMany(Review::class);
