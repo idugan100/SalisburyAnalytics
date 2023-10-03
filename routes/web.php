@@ -67,16 +67,16 @@ Route::middleware(EnsureIsAdmin::class)->group(function (){
     Route::get('/reviews/reprocess/{review}/{origin}', [ReviewController::class, 'reprocess'])->name("review.reprocess");
 });
 
+Route::middleware((EnsureIsSubscribed::class))->group(function () {
+    //grade inflation report
+    Route::get("/gpa_over_time", [GpaOverTimeController::class, "index"])->name("gpa");
 
-//grade inflation report
-Route::get("/gpa_over_time", [GpaOverTimeController::class, "index"])->name("gpa")->middleware(EnsureIsSubscribed::class);
+    //enrollment report
+    Route::get("/enrollment_over_time", [EnrollmentOverTimeController::class, "index"])->name("enrollment");
 
-//enrollment report
-Route::get("/enrollment_over_time", [EnrollmentOverTimeController::class, "index"])->name("enrollment")->middleware(EnsureIsSubscribed::class);
-
-//query tool
-Route::get("/query_tool", [QueryToolController::class, "index"])->name("qtool")->middleware(EnsureIsSubscribed::class);
-
+    //query tool
+    Route::get("/query_tool", [QueryToolController::class, "index"])->name("qtool");
+});
 
 //stripe
 Route::get('/billing-portal', [BillingController::class, "billing_portal"])->middleware("auth");
