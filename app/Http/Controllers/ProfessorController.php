@@ -188,8 +188,6 @@ class ProfessorController extends Controller
         ]);
         
         $professor->update($validated);
-        $professor->department=$validated['department'];
-        $professor->save();
         return redirect(route('professors.index'));
     }
 
