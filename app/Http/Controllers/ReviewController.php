@@ -88,39 +88,6 @@ class ReviewController extends Controller
         return redirect(route("reviews.index"));
     }
 
-
-        
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Review  $review
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Review $review)
-    {
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Review  $review
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Review $review)
-    {
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateReviewRequest  $request
-     * @param  \App\Models\Review  $review
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateReviewRequest $request, Review $review)
-    {
-    }
-
     /**
      * Remove the specified resource from storage.
      *
