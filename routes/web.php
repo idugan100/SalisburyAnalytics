@@ -28,8 +28,8 @@ use App\Http\Controllers\EnrollmentOverTimeController;
 
 Route::get('/about', function (Request $request) {
     TrackUsage::log($request,"about");
-    return view('welcome');
-})->name("home");
+    return view('about');
+})->name("about");
 
 
 //privacy policy
@@ -40,38 +40,42 @@ Route::get("/privacy", function(Request $request){
 
 
 //routes for courses
-Route::get('/', [CourseController::class,"index"]);
-Route::resource('courses',CourseController::class);
-Route::get('/course_options_by_department',[CourseController::class,"course_options_by_department"]);
+Route::get('/', [CourseController::class, "index"]);
+Route::resource('courses', CourseController::class);
+Route::get('/course_options_by_department', [CourseController::class, "course_options_by_department"]);
 
 //professor routes
-Route::resource('professors',ProfessorController::class);
-Route::get('/professor_options_by_department',[ProfessorController::class,"professor_options_by_department"]);
+Route::resource('professors', ProfessorController::class);
+Route::get('/professor_options_by_department', [ProfessorController::class, "professor_options_by_department"]);
 
 //review routes
-Route::resource('reviews',ReviewController::class);
-Route::get('/review_options_by_department',[ReviewController::class,"review_options_by_department"]);
+Route::resource('reviews', ReviewController::class);
+Route::get('/review_options_by_department', [ReviewController::class, "review_options_by_department"]);
 
-//admin usage routes
-Route::get('/usage',[UsageController::class,'index'])->name("usage.index")->middleware(EnsureIsAdmin::class);
-Route::get('/usage_details/{usagelog}',[UsageController::class,'details'])->name("usage.details")->middleware(EnsureIsAdmin::class);
 
-//admin review routes
-Route::get('/processing', [ReviewController::class, 'processing'])->name('reviews.processing')->middleware(EnsureIsAdmin::class);
-Route::get('/approved',[ReviewController::class,'approved'])->name('reviews.approved')->middleware(EnsureIsAdmin::class);
-Route::get('/rejected',[ReviewController::class,'rejected'])->name("reviews.rejected")->middleware(EnsureIsAdmin::class);
-Route::get('/reviews/approve/{review}',[ReviewController::class,'approve'])->name('review.approve')->middleware(EnsureIsAdmin::class);
-Route::get('/reviews/reject/{review}',[ReviewController::class,'reject'])->name("review.reject")->middleware(EnsureIsAdmin::class);
-Route::get('/reviews/reprocess/{review}/{origin}',[ReviewController::class,'reprocess'])->name("review.reprocess")->middleware(EnsureIsAdmin::class);
+Route::middleware(EnsureIsAdmin::class)->group(function (){
+    //admin usage routes
+    Route::get('/usage', [UsageController::class, 'index'])->name("usage.index");
+    Route::get('/usage_details/{usagelog}', [UsageController::class,'details'])->name("usage.details");
+
+    //admin review routes
+    Route::get('/processing', [ReviewController::class, 'processing'])->name('reviews.processing');
+    Route::get('/approved', [ReviewController::class, 'approved'])->name('reviews.approved');
+    Route::get('/rejected', [ReviewController::class, 'rejected'])->name("reviews.rejected");
+    Route::get('/reviews/approve/{review}', [ReviewController::class, 'approve'])->name('review.approve');
+    Route::get('/reviews/reject/{review}', [ReviewController::class, 'reject'])->name("review.reject");
+    Route::get('/reviews/reprocess/{review}/{origin}', [ReviewController::class, 'reprocess'])->name("review.reprocess");
+});
+
 
 //grade inflation report
-Route::get("/gpa_over_time",[GpaOverTimeController::class,"index"])->name("gpa")->middleware(EnsureIsSubscribed::class);
+Route::get("/gpa_over_time", [GpaOverTimeController::class, "index"])->name("gpa")->middleware(EnsureIsSubscribed::class);
 
 //enrollment report
-Route::get("/enrollment_over_time",[EnrollmentOverTimeController::class,"index"])->name("enrollment")->middleware(EnsureIsSubscribed::class);
+Route::get("/enrollment_over_time", [EnrollmentOverTimeController::class, "index"])->name("enrollment")->middleware(EnsureIsSubscribed::class);
 
 //query tool
-Route::get("/query_tool",[QueryToolController::class,"index"])->name("qtool")->middleware(EnsureIsSubscribed::class);
+Route::get("/query_tool", [QueryToolController::class, "index"])->name("qtool")->middleware(EnsureIsSubscribed::class);
 
 
 //stripe
