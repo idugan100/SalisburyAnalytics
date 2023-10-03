@@ -14,13 +14,13 @@ return new class extends Migration
     public function up()
     {
         Schema::table('professors', function (Blueprint $table) {
-            $table->integer("total_enrollment");
-            $table->float("W_rate");
-            $table->float("A_rate");
-            $table->float("B_rate");
-            $table->float("C_rate");
-            $table->float("D_rate");
-            $table->float("F_rate");
+            $table->integer("total_enrollment")->default(0.0);
+            $table->float("W_rate")->default(0.0);
+            $table->float("A_rate")->default(0.0);
+            $table->float("B_rate")->default(0.0);
+            $table->float("C_rate")->default(0.0);
+            $table->float("D_rate")->default(0.0);
+            $table->float("F_rate")->default(0.0);
         });
     }
 
