@@ -108,11 +108,7 @@ class ProfessorController extends Controller
             "lastName"=>"required",
             "department"=>"required"
         ]);
-        $professor= new Professor();
-        $professor->firstName=$validated['firstName'];
-        $professor->lastName=$validated['lastName'];
-        $professor->department=$validated['department'];
-        $professor->save();
+        Professor::create($validated);
         return redirect(route("professors.index"));
 
     }
@@ -192,8 +188,6 @@ class ProfessorController extends Controller
         ]);
         
         $professor->update($validated);
-        $professor->department=$validated['department'];
-        $professor->save();
         return redirect(route('professors.index'));
     }
 
