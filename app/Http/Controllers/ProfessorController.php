@@ -77,7 +77,7 @@ class ProfessorController extends Controller
         elseif($request->professor_id){
             $message = "showing search results for " . $professors[0]->firstName . " " . $professors[0]->lastName;
         }
-        
+
         return(view("professors.index",
             ["professors"=>$professors,
             "departments"=>$departments,

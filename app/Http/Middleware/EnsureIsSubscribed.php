@@ -2,7 +2,6 @@
 
 namespace App\Http\Middleware;
 
-use Barryvdh\Debugbar\Facades\Debugbar;
 use Closure;
 use Illuminate\Http\Request;
 
@@ -17,7 +16,6 @@ class EnsureIsSubscribed
      */
     public function handle(Request $request, Closure $next)
     {
-        Debugbar::startMeasure("sub","subscribed middle ware");
         $user=auth()->user();
 
         if(!isset($user)){
@@ -26,10 +24,10 @@ class EnsureIsSubscribed
         elseif(!$user->pm_type){
             return redirect(route("checkout"));
         }
-        elseif(!$user->subscribed('default') && $user->hasPaymentMethod()){
+        elseif(!$user->subscribed('default') && $user->pm_type){
             return $user->redirectToBillingPortal(route('courses.index'));
         }
-        Debugbar::stopMeasure("sub");
+
         return $next($request);
     }
 }
