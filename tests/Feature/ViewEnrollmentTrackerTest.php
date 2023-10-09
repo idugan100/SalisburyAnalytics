@@ -35,7 +35,8 @@ class ViewEnrollmentTracker extends TestCase
         UsageLog::factory()->create();
 
         $user->newSubscription('default', env("PLAN_ID"))->create();
-                 
+        $user->pm_type="visa";
+    
         $response = $this->actingAs($user)
         ->get(route("enrollment"));
 
