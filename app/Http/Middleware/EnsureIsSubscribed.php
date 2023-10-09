@@ -21,12 +21,13 @@ class EnsureIsSubscribed
         if(!isset($user)){
             return redirect(route("premium"));
         }
-        elseif(!$user->hasPaymentMethod()){
+        elseif(!$user->pm_type){
             return redirect(route("checkout"));
         }
-        elseif(!$user->subscribed('default') && $user->hasPaymentMethod()){
+        elseif(!$user->subscribed('default') && $user->pm_type){
             return $user->redirectToBillingPortal(route('courses.index'));
         }
+
         return $next($request);
     }
 }
