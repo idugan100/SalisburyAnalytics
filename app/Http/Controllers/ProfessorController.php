@@ -42,14 +42,14 @@ class ProfessorController extends Controller
             ->where("departmentCode",$request->department)
             ->groupBy("professor_id","firstName","lastName")
             ->orderBy("lastName","ASC")
-            ->paginate(100);
+            ->paginate(10);
         }
         elseif( $request->professor_id!=null){
 
             $professors=Professor::where("id",$request->professor_id)->paginate(1);
         }
         else{
-            $professors=Professor::paginate(16);
+            $professors=Professor::paginate(8);
         }
 
         foreach($professors as $professor){
