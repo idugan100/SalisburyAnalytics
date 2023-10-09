@@ -42,6 +42,7 @@ class CourseShowTest extends TestCase
         Course::factory()->create();
 
         $user->newSubscription('default', env("PLAN_ID"))->create();
+        $user->pm_type="visa";
                  
         $response = $this->actingAs($user)
         ->get(route("courses.show",2));

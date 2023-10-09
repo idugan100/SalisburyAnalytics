@@ -49,7 +49,7 @@ class ProfessorController extends Controller
             $professors=Professor::where("id",$request->professor_id)->paginate(1);
         }
         else{
-            $professors=Professor::paginate(16);
+            $professors=Professor::paginate(8);
         }
 
         foreach($professors as $professor){
@@ -77,7 +77,7 @@ class ProfessorController extends Controller
         elseif($request->professor_id){
             $message = "showing search results for " . $professors[0]->firstName . " " . $professors[0]->lastName;
         }
-        
+
         return(view("professors.index",
             ["professors"=>$professors,
             "departments"=>$departments,

@@ -10,5 +10,9 @@
         @endforeach
         </div>
     </div>
+    <div class="m-4  flex flex-col ">
+        {{$reviews->links()}}
+    
+    </div>
 
 </x-header>
