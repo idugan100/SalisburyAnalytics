@@ -40,7 +40,8 @@ class ProfessorShowTest extends TestCase
         Professor::factory()->create();
 
         $user->newSubscription('default', env("PLAN_ID"))->create();
-                 
+        $user->pm_type="visa";
+      
         $response = $this->actingAs($user)
         ->get(route("professors.show",2));
 
