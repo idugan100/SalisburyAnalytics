@@ -42,7 +42,7 @@ class ProfessorController extends Controller
             ->where("departmentCode",$request->department)
             ->groupBy("professor_id","firstName","lastName")
             ->orderBy("lastName","ASC")
-            ->paginate(10);
+            ->paginate(100);
         }
         elseif( $request->professor_id!=null){
 
