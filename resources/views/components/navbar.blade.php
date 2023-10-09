@@ -39,7 +39,7 @@
                     </li> 
                 @endif
 
-                @if (!auth()->user()->hasPaymentMethod())                    
+                @if (!auth()->user()->pm_type)                    
                     <li class="flex">
                         <a href="/product-checkout" class=" no-highlights decoration-yellow-400 decoration-4 hover:underline block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-red-800 md:p-0 font-bold  ">checkout</a>
                     
