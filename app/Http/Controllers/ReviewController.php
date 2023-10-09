@@ -31,7 +31,7 @@ class ReviewController extends Controller
     {
         TrackUsage::log($request,"review");
 
-        $reviews=Review::where('approved_flag',1)->latest()->get();
+        $reviews=Review::where('approved_flag',1)->latest()->paginate(10);
         return (view('reviews.public.index',["reviews"=>$reviews]));
     }
 
