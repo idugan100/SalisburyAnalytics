@@ -15,14 +15,14 @@ class GetRMPLinks extends Command
      *
      * @var string
      */
-    protected $signature = 'GetRMPLinks';
+    protected $signature = 'populate:rmp-links';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Repopulates Rate my Professor links using either Google Scraping or SerpAPI';
 
     /**
      * Execute the console command.
