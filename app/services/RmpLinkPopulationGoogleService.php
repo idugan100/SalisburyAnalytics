@@ -8,14 +8,14 @@ use Exception;
 class RmpLinkPopulationGoogleService
 
 {
-    public function getLinks($professor){
+    public function getLinks(Professor $professor){
 
             try{
 
                 $response = Http::get('https://www.googleapis.com/customsearch/v1/siterestrict', [
                     'key' => env("GOOGLE_CUSTOM_SEARCH_KEY"),
                     'cx' =>env("GOOGLE_CUSTOM_SEARCH_ENGINE_ID"),
-                    'q' => "Michael R. Koval". " Salisbury University"
+                    'q' => $professor->firstName . " " . $professor->lastName. " Salisbury University"
                 ]);
                 $decoded_response = json_decode($response->body());
 
