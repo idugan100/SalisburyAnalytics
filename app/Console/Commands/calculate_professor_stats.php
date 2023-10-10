@@ -13,7 +13,7 @@ class calculate_professor_stats extends Command
      *
      * @var string
      */
-    protected $signature = 'calculate_professor_stats';
+    protected $signature = 'populate:professor-stats';
 
     /**
      * The console command description.

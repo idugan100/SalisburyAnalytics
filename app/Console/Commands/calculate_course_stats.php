@@ -14,7 +14,7 @@ class calculate_course_stats extends Command
      *
      * @var string
      */
-    protected $signature = 'calculate_course_stats';
+    protected $signature = 'populate:course-stats';
 
     /**
      * The console command description.
