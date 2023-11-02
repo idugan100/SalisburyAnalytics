@@ -27,8 +27,13 @@ class CreateUsageLog extends Command
     public function handle()
     {
         $usage_log= new UsageLog();
-        $usage_log->save();
+        $result=$usage_log->save();
 
+        if(!$result){
+            $this->error("Error when creating Usage Log!");
+            return Command::FAILURE;
+        }
+        
         $this->info("Usage Log Sucessfully Created!");
         return Command::SUCCESS;
 
