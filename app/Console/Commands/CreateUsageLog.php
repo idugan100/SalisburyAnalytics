@@ -28,6 +28,10 @@ class CreateUsageLog extends Command
     {
         $usage_log= new UsageLog();
         $usage_log->save();
+
+        $this->info("Usage Log Sucessfully Created!");
+        return Command::SUCCESS;
+
  
     }
 }
