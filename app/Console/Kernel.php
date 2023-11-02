@@ -17,11 +17,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
-        $schedule->call(function () {
-            $usage_log= new UsageLog();
-            $usage_log->save();
- 
-         })->daily();
+        $schedule->command('create-usage-log')->daily();
  
     }
 
