@@ -31,7 +31,8 @@ class GetRMPLinks extends Command
      */
     public function handle()
     {
-        $professors = Professor::where("rmp_link","")->get();
+        $professors = Professor::where("rmp_link",null)->get();
+        
         $bar = $this->output->createProgressBar(count($professors));
         $provider=$this->choice(
             'What search API would you like to use?',
