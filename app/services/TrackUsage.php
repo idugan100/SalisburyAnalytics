@@ -9,7 +9,7 @@ class TrackUsage
 
 {
     public static function log(Request $request, $page_name){
-        $usage_log=UsageLog::whereDate('created_at', now())->first();
+        $usage_log=UsageLog::firstOrCreate(['created_at'=> now()],[]);
         $is_bot=IsBot::check($request->userAgent());
 
         switch ($page_name) {
