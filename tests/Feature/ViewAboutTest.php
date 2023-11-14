@@ -2,16 +2,14 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
 use App\Models\UsageLog;
-use Symfony\Component\Process\Process;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-
+use Tests\TestCase;
 
 class ViewAboutTest extends TestCase
 {
     use RefreshDatabase;
+
     /**
      * A basic feature test example.
      *
@@ -32,8 +30,6 @@ class ViewAboutTest extends TestCase
 
         $response = $this->get('/about');
 
-
-        $this->assertSame(1,UsageLog::where("created_at",now())->first()->about_views);
+        $this->assertSame(1, UsageLog::where('created_at', now())->first()->about_views);
     }
-
 }

@@ -21,7 +21,6 @@ return new class extends Migration
             $table->integer('qty_F')->nullable();
             $table->integer('qty_W')->nullable();
 
-
         });
     }
 

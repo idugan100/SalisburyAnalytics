@@ -2,14 +2,14 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
 use App\Models\UsageLog;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class ViewProfessorsTest extends TestCase
 {
     use RefreshDatabase;
+
     /**
      * A basic feature test example.
      *
@@ -30,7 +30,6 @@ class ViewProfessorsTest extends TestCase
 
         $response = $this->get('/professors');
 
-
-        $this->assertSame(1,UsageLog::where("created_at",now())->first()->professor_views);
+        $this->assertSame(1, UsageLog::where('created_at', now())->first()->professor_views);
     }
 }

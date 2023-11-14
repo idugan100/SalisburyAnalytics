@@ -14,12 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::table('courses', function (Blueprint $table) {
-            $table->dropColumn("qty_A");
-            $table->dropColumn("qty_B");
-            $table->dropColumn("qty_C");
-            $table->dropColumn("qty_D");
-            $table->dropColumn("qty_F");
-            $table->dropColumn("qty_W");
+            $table->dropColumn('qty_A');
+            $table->dropColumn('qty_B');
+            $table->dropColumn('qty_C');
+            $table->dropColumn('qty_D');
+            $table->dropColumn('qty_F');
+            $table->dropColumn('qty_W');
         });
     }
 

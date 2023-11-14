@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('courses_x_professors_with_grades', function (Blueprint $table) {
-            $table->integer("year");
+            $table->integer('year');
         });
     }
 
@@ -26,7 +26,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('courses_x_professors_with_grades', function (Blueprint $table) {
-            $table->dropColumn("year");
+            $table->dropColumn('year');
         });
     }
 };

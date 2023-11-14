@@ -2,22 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Charts\GpaOverTime;
 use App\Models\Course;
 use App\services\TrackUsage;
-use App\Charts\GpaOverTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class GpaOverTimeController extends Controller
 {
-    public function index(Request $request, GpaOverTime $chart){
+    public function index(Request $request, GpaOverTime $chart)
+    {
 
-        TrackUsage::log($request,"report");
+        TrackUsage::log($request, 'report');
         $request->flash();
 
-        $departments=Course::select("departmentCode")->distinct()->orderBy("departmentCode","asc")->get();
-        $selected_department=$request->Department;
-        $query=
+        $departments = Course::select('departmentCode')->distinct()->orderBy('departmentCode', 'asc')->get();
+        $selected_department = $request->Department;
+        $query =
             "Select sum(T.GPA)/sum(T.quantity) as 'GPA', semester, `year` from
                 (Select  quantity, `year`, semester,
                         CASE 
@@ -36,11 +37,10 @@ class GpaOverTimeController extends Controller
                 order by 
                 year, semester DESC;";
 
-        $gpa_by_semester=DB::select($query,[($selected_department ?? "%")]);
-            
-      
-        $gpa_chart=$chart->build($gpa_by_semester, $selected_department);
-        
-        return view("gpaOverTime.index", compact('gpa_chart', 'departments'));
+        $gpa_by_semester = DB::select($query, [($selected_department ?? '%')]);
+
+        $gpa_chart = $chart->build($gpa_by_semester, $selected_department);
+
+        return view('gpaOverTime.index', compact('gpa_chart', 'departments'));
     }
 }

@@ -18,8 +18,8 @@ return new class extends Migration
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string("question")->nullable();
-            $table->mediumText("response");
+            $table->string('question')->nullable();
+            $table->mediumText('response');
             $table->foreignIdFor(Professor::class)->nullable();
             $table->foreignIdFor(Course::class)->nullable();
         });

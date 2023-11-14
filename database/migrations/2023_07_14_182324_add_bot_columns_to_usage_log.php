@@ -18,7 +18,6 @@ return new class extends Migration
             $table->renameColumn('course_views', 'course_views_bot');
             $table->renameColumn('review_views', 'review_views_bot');
             $table->renameColumn('professor_views', 'professor_views_bot');
-            
 
         });
     }

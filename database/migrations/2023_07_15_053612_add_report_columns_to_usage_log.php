@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::table('usage_log', function (Blueprint $table) {
-            $table->integer("report_views")->default(0);
-            $table->integer("report_views_bot")->default(0);
+            $table->integer('report_views')->default(0);
+            $table->integer('report_views_bot')->default(0);
         });
     }
 
@@ -27,8 +27,8 @@ return new class extends Migration
     public function down()
     {
         Schema::table('usage_log', function (Blueprint $table) {
-            $table->dropColumn("report_views");
-            $table->integer("report_views_bot");
+            $table->dropColumn('report_views');
+            $table->integer('report_views_bot');
         });
     }
 };

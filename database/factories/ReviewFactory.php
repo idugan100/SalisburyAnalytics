@@ -17,7 +17,7 @@ class ReviewFactory extends Factory
     public function definition()
     {
         return [
-            "response"=>fake()->sentence(),
+            'response' => fake()->sentence(),
         ];
     }
 }

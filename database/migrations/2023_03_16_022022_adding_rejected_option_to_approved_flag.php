@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::table('approved_flag', function (Blueprint $table) {
             Schema::table('reviews', function (Blueprint $table) {
-                $table->integer("approved_flag")->default(0)->change();
+                $table->integer('approved_flag')->default(0)->change();
             });
         });
     }
@@ -29,7 +29,7 @@ return new class extends Migration
     {
         Schema::table('approved_flag', function (Blueprint $table) {
             Schema::table('reviews', function (Blueprint $table) {
-                $table->boolean("approved_flag")->default(False)->change();
+                $table->boolean('approved_flag')->default(false)->change();
             });
         });
     }

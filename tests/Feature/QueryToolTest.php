@@ -2,15 +2,15 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
-use App\Models\User;
 use App\Models\UsageLog;
-use Illuminate\Foundation\Testing\WithFaker;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class QueryToolTest extends TestCase
 {
     use RefreshDatabase;
+
     /**
      * A basic feature test example.
      *
@@ -20,41 +20,40 @@ class QueryToolTest extends TestCase
     {
         UsageLog::factory()->create();
 
-
         $response = $this->get('/query_tool');
 
         $response->assertStatus(302);
-        $response->assertRedirect("/premium");
+        $response->assertRedirect('/premium');
     }
 
     public function test_show_query_tool_when_subscribed()
     {
         $user = User::factory()->create();
-        $user->stripe_id=env("TEST_CUSTOMER_STRIPE_ID");
+        $user->stripe_id = env('TEST_CUSTOMER_STRIPE_ID');
         $user->save();
-        
+
         UsageLog::factory()->create();
 
-        $user->newSubscription('default', env("PLAN_ID"))->create();
-        $user->pm_type="visa";
+        $user->newSubscription('default', env('PLAN_ID'))->create();
+        $user->pm_type = 'visa';
 
         $response = $this->actingAs($user)
-        ->get(route("qtool"));
+            ->get(route('qtool'));
 
         $response->assertStatus(200);
     }
 
-    public function test_show_query_tool_checkout_redirect_if_logged_in_and_not_subscribed(){
+    public function test_show_query_tool_checkout_redirect_if_logged_in_and_not_subscribed()
+    {
 
         $user = User::factory()->create();
         UsageLog::factory()->create();
 
         $response = $this->actingAs($user)
-        ->get(route("qtool"));
+            ->get(route('qtool'));
 
         $response->assertStatus(302);
-        $response->assertRedirect("/product-checkout"); 
+        $response->assertRedirect('/product-checkout');
 
     }
-
 }

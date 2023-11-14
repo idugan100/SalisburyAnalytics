@@ -1,16 +1,17 @@
 <?php
+
 namespace App\services;
-use App\services\IsBot;
+
 use App\Models\UsageLog;
 use App\Models\UserDetail;
 use Illuminate\Http\Request;
 
 class TrackUsage
-
 {
-    public static function log(Request $request, $page_name){
-        $usage_log=UsageLog::whereDate('created_at', now())->first();
-        $is_bot=IsBot::check($request->userAgent());
+    public static function log(Request $request, $page_name)
+    {
+        $usage_log = UsageLog::whereDate('created_at', now())->first();
+        $is_bot = IsBot::check($request->userAgent());
 
         switch ($page_name) {
             case 'course':
@@ -24,22 +25,21 @@ class TrackUsage
                 break;
             case 'about':
                 $is_bot ? $usage_log->about_views_bot++ : $usage_log->about_views++;
-                break;        
-             case 'report':
+                break;
+            case 'report':
                 $is_bot ? $usage_log->report_views_bot++ : $usage_log->report_views++;
-                break; 
+                break;
         }
-        
+
         $usage_log->save();
 
-        if(!$is_bot){
-            $user_detail=New UserDetail();
-            $user_detail->user_agent=$request->userAgent();
-            $user_detail->ip_address=$request->ip();
-            $user_detail->page_visited=$page_name;
-            $user_detail->usage_log_id=$usage_log->id;
+        if (! $is_bot) {
+            $user_detail = new UserDetail();
+            $user_detail->user_agent = $request->userAgent();
+            $user_detail->ip_address = $request->ip();
+            $user_detail->page_visited = $page_name;
+            $user_detail->usage_log_id = $usage_log->id;
             $user_detail->save();
         }
     }
-
 }

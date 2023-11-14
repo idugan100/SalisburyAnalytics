@@ -16,10 +16,10 @@ return new class extends Migration
         Schema::create('usage_log', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer("about_views")->default(0);
-            $table->integer("course_views")->default(0);
-            $table->integer("professor_views")->default(0);
-            $table->integer("review_views")->default(0);
+            $table->integer('about_views')->default(0);
+            $table->integer('course_views')->default(0);
+            $table->integer('professor_views')->default(0);
+            $table->integer('review_views')->default(0);
         });
     }
 
