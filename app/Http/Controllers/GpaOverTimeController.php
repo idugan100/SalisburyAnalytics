@@ -6,6 +6,7 @@ use App\Charts\GpaOverTime;
 use App\Models\Course;
 use App\services\TrackUsage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
 class GpaOverTimeController extends Controller
@@ -37,7 +38,15 @@ class GpaOverTimeController extends Controller
                 order by 
                 year, semester DESC;";
 
-        $gpa_by_semester = DB::select($query, [($selected_department ?? '%')]);
+        $cache_key = 'gpa_by_semester:'.$request->Department;
+        $gpa_by_semester = [];
+
+        if (Cache::has($cache_key)) {
+            $gpa_by_semester = Cache::get($cache_key);
+        } else {
+            $gpa_by_semester = DB::select($query, [($selected_department ?? '%')]);
+            Cache::add($cache_key, $gpa_by_semester, now()->addHours(24));
+        }
 
         $gpa_chart = $chart->build($gpa_by_semester, $selected_department);
 
