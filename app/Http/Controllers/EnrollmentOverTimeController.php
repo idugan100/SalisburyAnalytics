@@ -6,6 +6,7 @@ use App\Charts\EnrollmentOverTime;
 use App\Models\Course;
 use App\services\TrackUsage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
 class EnrollmentOverTimeController extends Controller
@@ -29,8 +30,15 @@ class EnrollmentOverTimeController extends Controller
             year, semester
             order by 
             year, semester DESC;";
+        $cache_key = 'enrollment_by_semester:'.$request->Department;
+        $enrollment_by_semester = [];
 
-        $enrollment_by_semester = DB::select($query, [($selected_department ?? '%')]);
+        if (Cache::has($cache_key)) {
+            $enrollment_by_semester = Cache::get($cache_key);
+        } else {
+            $enrollment_by_semester = DB::select($query, [($selected_department ?? '%')]);
+            Cache::add($cache_key, $enrollment_by_semester, now()->addHours(24));
+        }
 
         $enrollment_chart = $chart->build($enrollment_by_semester);
 
