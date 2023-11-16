@@ -12,6 +12,7 @@ use App\Models\Professor;
 use App\Models\Review;
 use App\services\TrackUsage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
 class ProfessorController extends Controller
@@ -49,13 +50,21 @@ class ProfessorController extends Controller
         }
 
         foreach ($professors as $professor) {
-            $professor->topCourses = DB::table('courses_x_professors_with_grades')
+            $cache_key = "professor:" . $professor->id . ":topcourses";
+            if(Cache::has($cache_key)){
+                $professor->topCourses = Cache::get($cache_key);
+            }
+            else{
+                $professor->topCourses = DB::table('courses_x_professors_with_grades')
                 ->join('courses', 'course_ID', 'courses.id')
                 ->select('courseTitle', 'departmentCode', 'courseNumber')
                 ->where('professor_ID', $professor->id)
                 ->groupBy('course_ID')
                 ->orderByRaw('sum(quantity) desc')
                 ->limit(4)->get()->toArray();
+                Cache::add($cache_key,$professor->topCourses,now()->addHours(24));
+            }
+            
             $professor->reviews = Review::where('professor_id', $professor->id)->where('approved_flag', ReviewController::APPROVED_FLAG)->get();
         }
 
