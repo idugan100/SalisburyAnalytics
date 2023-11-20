@@ -43,6 +43,8 @@ Route::get('/', [CourseController::class, 'index']);
 Route::resource('courses', CourseController::class);
 Route::get('/course_options_by_department', [CourseController::class, 'course_options_by_department']);
 
+Route::get('/courses/{course}/times', [CourseController::class, 'times'])->name('courses.times');
+
 //professor routes
 Route::resource('professors', ProfessorController::class);
 Route::get('/professor_options_by_department', [ProfessorController::class, 'professor_options_by_department']);
