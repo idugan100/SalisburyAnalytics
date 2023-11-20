@@ -8,7 +8,6 @@ use App\Http\Middleware\EnsureIsSubscribed;
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
 use App\Models\Course;
-use App\Models\Review;
 use App\services\TrackUsage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -33,16 +32,11 @@ class CourseController extends Controller
         TrackUsage::log($request, 'course');
 
         if ($request->department != null && $request->courseNumber == null) {
-            $courses = Course::where('departmentCode', $request->department)->paginate(100);
+            $courses = Course::with('approved_reviews')->where('departmentCode', $request->department)->paginate(100);
         } elseif ($request->department != null && $request->courseNumber != null) {
-            $courses = Course::where('courseNumber', $request->courseNumber)->where('departmentCode', $request->department)->paginate(100);
+            $courses = Course::with('approved_reviews')->where('courseNumber', $request->courseNumber)->where('departmentCode', $request->department)->paginate(100);
         } else {
-            $courses = Course::paginate(16);
-        }
-
-        foreach ($courses as $course) {
-            $course->reviews = Review::where('course_id', $course->id)->where('approved_flag', ReviewController::APPROVED_FLAG)->get();
-
+            $courses = Course::with('approved_reviews')->paginate(16);
         }
 
         $departments = Course::select('departmentCode')->orderBy('departmentCode', 'asc')->distinct()->get()->toArray();
