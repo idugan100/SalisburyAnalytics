@@ -6,7 +6,7 @@
     <div class=" py-1 px-2 m-2  text-md font-bold bg-gray-300 rounded border-3 boder-gray-300"> {{"Average GPA: " . $course->avg_gpa}}</div>
     <div class=" py-1 px-2 m-2  text-md font-bold bg-gray-300 rounded border-3 boder-gray-300"> {{"Withdraw Rate: " . ($course->W_rate) . "%"}}</div>
     <div class=" py-1 px-2 m-2  text-md font-bold bg-gray-300 rounded border-3 boder-gray-300"> {{"Total Enrollment: " .  $course->total_enrollment}}</div>
-    <div class="px-2 py-1 m-2  text-md font-bold bg-gray-300 rounded border-3 boder-gray-300"> {{"Number of Reviews: " . count($course->reviews)}}</div>
+    <div class="px-2 py-1 m-2  text-md font-bold bg-gray-300 rounded border-3 boder-gray-300"> {{"Number of Reviews: " . count($course->approved_reviews)}}</div>
     @if ($course->description!=null)
     <div class="px-2 py-1 m-2  text-md font-bold bg-gray-300 rounded border-3 boder-gray-300"> {{$course->description}}</div>
     @endif
@@ -49,11 +49,11 @@
                     <a href="{{route("reviews.create")}}" class="m-2  border-4 border-yellow-400 hover:text-gray-300 bg-yellow-400 rounded font-bold px-1">+ add review</a>
                 </div>
 
-                    @if (count($course->reviews)==0)
+                    @if (count($course->approved_reviews)==0)
                     <div class="flex justify-center col-start-2  text-lg">Sorry, no reviews found for this course :(</div>
                     @endif
                     <div class="col-start-2 col-span-2 mt-4">
-                        @foreach ($course->reviews as $review)
+                        @foreach ($course->approved_reviews as $review)
                                 <x-reviewCard :review="$review"></x-reviewCard>   
                         @endforeach
                     </div>
