@@ -194,8 +194,10 @@ class CourseController extends Controller
         return view('courses.search-courses', compact('courses'));
     }
 
-    public function times(Request $request, Course $course){
+    public function times(Request $request, Course $course)
+    {
         TrackUsage::log($request, 'course');
+
         return view('courses.times', compact('course'));
     }
 }
