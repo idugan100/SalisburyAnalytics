@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\Course;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Date;
 
 class calculate_course_stats extends Command
 {
@@ -28,6 +29,7 @@ class calculate_course_stats extends Command
      */
     public function handle()
     {
+        $start= Date::now();
         $courses = Course::all();
         $bar = $this->output->createProgressBar(count($courses));
         $bar->start();
@@ -37,7 +39,8 @@ class calculate_course_stats extends Command
         }
         $bar->finish();
         $this->newline();
-        $this->info('Course Stats Successfully Calculated!');
+        $end = Date::now();
+        $this->info('Course stats successfully calculated in ' . $end->diffInSeconds($start) . " seconds");
 
         return Command::SUCCESS;
     }

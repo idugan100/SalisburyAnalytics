@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\Professor;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Date;
 
 class calculate_professor_stats extends Command
 {
@@ -28,6 +29,7 @@ class calculate_professor_stats extends Command
      */
     public function handle()
     {
+        $start= Date::now();
         $professors = Professor::all();
         $bar = $this->output->createProgressBar(count($professors));
         $bar->start();
@@ -37,7 +39,8 @@ class calculate_professor_stats extends Command
         }
         $bar->finish();
         $this->newline();
-        $this->info('Professor Stats Successfully Calculated!');
+        $end = Date::now();
+        $this->info('Professor stats successfully calculated in ' . $end->diffInSeconds($start) . " seconds");
 
         return Command::SUCCESS;
     }
