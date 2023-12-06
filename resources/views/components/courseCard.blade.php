@@ -23,6 +23,7 @@
             @endif
         @endauth
         <button data-modal-target="{{"Review-Modal-".$course->id}}" data-modal-toggle="{{"Review-Modal-".$course->id}}" class="m-2  border-4 border-yellow-400 hover:text-gray-300 bg-yellow-400 rounded font-bold px-1" type="button">reviews</button>
+        <a class=" hidden sm:block m-2 border-4 border-yellow-400 hover:text-gray-300 bg-yellow-400 rounded font-bold px-1" href="{{route('courses.times', $course)}}"> times </a>
         <a class="m-2  border-4 border-yellow-400 hover:text-gray-300 bg-yellow-400 rounded font-bold px-1" href="{{route('courses.show',$course->id)}}">grades</a>
     </div>
 </div>  
@@ -61,3 +62,4 @@
         </div>
     </div>
 </div>
+

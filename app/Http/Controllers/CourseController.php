@@ -16,7 +16,7 @@ class CourseController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['index', 'show', 'course_options_by_department']]);
+        $this->middleware('auth', ['except' => ['index', 'show', 'course_options_by_department', 'times']]);
         $this->middleware(EnsureIsSubscribed::class, ['only' => ['show']]);
         $this->middleware(EnsureIsAdmin::class, ['only' => ['create', 'store', 'edit', 'update', 'destroy']]);
 
@@ -186,5 +186,12 @@ class CourseController extends Controller
         $courses = Course::where('departmentCode', $request->department)->orderBy('courseNumber')->get();
 
         return view('courses.search-courses', compact('courses'));
+    }
+
+    public function times(Request $request, Course $course)
+    {
+        TrackUsage::log($request, 'course');
+
+        return view('courses.times', compact('course'));
     }
 }
