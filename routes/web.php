@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminActionsController;
 use App\Http\Controllers\BillingController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\EnrollmentOverTimeController;
@@ -65,6 +66,14 @@ Route::middleware(EnsureIsAdmin::class)->group(function () {
     Route::get('/reviews/approve/{review}', [ReviewController::class, 'approve'])->name('review.approve');
     Route::get('/reviews/reject/{review}', [ReviewController::class, 'reject'])->name('review.reject');
     Route::get('/reviews/reprocess/{review}/{origin}', [ReviewController::class, 'reprocess'])->name('review.reprocess');
+
+    //admin action routes
+    Route::get('/actions', [AdminActionsController::class, 'index'])->name('actions.index');
+    Route::get('/actions/recalculate-professors', [AdminActionsController::class, 'recalculate_professors'])->name('actions.recalcProfessors');
+    Route::get('/actions/recalculate-courses', [AdminActionsController::class, 'recalculate_courses'])->name('actions.recalcCourses');
+
+
+
 });
 
 Route::middleware((EnsureIsSubscribed::class))->group(function () {
