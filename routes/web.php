@@ -72,8 +72,6 @@ Route::middleware(EnsureIsAdmin::class)->group(function () {
     Route::get('/actions/recalculate-professors', [AdminActionsController::class, 'recalculate_professors'])->name('actions.recalcProfessors');
     Route::get('/actions/recalculate-courses', [AdminActionsController::class, 'recalculate_courses'])->name('actions.recalcCourses');
 
-
-
 });
 
 Route::middleware((EnsureIsSubscribed::class))->group(function () {

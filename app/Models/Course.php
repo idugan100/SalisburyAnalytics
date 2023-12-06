@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Support\Facades\DB;
-use Illuminate\Database\Eloquent\Model;
 use App\Http\Controllers\ReviewController;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Course extends Model
 {
@@ -23,7 +23,8 @@ class Course extends Model
         return $this->hasMany(Review::class)->where('approved_flag', ReviewController::APPROVED_FLAG);
     }
 
-    public function calculate_statistics(){
+    public function calculate_statistics()
+    {
         $avg_gpa = DB::select(
             "Select ROUND(sum(T.GPA)/sum(T.quantity),2) as 'Course_GPA' from
                 (Select grade, quantity, 

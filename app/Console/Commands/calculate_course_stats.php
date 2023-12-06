@@ -4,7 +4,6 @@ namespace App\Console\Commands;
 
 use App\Models\Course;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\DB;
 
 class calculate_course_stats extends Command
 {

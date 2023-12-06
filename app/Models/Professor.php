@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Support\Facades\DB;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Professor extends Model
 {
@@ -17,7 +17,8 @@ class Professor extends Model
         return $this->hasMany(Review::class);
     }
 
-    public function calculate_statistics(){
+    public function calculate_statistics()
+    {
         $avg_gpa = DB::select(
             "Select ROUND(sum(T.GPA)/sum(T.quantity),2) as 'Course_GPA' from
                 (Select grade, quantity, 

@@ -4,7 +4,6 @@ namespace App\Console\Commands;
 
 use App\Models\Professor;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\DB;
 
 class calculate_professor_stats extends Command
 {
