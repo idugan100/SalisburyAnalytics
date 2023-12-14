@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use App\Models\UsageLog;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
 class UsageController extends Controller
@@ -26,10 +26,10 @@ class UsageController extends Controller
                                         select count(*)
                                         from user_details 
                                         group by ip_address ) as `ip`'
-                                    )[0]->unique_visitors;
+        )[0]->unique_visitors;
         $registered_users = User::count();
 
-        return view('usage.index', compact('usage_logs', 'total_bot_views', 'total_human_views','unique_visitors','registered_users'));
+        return view('usage.index', compact('usage_logs', 'total_bot_views', 'total_human_views', 'unique_visitors', 'registered_users'));
     }
 
     public function details(UsageLog $usagelog)
