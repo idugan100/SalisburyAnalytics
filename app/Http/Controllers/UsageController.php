@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\UsageLog;
 use Illuminate\Support\Facades\DB;
 
@@ -21,8 +22,14 @@ class UsageController extends Controller
         $total_human_views = DB::table('usage_log')
             ->selectRaw('sum(about_views+course_views+report_views+professor_views+review_views) as total')
             ->get()[0]->total;
+        $unique_visitors = DB::select('select count(*) as `unique_visitors` from(
+                                        select count(*)
+                                        from user_details 
+                                        group by ip_address ) as `ip`'
+                                    )[0]->unique_visitors;
+        $registered_users = User::count();
 
-        return view('usage.index', compact('usage_logs', 'total_bot_views', 'total_human_views'));
+        return view('usage.index', compact('usage_logs', 'total_bot_views', 'total_human_views','unique_visitors','registered_users'));
     }
 
     public function details(UsageLog $usagelog)
