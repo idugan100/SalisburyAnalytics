@@ -45,35 +45,30 @@
         </div>
 </form>
 
-
-<div class="flex justify-center" >
-    <div class="max-w-3xl p-6">
-        @if (old("entity")=="courses")
-            @foreach($results as $result)
-                <div class="flex justify-between p-2 rounded border-4  bg-white border-black m-1">
-                    <span>
-                        <span class="font-bold">{{$result->{old("statistic")} }}</span>
-                        <span>{{  ", " . $result->departmentCode . "-" . $result->courseNumber . " (" .$result->courseTitle .")"}} </span>
-                    </span>
-                    <a class="text-red-800 font-bold mx-2" href="{{route("courses.index",['department' => $result->departmentCode, 'courseNumber' => $result->courseNumber])}}">&#8594</a>
-                </div>
-            @endforeach
-        @elseif(old("entity")=="professors")
-            @foreach($results as $result)
-                <div class="flex justify-between bg-white p-2 rounded border-4 border-black m-1">
-                    <span>
-                        <span class="font-bold">{{$result->{old("statistic")} }}</span>
-                        <span>{{ ", " . $result->firstName . " " . $result->lastName}} </span>
-                    </span>
-                   
-                    <a class="text-red-800 font-bold mx-2" href="{{route("professors.index",['professor_id' => $result->id])}}">&#8594</a>
-                </div>
-            @endforeach
-        @endif
-        
-    </div>
-   
+<div class="max-w-3xl p-6 mx-auto">
+    @if (old("entity")=="courses")
+        @foreach($results as $result)
+            <div class="flex justify-between p-2 rounded border-4  bg-white border-black m-1">
+                <span>
+                    <span class="font-bold">{{$result->{old("statistic")} }}</span>
+                    <span>{{  ", " . $result->departmentCode . "-" . $result->courseNumber . " (" .$result->courseTitle .")"}} </span>
+                </span>
+                <a class="text-red-800 font-bold mx-2" href="{{route("courses.index",['department' => $result->departmentCode, 'courseNumber' => $result->courseNumber])}}">&#8594</a>
+            </div>
+        @endforeach
+    @elseif(old("entity")=="professors")
+        @foreach($results as $result)
+            <div class="flex justify-between bg-white p-2 rounded border-4 border-black m-1">
+                <span>
+                    <span class="font-bold">{{$result->{old("statistic")} }}</span>
+                    <span>{{ ", " . $result->firstName . " " . $result->lastName}} </span>
+                </span>
+                
+                <a class="text-red-800 font-bold mx-2" href="{{route("professors.index",['professor_id' => $result->id])}}">&#8594</a>
+            </div>
+        @endforeach
+    @endif
+    
 </div>
-
 
 </x-header>
