@@ -11,7 +11,7 @@ class TrackUsage
     public static function log(Request $request, $page_name)
     {
         $usage_log = UsageLog::whereDate('created_at', now())->first();
-        $is_bot = IsBot::check($request->userAgent());
+        $is_bot = IsBot::check($request);
 
         switch ($page_name) {
             case 'course':
