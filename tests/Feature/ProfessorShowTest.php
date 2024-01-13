@@ -36,7 +36,10 @@ class ProfessorShowTest extends TestCase
 
         $this->get(route('professors.show', 2));
 
-        $this->assertSame(1, UsageLog::where('created_at', now())->first()->professor_views);
+        $this->assertDatabaseHas('usage_log', [
+            'created_at' => now()->toDateTimeString(),
+            'professor_views' => 1,
+        ]);
     }
 
 }

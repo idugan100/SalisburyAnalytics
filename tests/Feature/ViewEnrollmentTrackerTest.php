@@ -30,6 +30,9 @@ class ViewEnrollmentTracker extends TestCase
 
         $this->get(route('enrollment'));
 
-        $this->assertSame(1, UsageLog::where('created_at', now())->first()->report_views);
+        $this->assertDatabaseHas('usage_log', [
+            'created_at' => now()->toDateTimeString(),
+            'report_views' => 1,
+        ]);
     }
 }
