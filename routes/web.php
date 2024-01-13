@@ -10,7 +10,7 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\UsageController;
 use App\Http\Middleware\EnsureIsAdmin;
 use App\Http\Middleware\EnsureIsSubscribed;
-use App\services\TrackUsage;
+use App\Services\TrackUsage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 

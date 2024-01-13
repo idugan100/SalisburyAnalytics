@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use App\services\IsBot;
+use App\Services\IsBot;
 use PHPUnit\Framework\TestCase;
 
 class IsBotTest extends TestCase

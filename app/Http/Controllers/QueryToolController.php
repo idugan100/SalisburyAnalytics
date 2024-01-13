@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
-use App\services\TrackUsage;
+use App\Services\TrackUsage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 

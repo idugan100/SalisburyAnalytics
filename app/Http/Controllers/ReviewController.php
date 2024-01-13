@@ -6,7 +6,7 @@ use App\Http\Middleware\EnsureIsAdmin;
 use App\Http\Requests\StoreReviewRequest;
 use App\Models\Course;
 use App\Models\Review;
-use App\services\TrackUsage;
+use App\Services\TrackUsage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
