@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use App\Models\Professor;
 use App\Models\UsageLog;
-use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -27,7 +26,7 @@ class ProfessorShowTest extends TestCase
 
         $response->assertStatus(200);
     }
-    
+
     public function test_show_professor_usage_tracking()
     {
         UsageLog::factory()->create();
@@ -41,5 +40,4 @@ class ProfessorShowTest extends TestCase
             'professor_views' => 1,
         ]);
     }
-
 }

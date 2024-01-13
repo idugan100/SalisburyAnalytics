@@ -2,13 +2,14 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
 use App\Models\UsageLog;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class PremiumPageTest extends TestCase
 {
     use RefreshDatabase;
+
     /**
      * A basic feature test example.
      */
@@ -30,6 +31,6 @@ class PremiumPageTest extends TestCase
         $this->assertDatabaseHas('usage_log', [
             'created_at' => now()->toDateTimeString(),
             'about_views' => 1,
-        ]);    
+        ]);
     }
 }

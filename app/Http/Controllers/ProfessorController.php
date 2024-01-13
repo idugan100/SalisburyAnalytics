@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Charts\GradeDistribution;
 use App\Http\Middleware\EnsureIsAdmin;
-use App\Http\Middleware\EnsureIsSubscribed;
 use App\Http\Requests\StoreProfessorRequest;
 use App\Http\Requests\UpdateProfessorRequest;
 use App\Models\Course;

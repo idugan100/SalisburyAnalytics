@@ -38,6 +38,6 @@ class CourseShowTest extends TestCase
         $this->assertDatabaseHas('usage_log', [
             'created_at' => now()->toDateTimeString(),
             'course_views' => 1,
-        ]);  
+        ]);
     }
 }

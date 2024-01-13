@@ -2,14 +2,15 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
 use App\Models\Course;
 use App\Models\UsageLog;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class CourseTimesTest extends TestCase
 {
     use RefreshDatabase;
+
     /**
      * A basic feature test example.
      */
@@ -35,6 +36,6 @@ class CourseTimesTest extends TestCase
         $this->assertDatabaseHas('usage_log', [
             'created_at' => now()->toDateTimeString(),
             'course_views' => 1,
-        ]); 
+        ]);
     }
 }

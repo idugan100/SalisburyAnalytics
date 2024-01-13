@@ -33,6 +33,6 @@ class ViewAboutTest extends TestCase
         $this->assertDatabaseHas('usage_log', [
             'created_at' => now()->toDateTimeString(),
             'about_views' => 1,
-        ]);    
+        ]);
     }
 }
