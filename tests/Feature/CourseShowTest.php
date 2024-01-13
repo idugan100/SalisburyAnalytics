@@ -11,11 +11,6 @@ class CourseShowTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
     public function test_show_course_view()
     {
         UsageLog::factory()->create();
@@ -33,11 +28,11 @@ class CourseShowTest extends TestCase
 
         Course::factory()->create();
 
-        $response=$this->get(route('courses.show', 2));
+        $this->get(route('courses.show', 2));
 
         $this->assertDatabaseHas('usage_log', [
             'created_at' => now()->toDateTimeString(),
             'course_views' => 1,
-        ]);  
+        ]);
     }
 }

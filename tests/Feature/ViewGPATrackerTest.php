@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use App\Models\UsageLog;
-use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -11,11 +10,6 @@ class ViewGPATrackerTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
     public function test_gpa_tracker_view()
     {
         UsageLog::factory()->create();
@@ -24,6 +18,7 @@ class ViewGPATrackerTest extends TestCase
 
         $response->assertStatus(200);
     }
+
     public function test_gpa_tracker_usage_tracking()
     {
         UsageLog::factory()->create();

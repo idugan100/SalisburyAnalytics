@@ -4,13 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Charts\GradeDistribution;
 use App\Http\Middleware\EnsureIsAdmin;
-use App\Http\Middleware\EnsureIsSubscribed;
 use App\Http\Requests\StoreProfessorRequest;
 use App\Http\Requests\UpdateProfessorRequest;
 use App\Models\Course;
 use App\Models\Professor;
 use App\Models\Review;
-use App\services\TrackUsage;
+use App\Services\TrackUsage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;

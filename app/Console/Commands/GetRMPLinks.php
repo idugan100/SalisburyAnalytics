@@ -3,8 +3,8 @@
 namespace App\Console\Commands;
 
 use App\Models\Professor;
-use App\services\RmpLinkPopulationGoogleService;
-use App\services\RmpLinkPopulationSerpService;
+use App\Services\RmpLinkPopulationGoogleService;
+use App\Services\RmpLinkPopulationSerpService;
 use Illuminate\Console\Command;
 
 class GetRMPLinks extends Command

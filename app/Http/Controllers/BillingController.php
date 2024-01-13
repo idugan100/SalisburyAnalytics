@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\services\TrackUsage;
+use App\Services\TrackUsage;
 use Illuminate\Http\Request;
 
 class BillingController extends Controller

@@ -3,20 +3,14 @@
 namespace Tests\Feature;
 
 use App\Models\UsageLog;
-use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class ViewEnrollmentTracker extends TestCase
+class ViewEnrollmentTrackerTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
-    public function tes_enrollment_tracker_view()
+    public function test_enrollment_tracker_view()
     {
         UsageLog::factory()->create();
 
@@ -24,6 +18,7 @@ class ViewEnrollmentTracker extends TestCase
 
         $response->assertStatus(200);
     }
+
     public function test_show_course_usage_tracking()
     {
         UsageLog::factory()->create();
