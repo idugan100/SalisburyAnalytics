@@ -2,24 +2,21 @@
 
 namespace Tests\Feature;
 
+use Tests\TestCase;
 use App\Models\UsageLog;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
 
-class ViewAboutTest extends TestCase
+class PremiumPageTest extends TestCase
 {
     use RefreshDatabase;
-
     /**
      * A basic feature test example.
-     *
-     * @return void
      */
-    public function test_about_view()
+    public function test_premium_view(): void
     {
         UsageLog::factory()->create();
 
-        $response = $this->get('/about');
+        $response = $this->get('/premium');
 
         $response->assertStatus(200);
     }
@@ -28,7 +25,7 @@ class ViewAboutTest extends TestCase
     {
         UsageLog::factory()->create();
 
-        $this->get('/about');
+        $this->get('/premium');
 
         $this->assertDatabaseHas('usage_log', [
             'created_at' => now()->toDateTimeString(),
