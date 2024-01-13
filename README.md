@@ -6,11 +6,9 @@ Salisbury Analytics is a web application built to help the Student of Salisbury 
 
 ## Tech Stack
 
-- Front End: Blade, HTMX Larapex Charts
+- Front End: Blade, HTMX, Larapex Charts
 - Styling: Tailwind, FlowBite
 - Back End: PHP, Laravel
 - Database: MYSQL
 - Hosting: AWS EC2
-- Uptime Monitering: Status Cake
-
-
+- Uptime Monitoring: Status Cake
