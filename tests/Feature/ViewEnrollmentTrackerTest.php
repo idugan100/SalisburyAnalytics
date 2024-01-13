@@ -6,7 +6,7 @@ use App\Models\UsageLog;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class ViewEnrollmentTracker extends TestCase
+class ViewEnrollmentTrackerTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -15,7 +15,7 @@ class ViewEnrollmentTracker extends TestCase
      *
      * @return void
      */
-    public function tes_enrollment_tracker_view()
+    public function test_enrollment_tracker_view()
     {
         UsageLog::factory()->create();
 
