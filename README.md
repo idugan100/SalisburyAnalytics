@@ -10,5 +10,8 @@ Salisbury Analytics is a web application built to help the Student of Salisbury 
 - Styling: Tailwind, FlowBite
 - Back End: PHP, Laravel
 - Database: MYSQL
+- Testing: PHPUnit
+- Linting: Pint
 - Hosting: AWS EC2
 - Uptime Monitoring: Status Cake
+- Payments: Stripe
