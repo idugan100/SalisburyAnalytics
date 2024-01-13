@@ -28,8 +28,11 @@ class ViewCourseTest extends TestCase
     {
         UsageLog::factory()->create();
 
-        $response = $this->get('/courses');
+        $this->get('/courses');
 
-        $this->assertSame(1, UsageLog::where('created_at', now())->first()->course_views);
+        $this->assertDatabaseHas('usage_log', [
+            'created_at' => now()->toDateTimeString(),
+            'course_views' => 1,
+        ]);
     }
 }
