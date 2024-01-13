@@ -17,7 +17,7 @@ class ProfessorShowTest extends TestCase
      *
      * @return void
      */
-    public function test_show_professor_premium_redirect()
+    public function test_show_professor_view()
     {
         UsageLog::factory()->create();
 
@@ -25,42 +25,21 @@ class ProfessorShowTest extends TestCase
 
         $response = $this->get(route('professors.show', 1));
 
-        $response->assertStatus(302);
-        $response->assertRedirect('/premium');
-    }
-
-    public function test_show_professor_when_subscribed()
-    {
-        $user = User::factory()->create();
-        $user->stripe_id = env('TEST_CUSTOMER_STRIPE_ID');
-        $user->save();
-
-        UsageLog::factory()->create();
-
-        Professor::factory()->create();
-
-        $user->newSubscription('default', env('PLAN_ID'))->create();
-        $user->pm_type = 'visa';
-
-        $response = $this->actingAs($user)
-            ->get(route('professors.show', 2));
-
         $response->assertStatus(200);
     }
-
-    public function test_show_professor_checkout_redirect_if_logged_in_and_not_subscribed()
+    
+    public function test_show_professor_usage_tracking()
     {
-
-        $user = User::factory()->create();
         UsageLog::factory()->create();
 
         Professor::factory()->create();
 
-        $response = $this->actingAs($user)
-            ->get(route('professors.show', 3));
+        $this->get(route('professors.show', 2));
 
-        $response->assertStatus(302);
-        $response->assertRedirect('/product-checkout');
-
+        $this->assertDatabaseHas('usage_log', [
+            'created_at' => now()->toDateTimeString(),
+            'professor_views' => 1,
+        ]);
     }
+
 }

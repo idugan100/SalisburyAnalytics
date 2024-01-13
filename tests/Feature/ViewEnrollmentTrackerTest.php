@@ -16,44 +16,23 @@ class ViewEnrollmentTracker extends TestCase
      *
      * @return void
      */
-    public function test_enrollment_tracker_premium_redirect()
+    public function tes_enrollment_tracker_view()
     {
         UsageLog::factory()->create();
 
-        $response = $this->get('/enrollment_over_time');
-
-        $response->assertStatus(302);
-        $response->assertRedirect('/premium');
-    }
-
-    public function test_show_enrollment_tracker_when_subscribed()
-    {
-        $user = User::factory()->create();
-        $user->stripe_id = env('TEST_CUSTOMER_STRIPE_ID');
-        $user->save();
-
-        UsageLog::factory()->create();
-
-        $user->newSubscription('default', env('PLAN_ID'))->create();
-        $user->pm_type = 'visa';
-
-        $response = $this->actingAs($user)
-            ->get(route('enrollment'));
+        $response = $this->get(route('enrollment'));
 
         $response->assertStatus(200);
     }
-
-    public function test_show_enrollment_tracker_checkout_redirect_if_logged_in_and_not_subscribed()
+    public function test_show_course_usage_tracking()
     {
-
-        $user = User::factory()->create();
         UsageLog::factory()->create();
 
-        $response = $this->actingAs($user)
-            ->get(route('enrollment'));
+        $this->get(route('enrollment'));
 
-        $response->assertStatus(302);
-        $response->assertRedirect('/product-checkout');
-
+        $this->assertDatabaseHas('usage_log', [
+            'created_at' => now()->toDateTimeString(),
+            'report_views' => 1,
+        ]);
     }
 }

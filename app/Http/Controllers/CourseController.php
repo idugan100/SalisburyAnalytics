@@ -17,7 +17,6 @@ class CourseController extends Controller
     public function __construct()
     {
         $this->middleware('auth', ['except' => ['index', 'show', 'course_options_by_department', 'times']]);
-        $this->middleware(EnsureIsSubscribed::class, ['only' => ['show']]);
         $this->middleware(EnsureIsAdmin::class, ['only' => ['create', 'store', 'edit', 'update', 'destroy']]);
 
     }

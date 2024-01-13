@@ -68,15 +68,13 @@ Route::middleware(EnsureIsAdmin::class)->group(function () {
 });
 
 Route::middleware((EnsureIsSubscribed::class))->group(function () {
-    //grade inflation report
-    Route::get('/gpa_over_time', [GpaOverTimeController::class, 'index'])->name('gpa');
-
-    //enrollment report
-    Route::get('/enrollment_over_time', [EnrollmentOverTimeController::class, 'index'])->name('enrollment');
-
     //query tool
     Route::get('/query_tool', [QueryToolController::class, 'index'])->name('qtool');
 });
+
+//report routes
+Route::get('/gpa_over_time', [GpaOverTimeController::class, 'index'])->name('gpa');
+Route::get('/enrollment_over_time', [EnrollmentOverTimeController::class, 'index'])->name('enrollment');
 
 //stripe
 Route::get('/billing-portal', [BillingController::class, 'billing_portal'])->middleware('auth');
