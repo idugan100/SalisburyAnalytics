@@ -2,9 +2,9 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
 use App\Models\UsageLog;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class PrivacyPolicyViewTest extends TestCase
 {
@@ -23,7 +23,7 @@ class PrivacyPolicyViewTest extends TestCase
     {
         UsageLog::factory()->create();
 
-            $this->get('/privacy');
+        $this->get('/privacy');
 
         $this->assertDatabaseHas('usage_log', [
             'created_at' => now()->toDateTimeString(),
