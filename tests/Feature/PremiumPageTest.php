@@ -10,9 +10,6 @@ class PremiumPageTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * A basic feature test example.
-     */
     public function test_premium_view(): void
     {
         UsageLog::factory()->create();

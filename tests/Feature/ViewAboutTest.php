@@ -10,11 +10,6 @@ class ViewAboutTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
     public function test_about_view()
     {
         UsageLog::factory()->create();

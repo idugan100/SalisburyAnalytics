@@ -11,11 +11,6 @@ class QueryToolTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
     public function test_query_tool_premium_redirect()
     {
         UsageLog::factory()->create();

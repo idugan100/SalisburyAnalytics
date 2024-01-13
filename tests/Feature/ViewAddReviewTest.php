@@ -10,11 +10,6 @@ class ViewAddReviewTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
     public function test_create_review_view()
     {
         UsageLog::factory()->create();

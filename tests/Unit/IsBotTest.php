@@ -7,9 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 class IsBotTest extends TestCase
 {
-    /**
-     * A basic unit test example.
-     */
     public function test_find_bot_by_user_agent(): void
     {
         $isBot = new IsBot();

@@ -11,11 +11,6 @@ class ProfessorShowTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
     public function test_show_professor_view()
     {
         UsageLog::factory()->create();

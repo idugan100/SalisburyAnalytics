@@ -10,11 +10,6 @@ class ViewEnrollmentTrackerTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
     public function test_enrollment_tracker_view()
     {
         UsageLog::factory()->create();

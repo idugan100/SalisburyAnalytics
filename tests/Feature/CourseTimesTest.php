@@ -11,9 +11,6 @@ class CourseTimesTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * A basic feature test example.
-     */
     public function test_course_times_view(): void
     {
         UsageLog::factory()->create();

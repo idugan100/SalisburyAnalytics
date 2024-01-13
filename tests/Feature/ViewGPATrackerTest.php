@@ -10,11 +10,6 @@ class ViewGPATrackerTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
     public function test_gpa_tracker_view()
     {
         UsageLog::factory()->create();
