@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Http;
 
 class RmpLinkPopulationSerpService
 {
-    public function getLinks(Professor $professor) :void
+    public function getLinks(Professor $professor): void
     {
 
         try {

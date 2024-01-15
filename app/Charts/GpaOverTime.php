@@ -21,7 +21,7 @@ class GpaOverTime
         $this->chart = $chart;
     }
 
-    public function build($gpa_by_semester_points, string $department="All"): \ArielMejiaDev\LarapexCharts\LineChart
+    public function build($gpa_by_semester_points, ?string $department = 'All'): \ArielMejiaDev\LarapexCharts\LineChart
     {
         $gpa_array = [];
 

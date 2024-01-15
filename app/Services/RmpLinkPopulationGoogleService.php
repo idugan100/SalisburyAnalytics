@@ -8,9 +8,9 @@ use Illuminate\Support\Facades\Http;
 
 class RmpLinkPopulationGoogleService
 {
-    public function getLinks(Professor $professor):void
+    public function getLinks(Professor $professor): void
     {
-        $decoded_response=[];
+        $decoded_response = [];
         try {
 
             $response = Http::get('https://www.googleapis.com/customsearch/v1/siterestrict', [
@@ -18,7 +18,7 @@ class RmpLinkPopulationGoogleService
                 'cx' => env('GOOGLE_CUSTOM_SEARCH_ENGINE_ID'),
                 'q' => $professor->firstName.' '.$professor->lastName.' Salisbury University',
             ]);
-            $decoded_response=json_decode($response->body());
+            $decoded_response = json_decode($response->body());
 
             if ($decoded_response->searchInformation->totalResults > 0) {
                 $professor->rmp_link = $decoded_response->items[0]->link;

@@ -23,7 +23,7 @@ class ProfessorController extends Controller
         $this->middleware(EnsureIsAdmin::class, ['only' => ['create', 'store', 'edit', 'update', 'destroy']]);
     }
 
-    public function index(Request $request) :View
+    public function index(Request $request): View
     {
         TrackUsage::log($request, 'professor');
 
@@ -81,7 +81,7 @@ class ProfessorController extends Controller
         );
     }
 
-    public function create() :View
+    public function create(): View
     {
         return view('professors.create');
     }

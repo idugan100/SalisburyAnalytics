@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class TrackUsage
 {
-    public static function log(Request $request, string $page_name) :void
+    public static function log(Request $request, string $page_name): void
     {
         $usage_log = UsageLog::whereDate('created_at', now())->first();
         $is_bot = IsBot::check($request->ip(), $request->userAgent());

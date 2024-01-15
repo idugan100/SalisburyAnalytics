@@ -14,7 +14,7 @@ class UsageController extends Controller
         $this->middleware('auth');
     }
 
-    public function index() : View
+    public function index(): View
     {
         $usage_logs = UsageLog::latest()->paginate(20);
         $total_bot_views = DB::table('usage_log')
@@ -33,7 +33,7 @@ class UsageController extends Controller
         return view('usage.index', compact('usage_logs', 'total_bot_views', 'total_human_views', 'unique_visitors', 'registered_users'));
     }
 
-    public function details(UsageLog $usagelog) :View
+    public function details(UsageLog $usagelog): View
     {
         $user_details = $usagelog->details()->get();
 

@@ -53,7 +53,6 @@ class CourseController extends Controller
         return view('courses.create');
     }
 
-
     public function store(StoreCourseRequest $request): RedirectResponse
     {
         $validated = $request->validate([
