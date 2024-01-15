@@ -11,6 +11,7 @@ use App\Models\Professor;
 use App\Models\Review;
 use App\Services\TrackUsage;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
@@ -86,12 +87,7 @@ class ProfessorController extends Controller
         return view('professors.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreProfessorRequest $request)
+    public function store(StoreProfessorRequest $request): RedirectResponse
     {
         $validated = $request->validate([
             'firstName' => 'required',
@@ -151,12 +147,7 @@ class ProfessorController extends Controller
         return view('professors.edit', ['professor' => $professor]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateProfessorRequest $request, Professor $professor)
+    public function update(UpdateProfessorRequest $request, Professor $professor): RedirectResponse
     {
         $validated = $request->validate([
             'firstName' => 'required',
@@ -169,12 +160,7 @@ class ProfessorController extends Controller
         return redirect(route('professors.index'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Professor $professor)
+    public function destroy(Professor $professor): RedirectResponse
     {
         $professor->delete();
 

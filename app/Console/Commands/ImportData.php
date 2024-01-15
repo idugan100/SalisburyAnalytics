@@ -78,6 +78,8 @@ class ImportData extends Command
                 return $this->rowToArray($row);
             }
         }
+
+        return [];
     }
 
     private function rowToArray($row): array
@@ -147,7 +149,7 @@ class ImportData extends Command
             ->get();
         if (count($line_items) == 0) {
             $date_array = explode(' ', $data[0]);
-            $year = 2000 + $date_array[1];
+            $year = 2000 + (int) $date_array[1];
             if ($date_array[0] == 'Spr' || $date_array[0] == 'Spring') {
                 $semester = 'Spring';
             } else {

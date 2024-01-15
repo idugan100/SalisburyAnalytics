@@ -59,12 +59,7 @@ class ReviewController extends Controller
         return view('reviews.public.create-options', compact('professorList', 'courseList'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreReviewRequest $request)
+    public function store(StoreReviewRequest $request): RedirectResponse
     {
         //validation
 
@@ -84,12 +79,7 @@ class ReviewController extends Controller
         return redirect(route('reviews.index'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Review $review)
+    public function destroy(Review $review): RedirectResponse
     {
         $review->delete();
 
