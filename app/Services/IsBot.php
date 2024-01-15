@@ -4,7 +4,7 @@ namespace App\Services;
 
 class IsBot
 {
-    public static function check(string $ip, string $user_agent)
+    public static function check(string $ip, string $user_agent) :bool
     {
         $user_agent_result = preg_match('/.*bot.*|.*python-requests.*|.*http.*|.*node-fetch.*|.*postman.*|.*curl.*|.*Bytespider.*|.*Status Cake Uptime Monitoring.*/', $user_agent);
         $ip_result = preg_match(

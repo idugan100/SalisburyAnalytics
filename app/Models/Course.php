@@ -19,6 +19,6 @@ class Course extends Model
 
     public function approved_reviews()
     {
-        return $this->hasMany(Review::class)->where('approved_flag', ReviewController::APPROVED_FLAG);
+        return $this->reviews()->where('approved_flag', ReviewController::APPROVED_FLAG);
     }
 }

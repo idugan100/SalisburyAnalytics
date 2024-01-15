@@ -10,6 +10,7 @@ use App\Models\Course;
 use App\Models\Professor;
 use App\Models\Review;
 use App\Services\TrackUsage;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
@@ -22,12 +23,7 @@ class ProfessorController extends Controller
         $this->middleware(EnsureIsAdmin::class, ['only' => ['create', 'store', 'edit', 'update', 'destroy']]);
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index(Request $request) :View
     {
         TrackUsage::log($request, 'professor');
 
@@ -70,7 +66,7 @@ class ProfessorController extends Controller
         $message = null;
         if ($request->department) {
             if ($request->professor_id) {
-                $message = 'showing search results for '.($professors[0]->firstName.' '.$professors[0]->lastName ?? '').' ('.($request->department ?? '').')';
+                $message = 'showing search results for '.($professors[0]->firstName.' '.$professors[0]->lastName).' ('.($request->department ?? '').')';
             } else {
                 $message = 'showing search results for '.($request->department ?? '');
             }
@@ -85,12 +81,7 @@ class ProfessorController extends Controller
         );
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function create() :View
     {
         return view('professors.create');
     }
@@ -113,12 +104,7 @@ class ProfessorController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, Professor $professor, GradeDistribution $chart)
+    public function show(Request $request, Professor $professor, GradeDistribution $chart): view
     {
         TrackUsage::log($request, 'professor');
         $request->flash();
@@ -160,12 +146,7 @@ class ProfessorController extends Controller
             'professor' => $professor]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Professor $professor)
+    public function edit(Professor $professor): View
     {
         return view('professors.edit', ['professor' => $professor]);
     }
@@ -200,7 +181,7 @@ class ProfessorController extends Controller
         return redirect(route('professors.index'));
     }
 
-    public function professor_options_by_department(Request $request)
+    public function professor_options_by_department(Request $request): View
     {
 
         $professors = DB::table('courses_x_professors_with_grades')

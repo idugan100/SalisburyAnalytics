@@ -7,6 +7,8 @@ use App\Http\Requests\StoreReviewRequest;
 use App\Models\Course;
 use App\Models\Review;
 use App\Services\TrackUsage;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -24,12 +26,7 @@ class ReviewController extends Controller
         $this->middleware(EnsureIsAdmin::class, ['only' => ['destroy']]);
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index(Request $request): View
     {
         TrackUsage::log($request, 'review');
 
@@ -38,12 +35,7 @@ class ReviewController extends Controller
         return view('reviews.public.index', ['reviews' => $reviews]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create(Request $request)
+    public function create(Request $request): View
     {
         TrackUsage::log($request, 'review');
 
@@ -52,7 +44,7 @@ class ReviewController extends Controller
         return view('reviews.public.create', ['departmentList' => $departmentList]);
     }
 
-    public function review_options_by_department(Request $request)
+    public function review_options_by_department(Request $request): View
     {
         $professorList = DB::table('courses_x_professors_with_grades')
             ->join('courses', 'course_id', 'courses.id')
@@ -104,7 +96,7 @@ class ReviewController extends Controller
         return back();
     }
 
-    public function approve(Review $review)
+    public function approve(Review $review): RedirectResponse
     {
         $review->approved_flag = self::APPROVED_FLAG;
         $review->save();
@@ -112,7 +104,7 @@ class ReviewController extends Controller
         return redirect(route('reviews.processing'));
     }
 
-    public function reject(Review $review)
+    public function reject(Review $review): RedirectResponse
     {
         $review->approved_flag = self::REJECTED_FLAG;
         $review->save();
@@ -120,7 +112,7 @@ class ReviewController extends Controller
         return redirect(route('reviews.processing'));
     }
 
-    public function reprocess(Review $review, $origin)
+    public function reprocess(Review $review, $origin): RedirectResponse
     {
         $review->approved_flag = self::PROCESSING_FLAG;
         $review->save();
@@ -132,21 +124,21 @@ class ReviewController extends Controller
 
     }
 
-    public function rejected()
+    public function rejected(): View
     {
         $reviews = Review::where('approved_flag', self::REJECTED_FLAG)->latest('updated_at')->paginate(10);
 
         return view('reviews.admin.rejected_reviews', compact('reviews'));
     }
 
-    public function approved()
+    public function approved(): View
     {
         $reviews = Review::where('approved_flag', self::APPROVED_FLAG)->latest('updated_at')->paginate(10);
 
         return view('reviews.admin.approved', compact('reviews'));
     }
 
-    public function processing()
+    public function processing(): View
     {
         $reviews = Review::where('approved_flag', self::PROCESSING_FLAG)->latest('updated_at')->paginate(10);
 

@@ -70,7 +70,7 @@ class ImportData extends Command
 
     }
 
-    private function getHeaders($reader)
+    private function getHeaders($reader):array
     {
 
         foreach ($reader->getSheetIterator() as $sheet) {
@@ -80,7 +80,7 @@ class ImportData extends Command
         }
     }
 
-    private function rowToArray($row)
+    private function rowToArray($row):array
     {
         $data_array = [];
         foreach ($row->getCells() as $cell) {
@@ -90,7 +90,10 @@ class ImportData extends Command
         return $data_array;
     }
 
-    private function insertCourse($data)
+    /**
+    * @param array<string> $data
+    */
+    private function insertCourse(array $data):int
     {
         $course = DB::table('courses')->where('courseNumber', $data[2])->where('departmentCode', $data[1])->first();
         if ($course) {
@@ -104,7 +107,7 @@ class ImportData extends Command
             $new_course->courseTitle = $course_title;
             $new_course->description = $course_desciption;
             $new_course->departmentCode = $data[1];
-            $new_course->courseNumber = $data[2];
+            $new_course->courseNumber = (int) $data[2];
             $new_course->save();
 
             echo 'inserting course '.$data[1].'-'.$data[2]."\n";
@@ -114,7 +117,7 @@ class ImportData extends Command
 
     }
 
-    private function insertProfessor($data)
+    private function insertProfessor($data):int
     {
         $name_array = explode(',', $data[3]);
         $professor = Professor::where('lastName', $name_array[0])->where('firstName', $name_array[1])->first();

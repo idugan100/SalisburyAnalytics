@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Services\TrackUsage;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class QueryToolController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request) :View
     {
         TrackUsage::log($request, 'report');
         $request->flash();
@@ -26,7 +27,8 @@ class QueryToolController extends Controller
             ]);
     }
 
-    private function getData($request)
+ 
+    private function getData(Request $request) :array
     {
         if ($request->entity == 'courses') {
             if (isset($request->department_filter)) {
@@ -57,6 +59,9 @@ class QueryToolController extends Controller
                     ->limit($request->quantity)
                     ->get()->toArray();
             }
+        }
+        else{
+            return [];
         }
     }
 }
