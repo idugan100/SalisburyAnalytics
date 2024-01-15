@@ -44,7 +44,7 @@ class ProfessorController extends Controller
             $professors = Professor::paginate(8);
         }
 
-        foreach ($professors as $professor) {
+        foreach ($professors->items() as $professor) {
             $cache_key = 'professor:'.$professor->id.':topcourses';
             if (Cache::has($cache_key)) {
                 $professor->topCourses = Cache::get($cache_key);
