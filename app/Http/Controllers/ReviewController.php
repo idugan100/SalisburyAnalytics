@@ -102,7 +102,7 @@ class ReviewController extends Controller
         return redirect(route('reviews.processing'));
     }
 
-    public function reprocess(Review $review, $origin): RedirectResponse
+    public function reprocess(Review $review, string $origin): RedirectResponse
     {
         $review->approved_flag = self::PROCESSING_FLAG;
         $review->save();

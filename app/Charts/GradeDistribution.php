@@ -13,8 +13,9 @@ class GradeDistribution
     {
         $this->chart = $chart;
     }
+
     /**
-     * @param array<mixed> $distribution
+     * @param  array<mixed>  $distribution
      */
     public function build($distribution): LarapexChart
     {

@@ -15,7 +15,7 @@ class EnsureIsAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->user()->email != env('ADMIN_EMAIL')) {
+        if (auth()->user()->email ?? env('ADMIN_EMAIL') != '') {
             return redirect(route('courses.index'));
         }
 

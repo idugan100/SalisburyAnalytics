@@ -13,10 +13,11 @@ class EnrollmentOverTime
     {
         $this->chart = $chart;
     }
+
     /**
-     * @param array<mixed> $enrollment_by_semester_points
+     * @param  array<mixed>  $enrollment_by_semester_points
      */
-    public function build( $enrollment_by_semester_points): LarapexChart
+    public function build($enrollment_by_semester_points): LarapexChart
     {
         $enrollment_array = [];
         $semester_array = [];

@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Services\TrackUsage;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class BillingController extends Controller
 {
-    public function billing_portal(Request $request)
+    public function billing_portal(Request $request): RedirectResponse
     {
         TrackUsage::log($request, 'about');
 
@@ -24,7 +25,7 @@ class BillingController extends Controller
         ]);
     }
 
-    public function create_subscription(Request $request)
+    public function create_subscription(Request $request): RedirectResponse
     {
         $request->user()->newSubscription(
             'default', env('PLAN_ID')

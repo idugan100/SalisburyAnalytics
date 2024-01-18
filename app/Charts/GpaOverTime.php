@@ -20,8 +20,8 @@ class GpaOverTime
     {
         $this->chart = $chart;
     }
-    /** @param array<mixed> $gpa_by_semester_points */
 
+    /** @param  array<mixed>  $gpa_by_semester_points */
     public function build($gpa_by_semester_points, ?string $department = 'All'): LarapexChart
     {
         $gpa_array = [];

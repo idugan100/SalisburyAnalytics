@@ -91,7 +91,7 @@ class CourseController extends Controller
         }
         //build chart
 
-        $grade_distribution_chart = $chart->build($query->groupBy('grade')->get());
+        $grade_distribution_chart = $chart->build($query->groupBy('grade')->get()->toArray());
 
         //get data for options
         $semesters = DB::table('courses_x_professors_with_grades')

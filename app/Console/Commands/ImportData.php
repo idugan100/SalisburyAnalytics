@@ -4,7 +4,9 @@ namespace App\Console\Commands;
 
 use App\Models\Course;
 use App\Models\Professor;
+use Box\Spout\Common\Entity\Row;
 use Box\Spout\Reader\Common\Creator\ReaderEntityFactory;
+use Box\Spout\Reader\ReaderInterface;
 use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
@@ -70,7 +72,10 @@ class ImportData extends Command
 
     }
 
-    private function getHeaders($reader): array
+    /**
+     * @return array<string>
+     */
+    private function getHeaders(ReaderInterface $reader): array
     {
 
         foreach ($reader->getSheetIterator() as $sheet) {
@@ -82,7 +87,10 @@ class ImportData extends Command
         return [];
     }
 
-    private function rowToArray($row): array
+    /**
+     * @return array<string>
+     */
+    private function rowToArray(Row $row)
     {
         $data_array = [];
         foreach ($row->getCells() as $cell) {
@@ -119,6 +127,9 @@ class ImportData extends Command
 
     }
 
+    /**
+     * @param  array<string>  $data
+     */
     private function insertProfessor($data): int
     {
         $name_array = explode(',', $data[3]);
@@ -138,7 +149,10 @@ class ImportData extends Command
         }
     }
 
-    private function createGradeLineItem($course_ID, $professor_ID, $data)
+    /**
+     * @param  array<string>  $data
+     */
+    private function createGradeLineItem(int $course_ID, int $professor_ID, $data): void
     {
         $line_items = DB::table('courses_x_professors_with_grades')
             ->where('course_ID', $course_ID)

@@ -27,7 +27,10 @@ class QueryToolController extends Controller
             ]);
     }
 
-    private function getData(Request $request): array
+    /**
+     * @return array<mixed>
+     */
+    private function getData(Request $request)
     {
         if ($request->entity == 'courses') {
             if (isset($request->department_filter)) {

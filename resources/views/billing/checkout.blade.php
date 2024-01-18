@@ -28,6 +28,9 @@
 
                         get premium :) 
                     </button>
+                    <div class="m-1">
+                        already have a payment method? reactivate your subscription <a href="/billing-portal" class="text-red-800 font-bold underline"> here</a>
+                    </div>
                 </form>
             </div>
         </div>
