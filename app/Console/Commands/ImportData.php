@@ -4,7 +4,9 @@ namespace App\Console\Commands;
 
 use App\Models\Course;
 use App\Models\Professor;
+use Box\Spout\Common\Entity\Row;
 use Box\Spout\Reader\Common\Creator\ReaderEntityFactory;
+use Box\Spout\Reader\ReaderInterface;
 use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
@@ -70,7 +72,10 @@ class ImportData extends Command
 
     }
 
-    private function getHeaders($reader)
+    /**
+     * @return array<string>
+     */
+    private function getHeaders(ReaderInterface $reader): array
     {
 
         foreach ($reader->getSheetIterator() as $sheet) {
@@ -78,9 +83,14 @@ class ImportData extends Command
                 return $this->rowToArray($row);
             }
         }
+
+        return [];
     }
 
-    private function rowToArray($row)
+    /**
+     * @return array<string>
+     */
+    private function rowToArray(Row $row)
     {
         $data_array = [];
         foreach ($row->getCells() as $cell) {
@@ -90,7 +100,10 @@ class ImportData extends Command
         return $data_array;
     }
 
-    private function insertCourse($data)
+    /**
+     * @param  array<string>  $data
+     */
+    private function insertCourse(array $data): int
     {
         $course = DB::table('courses')->where('courseNumber', $data[2])->where('departmentCode', $data[1])->first();
         if ($course) {
@@ -104,7 +117,7 @@ class ImportData extends Command
             $new_course->courseTitle = $course_title;
             $new_course->description = $course_desciption;
             $new_course->departmentCode = $data[1];
-            $new_course->courseNumber = $data[2];
+            $new_course->courseNumber = (int) $data[2];
             $new_course->save();
 
             echo 'inserting course '.$data[1].'-'.$data[2]."\n";
@@ -114,7 +127,10 @@ class ImportData extends Command
 
     }
 
-    private function insertProfessor($data)
+    /**
+     * @param  array<string>  $data
+     */
+    private function insertProfessor($data): int
     {
         $name_array = explode(',', $data[3]);
         $professor = Professor::where('lastName', $name_array[0])->where('firstName', $name_array[1])->first();
@@ -133,7 +149,10 @@ class ImportData extends Command
         }
     }
 
-    private function createGradeLineItem($course_ID, $professor_ID, $data)
+    /**
+     * @param  array<string>  $data
+     */
+    private function createGradeLineItem(int $course_ID, int $professor_ID, $data): void
     {
         $line_items = DB::table('courses_x_professors_with_grades')
             ->where('course_ID', $course_ID)
@@ -144,7 +163,7 @@ class ImportData extends Command
             ->get();
         if (count($line_items) == 0) {
             $date_array = explode(' ', $data[0]);
-            $year = 2000 + $date_array[1];
+            $year = 2000 + (int) $date_array[1];
             if ($date_array[0] == 'Spr' || $date_array[0] == 'Spring') {
                 $semester = 'Spring';
             } else {

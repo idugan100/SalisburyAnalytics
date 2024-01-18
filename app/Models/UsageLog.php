@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class UsageLog extends Model
 {
@@ -13,6 +14,7 @@ class UsageLog extends Model
 
     protected $table = 'usage_log';
 
+    /** @return HasMany<UserDetail> */
     public function details()
     {
         return $this->hasMany(UserDetail::class, 'usage_log_id', 'id');

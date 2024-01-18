@@ -50,26 +50,26 @@ class calculate_professor_stats extends Command
             $professor->avg_gpa = (float) $avg_gpa[0]->Course_GPA;
 
             $total_enrollment = DB::select("select sum(quantity) as total from courses_x_professors_with_grades where professor_ID=? and grade in ('A','B','C','D','F','W');", [$professor->id]);
-            $professor->total_enrollment = (float) $total_enrollment[0]->total;
+            $professor->total_enrollment = (int) $total_enrollment[0]->total;
 
             if ($professor->total_enrollment != 0) {
                 $a_qty = DB::select("select sum(quantity) as total from courses_x_professors_with_grades where professor_ID=? and grade ='A';", [$professor->id]);
-                $professor->A_Rate = ceil(((float) $a_qty[0]->total * 100) / $professor->total_enrollment);
+                $professor->A_rate = ceil(((float) $a_qty[0]->total * 100) / $professor->total_enrollment);
 
                 $b_qty = DB::select("select sum(quantity) as total from courses_x_professors_with_grades where professor_ID=? and grade ='B';", [$professor->id]);
-                $professor->B_Rate = ceil(((float) $b_qty[0]->total * 100) / $professor->total_enrollment);
+                $professor->B_rate = ceil(((float) $b_qty[0]->total * 100) / $professor->total_enrollment);
 
                 $c_qty = DB::select("select sum(quantity) as total from courses_x_professors_with_grades where professor_ID=? and grade ='C';", [$professor->id]);
-                $professor->C_Rate = ceil(((float) $c_qty[0]->total * 100) / $professor->total_enrollment);
+                $professor->C_rate = ceil(((float) $c_qty[0]->total * 100) / $professor->total_enrollment);
 
                 $d_qty = DB::select("select sum(quantity) as total from courses_x_professors_with_grades where professor_ID=? and grade ='D';", [$professor->id]);
-                $professor->D_Rate = ceil(((float) $d_qty[0]->total * 100) / $professor->total_enrollment);
+                $professor->D_rate = ceil(((float) $d_qty[0]->total * 100) / $professor->total_enrollment);
 
                 $f_qty = DB::select("select sum(quantity) as total from courses_x_professors_with_grades where professor_ID=? and grade ='F';", [$professor->id]);
-                $professor->F_Rate = ceil(((float) $f_qty[0]->total * 100) / $professor->total_enrollment);
+                $professor->F_rate = ceil(((float) $f_qty[0]->total * 100) / $professor->total_enrollment);
 
                 $w_qty = DB::select("select sum(quantity) as total from courses_x_professors_with_grades where professor_ID=? and grade ='W';", [$professor->id]);
-                $professor->W_Rate = ceil(((float) $w_qty[0]->total * 100) / $professor->total_enrollment);
+                $professor->W_rate = ceil(((float) $w_qty[0]->total * 100) / $professor->total_enrollment);
             }
             $professor->save();
             $bar->advance();

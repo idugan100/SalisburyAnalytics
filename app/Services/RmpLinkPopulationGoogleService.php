@@ -8,9 +8,9 @@ use Illuminate\Support\Facades\Http;
 
 class RmpLinkPopulationGoogleService
 {
-    public function getLinks(Professor $professor)
+    public function getLinks(Professor $professor): void
     {
-
+        $decoded_response = [];
         try {
 
             $response = Http::get('https://www.googleapis.com/customsearch/v1/siterestrict', [

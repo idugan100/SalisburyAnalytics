@@ -8,6 +8,8 @@ use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
 use App\Models\Course;
 use App\Services\TrackUsage;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -20,12 +22,7 @@ class CourseController extends Controller
 
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request, GradeDistribution $chart)
+    public function index(Request $request): View
     {
         TrackUsage::log($request, 'course');
 
@@ -51,22 +48,12 @@ class CourseController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function create(): View
     {
         return view('courses.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreCourseRequest $request)
+    public function store(StoreCourseRequest $request): RedirectResponse
     {
         $validated = $request->validate([
             'courseTitle' => 'required',
@@ -84,12 +71,7 @@ class CourseController extends Controller
         return redirect(route('courses.index'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, Course $course, GradeDistribution $chart)
+    public function show(Request $request, Course $course, GradeDistribution $chart): view
     {
         TrackUsage::log($request, 'course');
         $request->flash();
@@ -109,7 +91,7 @@ class CourseController extends Controller
         }
         //build chart
 
-        $grade_distribution_chart = $chart->build($query->groupBy('grade')->get());
+        $grade_distribution_chart = $chart->build($query->groupBy('grade')->get()->toArray());
 
         //get data for options
         $semesters = DB::table('courses_x_professors_with_grades')
@@ -131,23 +113,13 @@ class CourseController extends Controller
             'course' => $course]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Course $course)
+    public function edit(Course $course): View
     {
 
         return view('courses.edit', ['course' => $course]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateCourseRequest $request, Course $course)
+    public function update(UpdateCourseRequest $request, Course $course): RedirectResponse
     {
         $validated = $request->validate([
             'courseTitle' => 'required',
@@ -165,12 +137,7 @@ class CourseController extends Controller
         return redirect(route('courses.index'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Course $course)
+    public function destroy(Course $course): RedirectResponse
     {
         $course->delete();
 
@@ -178,7 +145,7 @@ class CourseController extends Controller
 
     }
 
-    public function course_options_by_department(Request $request)
+    public function course_options_by_department(Request $request): View
     {
 
         $courses = Course::where('departmentCode', $request->department)->orderBy('courseNumber')->get();
@@ -186,7 +153,7 @@ class CourseController extends Controller
         return view('courses.search-courses', compact('courses'));
     }
 
-    public function times(Request $request, Course $course)
+    public function times(Request $request, Course $course): View
     {
         TrackUsage::log($request, 'course');
 

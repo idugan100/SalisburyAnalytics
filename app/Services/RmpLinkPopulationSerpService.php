@@ -2,12 +2,13 @@
 
 namespace App\Services;
 
+use App\Models\Professor;
 use Exception;
 use Illuminate\Support\Facades\Http;
 
 class RmpLinkPopulationSerpService
 {
-    public function getLinks($professor)
+    public function getLinks(Professor $professor): void
     {
 
         try {

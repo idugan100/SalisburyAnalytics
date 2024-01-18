@@ -6,6 +6,7 @@ use ArielMejiaDev\LarapexCharts\LarapexChart;
 
 class GradeDistribution
 {
+    /** @var LarapexChart */
     protected $chart;
 
     public function __construct(LarapexChart $chart)
@@ -13,7 +14,10 @@ class GradeDistribution
         $this->chart = $chart;
     }
 
-    public function build($distribution): \ArielMejiaDev\LarapexCharts\BarChart
+    /**
+     * @param  array<mixed>  $distribution
+     */
+    public function build($distribution): LarapexChart
     {
         $grade_array = ['W', 'F', 'D', 'C', 'B', 'A'];
         $total_array = [];
@@ -31,8 +35,8 @@ class GradeDistribution
         }
 
         return $this->chart->barChart()
-            ->setTitle('Grade Distribution')
             ->addData('Total given', $total_array)
+            ->setTitle('Grade Distribution')
             ->setXAxis($grade_array)
             ->setHeight(250)
             ->setColors(['#8b0000']);

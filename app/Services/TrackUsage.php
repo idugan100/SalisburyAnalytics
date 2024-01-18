@@ -5,13 +5,21 @@ namespace App\Services;
 use App\Models\UsageLog;
 use App\Models\UserDetail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class TrackUsage
 {
-    public static function log(Request $request, $page_name)
+    public static function log(Request $request, string $page_name): void
     {
         $usage_log = UsageLog::whereDate('created_at', now())->first();
-        $is_bot = IsBot::check($request->ip(), $request->userAgent());
+
+        if (! $usage_log) {
+            Log::error('unable to find usage log so cannot record user details');
+
+            return;
+        }
+
+        $is_bot = IsBot::check($request->ip() ?? '', $request->userAgent() ?? '');
 
         switch ($page_name) {
             case 'course':
@@ -35,8 +43,8 @@ class TrackUsage
 
         if (! $is_bot) {
             $user_detail = new UserDetail();
-            $user_detail->user_agent = $request->userAgent();
-            $user_detail->ip_address = $request->ip();
+            $user_detail->user_agent = $request->userAgent() ?? '';
+            $user_detail->ip_address = $request->ip() ?? '';
             $user_detail->page_visited = $page_name;
             $user_detail->usage_log_id = $usage_log->id;
             $user_detail->save();
