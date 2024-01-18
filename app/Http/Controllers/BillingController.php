@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\TrackUsage;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 class BillingController extends Controller
@@ -14,7 +15,7 @@ class BillingController extends Controller
         return $request->user()->redirectToBillingPortal(route('courses.index'));
     }
 
-    public function checkout(Request $request)
+    public function checkout(Request $request): View
     {
         TrackUsage::log($request, 'about');
 
@@ -32,7 +33,7 @@ class BillingController extends Controller
         return $request->user()->redirectToBillingPortal(route('courses.index'));
     }
 
-    public function premium_page(Request $request)
+    public function premium_page(Request $request): View
     {
         TrackUsage::log($request, 'about');
 
