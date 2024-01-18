@@ -6,14 +6,17 @@ use ArielMejiaDev\LarapexCharts\LarapexChart;
 
 class EnrollmentOverTime
 {
+    /** @var LarapexChart */
     protected $chart;
 
     public function __construct(LarapexChart $chart)
     {
         $this->chart = $chart;
     }
-
-    public function build($enrollment_by_semester_points): \ArielMejiaDev\LarapexCharts\LineChart
+    /**
+     * @param array<mixed> $enrollment_by_semester_points
+     */
+    public function build( $enrollment_by_semester_points): LarapexChart
     {
         $enrollment_array = [];
         $semester_array = [];
@@ -23,8 +26,8 @@ class EnrollmentOverTime
         }
 
         return $this->chart->lineChart()
-            ->setTitle(' Enrollment Over Time at SU')
             ->addData('Course Seats', $enrollment_array)
+            ->setTitle(' Enrollment Over Time at SU')
             ->setXAxis($semester_array)
             ->setHeight(350)
             ->setColors(['#8b0000']);

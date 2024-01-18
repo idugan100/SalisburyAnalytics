@@ -20,8 +20,9 @@ class GpaOverTime
     {
         $this->chart = $chart;
     }
+    /** @param array<mixed> $gpa_by_semester_points */
 
-    public function build($gpa_by_semester_points, ?string $department = 'All'): \ArielMejiaDev\LarapexCharts\LineChart
+    public function build($gpa_by_semester_points, ?string $department = 'All'): LarapexChart
     {
         $gpa_array = [];
 
@@ -38,9 +39,9 @@ class GpaOverTime
         }
 
         return $this->chart->lineChart()
-            ->setTitle(' Average GPA Over Time at SU')
             ->addData(($department).' Courses', $gpa_array)
             ->addData('All Courses', $this->university_average_gpa)
+            ->setTitle(' Average GPA Over Time at SU')
             ->setXAxis($this->all_semesters)
             ->setHeight(350)
             ->setColors(['#8b0000', '#EAB308']);
