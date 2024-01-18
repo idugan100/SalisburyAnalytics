@@ -42,7 +42,11 @@ class ImportData extends Command
 
             $headers = $this->getHeaders($reader);
             $confirm_headers = $this->confirm('Are the following headers correct: '.implode(', ', $headers));
-            // TODO add exit if they are not confirmed
+            if (! $confirm_headers) {
+                $this->error('Incorrect headers please double check the file');
+
+                return Command::FAILURE;
+            }
 
             $row_counter = 0;
             foreach ($reader->getSheetIterator() as $sheet) {
