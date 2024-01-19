@@ -11,13 +11,12 @@ class CreateUsageLogCommandTest extends TestCase
 
     public function test_create_usage_log_command_is_sucessfull(): void
     {
-        $this->artisan("create-usage-log")->assertSuccessful();
+        $this->artisan('create-usage-log')->assertSuccessful();
     }
-
 
     public function test_create_usage_log_command_creates_log(): void
     {
-        $this->artisan("create-usage-log");
-        $this->assertDatabaseHas("usage_log",['created_at' => now()->toDateTimeString(),]);
+        $this->artisan('create-usage-log');
+        $this->assertDatabaseHas('usage_log', ['created_at' => now()->toDateTimeString()]);
     }
 }
