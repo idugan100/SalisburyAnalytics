@@ -18,6 +18,8 @@ class ReviewFactory extends Factory
     {
         return [
             'response' => fake()->sentence(),
+            'professor_id' => fake()->randomDigitNotNull(),
+            'course_id' => fake()->randomDigitNotNull(),
         ];
     }
 }
