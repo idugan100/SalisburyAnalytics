@@ -49,7 +49,6 @@ class ViewAdminPagesTest extends TestCase
     public function test_non_admin_view_rejected_reviews(): void
     {
         $user = User::factory()->create();
-        $user->email = 'test@gmail.com';
 
         $response = $this->actingAs($user)->get(route('reviews.rejected'));
         $response->assertStatus(302);
@@ -58,7 +57,6 @@ class ViewAdminPagesTest extends TestCase
     public function test_non_admin_view_approved_reviews(): void
     {
         $user = User::factory()->create();
-        $user->email = 'test@gmail.com';
 
         $response = $this->actingAs($user)->get(route('reviews.approved'));
         $response->assertStatus(302);
@@ -67,7 +65,6 @@ class ViewAdminPagesTest extends TestCase
     public function test_non_admin_view_processing_reviews(): void
     {
         $user = User::factory()->create();
-        $user->email = 'test@gmail.com';
 
         $response = $this->actingAs($user)->get(route('reviews.processing'));
         $response->assertStatus(302);
@@ -76,7 +73,6 @@ class ViewAdminPagesTest extends TestCase
     public function test_non_admin_view_usage(): void
     {
         $user = User::factory()->create();
-        $user->email = 'test@gmail.com';
 
         $response = $this->actingAs($user)->get(route('usage.index'));
         $response->assertStatus(302);
