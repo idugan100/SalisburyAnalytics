@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Charts\GradeDistribution;
 use App\Http\Middleware\EnsureIsAdmin;
-use App\Http\Middleware\EnsureIsSubscribed;
 use App\Http\Requests\StoreProfessorRequest;
 use App\Http\Requests\UpdateProfessorRequest;
 use App\Models\Course;
 use App\Models\Professor;
 use App\Models\Review;
-use App\services\TrackUsage;
+use App\Services\TrackUsage;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
@@ -20,16 +21,10 @@ class ProfessorController extends Controller
     public function __construct()
     {
         $this->middleware('auth', ['except' => ['index', 'show', 'professor_options_by_department']]);
-        $this->middleware(EnsureIsSubscribed::class, ['only' => ['show']]);
         $this->middleware(EnsureIsAdmin::class, ['only' => ['create', 'store', 'edit', 'update', 'destroy']]);
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index(Request $request): View
     {
         TrackUsage::log($request, 'professor');
 
@@ -49,7 +44,7 @@ class ProfessorController extends Controller
             $professors = Professor::paginate(8);
         }
 
-        foreach ($professors as $professor) {
+        foreach ($professors->items() as $professor) {
             $cache_key = 'professor:'.$professor->id.':topcourses';
             if (Cache::has($cache_key)) {
                 $professor->topCourses = Cache::get($cache_key);
@@ -72,7 +67,7 @@ class ProfessorController extends Controller
         $message = null;
         if ($request->department) {
             if ($request->professor_id) {
-                $message = 'showing search results for '.($professors[0]->firstName.' '.$professors[0]->lastName ?? '').' ('.($request->department ?? '').')';
+                $message = 'showing search results for '.($professors[0]->firstName.' '.$professors[0]->lastName).' ('.($request->department ?? '').')';
             } else {
                 $message = 'showing search results for '.($request->department ?? '');
             }
@@ -87,22 +82,12 @@ class ProfessorController extends Controller
         );
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function create(): View
     {
         return view('professors.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreProfessorRequest $request)
+    public function store(StoreProfessorRequest $request): RedirectResponse
     {
         $validated = $request->validate([
             'firstName' => 'required',
@@ -115,12 +100,7 @@ class ProfessorController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, Professor $professor, GradeDistribution $chart)
+    public function show(Request $request, Professor $professor, GradeDistribution $chart): view
     {
         TrackUsage::log($request, 'professor');
         $request->flash();
@@ -162,22 +142,12 @@ class ProfessorController extends Controller
             'professor' => $professor]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Professor $professor)
+    public function edit(Professor $professor): View
     {
         return view('professors.edit', ['professor' => $professor]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateProfessorRequest $request, Professor $professor)
+    public function update(UpdateProfessorRequest $request, Professor $professor): RedirectResponse
     {
         $validated = $request->validate([
             'firstName' => 'required',
@@ -190,19 +160,14 @@ class ProfessorController extends Controller
         return redirect(route('professors.index'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Professor $professor)
+    public function destroy(Professor $professor): RedirectResponse
     {
         $professor->delete();
 
         return redirect(route('professors.index'));
     }
 
-    public function professor_options_by_department(Request $request)
+    public function professor_options_by_department(Request $request): View
     {
 
         $professors = DB::table('courses_x_professors_with_grades')

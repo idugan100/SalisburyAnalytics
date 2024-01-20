@@ -24,7 +24,7 @@ class CreateUsageLog extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(): int
     {
         $usage_log = new UsageLog();
         $result = $usage_log->save();

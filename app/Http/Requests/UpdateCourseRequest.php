@@ -13,7 +13,7 @@ class UpdateCourseRequest extends FormRequest
      */
     public function authorize()
     {
-        return auth()->user()->email == 'isaacd4444@gmail.com';
+        return (auth()->user()->email ?? '') == env('ADMIN_EMAIL');
     }
 
     /**

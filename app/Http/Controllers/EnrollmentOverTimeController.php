@@ -4,14 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Charts\EnrollmentOverTime;
 use App\Models\Course;
-use App\services\TrackUsage;
+use App\Services\TrackUsage;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
 class EnrollmentOverTimeController extends Controller
 {
-    public function index(Request $request, EnrollmentOverTime $chart)
+    public function index(Request $request, EnrollmentOverTime $chart): View
     {
 
         TrackUsage::log($request, 'report');

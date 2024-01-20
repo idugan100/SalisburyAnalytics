@@ -6,10 +6,17 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Total Usage</div>
-                <div class="card-body">
-                    <div>{{"total views: " . $total_bot_views + $total_human_views}}</div>
-                    <div>{{"total bot views: " . $total_bot_views}}</div>
-                    <div>{{"total human views: " . $total_human_views}}</div>
+                <div class="card-body d-flex">
+                    <div class="mx-3">
+                        <div>{{"total views: " . $total_bot_views + $total_human_views}}</div>
+                        <div>{{"total bot views: " . $total_bot_views}}</div>
+                        <div>{{"total human views: " . $total_human_views}}</div>
+                    </div>
+                    <div class="mx-3">
+                        <div>{{"unique visitors: " . $unique_visitors}}</div>
+                        <div>{{"total registered users: " . $registered_users}}</div>
+
+                    </div>
                 </div>
 
             </div>

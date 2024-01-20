@@ -10,11 +10,6 @@ class ViewAllReviewsTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
     public function test_all_reviews_view()
     {
         UsageLog::factory()->create();
@@ -28,8 +23,11 @@ class ViewAllReviewsTest extends TestCase
     {
         UsageLog::factory()->create();
 
-        $response = $this->get('/reviews');
+        $this->get('/reviews');
 
-        $this->assertSame(1, UsageLog::where('created_at', now())->first()->review_views);
+        $this->assertDatabaseHas('usage_log', [
+            'created_at' => now()->toDateTimeString(),
+            'review_views' => 1,
+        ]);
     }
 }

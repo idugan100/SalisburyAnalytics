@@ -2,37 +2,37 @@
 
 namespace Tests\Feature;
 
-use App\Models\Professor;
+use App\Models\Course;
 use App\Models\UsageLog;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class ProfessorShowTest extends TestCase
+class CourseTimesTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_show_professor_view()
+    public function test_course_times_view(): void
     {
         UsageLog::factory()->create();
 
-        Professor::factory()->create();
+        Course::factory()->create();
 
-        $response = $this->get(route('professors.show', 1));
+        $response = $this->get(route('courses.times', 3));
 
         $response->assertStatus(200);
     }
 
-    public function test_show_professor_usage_tracking()
+    public function test_course_times_usage_tracking(): void
     {
         UsageLog::factory()->create();
 
-        Professor::factory()->create();
+        Course::factory()->create();
 
-        $this->get(route('professors.show', 2));
+        $this->get(route('courses.times', 4));
 
         $this->assertDatabaseHas('usage_log', [
             'created_at' => now()->toDateTimeString(),
-            'professor_views' => 1,
+            'course_views' => 1,
         ]);
     }
 }
