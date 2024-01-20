@@ -10,7 +10,6 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Bus;
 
-
 class AdminActionsController extends Controller
 {
     public function __construct()
@@ -19,13 +18,13 @@ class AdminActionsController extends Controller
         $this->middleware(EnsureIsAdmin::class);
     }
 
-    public function index(Request $request):View
+    public function index(Request $request): View
     {
         //return batch data
         return view('admin.actions');
     }
 
-    public function recalculate_courses():string
+    public function recalculate_courses(): string
     {
         $courses = Course::all()->toArray();
         Bus::batch([
@@ -40,7 +39,7 @@ class AdminActionsController extends Controller
         return 'completed';
     }
 
-    public function recalculate_professors():string
+    public function recalculate_professors(): string
     {
         //dispatch job, return batch data to show progress
         $professors = Professor::all();

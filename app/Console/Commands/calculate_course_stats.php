@@ -29,7 +29,7 @@ class calculate_course_stats extends Command
      */
     public function handle()
     {
-        $start= Date::now();
+        $start = Date::now();
         $courses = Course::all();
         $bar = $this->output->createProgressBar(count($courses));
         $bar->start();
@@ -40,7 +40,7 @@ class calculate_course_stats extends Command
         $bar->finish();
         $this->newline();
         $end = Date::now();
-        $this->info('Course stats successfully calculated in ' . $end->diffInSeconds($start) . " seconds");
+        $this->info('Course stats successfully calculated in '.$end->diffInSeconds($start).' seconds');
 
         return Command::SUCCESS;
     }

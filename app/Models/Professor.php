@@ -19,7 +19,7 @@ class Professor extends Model
         return $this->hasMany(Review::class);
     }
 
-    public function calculate_statistics():void
+    public function calculate_statistics(): void
     {
         $avg_gpa = DB::select(
             "Select ROUND(sum(T.GPA)/sum(T.quantity),2) as 'Course_GPA' from

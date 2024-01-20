@@ -29,7 +29,7 @@ class calculate_professor_stats extends Command
      */
     public function handle()
     {
-        $start= Date::now();
+        $start = Date::now();
         $professors = Professor::all();
         $bar = $this->output->createProgressBar(count($professors));
         $bar->start();
@@ -40,7 +40,7 @@ class calculate_professor_stats extends Command
         $bar->finish();
         $this->newline();
         $end = Date::now();
-        $this->info('Professor stats successfully calculated in ' . $end->diffInSeconds($start) . " seconds");
+        $this->info('Professor stats successfully calculated in '.$end->diffInSeconds($start).' seconds');
 
         return Command::SUCCESS;
     }
