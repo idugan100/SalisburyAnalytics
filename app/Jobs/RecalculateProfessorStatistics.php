@@ -15,18 +15,20 @@ class RecalculateProfessorStatistics implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, Batchable;
 
-    public $professors;
     /**
-     * Create a new job instance.
+     * @var array<Professor>
      */
-    public function __construct(array $professors)
+    private $professors;
+    
+
+    /**
+     * @param array<Professor> $professors
+     */
+    public function __construct($professors)
     {
         $this->professors=$professors;
     }
 
-    /**
-     * Execute the job.
-     */
     public function handle(): void
     {
         foreach($this->professors as $professor){

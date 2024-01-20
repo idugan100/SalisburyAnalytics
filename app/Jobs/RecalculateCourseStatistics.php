@@ -2,23 +2,27 @@
 
 namespace App\Jobs;
 
+use App\Models\Course;
 use Illuminate\Bus\Batchable;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 
 class RecalculateCourseStatistics implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, Batchable;
 
-    private $courses;
     /**
-     * Create a new job instance.
+     * @var array<Course>
      */
-    public function __construct(array $courses)
+    private $courses;
+    
+    /**
+     * @param array<Course> $courses
+     */
+    public function __construct( $courses)
     {
         $this->courses=$courses;
     }

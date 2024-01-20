@@ -6,6 +6,7 @@ use App\Http\Middleware\EnsureIsAdmin;
 use App\Jobs\RecalculateCourseStatistics;
 use App\Models\Course;
 use App\Models\Professor;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Bus;
 
@@ -18,13 +19,13 @@ class AdminActionsController extends Controller
         $this->middleware(EnsureIsAdmin::class);
     }
 
-    public function index(Request $request)
+    public function index(Request $request):View
     {
         //return batch data
         return view('admin.actions');
     }
 
-    public function recalculate_courses()
+    public function recalculate_courses():string
     {
         $courses = Course::all()->toArray();
         Bus::batch([
@@ -39,7 +40,7 @@ class AdminActionsController extends Controller
         return 'completed';
     }
 
-    public function recalculate_professors()
+    public function recalculate_professors():string
     {
         //dispatch job, return batch data to show progress
         $professors = Professor::all();
