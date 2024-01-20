@@ -66,6 +66,9 @@
                                 <div class="spinner-border col-2 mx-2 text-primary htmx-indicator" id ="course-spinner" role="status"></div>
                                 <div class="col-sm" id="course-results"></div>
                           </div>
+                          <div hx-get="{{route("actions.jobs")}}" hx-trigger="every 2s, load" hx-target="#jobs"></div>
+                          <div id="jobs"></div>
+
                       </div>
 
                 </div>

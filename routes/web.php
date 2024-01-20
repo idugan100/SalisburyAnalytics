@@ -69,6 +69,8 @@ Route::middleware(EnsureIsAdmin::class)->group(function () {
 
     //admin action routes
     Route::get('/actions', [AdminActionsController::class, 'index'])->name('actions.index');
+    Route::get('/jobs', [AdminActionsController::class, 'get_running_jobs'])->name('actions.jobs');
+
     Route::get('/actions/recalculate-professors', [AdminActionsController::class, 'recalculate_professors'])->name('actions.recalcProfessors');
     Route::get('/actions/recalculate-courses', [AdminActionsController::class, 'recalculate_courses'])->name('actions.recalcCourses');
 

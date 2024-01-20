@@ -3,7 +3,6 @@
 namespace App\Jobs;
 
 use App\Models\Professor;
-use Illuminate\Bus\Batchable;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -12,7 +11,12 @@ use Illuminate\Queue\SerializesModels;
 
 class RecalculateProfessorStatistics implements ShouldQueue
 {
-    use Batchable, Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+
+    /**
+     * @var int
+     */
+    public $timeout = 300;
 
     /**
      * @var array<Professor>
@@ -24,6 +28,7 @@ class RecalculateProfessorStatistics implements ShouldQueue
      */
     public function __construct($professors)
     {
+
         $this->professors = $professors;
     }
 

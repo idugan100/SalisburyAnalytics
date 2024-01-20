@@ -3,7 +3,6 @@
 namespace App\Jobs;
 
 use App\Models\Course;
-use Illuminate\Bus\Batchable;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -12,7 +11,12 @@ use Illuminate\Queue\SerializesModels;
 
 class RecalculateCourseStatistics implements ShouldQueue
 {
-    use Batchable, Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+
+    /**
+     * @var int
+     */
+    public $timeout = 600;
 
     /**
      * @var array<Course>
