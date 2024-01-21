@@ -8,6 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 
 class RecalculateProfessorStatistics implements ShouldQueue
 {
@@ -36,6 +37,7 @@ class RecalculateProfessorStatistics implements ShouldQueue
     {
         foreach ($this->professors as $professor) {
             $professor->calculate_statistics();
+            Log::info('Calculation for professor '.$professor->id .' completed');
         }
     }
 }
