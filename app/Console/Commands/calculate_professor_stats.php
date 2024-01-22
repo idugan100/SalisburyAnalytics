@@ -4,7 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\Professor;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Date;
 
 class calculate_professor_stats extends Command
 {
@@ -29,54 +29,18 @@ class calculate_professor_stats extends Command
      */
     public function handle()
     {
+        $start = Date::now();
         $professors = Professor::all();
         $bar = $this->output->createProgressBar(count($professors));
         $bar->start();
         foreach ($professors as $professor) {
-            $avg_gpa = DB::select(
-                "Select ROUND(sum(T.GPA)/sum(T.quantity),2) as 'Course_GPA' from
-                    (Select grade, quantity, 
-                            CASE 
-                            WHEN grade='A' THEN 4 
-                            WHEN grade='B' THEN 3 
-                            WHEN grade='C' THEN 2
-                            WHEN grade='D' THEN 1
-                            WHEN grade='F' THEN 0
-                            END * quantity as 'GPA'
-                    from courses_x_professors_with_grades
-                    join professors on professor_ID=professors.id
-                    where lastName=\"".$professor->lastName.'" and firstName="'.$professor->firstName."\" and grade in ('A','B','C','D','F') )as `T`");
-
-            $professor->avg_gpa = (float) $avg_gpa[0]->Course_GPA;
-
-            $total_enrollment = DB::select("select sum(quantity) as total from courses_x_professors_with_grades where professor_ID=? and grade in ('A','B','C','D','F','W');", [$professor->id]);
-            $professor->total_enrollment = (int) $total_enrollment[0]->total;
-
-            if ($professor->total_enrollment != 0) {
-                $a_qty = DB::select("select sum(quantity) as total from courses_x_professors_with_grades where professor_ID=? and grade ='A';", [$professor->id]);
-                $professor->A_rate = ceil(((float) $a_qty[0]->total * 100) / $professor->total_enrollment);
-
-                $b_qty = DB::select("select sum(quantity) as total from courses_x_professors_with_grades where professor_ID=? and grade ='B';", [$professor->id]);
-                $professor->B_rate = ceil(((float) $b_qty[0]->total * 100) / $professor->total_enrollment);
-
-                $c_qty = DB::select("select sum(quantity) as total from courses_x_professors_with_grades where professor_ID=? and grade ='C';", [$professor->id]);
-                $professor->C_rate = ceil(((float) $c_qty[0]->total * 100) / $professor->total_enrollment);
-
-                $d_qty = DB::select("select sum(quantity) as total from courses_x_professors_with_grades where professor_ID=? and grade ='D';", [$professor->id]);
-                $professor->D_rate = ceil(((float) $d_qty[0]->total * 100) / $professor->total_enrollment);
-
-                $f_qty = DB::select("select sum(quantity) as total from courses_x_professors_with_grades where professor_ID=? and grade ='F';", [$professor->id]);
-                $professor->F_rate = ceil(((float) $f_qty[0]->total * 100) / $professor->total_enrollment);
-
-                $w_qty = DB::select("select sum(quantity) as total from courses_x_professors_with_grades where professor_ID=? and grade ='W';", [$professor->id]);
-                $professor->W_rate = ceil(((float) $w_qty[0]->total * 100) / $professor->total_enrollment);
-            }
-            $professor->save();
+            $professor->calculate_statistics();
             $bar->advance();
         }
         $bar->finish();
         $this->newline();
-        $this->info('Professor Stats Successfully Calculated!');
+        $end = Date::now();
+        $this->info('Professor stats successfully calculated in '.$end->diffInSeconds($start).' seconds');
 
         return Command::SUCCESS;
     }

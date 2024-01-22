@@ -39,6 +39,9 @@
                         <li class="nav-item">
                             <a class="nav-link active " href="{{route('usage.index')}}">Usage</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="{{route('actions.index')}}">Actions</a>
+                        </li>
                         
                     </ul>
                 <div class="card-header">Usage</div>
