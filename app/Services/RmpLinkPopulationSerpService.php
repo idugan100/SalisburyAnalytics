@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Professor;
 use Exception;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class RmpLinkPopulationSerpService
 {
@@ -30,7 +31,7 @@ class RmpLinkPopulationSerpService
             }
 
         } catch (Exception $e) {
-            dd($e->getMessage(), $professor);
+            Log::error($e->getMessage().'on professor id '.$professor->id);
         }
 
     }

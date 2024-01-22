@@ -37,7 +37,7 @@ class RecalculateProfessorStatistics implements ShouldQueue
     {
         foreach ($this->professors as $professor) {
             $professor->calculate_statistics();
-            Log::info('Calculation for professor '.$professor->id .' completed');
+            Log::info('Calculation for professor '.$professor->id.' completed');
         }
     }
 }

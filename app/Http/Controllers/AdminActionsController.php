@@ -27,7 +27,7 @@ class AdminActionsController extends Controller
 
     public function recalculate_courses(): string
     {
-        $courses = Course::all();
+        $courses = Course::all()->all();
         RecalculateCourseStatistics::dispatch($courses);
 
         return 'process launched';
@@ -35,7 +35,7 @@ class AdminActionsController extends Controller
 
     public function recalculate_professors(): string
     {
-        $professors = Professor::all();
+        $professors = Professor::all()->all();
         RecalculateProfessorStatistics::dispatch($professors);
 
         return 'process launched';
