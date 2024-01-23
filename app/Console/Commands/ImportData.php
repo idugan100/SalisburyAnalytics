@@ -4,12 +4,11 @@ namespace App\Console\Commands;
 
 use App\Models\Course;
 use App\Models\Professor;
-use Box\Spout\Common\Entity\Row;
-use Box\Spout\Reader\Common\Creator\ReaderEntityFactory;
-use Box\Spout\Reader\ReaderInterface;
 use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
+use OpenSpout\Common\Entity\Row;
+use OpenSpout\Reader\XLSX\Reader;
 
 class ImportData extends Command
 {
@@ -37,7 +36,7 @@ class ImportData extends Command
         try {
 
             $file_path = $this->ask('Enter the filepath you are going to import: ');
-            $reader = ReaderEntityFactory::createReaderFromFile($file_path);
+            $reader = new Reader();
             $reader->open($file_path);
 
             $headers = $this->getHeaders($reader);
@@ -79,7 +78,7 @@ class ImportData extends Command
     /**
      * @return array<string>
      */
-    private function getHeaders(ReaderInterface $reader): array
+    private function getHeaders(Reader $reader): array
     {
 
         foreach ($reader->getSheetIterator() as $sheet) {
