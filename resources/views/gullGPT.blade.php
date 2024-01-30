@@ -61,7 +61,7 @@
     async function chat_model() {
     let string = messages[messages.length - 1].user
 
-    url = "http://gullgpt.study/chat/su/invoke";
+    url = "https://gullgpt.study/chat/su/invoke";
     const response = await fetch(url, {
         method: "POST", // HTTP POST method
         headers: {
