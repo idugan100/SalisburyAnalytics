@@ -8,7 +8,7 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6125425522876222"crossorigin="anonymous"></script>
 </head>
 <body class="bg-[#3C1010]">
-    <h1 class="text-6xl p-4 font-bold bg-yellow-400 text-red-800    border-y-4 border-black text-center">salisbury analytics</h1>
+    <h1 class="text-6xl p-4 font-bold bg-yellow-600 text-red-800    border-y-4 border-black text-center">salisbury analytics</h1>
     <x-navbar></x-navbar>
 
     <div class="font-['Proxima Nova'] text-2xl">
