@@ -137,17 +137,19 @@ class ImportData extends Command
     private function insertProfessor($data): int
     {
         $name_array = explode(',', $data[4]);
-        $professor = Professor::where('lastName', $name_array[0])->where('firstName', $name_array[1])->first();
+        $first_name=$name_array[1]??"";
+        $last_name=$name_array[0]??"";
+        $professor = Professor::where('lastName', $last_name)->where('firstName', $first_name)->first();
         if ($professor) {
-            echo 'Professor '.$name_array[1].' '.$name_array[0]." found\n";
+            echo 'Professor '.$first_name.' '.$last_name." found\n";
 
             return $professor->id;
         } else {
             $new_professor = new Professor;
-            $new_professor->firstName = $name_array[1];
-            $new_professor->lastName = $name_array[0];
+            $new_professor->firstName = $first_name;
+            $new_professor->lastName = $last_name;
             $new_professor->save();
-            echo 'Inserting professor '.$name_array[1].' '.$name_array[0]."\n";
+            echo 'Inserting professor '.$first_name.' '.$last_name."\n";
 
             return $new_professor->id;
         }
