@@ -33,6 +33,7 @@ class ImportData extends Command
      */
     public function handle()
     {
+
         try {
 
             $file_path = $this->ask('Enter the filepath you are going to import: ');
@@ -135,7 +136,7 @@ class ImportData extends Command
      */
     private function insertProfessor($data): int
     {
-        $name_array = explode(',', $data[3]);
+        $name_array = explode(',', $data[4]);
         $professor = Professor::where('lastName', $name_array[0])->where('firstName', $name_array[1])->first();
         if ($professor) {
             echo 'Professor '.$name_array[1].' '.$name_array[0]." found\n";
@@ -157,28 +158,79 @@ class ImportData extends Command
      */
     private function createGradeLineItem(int $course_ID, int $professor_ID, $data): void
     {
+        switch ($data[0]) {
+            case 'Fall10':
+                $year = 2010;
+                $semester = 'Fall';
+                break;
+            case 'Fall11':
+                $year = 2011;
+                $semester = 'Fall';
+                break;
+            case 'Fall12':
+                $year = 2012;
+                $semester = 'Fall';
+                break;
+            case 'Fall13':
+                $year = 2013;
+                $semester = 'Fall';
+                break;
+            case 'Fall14':
+                $year = 2014;
+                $semester = 'Fall';
+                break;
+            case 'Fall23':
+                $year = 2023;
+                $semester = 'Fall';
+                break;
+            case 'Spring10':
+                $year = 2010;
+                $semester = 'Spring';
+                break;
+            case 'Spring11':
+                $year = 2011;
+                $semester = 'Spring';
+                break;
+            case 'Spring12':
+                $year = 2012;
+                $semester = 'Spring';
+                break;
+            case 'Spring13':
+                $year = 2013;
+                $semester = 'Spring';
+                break;
+            case 'Spring14':
+                $year = 2014;
+                $semester = 'Spring';
+                break;
+            case 'Spring15':
+                $year = 2015;
+                $semester = 'Spring';
+                break;
+            default:
+                $year = 0;
+                $semester = '';
+                break;
+        }
         $line_items = DB::table('courses_x_professors_with_grades')
             ->where('course_ID', $course_ID)
             ->where('professor_ID', $professor_ID)
-            ->where('semester', $data[0])
-            ->where('quantity', $data[5])
-            ->where('grade', $data[4])
+            ->where('semester', $semester)
+            ->where('year', (int) $year)
+            ->where('quantity', (int) $data[6])
+            ->where('grade', $data[5])
+            ->where('section_number', (int) $data[3])
             ->get();
         if (count($line_items) == 0) {
-            $date_array = explode(' ', $data[0]);
-            $year = 2000 + (int) $date_array[1];
-            if ($date_array[0] == 'Spr' || $date_array[0] == 'Spring') {
-                $semester = 'Spring';
-            } else {
-                $semester = 'Fall';
-            }
+
             DB::table('courses_x_professors_with_grades')->insert([
                 'course_ID' => $course_ID,
                 'professor_ID' => $professor_ID,
                 'semester' => $semester,
-                'quantity' => $data[5],
-                'grade' => $data[4],
-                'year' => $year,
+                'quantity' => (int) $data[6],
+                'grade' => $data[5],
+                'section_number' => (int) $data[3],
+                'year' => (int) $year,
             ]);
             echo "inserting grade line item \n";
         } else {
