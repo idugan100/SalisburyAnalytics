@@ -17,7 +17,7 @@ class RecalculateProfessorStatistics implements ShouldQueue
     /**
      * @var int
      */
-    public $timeout = 600;
+    public $timeout = 1200;
 
     /**
      * @var array<Professor>
