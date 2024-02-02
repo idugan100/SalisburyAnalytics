@@ -66,7 +66,7 @@
     async function chat_model() {
     let string = messages[messages.length - 1].user
 
-    url = "https://gullgpt.study/chat/su/invoke";
+    url =  "{{env("GPT_ENDPOINT")}}" + "/chat/su/invoke";
     const response = await fetch(url, {
         method: "POST", // HTTP POST method
         headers: {
