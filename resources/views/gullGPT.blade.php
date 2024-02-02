@@ -4,11 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" sizes="32x32" href="{{ URL::asset('gully-removebg-preview.png') }}" type="image/x-icon"/>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.css"  rel="stylesheet" />
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6125425522876222"crossorigin="anonymous"></script>
 </head>
 <body class="bg-[#3C1010]">
-    <h1 class="text-6xl p-4 font-bold bg-yellow-600 text-red-800    border-y-4 border-black text-center">salisbury analytics</h1>
+        <h1 class="text-6xl flex p-4 font-bold bg-yellow-600 text-red-800 border-y-4 justify-center border-black text-center">salisbury analytics <img src="{{ URL::asset('gully-removebg-preview.png') }}" alt="SUlogo" class= "w-16 h-16 hover:animate-pulse ml-8"/></h1>
+
     <x-navbar></x-navbar>
 
     <div class="font-['Proxima Nova'] text-2xl">
@@ -17,7 +19,7 @@
             <div class="border-[#FFC31F]/50 border-b-2 md:pl-8 md:pr-8 py-4 h-30 shadow-2xl">
                 <div class="flex">
                     <a href="https://www.salisbury.edu/">
-                        <img src="https://pbs.twimg.com/profile_images/300371774/SU_twitter_400x400.jpg" alt="SUlogo" class= "w-16 h-16 hover:animate-pulse ml-8"/>
+                        <img src="{{ URL::asset('gully-removebg-preview.png') }}" alt="SUlogo" class= "w-16 h-16 hover:animate-pulse ml-8"/>
                     </a>
                     <div class="md:ml-8 ml-1 col-span-10 text-white text-3xl pt-3 font-bold">GullGPT</div>
                 </div>
