@@ -137,8 +137,8 @@ class ImportData extends Command
     private function insertProfessor($data): int
     {
         $name_array = explode(',', $data[4]);
-        $first_name=$name_array[1]??"";
-        $last_name=$name_array[0]??"";
+        $first_name = $name_array[1] ?? '';
+        $last_name = $name_array[0] ?? '';
         $professor = Professor::where('lastName', $last_name)->where('firstName', $first_name)->first();
         if ($professor) {
             echo 'Professor '.$first_name.' '.$last_name." found\n";
