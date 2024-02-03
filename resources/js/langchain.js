@@ -1,9 +1,7 @@
 import {RemoteRunnable} from "langchain/runnables/remote";
-console.log("hello")
-// const chain = new RemoteRunnable({
-//     url: `http://localhost:8000/joke/`,
-//     });
+
     var messages = [];
+    
     function insertNewChat(event) {
     event.preventDefault();
     let formData = new FormData(event.target);
@@ -16,24 +14,20 @@ console.log("hello")
     }
 
     async function chat_model() {
-    let string = messages[messages.length - 1].user
+        let string = messages[messages.length - 1].user
 
-    let url =  "https://gullgpt.study" + "/chat/su/invoke";
-    const response = await fetch(url, {
-        method: "POST", // HTTP POST method
-        headers: {
-        "Content-Type": "application/json", // Specify content type as JSON
-        },
-        body: JSON.stringify({
-        input: string.toLowerCase(),
-        config: {},
-        kwargs: {},
-        }),
-    });
-    const responseData = await response.json(); // Parse the response body as JSON
-    messages.push({ ai: responseData.output });
-    render_message(messages[messages.length - 1]);
-    end_loading_state();
+        const chain = new RemoteRunnable({
+            url: `https://gullgpt.study/chat/su`,
+        });
+        const stream = await chain.stream( string.toLowerCase());
+        messages.push({ ai: "" });
+        let selector= render_message(messages[messages.length - 1]);
+        for await (const chunk of stream) {
+            if (typeof chunk === 'string' || chunk instanceof String){
+                selector.innerHTML+=chunk
+            }
+        }
+        end_loading_state();
     }
 
     function render_message(element) {
@@ -87,6 +81,7 @@ console.log("hello")
     }
     chatHolder.appendChild(div);
     div.appendChild(span);
+    return span
     }
 
     function clear_conversation() {
