@@ -73,7 +73,7 @@
         "Content-Type": "application/json", // Specify content type as JSON
         },
         body: JSON.stringify({
-        input: string,
+        input: string.toLowerCase(),
         config: {},
         kwargs: {},
         }),
