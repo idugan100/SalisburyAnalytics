@@ -16,6 +16,7 @@
     },
     "dependencies": {
         "flowbite": "^1.6.4",
+        "langchain": "^0.1.12",
         "tailwindcss": "^3.3.1"
     }
 }
