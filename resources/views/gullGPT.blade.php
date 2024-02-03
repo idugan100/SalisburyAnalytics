@@ -6,13 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @vite('resources/js/langchain.js')
-
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.css"  rel="stylesheet" />
-    <title>Document</title>
+    @vite('resources/css/app.css')
+    <title>salisbury analytics</title>
 </head>
 <body>
-    
-
     <h1 class="text-6xl flex p-4 font-bold bg-yellow-400 text-red-800 border-y-4 justify-center border-black text-center">salisbury analytics <img src="{{ URL::asset('gully-removebg-preview.png') }}" alt="SUlogo" class= "w-16 h-16 hover:animate-pulse ml-8"/></h1>
     <x-navbar></x-navbar>
 
@@ -50,8 +47,5 @@
 
         </div>
     </div>
-<script >
-    
-</script>
 </body>
 </html>

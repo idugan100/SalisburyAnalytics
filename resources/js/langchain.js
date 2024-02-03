@@ -51,10 +51,13 @@ console.log("hello")
         "mt-2",
         "mb-2",
         "w-1/3",
-        "shadow-lg",
+        "rounded-b-xl",
+        "rounded-tr-xl",
+        "shadow-yellow-400",
+        "shadow-md",
         "loading:animate-pulse"
         );
-        div.classList.add("flex", "flex-col", "rounded", "items-end");
+        div.classList.add("flex", "flex-col", "items-end",);
     } else {
         span.textContent = element.ai;
         span.classList.add(
