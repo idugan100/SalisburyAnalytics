@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @vite('resources/js/langchain.js')
     @vite('resources/css/app.css')
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.css"  rel="stylesheet" />
     <title>salisbury analytics</title>
 </head>
 <body>
@@ -47,5 +48,7 @@
 
         </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
+
 </body>
 </html>
