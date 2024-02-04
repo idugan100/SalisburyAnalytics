@@ -17,7 +17,7 @@ import {RemoteRunnable} from "langchain/runnables/remote";
         let string = messages[messages.length - 1].user
 
         const chain = new RemoteRunnable({
-            url: `https://gullgpt.study/chat/su`,
+            url:import.meta.env.VITE_GPT_ENDPOINT,
         });
         const stream = await chain.stream( string.toLowerCase());
         messages.push({ ai: "" });
