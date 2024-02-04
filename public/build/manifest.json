@@ -1,11 +1,16 @@
 {
   "resources/js/app.js": {
-    "file": "assets/app.45e02de4.js",
+    "file": "assets/app.de039bf7.js",
     "src": "resources/js/app.js",
     "isEntry": true
   },
+  "resources/js/langchain.js": {
+    "file": "assets/langchain.994b497f.js",
+    "src": "resources/js/langchain.js",
+    "isEntry": true
+  },
   "resources/css/app.css": {
-    "file": "assets/app.3c525c96.css",
+    "file": "assets/app.a5e8f729.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
