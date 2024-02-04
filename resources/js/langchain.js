@@ -25,6 +25,7 @@ import {RemoteRunnable} from "langchain/runnables/remote";
         for await (const chunk of stream) {
             if (typeof chunk === 'string' || chunk instanceof String){
                 selector.innerHTML+=chunk
+                to_bottom()
             }
         }
         end_loading_state();
@@ -51,7 +52,7 @@ import {RemoteRunnable} from "langchain/runnables/remote";
         "shadow-md",
         "loading:animate-pulse"
         );
-        div.classList.add("flex", "flex-col", "items-end",);
+        div.classList.add("flex", "flex-col", "items-end");
     } else {
         span.textContent = element.ai;
         span.classList.add(
@@ -76,7 +77,7 @@ import {RemoteRunnable} from "langchain/runnables/remote";
         "text-white",
         "shadow-yellow-400",
         "shadow-md",
-        "loading:animate-bounce"
+    "loading:animate-bounce"
         );
     }
     chatHolder.appendChild(div);
@@ -109,9 +110,12 @@ import {RemoteRunnable} from "langchain/runnables/remote";
     input.placeholder = "Ask me something...";
     let clear = document.getElementById("clear");
     clear.disabled = false;
+    to_bottom()
+    }
+
+    function to_bottom(){
+        document.getElementById("inputBar").scrollIntoView({ behavior: "smooth"})
     }
 
     document.getElementById("clear").onclick=clear_conversation
     document.getElementById("newChat").onsubmit=insertNewChat
-
-
