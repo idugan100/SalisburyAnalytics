@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @vite('resources/js/langchain.js')
     @vite('resources/css/app.css')
+    <link rel="icon" sizes="32x32" href="{{ URL::asset('gully-removebg-preview.png') }}" type="image/x-icon"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.css"  rel="stylesheet" />
     <title>salisbury analytics</title>
 </head>
@@ -15,14 +16,11 @@
     <x-navbar></x-navbar>
 
     <div class="font-['Proxima Nova'] text-2xl">
-        <div class="bg-black  h-screen">
+        <div class="bg-black  min-h-dvh">
 
             <div class="border-yellow-400 border-b-2 md:pl-8 md:pr-8 py-4 h-30 shadow-2xl">
                 <div class="flex">
-                    <a href="https://www.salisbury.edu/">
-                        <img src="{{ URL::asset('gully-removebg-preview.png') }}" alt="gully_logo" class= "w-16 h-16 hover:animate-pulse ml-8"/>
-                    </a>
-                    <div class="md:ml-8 ml-1 col-span-10 text-white text-3xl pt-3 font-bold">GullGPT</div>
+                    <div class="md:ml-8 ml-1 col-span-10 text-white text-3xl pt-3 font-bold">gullGPT</div>
                 </div>
             </div>
 
@@ -38,11 +36,11 @@
                             <div id="inputBar" >
                                 <input type="text" id="message" name="message" placeholder="Ask me something..." class=" w-1/2    bg-gray-300 p-2 outline-none " required/>
                                 <button type="submit" class="  bg-yellow-400   mt-1 md:mt-0 rounded md:rounded-r-xl  text-lg h-10 w-20">
-                                    Send
+                                    send
                                 </button>
                             </div>
                     </form>
-                    <button id="clear" class="  mt-2 md:mt-0 rounded px-12 py-2 bg-gray-200 text-lg mx-12 ml-auto" >Clear Conversation</button>
+                    <button id="clear" class="  mt-2 md:mt-0 rounded px-12 py-2 bg-gray-200 text-lg mx-12 ml-auto " >clear</button>
                 </div>
             </div>
 
