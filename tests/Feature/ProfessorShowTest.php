@@ -15,9 +15,9 @@ class ProfessorShowTest extends TestCase
     {
         UsageLog::factory()->create();
 
-        Professor::factory()->create();
+        $professor = Professor::factory()->create();
 
-        $response = $this->get(route('professors.show', 1));
+        $response = $this->get(route('professors.show', $professor->id));
 
         $response->assertStatus(200);
     }
@@ -26,9 +26,9 @@ class ProfessorShowTest extends TestCase
     {
         UsageLog::factory()->create();
 
-        Professor::factory()->create();
+        $professor = Professor::factory()->create();
 
-        $this->get(route('professors.show', 2));
+        $this->get(route('professors.show', $professor->id));
 
         $this->assertDatabaseHas('usage_log', [
             'created_at' => now()->toDateTimeString(),
