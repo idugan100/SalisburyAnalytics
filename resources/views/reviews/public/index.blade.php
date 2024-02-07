@@ -10,9 +10,13 @@
         @endforeach
         </div>
     </div>
-    <div class="m-4  flex flex-col ">
-        {{$reviews->links()}}
-    
+    <div class="mt-4 flex p-4 justify-end">
+        @if (!$reviews->onFirstPage())
+            <a href="{{$reviews->previousPageUrl()}}" class="m-2">Previous</a>
+        @endif
+        @if($reviews->hasMorePages())
+            <a href="{{$reviews->nextPageUrl()}}" class="m-2">Next </a>
+        @endif
     </div>
 
 </x-header>

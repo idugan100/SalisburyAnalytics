@@ -41,9 +41,13 @@
         
     </div>
 @endif
-<div class="m-4  flex flex-col ">
-    {{$professors->links()}}
-
+<div class="mt-4 flex p-4 justify-end">
+    @if (!$professors->onFirstPage())
+        <a href="{{$professors->previousPageUrl()}}" class="m-2">Previous</a>
+    @endif
+    @if($professors->hasMorePages())
+        <a href="{{$professors->nextPageUrl()}}" class="m-2">Next </a>
+    @endif
 </div>
 
 </x-header>
