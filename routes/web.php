@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminActionsController;
 use App\Http\Controllers\BillingController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\DoEdReportController;
 use App\Http\Controllers\EnrollmentOverTimeController;
 use App\Http\Controllers\GpaOverTimeController;
 use App\Http\Controllers\ProfessorController;
@@ -90,6 +91,7 @@ Route::middleware((EnsureIsSubscribed::class))->group(function () {
 //report routes
 Route::get('/gpa_over_time', [GpaOverTimeController::class, 'index'])->name('gpa');
 Route::get('/enrollment_over_time', [EnrollmentOverTimeController::class, 'index'])->name('enrollment');
+Route::get('/student_demographics', [DoEdReportController::class, 'student_demographics'])->name('student_demographics');
 
 //stripe
 Route::get('/billing-portal', [BillingController::class, 'billing_portal'])->middleware('auth');
