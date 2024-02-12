@@ -17,7 +17,7 @@ class ParentalEducationLevelChart
     {
         return $this->chart->pieChart()
             ->addData([.3, 8.1,20.6, 71])
-            ->setTitle('Highest Level of Parental Education')
+            ->setTitle('highest level of parental education')
             ->setLabels(['middle school', 'high school', 'some college','college degree'])
             ->setHeight(200)
             ->setColors(['#000000','#ABB0B8', '#EAB308','#8b0000']);

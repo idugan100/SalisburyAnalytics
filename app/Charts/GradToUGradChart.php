@@ -17,9 +17,9 @@ class GradToUGradChart
     {
         return $this->chart->pieChart()
             ->addData([1119, 7640 ])
-            ->setTitle('Enrollment Type')
+            ->setTitle('enrollment type')
             ->setSubtitle('12 month rolling enrollment')
-            ->setLabels(['Graduate', 'Undergraduate'])->setHeight(200)
+            ->setLabels(['graduate', 'undergraduate'])->setHeight(200)
             ->setColors(['#8b0000', '#EAB308']);;
     }
 }

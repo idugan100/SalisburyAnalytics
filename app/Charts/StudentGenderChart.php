@@ -17,8 +17,8 @@ class StudentGenderChart
     {
         return $this->chart->pieChart()
             ->addData([44.2, 55.8])
-            ->setTitle('Student Gender Makeup')
-            ->setLabels(['Male', 'Female'])
+            ->setTitle('student gender makeup')
+            ->setLabels(['male', 'non male'])
             ->setHeight(200)
             ->setColors(['#8b0000', '#EAB308']);
     }
