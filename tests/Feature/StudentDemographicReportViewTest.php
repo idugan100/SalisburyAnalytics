@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\StudentDemographicInfo;
 use App\Models\UsageLog;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -13,7 +14,7 @@ class StudentDemographicReportViewTest extends TestCase
     public function test_student_demographic_view()
     {
         UsageLog::factory()->create();
-        //add student demographics factory here
+        StudentDemographicInfo::factory()->create();
 
         $response = $this->get('/student_demographics');
 
@@ -23,7 +24,7 @@ class StudentDemographicReportViewTest extends TestCase
     public function test_about_usage_tracking()
     {
         UsageLog::factory()->create();
-        //add student demographics factory here
+        StudentDemographicInfo::factory()->create();
 
         $this->get('/student_demographics');
 
