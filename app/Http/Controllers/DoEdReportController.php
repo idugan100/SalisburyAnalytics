@@ -7,6 +7,7 @@ use App\Charts\ParentalEducationLevelChart;
 use App\Charts\StudentEthnicityChart;
 use App\Charts\StudentFamilyIncomesChart;
 use App\Charts\StudentGenderChart;
+use App\Models\FinancialOutcomeInfo;
 use App\Services\TrackUsage;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
@@ -28,6 +29,7 @@ class DoEdReportController extends Controller
 
     public function financial_outcomes(Request $request): View
     {
-        return view("reports.financialoutcomes");
+        $outcomes = FinancialOutcomeInfo::all();
+        return view("reports.financialoutcomes", compact("outcomes"));
     }
 }
