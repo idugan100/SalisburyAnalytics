@@ -1,6 +1,6 @@
-<div style="display:flex;justify-content:center">
+<p align="center">
     <img src="./public/gully-removebg-preview.png" width="250" style="">
-</div>
+</p>
 
 <h1 style="text-align: center;margin-top:20px;">Salisbury Analytics</h1>
 
