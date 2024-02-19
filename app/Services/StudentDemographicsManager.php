@@ -2,9 +2,9 @@
 
 namespace App\Services;
 
-use Illuminate\Support\Facades\Http;
 use App\Models\StudentDemographicInfo;
 use Exception;
+use Illuminate\Support\Facades\Http;
 
 class StudentDemographicsManager
 {
@@ -13,57 +13,60 @@ class StudentDemographicsManager
     /** @var StudentDemographicInfo */
     private $student_demographic_info;
 
-    /** @var String */
-    private static $route='https://api.data.gov/ed/collegescorecard/v1/schools.json';
+    /** @var string */
+    private static $route = 'https://api.data.gov/ed/collegescorecard/v1/schools.json';
 
-    /** @var Boolean */
+    /** @var bool */
     public $is_error;
 
-    /** @var String */
+    /** @var string */
     public $error_message;
 
     public function __construct()
     {
-        $this->student_demographic_info= new StudentDemographicInfo();
+        $this->student_demographic_info = new StudentDemographicInfo();
         $this->is_error = false;
     }
 
-    public function import(){
-        try{
+    public function import()
+    {
+        try {
             //extract from api
             $this->api_request();
             //transform json to eloquent model
             $this->marshal_data();
             //load model into db and log
             $this->insert_into_db();
+        } catch (Exception $e) {
+            $this->is_error = true;
+            $this->error_message = $e->getMessage();
         }
-        catch(Exception $e){
-            $this->is_error=true;
-            $this->error_message=$e->getMessage();
-        }
-        
+
     }
 
-    private function api_request(){
+    private function api_request()
+    {
         $response = Http::get($this::$route, [
             'school.name' => 'Salisbury',
             'api_key' => env('DoE_API_KEY'),
         ]);
 
-        $body=json_decode($response->body());
-        $this->api_data_response=$body->results[0]->latest;
+        $body = json_decode($response->body());
+        $this->api_data_response = $body->results[0]->latest;
     }
 
-    private function insert_into_db(){
+    private function insert_into_db()
+    {
         $this->student_demographic_info->save();
     }
 
-    private function marshal_data(){
+    private function marshal_data()
+    {
         //ethnicity
-        $ethnicity_object=$this->api_data_response->student->demographics->race_ethnicity;
+        $ethnicity_object = $this->api_data_response->student->demographics->race_ethnicity;
 
         $this->student_demographic_info->native_american_pct = $this->format_percentage($ethnicity_object->aian);
-        $this->student_demographic_info->pacific_islander_pct= $this->format_percentage($ethnicity_object->nhpi);
+        $this->student_demographic_info->pacific_islander_pct = $this->format_percentage($ethnicity_object->nhpi);
         $this->student_demographic_info->asian_pct = $this->format_percentage($ethnicity_object->asian);
         $this->student_demographic_info->black_pct = $this->format_percentage($ethnicity_object->black);
         $this->student_demographic_info->white_pct = $this->format_percentage($ethnicity_object->white);
@@ -72,10 +75,10 @@ class StudentDemographicsManager
         $this->student_demographic_info->unknow_race_pct = $this->format_percentage($ethnicity_object->unknown);
 
         //gender
-        $gender_object=$this->api_data_response->student->demographics;
+        $gender_object = $this->api_data_response->student->demographics;
         $this->student_demographic_info->male_pct = $this->format_percentage($gender_object->men);
         $this->student_demographic_info->non_male_pct = $this->format_percentage($gender_object->women);
-        
+
         //parental education
         $education_object = $this->api_data_response->student->share_firstgeneration_parents;
         $first_gen_percentage = $this->api_data_response->student->demographics->first_generation;
@@ -92,15 +95,15 @@ class StudentDemographicsManager
 
         //parental income
         $income_object = $this->api_data_response->student;
-        $this->student_demographic_info->pct_0_30000 = $this->format_percentage($income_object->share_lowincome->{"0_30000"});
-        $this->student_demographic_info->pct_30001_48000 = $this->format_percentage($income_object->share_middleincome->{"30001_48000"});
-        $this->student_demographic_info->pct_48001_75000 = $this->format_percentage($income_object->share_middleincome->{"48001_75000"});
-        $this->student_demographic_info->pct_75001_110000 = $this->format_percentage($income_object->share_highincome->{"75001_110000"});
-        $this->student_demographic_info->pct_110001_greater = $this->format_percentage($income_object->share_highincome->{"110001plus"});
+        $this->student_demographic_info->pct_0_30000 = $this->format_percentage($income_object->share_lowincome->{'0_30000'});
+        $this->student_demographic_info->pct_30001_48000 = $this->format_percentage($income_object->share_middleincome->{'30001_48000'});
+        $this->student_demographic_info->pct_48001_75000 = $this->format_percentage($income_object->share_middleincome->{'48001_75000'});
+        $this->student_demographic_info->pct_75001_110000 = $this->format_percentage($income_object->share_highincome->{'75001_110000'});
+        $this->student_demographic_info->pct_110001_greater = $this->format_percentage($income_object->share_highincome->{'110001plus'});
     }
 
-    private function format_percentage(float $number){
-        return round(($number*100) ,1);
+    private function format_percentage(float $number)
+    {
+        return round(($number * 100), 1);
     }
-
 }

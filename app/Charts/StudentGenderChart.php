@@ -8,6 +8,7 @@ use ArielMejiaDev\LarapexCharts\LarapexChart;
 class StudentGenderChart
 {
     protected $chart;
+
     protected $data;
 
     public function __construct(LarapexChart $chart)

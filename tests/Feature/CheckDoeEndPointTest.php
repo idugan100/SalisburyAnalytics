@@ -2,9 +2,9 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Http;
+use Tests\TestCase;
 
 class CheckDoeEndPointTest extends TestCase
 {
@@ -16,7 +16,6 @@ class CheckDoeEndPointTest extends TestCase
             'school.name' => 'Salisbury',
             'api_key' => env('DoE_API_KEY'),
         ]);
-        $this->assertEquals(200,$response->getStatusCode());
+        $this->assertEquals(200, $response->getStatusCode());
     }
-
 }

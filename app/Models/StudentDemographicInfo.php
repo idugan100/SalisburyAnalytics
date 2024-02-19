@@ -9,5 +9,5 @@ class StudentDemographicInfo extends Model
 {
     use HasFactory;
 
-    protected $table="student_demographics";
+    protected $table = 'student_demographics';
 }

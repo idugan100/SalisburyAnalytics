@@ -28,12 +28,13 @@ class ImportStudentDemographicInfo extends Command
     {
         $student_demographic_manager = new StudentDemographicsManager();
         $student_demographic_manager->import();
-        if($student_demographic_manager->is_error){
+        if ($student_demographic_manager->is_error) {
             $this->error($student_demographic_manager->error_message);
+
             return Command::FAILURE;
-        }
-        else{
-            $this->info(now() . ": import successful");
+        } else {
+            $this->info(now().': import successful');
+
             return Command::SUCCESS;
         }
     }
