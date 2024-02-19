@@ -7,8 +7,10 @@ use ArielMejiaDev\LarapexCharts\LarapexChart;
 
 class StudentGenderChart
 {
+    /** @var LarapexChart */
     protected $chart;
 
+    /** @var StudentDemographicInfo */
     protected $data;
 
     public function __construct(LarapexChart $chart)
@@ -17,7 +19,7 @@ class StudentGenderChart
         $this->data = StudentDemographicInfo::latest()->first();
     }
 
-    public function build(): \ArielMejiaDev\LarapexCharts\PieChart
+    public function build(): LarapexChart
     {
         return $this->chart->pieChart()
             ->addData([$this->data->male_pct, $this->data->non_male_pct])

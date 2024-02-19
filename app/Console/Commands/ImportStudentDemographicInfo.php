@@ -24,7 +24,7 @@ class ImportStudentDemographicInfo extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(): int
     {
         $student_demographic_manager = new StudentDemographicsManager();
         $student_demographic_manager->import();

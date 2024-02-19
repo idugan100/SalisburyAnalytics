@@ -7,8 +7,10 @@ use ArielMejiaDev\LarapexCharts\LarapexChart;
 
 class StudentFamilyIncomesChart
 {
+    /** @var LarapexChart */
     protected $chart;
 
+    /** @var StudentDemographicInfo */
     protected $data;
 
     public function __construct(LarapexChart $chart)
@@ -17,7 +19,7 @@ class StudentFamilyIncomesChart
         $this->data = StudentDemographicInfo::latest()->first();
     }
 
-    public function build(): \ArielMejiaDev\LarapexCharts\BarChart
+    public function build(): LarapexChart
     {
         return $this->chart->barChart()
             ->addData('percentage of student body',

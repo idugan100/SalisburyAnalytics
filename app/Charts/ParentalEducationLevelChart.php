@@ -7,8 +7,10 @@ use ArielMejiaDev\LarapexCharts\LarapexChart;
 
 class ParentalEducationLevelChart
 {
+    /** @var LarapexChart */
     protected $chart;
 
+    /** @var StudentDemographicInfo */
     protected $data;
 
     public function __construct(LarapexChart $chart)
@@ -17,7 +19,7 @@ class ParentalEducationLevelChart
         $this->data = StudentDemographicInfo::latest()->first();
     }
 
-    public function build(): \ArielMejiaDev\LarapexCharts\PieChart
+    public function build(): LarapexChart
     {
         return $this->chart->pieChart()
             ->addData([$this->data->middle_school_pct, $this->data->high_school_pct, $this->data->some_college_pct, $this->data->college_degree_pct])

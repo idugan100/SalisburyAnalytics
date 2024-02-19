@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Http;
 
 class StudentDemographicsManager
 {
+    /** @var object */
     private $api_data_response;
 
     /** @var StudentDemographicInfo */
@@ -28,7 +29,7 @@ class StudentDemographicsManager
         $this->is_error = false;
     }
 
-    public function import()
+    public function import(): void
     {
         try {
             //extract from api
@@ -44,7 +45,7 @@ class StudentDemographicsManager
 
     }
 
-    private function api_request()
+    private function api_request(): void
     {
         $response = Http::get($this::$route, [
             'school.name' => 'Salisbury',
@@ -55,12 +56,12 @@ class StudentDemographicsManager
         $this->api_data_response = $body->results[0]->latest;
     }
 
-    private function insert_into_db()
+    private function insert_into_db(): void
     {
         $this->student_demographic_info->save();
     }
 
-    private function marshal_data()
+    private function marshal_data(): void
     {
         //ethnicity
         $ethnicity_object = $this->api_data_response->student->demographics->race_ethnicity;
@@ -102,7 +103,7 @@ class StudentDemographicsManager
         $this->student_demographic_info->pct_110001_greater = $this->format_percentage($income_object->share_highincome->{'110001plus'});
     }
 
-    private function format_percentage(float $number)
+    private function format_percentage(float $number): float
     {
         return round(($number * 100), 1);
     }

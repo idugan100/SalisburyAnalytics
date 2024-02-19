@@ -10,6 +10,7 @@ class StudentEthnicityChart
     /** @var LarapexChart */
     protected $chart;
 
+    /** @var StudentDemographicInfo */
     protected $data;
 
     public function __construct(LarapexChart $chart)
