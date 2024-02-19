@@ -1,17 +1,28 @@
+<div style="display:flex;justify-content:center">
+    <img src="./public/gully-removebg-preview.png" width="250" style="">
+</div>
+
+<h1 style="text-align: center;margin-top:20px;">Salisbury Analytics</h1>
+
+## About
+Salisbury Analytics is a web application built for the students of Salisbury University. It utilizes aggregate grade information obtained via the Public Information Act to provide informative grade visualizations. It ingests data from the Department of Education api to provide reports about student demographics. Data is scraped from Coursicle and Rate My Professor to provide professor reviews and accurate course times. A retrival augmented LLM provides a natural language interface to the university website. You can visit Salisbury Analytics [here](https://salisburyanalytics.com).
+
+## Motivation
+Education is a major investment of time, money and effort. Salisbury Analytics aims to support students of Salisbury Univesity in getting the highest return on their investment by helping them make informed decisions. Additionally, the website acts as a tool to keep the university accountable by improving transparency.
+
+## Technology
+
+|  | |
+| ------------------|------------------|
+| Front End | Blade, HTMX, Apex Charts, Javascript, LangChain.js |
+| Styling | Tailwind, FlowBite |
+| Back End | PHP, Laravel |
+| Database | MYSQL |
+| Testing | PHPUnit |
+| Static Analysis | PHPStan |
+| Linting | Pint |
+| Hosting | AWS EC2 |
+| Uptime Monitoring | Status Cake |
+| Payments | Stripe |
 
 
-## About Salisbury Analytics
-
-Salisbury Analytics is a web application built to help the Student of Salisbury University. It utilizes aggregate grade information obtained by the Public Information act to provide unique and informative grade visualizations. You can visit the site at https://salisburyanalytics.com.
-
-## Tech Stack
-
-- Front End: Blade, HTMX, Larapex Charts
-- Styling: Tailwind, FlowBite
-- Back End: PHP, Laravel
-- Database: MYSQL
-- Testing: PHPUnit
-- Linting: Pint
-- Hosting: AWS EC2
-- Uptime Monitoring: Status Cake
-- Payments: Stripe
