@@ -14,8 +14,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
         $schedule->command('create-usage-log')->daily();
+        $schedule->command('import:student-demographic-info')->daily()->appendOutputTo(storage_path('logs/doe.log'));
 
     }
 

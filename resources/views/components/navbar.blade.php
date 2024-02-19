@@ -26,11 +26,14 @@
                     <a href="{{route("gpa")}}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">gpa tracker</a>
                   </li>
                   <li>
+                    <a href="{{route("student_demographics")}}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">student demographics</a>
+                  </li>
+                  <li>
                     <a href="{{route("enrollment")}}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">enrollment tracker</a>
                   </li>
                 </ul>
-                <div class="py-1">
-                  <a href="{{route("qtool")}}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">query tool</a>
+                <div class="py-1 flex justify-between">
+                  <a href="{{route("qtool")}}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">query tool </a><span class="item bg-red-800 p-1 text-white text-xs rounded-lg self-center m-1">premium</span>
                 </div>
             </div>
             <li>
