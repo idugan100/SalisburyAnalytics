@@ -36,6 +36,10 @@ import {RemoteRunnable} from "langchain/runnables/remote";
 
     let div = document.createElement("div");
     let span = document.createElement("span");
+    let time = document.createElement("div");
+
+    const timestamp = new Date();
+    const formattedTimestamp = timestamp.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
 
     if (element.hasOwnProperty("user")) {
         span.textContent = element.user;
@@ -53,35 +57,36 @@ import {RemoteRunnable} from "langchain/runnables/remote";
         "loading:animate-pulse"
         );
         div.classList.add("flex", "flex-col", "items-end");
+        time.textContent = formattedTimestamp;
+        time.classList.add("text-white", "text-sm");
     } else {
         span.textContent = element.ai;
         span.classList.add(
-        "px-2",
-        "py-2",
-        "mt-2",
-        "mb-2",
-        "rounded-b-xl",
-        "rounded-tr-xl",
-        "w-1/2",
-        "loading:animate-pulse"
+            "bg-red-800",
+            "px-2",
+            "py-2",
+            "rounded-b-xl",
+            "rounded-tl-xl",
+            "mb-2",
+            "mt-2",
+            "w-1/2",
+            "text-white",
+            "shadow-yellow-400",
+            "shadow-md",
+            "loading:animate-bounce"
         );
         div.classList.add(
-        "bg-red-800",
-        "px-2",
-        "py-2",
-        "rounded-b-xl",
-        "rounded-tl-xl",
-        "mb-2",
-        "mt-2",
-        "w-1/2",
-        "text-white",
-        "shadow-yellow-400",
-        "shadow-md",
-    "loading:animate-bounce"
+        
         );
+        time.textContent = formattedTimestamp;
+        time.classList.add("text-white", "text-sm");
+    
+        div.classList.add("flex", "flex-col", "items-start");
     }
     chatHolder.appendChild(div);
     div.appendChild(span);
+    div.appendChild(time);
+    console.log(time)
     return span
     }
 
