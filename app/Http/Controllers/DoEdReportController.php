@@ -25,4 +25,9 @@ class DoEdReportController extends Controller
 
         return view('reports.studentdemographics', compact('ethnicity_chart', 'gender_chart', 'parent_education', 'enrollment_type', 'income'));
     }
+
+    public function financial_outcomes(Request $request): View
+    {
+        return view("reports.financialoutcomes");
+    }
 }
