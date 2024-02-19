@@ -64,3 +64,19 @@ All rates are rounded to the nearest whole percent and are whole number represen
 | Command Description | recalculate all statistics for professors |
 | Options | none |
 | File | calculate_professor_stats.php |
+
+## Import Department of Education Student Demographic Information
+This command queries the [department of education college scorecard api](https://collegescorecard.ed.gov/data/documentation/) and stores information about the below topics in the student_demographics table. You will need to set the DoE_API_KEY value for this work properly. The command currentley runs daily. The reports use the most recent entry but all the previous day's entries are still stored.
+
+- student enthnicty percentages
+- student gender percentages
+- student degree level (graduate vs undergradute) percentages
+- student parental income levels percentages
+- student parental eduction levels percentages
+
+|  | |
+| ------------------|------------------|
+| Command Signature | import:student-demographic-info |
+| Command Description | update student demographic information from the Department of Education api |
+| Options | none |
+| File | ImportStudentDemographicInfo.php |
