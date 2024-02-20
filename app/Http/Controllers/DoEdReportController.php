@@ -29,6 +29,8 @@ class DoEdReportController extends Controller
 
     public function financial_outcomes(Request $request): View
     {
+        TrackUsage::log($request, 'report');
+
         $outcomes = FinancialOutcomeInfo::orderBy("median_income_year_1","desc")->get();
         return view("reports.financialoutcomes", compact("outcomes"));
     }
