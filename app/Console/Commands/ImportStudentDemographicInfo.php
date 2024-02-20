@@ -33,7 +33,7 @@ class ImportStudentDemographicInfo extends Command
 
             return Command::FAILURE;
         } else {
-            $this->info(now().': import successful');
+            $this->info(now().': student demographics import successful');
 
             return Command::SUCCESS;
         }

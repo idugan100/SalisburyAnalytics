@@ -1,10 +1,11 @@
 <x-header>
     <x-subHeader title="financial outcomes"/>
-    <h3 class="text-center m-1">data on this page is from the <a class="underline text-red-800" href="https://collegescorecard.ed.gov/data/documentation/" target="_blank">department of education</a> </h3>
+    <h3 class="text-center m-1">data on this page is specific to salisbury univeristy graduates and is from the <a class="underline text-red-800" href="https://collegescorecard.ed.gov/data/documentation/" target="_blank">department of education</a> </h3>
     
     
-    <form class="flex justify-center mt-5">
-        {{-- let's use htmx here  to my the filter dynamic --}}
+    {{-- todo: add filter 
+        <form class="flex justify-center mt-5">
+        let's use htmx here  to my the filter dynamic
         <select name="" id="">
             <option value="">Median Income 1 Year after graduation</option>
             <option value="">Median Income 4 Years after graduation</option>
@@ -15,18 +16,23 @@
             <option value="">asc</option>
             <option value="">desc</option>
         </select>
-    </form>
+    </form> --}}
 
-    <div class="flex justify-center mt-5">
+    <div class="flex justify-center mt-5 mx-2">
         <table class="border-collapse border-4 border-red-800 table-auto">
             <thead>
                 <tr>
-                    <th class="border-4 border-red-800 p-3">Progam Name</th>
-                    <th class="border-4 border-red-800 p-3">Degree Level</th>
-                    <th class="border-4 border-red-800 p-3">Median Income 1 Year after graduation</th>
-                    <th class="border-4 border-red-800 p-3">Median Income 4 Years after graduation</th>
-                    <th class="border-4 border-red-800 p-3">Unemployment Percentage after 1 year</th>
-                    <th class="border-4 border-red-800 p-3">Unemployment Percentage after 4 years</th>
+                    <th class="border-4 border-red-800 p-3" rowspan="2">progam name</th>
+                    <th class="border-4 border-red-800 p-3" rowspan="2">degree level</th>
+                    <th class="border-4 border-red-800 p-3" colspan="2">median income </th>
+                    <th class="border-4 border-red-800 p-3" colspan="2">unemployment percentage</th>
+                </tr>
+                <tr>
+
+                    <th class="border-4 border-red-800 p-3">year 1</th>
+                    <th class="border-4 border-red-800 p-3">year 4</th>
+                    <th class="border-4 border-red-800 p-3">year 1</th>
+                    <th class="border-4 border-red-800 p-3">year 4</th>
                 </tr>
             </thead>
             <tbody>
@@ -36,8 +42,8 @@
                     <td class="border-4 border-red-800 p-3">{{$outcome->credential_name}}</td>
                     <td class="border-4 border-red-800 p-3">{{"$" . $outcome->median_income_year_1}}</td>
                     <td class="border-4 border-red-800 p-3">{{"$" . $outcome->median_income_year_4}}</td>
-                    <td class="border-4 border-red-800 p-3">{{$outcome->unemployment_pct_year_1 . "%"}}</td>
-                    <td class="border-4 border-red-800 p-3">{{$outcome->unemployment_pct_year_4 . "%"}}</td>
+                    <td class="border-4 border-red-800 p-3">{{$outcome->year_one_unemployment() . "%"}}</td>
+                    <td class="border-4 border-red-800 p-3">{{$outcome->year_four_unemployment() . "%"}}</td>
                 </tr> 
             @empty
             <tr>
