@@ -7,6 +7,7 @@ use App\Charts\ParentalEducationLevelChart;
 use App\Charts\StudentEthnicityChart;
 use App\Charts\StudentFamilyIncomesChart;
 use App\Charts\StudentGenderChart;
+use App\Models\FinancialOutcomeInfo;
 use App\Services\TrackUsage;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
@@ -24,5 +25,14 @@ class DoEdReportController extends Controller
         $income = $chart5->build();
 
         return view('reports.studentdemographics', compact('ethnicity_chart', 'gender_chart', 'parent_education', 'enrollment_type', 'income'));
+    }
+
+    public function financial_outcomes(Request $request): View
+    {
+        TrackUsage::log($request, 'report');
+
+        $outcomes = FinancialOutcomeInfo::orderBy('median_income_year_1', 'desc')->get();
+
+        return view('reports.financialoutcomes', compact('outcomes'));
     }
 }

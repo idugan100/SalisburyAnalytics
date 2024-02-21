@@ -14,6 +14,7 @@ use App\Http\Middleware\EnsureIsAdmin;
 use App\Http\Middleware\EnsureIsSubscribed;
 use App\Services\TrackUsage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -92,6 +93,7 @@ Route::middleware((EnsureIsSubscribed::class))->group(function () {
 Route::get('/gpa_over_time', [GpaOverTimeController::class, 'index'])->name('gpa');
 Route::get('/enrollment_over_time', [EnrollmentOverTimeController::class, 'index'])->name('enrollment');
 Route::get('/student_demographics', [DoEdReportController::class, 'student_demographics'])->name('student_demographics');
+Route::get('/financial_outcomes', [DoEdReportController::class, 'financial_outcomes'])->name('financial_outcomes');
 
 //stripe
 Route::get('/billing-portal', [BillingController::class, 'billing_portal'])->middleware('auth');

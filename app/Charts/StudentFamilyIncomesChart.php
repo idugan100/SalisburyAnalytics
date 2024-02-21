@@ -28,7 +28,7 @@ class StudentFamilyIncomesChart
                     $this->data->pct_75001_110000, $this->data->pct_110001_greater,
                 ]
             )
-            ->setTitle('income distribution of student families')
+            ->setTitle('income distribution of students\' families')
             ->setXAxis(['$0 - $30000', '$30001 - $48000', '$48001 - $75000', '$75001 - $110000', '$110001+'])
             ->setColors(['#8b0000'])
             ->setHeight(250);
