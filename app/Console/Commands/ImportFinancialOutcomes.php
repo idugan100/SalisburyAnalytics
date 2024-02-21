@@ -24,7 +24,7 @@ class ImportFinancialOutcomes extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(): int
     {
         $financial_outcomes_manager = new FinancialOutcomesManager();
         $financial_outcomes_manager->import();
@@ -33,7 +33,7 @@ class ImportFinancialOutcomes extends Command
 
             return Command::FAILURE;
         } else {
-            $this->info(now().': financial outcomes import successfully ingested ' . $financial_outcomes_manager->ingested_count. " out of " . $financial_outcomes_manager->api_count);
+            $this->info(now().': financial outcomes import successfully ingested '.$financial_outcomes_manager->ingested_count.' out of '.$financial_outcomes_manager->api_count);
 
             return Command::SUCCESS;
         }

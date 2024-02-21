@@ -1,21 +1,21 @@
 <?php
 
+use App\Http\Controllers\AdminActionsController;
+use App\Http\Controllers\BillingController;
+use App\Http\Controllers\CourseController;
+use App\Http\Controllers\DoEdReportController;
+use App\Http\Controllers\EnrollmentOverTimeController;
+use App\Http\Controllers\GpaOverTimeController;
+use App\Http\Controllers\ProfessorController;
+use App\Http\Controllers\QueryToolController;
+use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\UsageController;
+use App\Http\Middleware\EnsureIsAdmin;
+use App\Http\Middleware\EnsureIsSubscribed;
 use App\Services\TrackUsage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Middleware\EnsureIsAdmin;
-use App\Http\Controllers\UsageController;
-use App\Http\Controllers\CourseController;
-use App\Http\Controllers\ReviewController;
-use App\Http\Controllers\BillingController;
-use App\Http\Middleware\EnsureIsSubscribed;
-use App\Http\Controllers\ProfessorController;
-use App\Http\Controllers\QueryToolController;
-use App\Http\Controllers\DoEdReportController;
-use App\Http\Controllers\GpaOverTimeController;
-use App\Http\Controllers\AdminActionsController;
-use App\Http\Controllers\EnrollmentOverTimeController;
 
 /*
 |--------------------------------------------------------------------------

@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::table('financial_outcomes', function (Blueprint $table) {
             $table->softDeletes();
-            $table->dropColumn("unemployment_pct_year_1");
-            $table->dropColumn("unemployment_pct_year_4");
-            $table->integer("employed_count_year_1");
-            $table->integer("unemployed_count_year_1");
-            $table->integer("employed_count_year_4");
-            $table->integer("unemployed_count_year_4");
+            $table->dropColumn('unemployment_pct_year_1');
+            $table->dropColumn('unemployment_pct_year_4');
+            $table->integer('employed_count_year_1');
+            $table->integer('unemployed_count_year_1');
+            $table->integer('employed_count_year_4');
+            $table->integer('unemployed_count_year_4');
 
         });
     }
@@ -29,14 +29,14 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('financial_outcomes', function (Blueprint $table) {
-            $table->dropColumn("deleted_at");
-            $table->float("unemployment_pct_year_1");
-            $table->float("unemployment_pct_year_4");
-            $table->dropColumn("employed_count_year_1");
-            $table->dropColumn("unemployed_count_year_1");
-            $table->dropColumn("employed_count_year_4");
-            $table->dropColumn("unemployed_count_year_4");
+            $table->dropColumn('deleted_at');
+            $table->float('unemployment_pct_year_1');
+            $table->float('unemployment_pct_year_4');
+            $table->dropColumn('employed_count_year_1');
+            $table->dropColumn('unemployed_count_year_1');
+            $table->dropColumn('employed_count_year_4');
+            $table->dropColumn('unemployed_count_year_4');
         });
-        
+
     }
 };

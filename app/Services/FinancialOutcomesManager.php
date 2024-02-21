@@ -2,9 +2,9 @@
 
 namespace App\Services;
 
+use App\Models\FinancialOutcomeInfo;
 use Exception;
 use Illuminate\Support\Facades\DB;
-use App\Models\FinancialOutcomeInfo;
 use Illuminate\Support\Facades\Http;
 
 class FinancialOutcomesManager
@@ -32,9 +32,9 @@ class FinancialOutcomesManager
 
     public function __construct()
     {
-        $this->api_count=0;
-        $this->ingested_count=0;
-        $this->outcomes = array();
+        $this->api_count = 0;
+        $this->ingested_count = 0;
+        $this->outcomes = [];
         $this->is_error = false;
     }
 
@@ -69,40 +69,39 @@ class FinancialOutcomesManager
     private function insert_into_db(): void
     {
         DB::beginTransaction();
-            FinancialOutcomeInfo::query()->delete();
-            foreach ($this->outcomes as $outcome) {
-                $outcome->save();
-            }
+        FinancialOutcomeInfo::query()->delete();
+        foreach ($this->outcomes as $outcome) {
+            $outcome->save();
+        }
         DB::commit();
-        $this->ingested_count=count($this->outcomes);
+        $this->ingested_count = count($this->outcomes);
     }
 
     private function marshal_data(): void
     {
-        foreach($this->api_data_response as $program){
-            try{
+        foreach ($this->api_data_response as $program) {
+            try {
                 $outcome = new FinancialOutcomeInfo();
 
                 //names
-                $outcome->program_name = strtolower($program->title) ?? throw new Exception("Empty Name Value");
-                $outcome->credential_name = strtolower($program->credential->title) ?? throw new Exception("Empty Name Value");
+                $outcome->program_name = $program->title ? strtolower($program->title) : throw new Exception('Empty Name Value');
+                $outcome->credential_name = $program->credential->title ? strtolower($program->credential->title) : throw new Exception('Empty Name Value');
 
                 //earnings
-                $outcome->median_income_year_1=$program->earnings->{"1_yr"}->overall_median_earnings ?? throw new Exception("Empty 1 yr earnings Value");
-                $outcome->median_income_year_4=$program->earnings->{"4_yr"}->overall_median_earnings ?? throw new Exception("Empty 4 yr earnings Value");
+                $outcome->median_income_year_1 = $program->earnings->{'1_yr'}->overall_median_earnings ?? throw new Exception('Empty 1 yr earnings Value');
+                $outcome->median_income_year_4 = $program->earnings->{'4_yr'}->overall_median_earnings ?? throw new Exception('Empty 4 yr earnings Value');
 
                 //employment
-                $outcome->employed_count_year_1= $program->earnings->{"1_yr"}->working_not_enrolled->overall_count ?? throw new Exception("Empty employment Value");
-                $outcome->unemployed_count_year_1 = $program->earnings->{"1_yr"}->not_working_not_enrolled->overall_count?? throw new Exception("Empty employment Value");
-                $outcome->employed_count_year_4 = $program->earnings->{"4_yr"}->working_not_enrolled->overall_count ?? throw new Exception("Empty employment Value");
-                $outcome->unemployed_count_year_4 = $program->earnings->{"4_yr"}->not_working_not_enrolled->overall_count?? throw new Exception("Empty employment Value");
+                $outcome->employed_count_year_1 = $program->earnings->{'1_yr'}->working_not_enrolled->overall_count ?? throw new Exception('Empty employment Value');
+                $outcome->unemployed_count_year_1 = $program->earnings->{'1_yr'}->not_working_not_enrolled->overall_count ?? throw new Exception('Empty employment Value');
+                $outcome->employed_count_year_4 = $program->earnings->{'4_yr'}->working_not_enrolled->overall_count ?? throw new Exception('Empty employment Value');
+                $outcome->unemployed_count_year_4 = $program->earnings->{'4_yr'}->not_working_not_enrolled->overall_count ?? throw new Exception('Empty employment Value');
 
-                $this->outcomes[]=$outcome;
+                $this->outcomes[] = $outcome;
+            } catch (Exception $e) {
+
             }
-            catch(Exception $e){
-                
-            }            
         }
-        
+
     }
 }
