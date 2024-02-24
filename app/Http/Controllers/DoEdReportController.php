@@ -14,7 +14,8 @@ use Illuminate\Http\Request;
 
 class DoEdReportController extends Controller
 {
-    public function student_demographics(Request $request, StudentEthnicityChart $chart, StudentGenderChart $chart2, ParentalEducationLevelChart $chart3, GradToUGradChart $chart4, StudentFamilyIncomesChart $chart5): View{
+    public function student_demographics(Request $request, StudentEthnicityChart $chart, StudentGenderChart $chart2, ParentalEducationLevelChart $chart3, GradToUGradChart $chart4, StudentFamilyIncomesChart $chart5): View
+    {
         TrackUsage::log($request, 'report');
 
         $ethnicity_chart = $chart->build();

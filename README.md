@@ -2,6 +2,8 @@
     <img src="./public/gully-removebg-preview.png" width="250" style="">
 </p>
 
+![linting] (https://github.com/idugan100/SalisburyAnalytics/actions/workflows/main.yml/badge.svg)
+
 <h1 style="text-align: center;margin-top:20px;">Salisbury Analytics</h1>
 
 ## About
