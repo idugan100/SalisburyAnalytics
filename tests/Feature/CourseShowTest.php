@@ -24,14 +24,14 @@ class CourseShowTest extends TestCase
 
     public function test_show_course_usage_tracking()
     {
-        UsageLog::factory()->create();
+        $log = UsageLog::factory()->create();
 
         $course = Course::factory()->create();
 
         $this->get(route('courses.show', $course->id));
 
         $this->assertDatabaseHas('usage_log', [
-            'created_at' => now()->toDateTimeString(),
+            'created_at' => $log->created_at,
             'course_views' => 1,
         ]);
     }

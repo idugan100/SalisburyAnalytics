@@ -3,6 +3,12 @@
 </p>
 
 
+![Lint](https://github.com/idugan100/SalisburyAnalytics/actions/workflows/lint.yml/badge.svg)
+![Tests](https://github.com/idugan100/SalisburyAnalytics/actions/workflows/test.yml/badge.svg)
+![Static Analysis](https://github.com/idugan100/SalisburyAnalytics/actions/workflows/staticanalalysis.yml/badge.svg)
+
+
+
 <h1 style="text-align: center;margin-top:20px;">Salisbury Analytics</h1>
 
 ## About

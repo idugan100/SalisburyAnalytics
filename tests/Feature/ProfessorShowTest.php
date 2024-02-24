@@ -24,14 +24,14 @@ class ProfessorShowTest extends TestCase
 
     public function test_show_professor_usage_tracking()
     {
-        UsageLog::factory()->create();
+        $log = UsageLog::factory()->create();
 
         $professor = Professor::factory()->create();
 
         $this->get(route('professors.show', $professor->id));
 
         $this->assertDatabaseHas('usage_log', [
-            'created_at' => now()->toDateTimeString(),
+            'created_at' => $log->created_at,
             'professor_views' => 1,
         ]);
     }
