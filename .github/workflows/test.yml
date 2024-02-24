@@ -1,4 +1,4 @@
-name: Laravel PHPUnit Tests
+name: Unit Tests
 
 on:
   push:
