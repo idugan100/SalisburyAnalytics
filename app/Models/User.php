@@ -13,6 +13,9 @@ class User extends Authenticatable
 {
     use Billable, HasApiTokens, HasFactory, Notifiable;
 
+    /** @var string */
+    public $pm_type;
+
     /**
      * The attributes that are mass assignable.
      *
