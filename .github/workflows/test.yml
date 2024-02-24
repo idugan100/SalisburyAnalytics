@@ -1,0 +1,60 @@
+name: Laravel PHPUnit Tests
+
+on:
+  push:
+
+jobs:
+  laravel_tests:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: password
+          MYSQL_DATABASE: salisbuydatatest
+          MYSQL_USER: user
+          MYSQL_PASSWORD: password
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mbstring, pdo, pdo_mysql
+
+      - name: Copy .env.test to .env
+        run: cp .env.test .env
+
+      - name: Set DOE_API_KEY from GitHub secret
+        run: echo "DoE_API_KEY=${{ secrets.DOE_API_KEY }}" >> .env
+
+      - name: Set TEST_CUSTOMER_STRIPE_ID from GitHub secret
+        run: echo "TEST_CUSTOMER_STRIPE_ID=${{ secrets.TEST_CUSTOMER_STRIPE_ID }}" >> .env
+
+      - name: Set PLAN_ID from GitHub secret
+        run: echo "PLAN_ID=${{ secrets.TEST_PLAN_ID }}" >> .env
+
+      - name: Set STRIPE_KEY from GitHub secret
+        run: echo "STRIPE_KEY=${{ secrets.TEST_STRIPE_KEY }}" >> .env
+
+      - name: Set STRIPE_SECRET from GitHub secret
+        run: echo "STRIPE_SECRET=${{ secrets.TEST_STRIPE_SECRET }}" >> .env
+
+      - name: Set VITE_GPT_ENDPOINT from GitHub secret
+        run: echo "VITE_GPT_ENDPOINT=${{ secrets.VITE_GPT_ENDPOINT }}" >> .env
+
+      - name: Install Composer dependencies
+        run: composer install --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+
+      - name: Generate application key
+        run: php artisan key:generate
+
+      - name: Run PHPUnit tests
+        run: php artisan test
