@@ -21,12 +21,12 @@ class PremiumPageTest extends TestCase
 
     public function test_about_usage_tracking()
     {
-        UsageLog::factory()->create();
+        $log=UsageLog::factory()->create();
 
         $this->get('/premium');
 
         $this->assertDatabaseHas('usage_log', [
-            'created_at' => now()->toDateTimeString(),
+            'created_at' => $log->created_at,
             'about_views' => 1,
         ]);
     }

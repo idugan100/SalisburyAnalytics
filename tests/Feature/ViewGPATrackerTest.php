@@ -21,12 +21,12 @@ class ViewGPATrackerTest extends TestCase
 
     public function test_gpa_tracker_usage_tracking()
     {
-        UsageLog::factory()->create();
+        $log=UsageLog::factory()->create();
 
         $this->get(route('gpa'));
 
         $this->assertDatabaseHas('usage_log', [
-            'created_at' => now()->toDateTimeString(),
+            'created_at' => $log->created_at,
             'report_views' => 1,
         ]);
     }

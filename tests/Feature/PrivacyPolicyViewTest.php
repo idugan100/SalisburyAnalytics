@@ -21,12 +21,12 @@ class PrivacyPolicyViewTest extends TestCase
 
     public function test_privacy_policy_usage_tracking()
     {
-        UsageLog::factory()->create();
+        $log=UsageLog::factory()->create();
 
         $this->get('/privacy');
 
         $this->assertDatabaseHas('usage_log', [
-            'created_at' => now()->toDateTimeString(),
+            'created_at' => $log->created_at,
             'about_views' => 1,
         ]);
     }

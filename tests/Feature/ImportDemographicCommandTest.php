@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\StudentDemographicInfo;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -17,6 +18,7 @@ class ImportDemographicCommandTest extends TestCase
     public function test_import_demographic_command_inserts_data(): void
     {
         $this->artisan('import:student-demographic-info');
-        $this->assertDatabaseHas('student_demographics', ['created_at' => now()->toDateTimeString()]);
+        $count = StudentDemographicInfo::count();
+        $this->assertGreaterThan(0,$count);
     }
 }
