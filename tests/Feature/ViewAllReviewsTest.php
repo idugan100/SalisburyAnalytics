@@ -21,7 +21,7 @@ class ViewAllReviewsTest extends TestCase
 
     public function test_all_reviews_usage_tracking()
     {
-        $log=UsageLog::factory()->create();
+        $log = UsageLog::factory()->create();
 
         $this->get('/reviews');
 

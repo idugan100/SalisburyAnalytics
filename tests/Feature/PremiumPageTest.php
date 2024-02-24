@@ -21,7 +21,7 @@ class PremiumPageTest extends TestCase
 
     public function test_about_usage_tracking()
     {
-        $log=UsageLog::factory()->create();
+        $log = UsageLog::factory()->create();
 
         $this->get('/premium');
 

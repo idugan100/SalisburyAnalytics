@@ -24,7 +24,7 @@ class CourseShowTest extends TestCase
 
     public function test_show_course_usage_tracking()
     {
-        $log=UsageLog::factory()->create();
+        $log = UsageLog::factory()->create();
 
         $course = Course::factory()->create();
 

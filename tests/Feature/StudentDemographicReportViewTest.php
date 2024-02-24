@@ -23,7 +23,7 @@ class StudentDemographicReportViewTest extends TestCase
 
     public function test_about_usage_tracking()
     {
-        $log=UsageLog::factory()->create();
+        $log = UsageLog::factory()->create();
         StudentDemographicInfo::factory()->create();
 
         $this->get('/student_demographics');

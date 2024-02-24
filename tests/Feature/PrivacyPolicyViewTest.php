@@ -21,7 +21,7 @@ class PrivacyPolicyViewTest extends TestCase
 
     public function test_privacy_policy_usage_tracking()
     {
-        $log=UsageLog::factory()->create();
+        $log = UsageLog::factory()->create();
 
         $this->get('/privacy');
 

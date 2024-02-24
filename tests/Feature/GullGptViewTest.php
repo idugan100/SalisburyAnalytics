@@ -22,7 +22,7 @@ class GullGptViewTest extends TestCase
 
     public function test_gullgpt_usage_tracking()
     {
-        $log=UsageLog::factory()->create();
+        $log = UsageLog::factory()->create();
 
         $this->get('/gullGPT');
 

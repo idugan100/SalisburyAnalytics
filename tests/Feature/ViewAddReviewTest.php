@@ -21,7 +21,7 @@ class ViewAddReviewTest extends TestCase
 
     public function test_create_review_usage_tracking()
     {
-        $log=UsageLog::factory()->create();
+        $log = UsageLog::factory()->create();
 
         $this->get('/reviews/create');
 

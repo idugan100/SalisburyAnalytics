@@ -19,6 +19,6 @@ class ImportDemographicCommandTest extends TestCase
     {
         $this->artisan('import:student-demographic-info');
         $count = StudentDemographicInfo::count();
-        $this->assertGreaterThan(0,$count);
+        $this->assertGreaterThan(0, $count);
     }
 }

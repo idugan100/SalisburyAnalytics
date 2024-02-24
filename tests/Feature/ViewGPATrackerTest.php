@@ -21,7 +21,7 @@ class ViewGPATrackerTest extends TestCase
 
     public function test_gpa_tracker_usage_tracking()
     {
-        $log=UsageLog::factory()->create();
+        $log = UsageLog::factory()->create();
 
         $this->get(route('gpa'));
 

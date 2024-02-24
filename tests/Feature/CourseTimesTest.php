@@ -24,7 +24,7 @@ class CourseTimesTest extends TestCase
 
     public function test_course_times_usage_tracking(): void
     {
-        $log=UsageLog::factory()->create();
+        $log = UsageLog::factory()->create();
 
         $course = Course::factory()->create();
 

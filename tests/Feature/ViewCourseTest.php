@@ -21,7 +21,7 @@ class ViewCourseTest extends TestCase
 
     public function test_course_usage_tracking()
     {
-        $log=UsageLog::factory()->create();
+        $log = UsageLog::factory()->create();
 
         $this->get('/courses');
 
