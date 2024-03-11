@@ -18,7 +18,7 @@ Salisbury Analytics is a web application built for the students of Salisbury Uni
 Education is a major investment of time, money and effort. Salisbury Analytics aims to support students of Salisbury Univesity in getting the highest return on their investment by helping them make informed decisions. Additionally, the website acts as a tool to keep the university accountable by improving transparency.
 
 ## Technology
-
+Architecture diagram can be found [here](./documentation/Salisbury%20Analytics%20Architecture.pdf).
 |  | |
 | ------------------|------------------|
 | Front End | Blade, HTMX, Apex Charts, Javascript, LangChain.js |
