@@ -91,7 +91,7 @@ class ReviewController extends Controller
         $review->approved_flag = self::APPROVED_FLAG;
         $review->save();
 
-        return redirect(route('reviews.processing'));
+        return back();
     }
 
     public function reject(Review $review): RedirectResponse
@@ -99,18 +99,15 @@ class ReviewController extends Controller
         $review->approved_flag = self::REJECTED_FLAG;
         $review->save();
 
-        return redirect(route('reviews.processing'));
+        return back();
     }
 
     public function reprocess(Review $review, string $origin): RedirectResponse
     {
         $review->approved_flag = self::PROCESSING_FLAG;
         $review->save();
-        if ($origin == 'rejected') {
-            return redirect(route('reviews.rejected'));
-        }
 
-        return redirect(route('reviews.approved'));
+        return back();
 
     }
 
