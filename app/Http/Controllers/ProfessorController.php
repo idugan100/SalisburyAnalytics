@@ -152,7 +152,6 @@ class ProfessorController extends Controller
         $validated = $request->validate([
             'firstName' => 'required',
             'lastName' => 'required',
-            'department' => 'required',
         ]);
 
         $professor->update($validated);

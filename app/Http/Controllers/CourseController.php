@@ -126,10 +126,6 @@ class CourseController extends Controller
             'description' => 'required',
             'courseNumber' => 'required',
             'departmentCode' => 'required',
-            'creditsLecture' => 'nullable',
-            'creditsLab' => 'nullable',
-            'creditsTotal' => 'required',
-            'syllabusLink' => 'nullable',
         ]);
 
         $course->update($validated);
