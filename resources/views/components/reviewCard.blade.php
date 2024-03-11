@@ -8,7 +8,7 @@
     <div class="flex rounded-md">
         @auth
             @if (auth()->user()->email == env("ADMIN_EMAIL"))
-                <form  class="" method="GET" action="{{ route('review.reject', $review->id) }}" onsubmit="return confirm('Do you really want to reject this review?');">
+                <form method="GET" action="{{ route('review.reject', $review->id) }}" onsubmit="return confirm('Do you really want to reject this review?');">
                     @csrf
                     <button class="m-2  border-4 border-yellow-400 hover:text-gray-300 bg-yellow-400 rounded font-bold px-1">reject</button>
                 </form>     
