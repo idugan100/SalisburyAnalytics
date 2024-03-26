@@ -16,6 +16,7 @@
 </head>
 <body class="bg-gray-200 ">
   <h1 class="text-6xl flex p-4 font-bold bg-yellow-400 text-red-800 border-y-4 justify-center border-black text-center">salisbury analytics <img src="{{ URL::asset('gully-removebg-preview.png') }}" alt="SUlogo" class= "w-16 h-16 hover:animate-pulse ml-8"/></h1>
+  <a href="" target="_blank" class="text-xl flex p-1 font-bold bg-red-800 hover:underline text-yellow-400 border-y-4 justify-center border-black text-center border-t-0">Make your voice heard - vote in the SGA election now &#8594 </a>
   <x-navbar></x-navbar>
 
     {{$slot}}
