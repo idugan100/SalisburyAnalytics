@@ -94,6 +94,12 @@ Route::get('/gpa_over_time', [GpaOverTimeController::class, 'index'])->name('gpa
 Route::get('/enrollment_over_time', [EnrollmentOverTimeController::class, 'index'])->name('enrollment');
 Route::get('/student_demographics', [DoEdReportController::class, 'student_demographics'])->name('student_demographics');
 Route::get('/financial_outcomes', [DoEdReportController::class, 'financial_outcomes'])->name('financial_outcomes');
+Route::get('/dataDashboard', function (Request $request) {
+    TrackUsage::log($request, 'report');
+
+    return view('reports.SuDataDashboard');
+}
+)->name('data_dashboard');
 
 //stripe
 Route::get('/billing-portal', [BillingController::class, 'billing_portal'])->middleware('auth');
