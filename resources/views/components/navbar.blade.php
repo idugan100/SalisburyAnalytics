@@ -9,9 +9,9 @@
       </button>
       <div class="hidden w-full md:block md:w-auto" id="navbar-solid-bg">
         <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-yellow-400 rounded-lg bg-gray-200 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-gray-200">
-            <li>
+            {{-- <li>
                 <a href="{{route("gullGPT")}}" class=" no-highlights decoration-yellow-400 decoration-4 hover:underline block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-red-800 md:p-0 font-bold ">gullGPT</a>
-            </li>
+            </li> --}}
             <li>
                 <a href="{{route("professors.index")}}" class=" no-highlights decoration-yellow-400 decoration-4 hover:underline block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-red-800 md:p-0 font-bold ">professors</a>
             </li>
