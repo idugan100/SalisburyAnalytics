@@ -64,12 +64,7 @@
 
                                 </td>
                               </tr>
-                            @endforeach
-                            <div>
-                                {{$reviews->links()}}
-
-                            </div>
-                          
+                            @endforeach                         
                         </tbody>
                       </table>
                 </div>
