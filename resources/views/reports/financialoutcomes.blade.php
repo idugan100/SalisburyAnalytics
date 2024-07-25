@@ -1,6 +1,6 @@
 <x-header>
     <x-subHeader title="financial outcomes"/>
-    <h3 class="text-center m-1">data on this page is specific to salisbury univeristy graduates and is from the <a class="underline text-red-800" href="https://collegescorecard.ed.gov/data/documentation/" target="_blank">department of education</a> </h3>
+    <h3 class="text-center m-1">data on this page is specific to {{env("UNIVERSITY_NAME")}} graduates and is from the <a class="underline {{env("ACCENT_TEXT_COLOR")}}" href="https://collegescorecard.ed.gov/data/documentation/" target="_blank">department of education</a> </h3>
     
     
     {{-- todo: add filter 
@@ -38,16 +38,16 @@
             <tbody>
                 @forelse ($outcomes as $outcome)
                <tr >
-                    <td class="border-4 border-red-800  text-xs md:text-lg sm:p-4">{{$outcome->program_name}}</td>
-                    <td class="border-4 border-red-800  text-xs md:text-lg sm:p-4">{{$outcome->credential_name}}</td>
-                    <td class="border-4 border-red-800  text-xs md:text-lg sm:p-4">{{"$" . $outcome->median_income_year_1}}</td>
-                    <td class="border-4 border-red-800  text-xs md:text-lg sm:p-4">{{"$" . $outcome->median_income_year_4}}</td>
-                    <td class="border-4 border-red-800  text-xs md:text-lg sm:p-4">{{$outcome->year_one_unemployment() . "%"}}</td>
-                    <td class="border-4 border-red-800  text-xs md:text-lg sm:p-4">{{$outcome->year_four_unemployment() . "%"}}</td>
+                    <td class="border-4 {{env("ACCENT_BORDER")}}  text-xs md:text-lg sm:p-4">{{$outcome->program_name}}</td>
+                    <td class="border-4 {{env("ACCENT_BORDER")}}  text-xs md:text-lg sm:p-4">{{$outcome->credential_name}}</td>
+                    <td class="border-4 {{env("ACCENT_BORDER")}}  text-xs md:text-lg sm:p-4">{{"$" . $outcome->median_income_year_1}}</td>
+                    <td class="border-4 {{env("ACCENT_BORDER")}}  text-xs md:text-lg sm:p-4">{{"$" . $outcome->median_income_year_4}}</td>
+                    <td class="border-4 {{env("ACCENT_BORDER")}}  text-xs md:text-lg sm:p-4">{{$outcome->year_one_unemployment() . "%"}}</td>
+                    <td class="border-4 {{env("ACCENT_BORDER")}}  text-xs md:text-lg sm:p-4">{{$outcome->year_four_unemployment() . "%"}}</td>
                 </tr> 
             @empty
             <tr>
-                <td class="border-4 border-red-800">no data found</td>
+                <td class="border-4 {{env("ACCENT_BORDER")}}">no data found</td>
             </tr>
             @endforelse
             </tbody>

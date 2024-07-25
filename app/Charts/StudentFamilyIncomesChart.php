@@ -30,7 +30,7 @@ class StudentFamilyIncomesChart
             )
             ->setTitle('income distribution of students\' families')
             ->setXAxis(['$0 - $30000', '$30001 - $48000', '$48001 - $75000', '$75001 - $110000', '$110001+'])
-            ->setColors(['#8b0000'])
+            ->setColors([env('CHART_MAIN')])
             ->setHeight(250);
     }
 }

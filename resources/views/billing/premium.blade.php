@@ -11,11 +11,11 @@
         </li>
     </ul>
     <div class="flex justify-center">
-        <a href="{{route("register")}}" class="bg-red-800 w-1/3 p-3 rounded text-yellow-400 font-bold flex justify-center">sign up now :)</a>
+        <a href="{{route("register")}}" class="{{env("ACCENT_BG")}} w-1/3 p-3 rounded font-bold flex justify-center">sign up now :)</a>
     </div>
     <div class="flex justify-center">
         <span class="mx-1">already a user?</span>
-        <a href="{{route("login")}}" class="underline text-red-800"> sign in</a>
+        <a href="{{route("login")}}" class="underline {{env("ACCENT_TEXT_COLOR")}}"> sign in</a>
     </div>
 
 </div>

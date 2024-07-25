@@ -48,7 +48,7 @@ class StudentDemographicsManager
     private function api_request(): void
     {
         $response = Http::get($this::$route, [
-            'school.name' => 'Salisbury',
+            'school.name' => env('UNIVERSITY_NAME'),
             'api_key' => env('DoE_API_KEY'),
         ]);
 

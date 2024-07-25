@@ -34,12 +34,6 @@ Route::get('/about', function (Request $request) {
     return view('about');
 })->name('about');
 
-Route::get('/gullGPT', function (Request $request) {
-    TrackUsage::log($request, 'about');
-
-    return view('gullGPT');
-})->name('gullGPT');
-
 //privacy policy
 Route::get('/privacy', function (Request $request) {
     TrackUsage::log($request, 'about');
@@ -85,8 +79,7 @@ Route::middleware(EnsureIsAdmin::class)->group(function () {
 });
 
 Route::middleware((EnsureIsSubscribed::class))->group(function () {
-    //query tool
-    Route::get('/query_tool', [QueryToolController::class, 'index'])->name('qtool');
+    //add any premium routes here
 });
 
 //report routes
@@ -94,12 +87,7 @@ Route::get('/gpa_over_time', [GpaOverTimeController::class, 'index'])->name('gpa
 Route::get('/enrollment_over_time', [EnrollmentOverTimeController::class, 'index'])->name('enrollment');
 Route::get('/student_demographics', [DoEdReportController::class, 'student_demographics'])->name('student_demographics');
 Route::get('/financial_outcomes', [DoEdReportController::class, 'financial_outcomes'])->name('financial_outcomes');
-Route::get('/dataDashboard', function (Request $request) {
-    TrackUsage::log($request, 'report');
-
-    return view('reports.SuDataDashboard');
-}
-)->name('data_dashboard');
+Route::get('/query_tool', [QueryToolController::class, 'index'])->name('qtool');
 
 //stripe
 Route::get('/billing-portal', [BillingController::class, 'billing_portal'])->middleware('auth');

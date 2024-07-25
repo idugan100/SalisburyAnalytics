@@ -11,15 +11,15 @@ class QueryToolTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_query_tool_premium_redirect()
-    {
-        UsageLog::factory()->create();
+    // public function test_query_tool_premium_redirect()
+    // {
+    //     UsageLog::factory()->create();
 
-        $response = $this->get('/query_tool');
+    //     $response = $this->get('/query_tool');
 
-        $response->assertStatus(302);
-        $response->assertRedirect('/premium');
-    }
+    //     $response->assertStatus(302);
+    //     $response->assertRedirect('/premium');
+    // }
 
     public function test_show_query_tool_when_subscribed()
     {
@@ -38,17 +38,17 @@ class QueryToolTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_show_query_tool_checkout_redirect_if_logged_in_and_not_subscribed()
-    {
+    // public function test_show_query_tool_checkout_redirect_if_logged_in_and_not_subscribed()
+    // {
 
-        $user = User::factory()->create();
-        UsageLog::factory()->create();
+    //     $user = User::factory()->create();
+    //     UsageLog::factory()->create();
 
-        $response = $this->actingAs($user)
-            ->get(route('qtool'));
+    //     $response = $this->actingAs($user)
+    //         ->get(route('qtool'));
 
-        $response->assertStatus(302);
-        $response->assertRedirect('/product-checkout');
+    //     $response->assertStatus(302);
+    //     $response->assertRedirect('/product-checkout');
 
-    }
+    // }
 }
