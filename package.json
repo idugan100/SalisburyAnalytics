@@ -17,7 +17,6 @@
         "vite": "^3.0.0"
     },
     "dependencies": {
-        "flowbite": "^1.6.4",
-        "langchain": "^0.1.12"
+        "flowbite": "^1.6.4"
     }
 }

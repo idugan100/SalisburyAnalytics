@@ -34,12 +34,6 @@ Route::get('/about', function (Request $request) {
     return view('about');
 })->name('about');
 
-Route::get('/gullGPT', function (Request $request) {
-    TrackUsage::log($request, 'about');
-
-    return view('gullGPT');
-})->name('gullGPT');
-
 //privacy policy
 Route::get('/privacy', function (Request $request) {
     TrackUsage::log($request, 'about');
