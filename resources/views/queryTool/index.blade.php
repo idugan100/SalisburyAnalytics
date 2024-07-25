@@ -41,7 +41,7 @@
                 <option value="D_rate" @if (old("statistic")=="D_rate") selected @endif> D percentage</option>
                 <option value="F_rate" @if (old("statistic")=="F_rate") selected @endif> F percentage</option>
             </select>
-            <button type="submit" class="p-2 bg-yellow-400 text-red-800 font-bold rounded m-2">calculate</button>
+            <button type="submit" class="p-2 {{env("MAIN_BG")}} {{env("ACCENT_TEXT_COLOR")}} font-bold rounded m-2">calculate</button>
         </div>
 </form>
 
@@ -53,7 +53,7 @@
                     <span class="font-bold">{{$result->{old("statistic")} }}</span>
                     <span>{{  ", " . $result->departmentCode . "-" . $result->courseNumber . " (" .$result->courseTitle .")"}} </span>
                 </span>
-                <a class="text-red-800 font-bold mx-2" href="{{route("courses.index",['department' => $result->departmentCode, 'courseNumber' => $result->courseNumber])}}">&#8594</a>
+                <a class="{{env("ACCENT_TEXT_COLOR")}} font-bold mx-2" href="{{route("courses.index",['department' => $result->departmentCode, 'courseNumber' => $result->courseNumber])}}">&#8594</a>
             </div>
         @endforeach
     @elseif(old("entity")=="professors")
@@ -64,7 +64,7 @@
                     <span>{{ ", " . $result->firstName . " " . $result->lastName}} </span>
                 </span>
                 
-                <a class="text-red-800 font-bold mx-2" href="{{route("professors.index",['professor_id' => $result->id])}}">&#8594</a>
+                <a class="{{env("ACCENT_TEXT_COLOR")}} font-bold mx-2" href="{{route("professors.index",['professor_id' => $result->id])}}">&#8594</a>
             </div>
         @endforeach
     @endif

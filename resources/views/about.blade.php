@@ -5,7 +5,7 @@
             <div class="text-2xl m-4 p-4">
                 Through the Public Information Act, we can provide detailed grade and course information about {{env("UNIVERSITY_NAME")}}. 
                 We also anonmyously host appropriate student reviews! Our goal is to provide students with the tools to make informed decisions about their education.
-                You can read our privacy policy <a href="{{route("privacy")}}" class="text-red-800 underline">here</a>.
+                You can read our privacy policy <a href="{{route("privacy")}}" class="{{env("ACCENT_TEXT_COLOR")}} underline">here</a>.
             </div>
          
         

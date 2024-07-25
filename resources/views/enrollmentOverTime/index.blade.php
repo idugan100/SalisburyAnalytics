@@ -17,7 +17,7 @@
             @endforeach
         </select>
     </form>
-        <div class="m-5 border-solid border-yellow-400 p-4 border-4 rounded shadow bg-white" style="height: 380px;">
+        <div class="m-5 border-solid {{env("MAIN_BORDER")}} p-4 border-4 rounded shadow bg-white" style="height: 380px;">
             <div id="EnrollmentChart">
                 {{$enrollment_chart->container()}}
                 <script src="{{$enrollment_chart->cdn()}}"></script>

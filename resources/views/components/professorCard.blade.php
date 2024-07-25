@@ -1,6 +1,6 @@
-<div class=" contrast-125 group shadow-lg shadow-black bg-white hover:bg-red-800 rounded-lg m-2 p-5 ">
+<div class=" contrast-125 group shadow-lg shadow-black bg-white hover:{{env("ACCENT_BG")}} rounded-lg m-2 p-5 ">
     <h3 class=" text-2xl py-1 px-2 font-bold ">{{$professor->firstName . " " . $professor->lastName }}</h3>
-    <hr class="border-1 border-yellow-400 ">
+    <hr class="border-1 {{env("MAIN_BORDER")}} ">
 
     <h4 class="text-md   py-1 px-2  m-2 group-hover:text-gray-300 font-bold">{{$professor->department}}</h4>
     <div class=" py-1 px-2 m-2  text-md font-bold bg-gray-300 rounded border-3 boder-gray-300"> {{"Average GPA: " . $professor->avg_gpa}}</div>
@@ -25,14 +25,14 @@
                 <form  class="" method="POST" action="{{ route('professors.destroy', $professor->id) }}" onsubmit="return confirm('Do you really want to delete this? You will be unable to get this professor back.');">
                     @csrf
                     @method('delete')
-                    <button class="m-2  border-4 border-yellow-400 hover:text-gray-300 bg-yellow-400 rounded font-bold px-1">delete</button>
+                    <button class="m-2  border-4 {{env("MAIN_BORDER")}} hover:text-gray-300 {{env("MAIN_BG")}} rounded font-bold px-1">delete</button>
                 </form>     
-                <a class="m-2  border-4 border-yellow-400 hover:text-gray-300 bg-yellow-400 rounded font-bold px-1" href="{{route('professors.edit',$professor->id)}}">edit</a>
+                <a class="m-2  border-4 {{env("MAIN_BORDER")}} hover:text-gray-300 {{env("MAIN_BG")}} rounded font-bold px-1" href="{{route('professors.edit',$professor->id)}}">edit</a>
             @endif
         @endauth
-        <button data-modal-target="{{"Rmp-Modal-".$professor->id}}" data-modal-toggle="{{"Rmp-Modal-".$professor->id}}" class="m-2  border-4 border-yellow-400 hover:text-gray-300 bg-yellow-400 rounded font-bold px-1" type="button">rate my professor</button>
-        <button data-modal-target="{{"Review-Modal-".$professor->id}}" data-modal-toggle="{{"Review-Modal-".$professor->id}}" class="m-2  border-4 border-yellow-400 hover:text-gray-300 bg-yellow-400 rounded font-bold px-1" type="button">reviews</button>
-        <a class="m-2  border-4 border-yellow-400 hover:text-gray-300 bg-yellow-400 rounded font-bold px-1" href="{{route('professors.show',$professor->id)}}">grades</a>
+        <button data-modal-target="{{"Rmp-Modal-".$professor->id}}" data-modal-toggle="{{"Rmp-Modal-".$professor->id}}" class="m-2  border-4 {{env("MAIN_BORDER")}} hover:text-gray-300 {{env("MAIN_BG")}} rounded font-bold px-1" type="button">rate my professor</button>
+        <button data-modal-target="{{"Review-Modal-".$professor->id}}" data-modal-toggle="{{"Review-Modal-".$professor->id}}" class="m-2  border-4 {{env("MAIN_BORDER")}} hover:text-gray-300 {{env("MAIN_BG")}} rounded font-bold px-1" type="button">reviews</button>
+        <a class="m-2  border-4 {{env("MAIN_BORDER")}} hover:text-gray-300 {{env("MAIN_BG")}} rounded font-bold px-1" href="{{route('professors.show',$professor->id)}}">grades</a>
     </div>
 </div>   
 
@@ -42,7 +42,7 @@
         
         <div class="mt-8 relative bg-gray-300 rounded-lg shadow ">
             <!-- Modal header -->
-            <div class="flex items-start justify-between p-4 border-b rounded-t border-red-800">
+            <div class="flex items-start justify-between p-4 border-b rounded-t {{env("ACCENT_BORDER")}}">
                 <h3 class="text-xl font-semibold text-gray-900 ">
                     {{"Reviews for " . $professor->firstName ." " . $professor->lastName }} 
                 </h3>
@@ -54,7 +54,7 @@
             <!-- Modal body -->
             <div class="p-6 space-y-6">
                 <div class="flex justify-end">
-                    <a href="{{route("reviews.create")}}" class="m-2  border-4 border-yellow-400 hover:text-gray-300 bg-yellow-400 rounded font-bold px-1">+ add</a>
+                    <a href="{{route("reviews.create")}}" class="m-2  border-4 {{env("MAIN_BORDER")}} hover:text-gray-300 {{env("MAIN_BG")}} rounded font-bold px-1">+ add</a>
                 </div>
 
                     @if (count($professor->reviews)==0)
@@ -76,7 +76,7 @@
         
         <div class="relative bg-gray-300 rounded-lg shadow mt-8 ">
             <!-- Modal header -->
-            <div class="flex items-start justify-between p-4 border-b rounded-t border-red-800">
+            <div class="flex items-start justify-between p-4 border-b rounded-t {{env("ACCENT_BORDER")}}">
                 <h3 class="text-xl font-semibold text-gray-900 ">
                     {{"Rate My Professor for " . $professor->firstName ." " . $professor->lastName }} 
                 </h3>
@@ -87,7 +87,7 @@
             </div>
             <!-- Modal body -->
             <div class="flex justify-end">
-                <a href="{{route("reviews.create")}}" class="m-2  border-4 border-yellow-400 hover:text-gray-300 bg-yellow-400 rounded font-bold px-1">+ add review</a>
+                <a href="{{route("reviews.create")}}" class="m-2  border-4 {{env("MAIN_BORDER")}} hover:text-gray-300 {{env("MAIN_BG")}} rounded font-bold px-1">+ add review</a>
             </div>
             <div class="p-6 space-y-6 flex justify-center ">
 

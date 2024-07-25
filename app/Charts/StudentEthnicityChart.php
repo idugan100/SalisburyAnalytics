@@ -30,7 +30,7 @@ class StudentEthnicityChart
             )
             ->setTitle('student  ethnicity')
             ->setXAxis(['native american', 'pacific islander', 'asian', 'black', 'white', 'hispanic', 'two or more', 'unknown'])
-            ->setColors(['#8b0000'])
+            ->setColors([env("CHART_MAIN")])
             ->setHeight(300);
     }
 }

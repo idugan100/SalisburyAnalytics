@@ -8,17 +8,17 @@
           </svg>
       </button>
       <div class="hidden w-full md:block md:w-auto" id="navbar-solid-bg">
-        <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-yellow-400 rounded-lg bg-gray-200 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-gray-200">
+        <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border {{env("MAIN_BORDER")}} rounded-lg bg-gray-200 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-gray-200">
             {{-- <li>
-                <a href="{{route("gullGPT")}}" class=" no-highlights decoration-yellow-400 decoration-4 hover:underline block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-red-800 md:p-0 font-bold ">gullGPT</a>
+                <a href="{{route("gullGPT")}}" class=" no-highlights decoration-4 hover:underline block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:{{env("ACCENT_TEXT_COLOR")}} md:p-0 font-bold ">gullGPT</a>
             </li> --}}
             <li>
-                <a href="{{route("professors.index")}}" class=" no-highlights decoration-yellow-400 decoration-4 hover:underline block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-red-800 md:p-0 font-bold ">professors</a>
+                <a href="{{route("professors.index")}}" class=" no-highlights decoration-4 hover:underline block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:{{env("ACCENT_TEXT_COLOR")}} md:p-0 font-bold ">professors</a>
             </li>
             <li>
-                <a href="{{route("courses.index")}}"   class="no-highlights decoration-yellow-400 decoration-4 hover:underline block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-red-800 md:p-0 font-bold ">courses</a>
+                <a href="{{route("courses.index")}}"   class="no-highlights decoration-4 hover:underline block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:{{env("ACCENT_TEXT_COLOR")}} md:p-0 font-bold ">courses</a>
             </li>
-            <li id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="no-highlights decoration-yellow-400 decoration-4 hover:underline block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-red-800 md:p-0 font-bold ">reports </li>
+            <li id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="no-highlights decoration-4 hover:underline block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:{{env("ACCENT_TEXT_COLOR")}} md:p-0 font-bold ">reports </li>
             <!-- Dropdown menu -->
             <div id="dropdownNavbar" class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
                 <ul class="py-2 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
@@ -40,36 +40,36 @@
                 </ul>
                 {{-- <div class="py-1 flex justify-between">
                   <a href="{{route("qtool")}}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">query tool </a>
-                  <span class="item bg-red-800 p-1 text-white text-xs rounded-lg self-center m-1">premium</span>
+                  <span class="item {{env("ACCENT_BG")}} p-1 text-white text-xs rounded-lg self-center m-1">premium</span>
                 </div> --}}
             </div>
             <li>
-                <a href="/about" class=" no-highlights decoration-yellow-400 decoration-4 hover:underline block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-red-800 md:p-0 font-bold">about</a>
+                <a href="/about" class=" no-highlights decoration-4 hover:underline block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:{{env("ACCENT_TEXT_COLOR")}} md:p-0 font-bold">about</a>
             </li>
             @auth
                 @if(auth()->user()->email==env("ADMIN_EMAIL"))
                     <li>
-                        <a href="{{route("reviews.processing")}}" class=" no-highlights decoration-yellow-400 decoration-4 hover:underline block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-red-800 md:p-0 font-bold  ">admin</a>
+                        <a href="{{route("reviews.processing")}}" class=" no-highlights decoration-4 hover:underline block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:{{env("ACCENT_TEXT_COLOR")}} md:p-0 font-bold  ">admin</a>
                     </li> 
                 @endif
 
                 @if (!auth()->user()->pm_type)                    
                     <li class="flex">
-                        <a href="/product-checkout" class=" no-highlights decoration-yellow-400 decoration-4 hover:underline block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-red-800 md:p-0 font-bold  ">checkout</a>
+                        <a href="/product-checkout" class=" no-highlights decoration-4 hover:underline block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:{{env("ACCENT_TEXT_COLOR")}} md:p-0 font-bold  ">checkout</a>
                     
                         <span class="relative flex h-3 w-3">
-                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-800 opacity-75"></span>
-                            <span class="relative inline-flex rounded-full h-3 w-3 bg-red-800"></span>
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full {{env("ACCENT_BG")}} opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-3 w-3 {{env("ACCENT_BG")}}"></span>
                           </span> 
                     </li>  
                     
                 @else
                     <li>
-                        <a href="/billing-portal" class=" no-highlights decoration-yellow-400 decoration-4 hover:underline block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-red-800 md:p-0 font-bold  ">billing info</a>
+                        <a href="/billing-portal" class=" no-highlights decoration-4 hover:underline block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:{{env("ACCENT_TEXT_COLOR")}} md:p-0 font-bold  ">billing info</a>
                     </li>
                 @endif
                 <li>
-                    <a class=" decoration-yellow-400 decoration-4 hover:underline block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-red-800 md:p-0 font-bold  " href="{{ route('logout') }}"
+                    <a class=" decoration-4 hover:underline block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:{{env("ACCENT_TEXT_COLOR")}} md:p-0 font-bold  " href="{{ route('logout') }}"
                     onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
                         {{ __('logout') }}
@@ -82,10 +82,10 @@
         @endauth
         @guest
             {{-- <li>
-                <a href="{{route("premium")}}" class=" no-highlights decoration-yellow-400 decoration-4 hover:underline block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-red-800 md:p-0 font-bold  ">get premium</a>
+                <a href="{{route("premium")}}" class=" no-highlights decoration-4 hover:underline block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:{{env("ACCENT_TEXT_COLOR")}} md:p-0 font-bold  ">get premium</a>
             </li>
             <li>
-                <a href="{{route("login")}}" class=" no-highlights decoration-yellow-400 decoration-4 hover:underline block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-red-800 md:p-0 font-bold  ">login</a>
+                <a href="{{route("login")}}" class=" no-highlights decoration-4 hover:underline block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:{{env("ACCENT_TEXT_COLOR")}} md:p-0 font-bold  ">login</a>
             </li> --}}
         @endguest
         </ul>

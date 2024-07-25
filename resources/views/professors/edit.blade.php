@@ -13,7 +13,7 @@
                 <label class="mr-2">Last Name</label>
                 <input class="border-2 border-black" value='{{$professor->lastName}}'name="lastName" type="text" required>
             </div>
-            <button class="self-end m-2  border-4 border-yellow-400 hover:text-gray-300 bg-yellow-400 rounded font-bold px-1" type="submit">Submit</button>
+            <button class="self-end m-2  border-4 {{env("MAIN_BORDER")}} hover:text-gray-300 {{env("MAIN_BG")}} rounded font-bold px-1" type="submit">Submit</button>
         </form>
         </div>
 </x-header>

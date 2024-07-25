@@ -1,6 +1,6 @@
 <x-header>
     <x-subHeader title="student demographics"/>
-    <h3 class="text-center m-1">data on this page is specific to {{env("UNIVERSITY_NAME")}} and is from the <a class="underline text-red-800" href="https://collegescorecard.ed.gov/data/documentation/" target="_blank">department of education</a> </h3>
+    <h3 class="text-center m-1">data on this page is specific to {{env("UNIVERSITY_NAME")}} and is from the <a class="underline {{env("ACCENT_TEXT_COLOR")}}" href="https://collegescorecard.ed.gov/data/documentation/" target="_blank">department of education</a> </h3>
     <div class="bg-white m-5 border-solid border-black p-4 border-4 rounded shadow" style="height: 350px;" >
         <div id="GPAchart">
             {{$ethnicity_chart->container()}}

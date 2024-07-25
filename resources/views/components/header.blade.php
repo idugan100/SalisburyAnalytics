@@ -15,7 +15,7 @@
     <script src="https://unpkg.com/htmx.org@1.9.4" integrity="sha384-zUfuhFKKZCbHTY6aRR46gxiqszMk5tcHjsVFxnUo8VMus4kHGVdIYVbOYYNlKmHV" crossorigin="anonymous"></script>
 </head>
 <body class="bg-gray-200 ">
-  <h1 class="text-6xl flex p-4 font-bold bg-yellow-400 text-red-800 border-y-4 justify-center border-black text-center">{{env("APP_NAME")}} <img src="{{ URL::asset('logo.jpeg') }}" alt="SUlogo" class= "w-16 h-16 hover:animate-pulse ml-8"/></h1>
+  <h1 class="text-6xl flex p-4 font-bold {{env("MAIN_BG")}} {{env("ACCENT_TEXT_COLOR")}} border-y-4 justify-center border-black text-center">{{env("APP_NAME")}} <img src="{{ URL::asset('logo.jpeg') }}" alt="SUlogo" class= "w-16 h-16 hover:animate-pulse ml-8"/></h1>
   <x-navbar></x-navbar>
 
     {{$slot}}
@@ -24,7 +24,7 @@
 </html>
 <style>
     input.peer:checked + label {
-  background-color: #8b0000;
+  background-color: {{env("CHART_MAIN")}};
   color:white;
 }
 .no-highlights{

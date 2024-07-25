@@ -24,7 +24,7 @@
     <div class="m-4">
         <textarea class="border-2 border-black" name="description" cols="30" rows="10" required>{{$course->description}}</textarea>
     </div>
-    <button class="m-2  border-4 border-yellow-400 hover:text-gray-300 bg-yellow-400 rounded font-bold px-1" type="submit">Update</button>
+    <button class="m-2  border-4 {{env("MAIN_BORDER")}} hover:text-gray-300 {{env("MAIN_BG")}} rounded font-bold px-1" type="submit">Update</button>
     @if ($errors->any())
     <div class="alert alert-danger">
         <ul>

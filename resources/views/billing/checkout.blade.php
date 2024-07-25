@@ -8,7 +8,7 @@
 
         <div class="flex justify-center" >
             <div class="max-w-3xl p-6">
-                <form id="payment-form" action="/create-subscription" method="POST" class=" bg-white border-red-800 p-3 border-4">
+                <form id="payment-form" action="/create-subscription" method="POST" class=" bg-white {{env("ACCENT_BORDER")}} p-3 border-4">
                     @csrf
                     <div class="m-3">
                         <label  >Card Holder Name</label>
@@ -21,15 +21,15 @@
                         <label for="">Card details</label>
                         <div id="card-element" class="m-3"></div>
                     </div>
-                    <div id="error-message" class=" m-3 text-red-800">
+                    <div id="error-message" class=" m-3 {{env("ACCENT_TEXT_COLOR")}}">
                         
                     </div>
-                    <button id="card-button" class="bg-yellow-400 p-2 rounded hover:font-bold"data-secret="{{ $intent->client_secret }}">
+                    <button id="card-button" class="{{env("MAIN_BG")}} p-2 rounded hover:font-bold"data-secret="{{ $intent->client_secret }}">
 
                         get premium :) 
                     </button>
                     <div class="m-1">
-                        already have a payment method? reactivate your subscription <a href="/billing-portal" class="text-red-800 font-bold underline"> here</a>
+                        already have a payment method? reactivate your subscription <a href="/billing-portal" class="{{env("ACCENT_TEXT_COLOR")}} font-bold underline"> here</a>
                     </div>
                 </form>
             </div>
