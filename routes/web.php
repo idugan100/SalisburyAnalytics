@@ -78,22 +78,17 @@ Route::middleware(EnsureIsAdmin::class)->group(function () {
 
 });
 
-Route::middleware((EnsureIsSubscribed::class))->group(function () {
-    //query tool
-    Route::get('/query_tool', [QueryToolController::class, 'index'])->name('qtool');
+Route::middleware((EnsureIsSubscribed::class))->group(function () { 
+    //add any premium routes here
 });
+
 
 //report routes
 Route::get('/gpa_over_time', [GpaOverTimeController::class, 'index'])->name('gpa');
 Route::get('/enrollment_over_time', [EnrollmentOverTimeController::class, 'index'])->name('enrollment');
 Route::get('/student_demographics', [DoEdReportController::class, 'student_demographics'])->name('student_demographics');
 Route::get('/financial_outcomes', [DoEdReportController::class, 'financial_outcomes'])->name('financial_outcomes');
-Route::get('/dataDashboard', function (Request $request) {
-    TrackUsage::log($request, 'report');
-
-    return view('reports.SuDataDashboard');
-}
-)->name('data_dashboard');
+Route::get('/query_tool', [QueryToolController::class, 'index'])->name('qtool');
 
 //stripe
 Route::get('/billing-portal', [BillingController::class, 'billing_portal'])->middleware('auth');
