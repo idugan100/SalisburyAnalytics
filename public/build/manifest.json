@@ -4,13 +4,8 @@
     "src": "resources/js/app.js",
     "isEntry": true
   },
-  "resources/js/langchain.js": {
-    "file": "assets/langchain.b204bbcd.js",
-    "src": "resources/js/langchain.js",
-    "isEntry": true
-  },
   "resources/css/app.css": {
-    "file": "assets/app.6f79f4a0.css",
+    "file": "assets/app.ad2350b5.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
