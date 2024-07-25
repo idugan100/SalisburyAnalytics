@@ -11,11 +11,11 @@
 
     @vite('resources/css/app.css')
       <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.css"  rel="stylesheet" />
-    <link rel="icon" sizes="32x32" href="{{ URL::asset('gully-removebg-preview.png') }}" type="image/x-icon"/>
+    <link rel="icon" sizes="32x32" href="{{ URL::asset('logo.jpeg') }}" type="image/x-icon"/>
     <script src="https://unpkg.com/htmx.org@1.9.4" integrity="sha384-zUfuhFKKZCbHTY6aRR46gxiqszMk5tcHjsVFxnUo8VMus4kHGVdIYVbOYYNlKmHV" crossorigin="anonymous"></script>
 </head>
 <body class="bg-gray-200 ">
-  <h1 class="text-6xl flex p-4 font-bold bg-yellow-400 text-red-800 border-y-4 justify-center border-black text-center">salisbury analytics <img src="{{ URL::asset('gully-removebg-preview.png') }}" alt="SUlogo" class= "w-16 h-16 hover:animate-pulse ml-8"/></h1>
+  <h1 class="text-6xl flex p-4 font-bold bg-yellow-400 text-red-800 border-y-4 justify-center border-black text-center">salisbury analytics <img src="{{ URL::asset('logo.jpeg') }}" alt="SUlogo" class= "w-16 h-16 hover:animate-pulse ml-8"/></h1>
   <x-navbar></x-navbar>
 
     {{$slot}}
