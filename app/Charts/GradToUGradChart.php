@@ -26,6 +26,6 @@ class GradToUGradChart
             ->setTitle('enrollment type')
             ->setSubtitle('12 month rolling enrollment')
             ->setLabels(['graduate', 'undergraduate'])->setHeight(200)
-            ->setColors([env("CHART_MAIN"), env('CHART_ACCNET')]);
+            ->setColors([env('CHART_MAIN'), env('CHART_ACCNET')]);
     }
 }

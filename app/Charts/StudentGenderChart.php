@@ -26,6 +26,6 @@ class StudentGenderChart
             ->setTitle('student gender makeup')
             ->setLabels(['male', 'non male'])
             ->setHeight(200)
-            ->setColors([env("CHART_MAIN"), env('CHART_ACCNET')]);
+            ->setColors([env('CHART_MAIN'), env('CHART_ACCNET')]);
     }
 }

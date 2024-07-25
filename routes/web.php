@@ -78,10 +78,9 @@ Route::middleware(EnsureIsAdmin::class)->group(function () {
 
 });
 
-Route::middleware((EnsureIsSubscribed::class))->group(function () { 
+Route::middleware((EnsureIsSubscribed::class))->group(function () {
     //add any premium routes here
 });
-
 
 //report routes
 Route::get('/gpa_over_time', [GpaOverTimeController::class, 'index'])->name('gpa');

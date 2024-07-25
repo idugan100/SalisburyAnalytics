@@ -15,7 +15,7 @@ class RmpLinkPopulationSerpService
         try {
 
             $response = Http::get('https://serpapi.com/search', [
-                'q' => $professor->firstName.' '.$professor->lastName.' at '. env("UNIVERSITY_NAME").' Rate My professor',
+                'q' => $professor->firstName.' '.$professor->lastName.' at '.env('UNIVERSITY_NAME').' Rate My professor',
                 'engine' => 'google',
                 'api_key' => env('SERP_API_KEY'),
             ]);

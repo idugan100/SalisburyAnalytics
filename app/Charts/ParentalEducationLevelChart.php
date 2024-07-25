@@ -26,6 +26,6 @@ class ParentalEducationLevelChart
             ->setTitle('highest level of parental education')
             ->setLabels(['middle school', 'high school', 'some college', 'college degree'])
             ->setHeight(200)
-            ->setColors(['#000000', '#ABB0B8', env('CHART_ACCNET'), env("CHART_MAIN")]);
+            ->setColors(['#000000', '#ABB0B8', env('CHART_ACCNET'), env('CHART_MAIN')]);
     }
 }

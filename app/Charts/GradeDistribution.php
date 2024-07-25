@@ -39,6 +39,6 @@ class GradeDistribution
             ->setTitle('Grade Distribution')
             ->setXAxis($grade_array)
             ->setHeight(250)
-            ->setColors([env("CHART_MAIN")]);
+            ->setColors([env('CHART_MAIN')]);
     }
 }

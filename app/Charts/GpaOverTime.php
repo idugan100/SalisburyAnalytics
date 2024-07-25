@@ -44,6 +44,6 @@ class GpaOverTime
             ->setTitle(' Average GPA Over Time at SU')
             ->setXAxis($this->all_semesters)
             ->setHeight(350)
-            ->setColors([env("CHART_MAIN"), env('CHART_ACCNET')]);
+            ->setColors([env('CHART_MAIN'), env('CHART_ACCNET')]);
     }
 }

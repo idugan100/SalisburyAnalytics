@@ -31,6 +31,6 @@ class EnrollmentOverTime
             ->setTitle(' Enrollment Over Time at SU')
             ->setXAxis($semester_array)
             ->setHeight(350)
-            ->setColors([env("CHART_MAIN")]);
+            ->setColors([env('CHART_MAIN')]);
     }
 }
