@@ -34,9 +34,6 @@
                   <li>
                     <a href="{{route("financial_outcomes")}}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">financial outcomes</a>
                   </li>
-                  <li>
-                    <a href="{{route("data_dashboard")}}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">usm data dashboard</a>
-                  </li>
                 </ul>
                 <div class="py-1 flex justify-between">
                   <a href="{{route("qtool")}}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">query tool </a><span class="item bg-red-800 p-1 text-white text-xs rounded-lg self-center m-1">premium</span>
