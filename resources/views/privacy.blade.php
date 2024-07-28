@@ -1,12 +1,12 @@
 <x-header>
     <x-subHeader :title="'privacy policy'"/>
     <div class="flex justify-center">
-        <div class="max-w-3xl bg-white mt-16  rounded-lg shadow-lg shadow-black p-2 divide-y-4 divide-red-800 divide-dotted">
+        <div class="max-w-3xl bg-white mt-16  rounded-lg shadow-lg shadow-black p-2 divide-y-4 divide-black divide-dotted">
             <p class="text-2xl m-4 p-4">
                 Last Updated: 9/4/2023
             </p>
             <p class="text-2xl m-4 p-4">
-                Welcome to Salisbury Analytics. We respect your privacy and are committed to protecting your personal information. 
+                Welcome to {{env("APP_NAME")}}. We respect your privacy and are committed to protecting your personal information. 
                 This Privacy Policy explains how we collect, use, disclose, and safeguard your personal information. 
                 By accessing or using our services, you consent to the practices described in this Privacy Policy.
             </p>
