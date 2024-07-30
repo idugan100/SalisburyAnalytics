@@ -1,5 +1,5 @@
 <div class=" contrast-125 group shadow-lg shadow-black bg-white hover:{{env("ACCENT_BG")}} rounded-lg m-2 p-5 ">
-    <h3 class=" text-2xl py-1 px-2 font-bold ">{{$professor->firstName . " " . $professor->lastName }}</h3>
+    <h3 class=" text-2xl py-1 px-2 font-bold group-hover:text-gray-300 ">{{$professor->firstName . " " . $professor->lastName }}</h3>
     <hr class="border-1 {{env("MAIN_BORDER")}} ">
 
     <h4 class="text-md   py-1 px-2  m-2 group-hover:text-gray-300 font-bold">{{$professor->department}}</h4>

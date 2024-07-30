@@ -1,6 +1,6 @@
 <x-header>
     <x-subHeader title="financial outcomes"/>
-    <h3 class="text-center m-1">data on this page is specific to {{env("UNIVERSITY_NAME")}} graduates and is from the <a class="underline {{env("ACCENT_TEXT_COLOR")}}" href="https://collegescorecard.ed.gov/data/documentation/" target="_blank">department of education</a> </h3>
+    <h3 class="text-center m-1">data on this page is specific to {{env("UNIVERSITY_NAME")}} graduates and is from the <a class="underline {{env("ACCENT_TEXT_COLOR")}}" href="https://collegescorecard.ed.gov/data/api-documentation" target="_blank">department of education</a> </h3>
     
     
     {{-- todo: add filter 
