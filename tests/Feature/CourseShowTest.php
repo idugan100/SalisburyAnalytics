@@ -5,7 +5,6 @@ namespace Tests\Feature;
 use App\Models\Course;
 use App\Models\UsageLog;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\Feature\AuthTestCase;
 
 class CourseShowTest extends AuthTestCase
 {
@@ -35,5 +34,4 @@ class CourseShowTest extends AuthTestCase
             'course_views' => 1,
         ]);
     }
-    
 }

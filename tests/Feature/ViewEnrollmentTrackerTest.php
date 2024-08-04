@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use App\Models\UsageLog;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\Feature\AuthTestCase;
 
 class ViewEnrollmentTrackerTest extends AuthTestCase
 {

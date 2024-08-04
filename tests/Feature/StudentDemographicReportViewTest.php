@@ -5,7 +5,6 @@ namespace Tests\Feature;
 use App\Models\StudentDemographicInfo;
 use App\Models\UsageLog;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\Feature\AuthTestCase;
 
 class StudentDemographicReportViewTest extends AuthTestCase
 {
