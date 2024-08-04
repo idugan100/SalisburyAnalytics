@@ -35,7 +35,7 @@
             <em>
                 "The mix of qualitative and quantitative information on this site is incredible. 
                 Last semester, I managed to take 18 credit hours while still having free time on weekends and evenings, thanks to this site helping me choose my classes. 
-                Using this software can truly make or break your semester." - Anonymous User
+                Using this software can truly make or break your semester." Anonymous User
             </em>
         </blockquote>
     </div>
