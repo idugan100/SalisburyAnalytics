@@ -41,8 +41,6 @@ Route::get('/privacy', function (Request $request) {
     return view('privacy');
 })->name('privacy');
 
-
-
 Route::middleware(EnsureIsAdmin::class)->group(function () {
     //admin usage routes
     Route::get('/usage', [UsageController::class, 'index'])->name('usage.index');
@@ -88,8 +86,6 @@ Route::middleware((EnsureIsSubscribed::class))->group(function () {
     Route::get('/financial_outcomes', [DoEdReportController::class, 'financial_outcomes'])->name('financial_outcomes');
     Route::get('/query_tool', [QueryToolController::class, 'index'])->name('qtool');
 });
-
-
 
 //stripe
 Route::get('/billing-portal', [BillingController::class, 'billing_portal'])->middleware('auth');
