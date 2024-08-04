@@ -41,20 +41,7 @@ Route::get('/privacy', function (Request $request) {
     return view('privacy');
 })->name('privacy');
 
-//routes for courses
-Route::get('/', [CourseController::class, 'index']);
-Route::resource('courses', CourseController::class);
-Route::get('/course_options_by_department', [CourseController::class, 'course_options_by_department']);
 
-Route::get('/courses/{course}/times', [CourseController::class, 'times'])->name('courses.times');
-
-//professor routes
-Route::resource('professors', ProfessorController::class);
-Route::get('/professor_options_by_department', [ProfessorController::class, 'professor_options_by_department']);
-
-//review routes
-Route::resource('reviews', ReviewController::class);
-Route::get('/review_options_by_department', [ReviewController::class, 'review_options_by_department']);
 
 Route::middleware(EnsureIsAdmin::class)->group(function () {
     //admin usage routes
@@ -79,15 +66,30 @@ Route::middleware(EnsureIsAdmin::class)->group(function () {
 });
 
 Route::middleware((EnsureIsSubscribed::class))->group(function () {
-    //add any premium routes here
+    //routes for courses
+    Route::get('/', [CourseController::class, 'index']);
+    Route::resource('courses', CourseController::class);
+    Route::get('/course_options_by_department', [CourseController::class, 'course_options_by_department']);
+
+    Route::get('/courses/{course}/times', [CourseController::class, 'times'])->name('courses.times');
+
+    //professor routes
+    Route::resource('professors', ProfessorController::class);
+    Route::get('/professor_options_by_department', [ProfessorController::class, 'professor_options_by_department']);
+
+    //review routes
+    Route::resource('reviews', ReviewController::class);
+    Route::get('/review_options_by_department', [ReviewController::class, 'review_options_by_department']);
+
+    //report routes
+    Route::get('/gpa_over_time', [GpaOverTimeController::class, 'index'])->name('gpa');
+    Route::get('/enrollment_over_time', [EnrollmentOverTimeController::class, 'index'])->name('enrollment');
+    Route::get('/student_demographics', [DoEdReportController::class, 'student_demographics'])->name('student_demographics');
+    Route::get('/financial_outcomes', [DoEdReportController::class, 'financial_outcomes'])->name('financial_outcomes');
+    Route::get('/query_tool', [QueryToolController::class, 'index'])->name('qtool');
 });
 
-//report routes
-Route::get('/gpa_over_time', [GpaOverTimeController::class, 'index'])->name('gpa');
-Route::get('/enrollment_over_time', [EnrollmentOverTimeController::class, 'index'])->name('enrollment');
-Route::get('/student_demographics', [DoEdReportController::class, 'student_demographics'])->name('student_demographics');
-Route::get('/financial_outcomes', [DoEdReportController::class, 'financial_outcomes'])->name('financial_outcomes');
-Route::get('/query_tool', [QueryToolController::class, 'index'])->name('qtool');
+
 
 //stripe
 Route::get('/billing-portal', [BillingController::class, 'billing_portal'])->middleware('auth');

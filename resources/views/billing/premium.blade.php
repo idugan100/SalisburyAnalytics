@@ -1,22 +1,102 @@
 <x-header>
-    <x-subHeader title="premium features"/>
+    <x-subHeader title="features"/>
 <div class="m-4">
-           <div class="flex justify-center">
-            <h3 class="font-bold m-2">you clicked on a premium feature! for three dollars each month you can have access to the below functionality:</h3>
-           </div>
-    <ul class="md:flex justify-center flex-wrap">
-        <li class="m-2 border-black border-2 h-120 w-100 p-2  flex flex-col bg-white rounded">
-            <img src="{{ URL::asset('query_tool_image.png') }}" alt="" class="h-80  w-120">
-            <div>query tool that allows you to create custom reports about professors, courses, departments, enrollment, gpa, withdraw rates and more</div>
-        </li>
-    </ul>
     <div class="flex justify-center">
-        <a href="{{route("register")}}" class="{{env("ACCENT_BG")}} w-1/3 p-3 rounded font-bold flex justify-center">sign up now :)</a>
+        <h3 class="font-bold m-2">for $4 a month you can access:</h3>
     </div>
-    <div class="flex justify-center">
-        <span class="mx-1">already a user?</span>
-        <a href="{{route("login")}}" class="underline {{env("ACCENT_TEXT_COLOR")}}"> sign in</a>
+    <ul class="flex justify-center flex-wrap">
+        <div class="grid grid-cols-2">
+            <li class="m-2 border-black border-2 p-2  flex flex-col bg-white rounded">
+                grade distributions
+            </li>
+            <li class="m-2 border-black border-2 p-2  flex flex-col bg-white rounded">
+                professor reviews
+            </li>
+            <li class="m-2 border-black border-2 p-2  flex flex-col bg-white rounded">
+                average salaries
+            </li>
+            <li class="m-2 border-black border-2 p-2  flex flex-col bg-white rounded">
+                student demographics
+            </li>
+            <li class="m-2 border-black border-2 p-2  flex flex-col bg-white rounded">
+                average gpa
+            </li>
+            <li class="m-2 border-black border-2 p-2  flex flex-col bg-white rounded">
+                course times
+            </li>
+        </div>
+        
+    </ul>
+    <div class="flex justify-center ">
+        <div id="default-carousel" class="m-2 border-black border-2 relative w-96" data-carousel="slide">
+            <!-- Carousel wrapper -->
+            <div class="relative h-48 overflow-hidden rounded-lg">
+                <!-- Item 1 -->
+                <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                    <img src="{{URL::asset('query_tool.png')}}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                </div>
+                <!-- Item 2 -->
+                <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                    <img src="{{ URL::asset('rmp.png') }}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                </div>
+                <!-- Item 3 -->
+                <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                    <img src="{{ URL::asset('professor_data.png') }}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                </div>
+                <!-- Item 4 -->
+                <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                    <img src="{{ URL::asset('gpa_report.png') }}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                </div>
+                <!-- Item 5 -->
+                <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                    <img src="{{ URL::asset('distribution.png') }}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                </div>
+                <!-- Item 6 -->
+                <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                    <img src="{{ URL::asset('financial_outcomes.png') }}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                </div>
+                <!-- Item 7 -->
+                <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                    <img src="{{ URL::asset('course_times.png') }}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                </div>
+            </div>
+            <!-- Slider indicators -->
+            <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
+                <button type="button" class="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide 1" data-carousel-slide-to="0"></button>
+                <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1"></button>
+                <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>
+                <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 4" data-carousel-slide-to="3"></button>
+                <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 5" data-carousel-slide-to="4"></button>
+                <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 5" data-carousel-slide-to="5"></button>
+                <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 5" data-carousel-slide-to="6"></button>
+            </div>
+            <!-- Slider controls -->
+            <button type="button" class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
+                <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                    <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
+                    </svg>
+                    <span class="sr-only">Previous</span>
+                </span>
+            </button>
+            <button type="button" class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
+                <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                    <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+                    </svg>
+                    <span class="sr-only">Next</span>
+                </span>
+            </button>
+        </div>        
     </div>
 
+    <div class="flex justify-center ">
+        <blockquote class="mb-2 bg-white border-black border-2 p-2 rounded w-96">
+            <em>"Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat excepturi beatae sit sint! Neque deleniti labore nobis nemo cum ipsam expedita eveniet iure! Possimus laborum minima beatae non corporis nam." - John Doe</em>
+        </blockquote>
+    </div>
+    <div class="flex justify-center">
+        <a href="{{route("register")}}" class="{{env("ACCENT_BG")}} w-96 p-3 rounded text-white font-bold flex justify-center">sign up for 1 week free trial :)</a>
+    </div>
 </div>
 </x-header>
