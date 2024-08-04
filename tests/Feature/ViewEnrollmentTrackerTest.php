@@ -4,9 +4,9 @@ namespace Tests\Feature;
 
 use App\Models\UsageLog;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
+use Tests\Feature\AuthTestCase;
 
-class ViewEnrollmentTrackerTest extends TestCase
+class ViewEnrollmentTrackerTest extends AuthTestCase
 {
     use RefreshDatabase;
 
@@ -14,7 +14,7 @@ class ViewEnrollmentTrackerTest extends TestCase
     {
         UsageLog::factory()->create();
 
-        $response = $this->get(route('enrollment'));
+        $response = $this->actingAs($this->subscribed_user)->get(route('enrollment'));
 
         $response->assertStatus(200);
     }
@@ -23,7 +23,7 @@ class ViewEnrollmentTrackerTest extends TestCase
     {
         $log = UsageLog::factory()->create();
 
-        $this->get(route('enrollment'));
+        $this->actingAs($this->subscribed_user)->get(route('enrollment'));
 
         $this->assertDatabaseHas('usage_log', [
             'created_at' => $log->created_at,

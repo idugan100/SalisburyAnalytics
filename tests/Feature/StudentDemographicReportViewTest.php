@@ -5,9 +5,9 @@ namespace Tests\Feature;
 use App\Models\StudentDemographicInfo;
 use App\Models\UsageLog;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
+use Tests\Feature\AuthTestCase;
 
-class StudentDemographicReportViewTest extends TestCase
+class StudentDemographicReportViewTest extends AuthTestCase
 {
     use RefreshDatabase;
 
@@ -16,7 +16,7 @@ class StudentDemographicReportViewTest extends TestCase
         UsageLog::factory()->create();
         StudentDemographicInfo::factory()->create();
 
-        $response = $this->get('/student_demographics');
+        $response = $this->actingAs($this->subscribed_user)->get('/student_demographics');
 
         $response->assertStatus(200);
     }
@@ -26,7 +26,7 @@ class StudentDemographicReportViewTest extends TestCase
         $log = UsageLog::factory()->create();
         StudentDemographicInfo::factory()->create();
 
-        $this->get('/student_demographics');
+        $this->actingAs($this->subscribed_user)->get('/student_demographics');
 
         $this->assertDatabaseHas('usage_log', [
             'created_at' => $log->created_at,

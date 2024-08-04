@@ -3,52 +3,44 @@
 namespace Tests\Feature;
 
 use App\Models\UsageLog;
-use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
+use Tests\Feature\AuthTestCase;
 
-class QueryToolTest extends TestCase
+class QueryToolTest extends AuthTestCase
 {
     use RefreshDatabase;
 
-    // public function test_query_tool_premium_redirect()
-    // {
-    //     UsageLog::factory()->create();
+    public function test_query_tool_premium_redirect()
+    {
+        UsageLog::factory()->create();
 
-    //     $response = $this->get('/query_tool');
+        $response = $this->get('/query_tool');
 
-    //     $response->assertStatus(302);
-    //     $response->assertRedirect('/premium');
-    // }
+        $response->assertStatus(302);
+        $response->assertRedirect('/premium');
+    }
 
     public function test_show_query_tool_when_subscribed()
     {
-        $user = User::factory()->create();
-        $user->stripe_id = env('TEST_CUSTOMER_STRIPE_ID');
-        $user->save();
 
         UsageLog::factory()->create();
 
-        $user->newSubscription('default', env('PLAN_ID'))->create();
-        $user->pm_type = 'visa';
-
-        $response = $this->actingAs($user)
+        $response = $this->actingAs($this->subscribed_user)
             ->get(route('qtool'));
 
         $response->assertStatus(200);
     }
 
-    // public function test_show_query_tool_checkout_redirect_if_logged_in_and_not_subscribed()
-    // {
+    public function test_show_query_tool_checkout_redirect_if_logged_in_and_not_subscribed()
+    {
 
-    //     $user = User::factory()->create();
-    //     UsageLog::factory()->create();
+        UsageLog::factory()->create();
 
-    //     $response = $this->actingAs($user)
-    //         ->get(route('qtool'));
+        $response = $this->actingAs($this->unsubscribed_user)
+            ->get(route('qtool'));
 
-    //     $response->assertStatus(302);
-    //     $response->assertRedirect('/product-checkout');
+        $response->assertStatus(302);
+        $response->assertRedirect('/product-checkout');
 
-    // }
+    }
 }

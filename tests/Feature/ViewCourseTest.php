@@ -4,9 +4,9 @@ namespace Tests\Feature;
 
 use App\Models\UsageLog;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
+use Tests\Feature\AuthTestCase;
 
-class ViewCourseTest extends TestCase
+class ViewCourseTest extends AuthTestCase
 {
     use RefreshDatabase;
 
@@ -14,7 +14,7 @@ class ViewCourseTest extends TestCase
     {
         UsageLog::factory()->create();
 
-        $response = $this->get('/courses');
+        $response = $this->actingAs($this->subscribed_user)->get('/courses');
 
         $response->assertStatus(200);
     }
@@ -23,9 +23,9 @@ class ViewCourseTest extends TestCase
     {
         $log = UsageLog::factory()->create();
 
-        $this->get('/courses');
+        $this->actingAs($this->subscribed_user)->get('/courses');
 
-        $this->assertDatabaseHas('usage_log', [
+        $this->actingAs($this->subscribed_user)->assertDatabaseHas('usage_log', [
             'created_at' => $log->created_at,
             'course_views' => 1,
         ]);

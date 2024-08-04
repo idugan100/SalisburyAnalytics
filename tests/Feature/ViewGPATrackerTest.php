@@ -4,9 +4,9 @@ namespace Tests\Feature;
 
 use App\Models\UsageLog;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
+use Tests\Feature\AuthTestCase;
 
-class ViewGPATrackerTest extends TestCase
+class ViewGPATrackerTest extends AuthTestCase
 {
     use RefreshDatabase;
 
@@ -14,7 +14,7 @@ class ViewGPATrackerTest extends TestCase
     {
         UsageLog::factory()->create();
 
-        $response = $this->get(route('gpa'));
+        $response = $this->actingAs($this->subscribed_user)->get(route('gpa'));
 
         $response->assertStatus(200);
     }
@@ -23,7 +23,7 @@ class ViewGPATrackerTest extends TestCase
     {
         $log = UsageLog::factory()->create();
 
-        $this->get(route('gpa'));
+        $this->actingAs($this->subscribed_user)->get(route('gpa'));
 
         $this->assertDatabaseHas('usage_log', [
             'created_at' => $log->created_at,
