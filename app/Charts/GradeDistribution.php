@@ -19,7 +19,8 @@ class GradeDistribution
      */
     public function build($distribution): LarapexChart
     {
-        $grade_array = ['W', 'F', 'D', 'C', 'B', 'A'];
+        // just add in +/- grades here?
+        $grade_array = ['W', 'E', 'D-', 'D', 'D+', 'C-', 'C', 'C+', 'B-', 'B', 'B+', 'A-', 'A'];
         $total_array = [];
         foreach ($grade_array as $letter_grade) {
             $found = false;

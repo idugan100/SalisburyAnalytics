@@ -108,7 +108,7 @@ class ProfessorController extends Controller
         $query = DB::table('courses_x_professors_with_grades')
             ->selectRaw("sum(quantity) as 'total', grade")
             ->where('professor_ID', $professor->id)
-            ->whereIn('grade', ['A', 'B', 'C', 'D', 'F', 'W']);
+            ->whereIn('grade', ['A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D+', 'D', 'D-', 'E', 'W']);
         //apply filters
         if (isset($request->selected_semester)) {
 
