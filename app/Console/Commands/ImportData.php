@@ -54,6 +54,9 @@ class ImportData extends Command
                     if ($row_number > 1) { //not done for header row
                         DB::beginTransaction();
                         $data = $this->rowToArray($row);
+                        if ($data[0] == null || $data[1] == null || $data[2] == null || $data[3] == null || $data[5] == null || $data[6] == null || $data[7] == null || $data[8] == null || $data[9] == null) {
+                            $this->error('missing data');
+                        }
                         $this->table($headers, [$data]);
                         $course_ID = $this->insertCourse($data);
                         $professor_ID = $this->insertProfessor($data);
@@ -109,19 +112,20 @@ class ImportData extends Command
      */
     private function insertCourse(array $data): int
     {
-        $course = DB::table('courses')->where('courseNumber', $data[2])->where('departmentCode', $data[1])->first();
+        $course = DB::table('courses')->where('courseNumber', $data[3])->where('departmentCode', $data[2])->first();
         if ($course) {
-            echo $data[1].'-'.$data[2]." found\n";
+            echo $data[2].'-'.$data[3]." found\n";
 
             return $course->id;
         } else {
-            $course_title = $this->ask('What is the name of '.$data[1].'-'.$data[2].'?');
-            $course_desciption = $this->ask('What is the course description of '.$data[1].'-'.$data[2].'?');
+            $course_title = $data[5]; //$this->ask('What is the name of '.$data[1].'-'.$data[2].'?');
+            $course_desciption = $data[6]; //$this->ask('What is the course description of '.$data[1].'-'.$data[2].'?');
             $new_course = new Course;
             $new_course->courseTitle = $course_title;
             $new_course->description = $course_desciption;
-            $new_course->departmentCode = $data[1];
-            $new_course->courseNumber = (int) $data[2];
+            $new_course->departmentCode = $data[2];
+            $new_course->courseNumber = $data[3];
+            $new_course->total_enrollment = 0;
             $new_course->save();
 
             echo 'inserting course '.$data[1].'-'.$data[2]."\n";
@@ -136,9 +140,9 @@ class ImportData extends Command
      */
     private function insertProfessor($data): int
     {
-        $name_array = explode(',', $data[4]);
-        $first_name = $name_array[1] ?? '';
-        $last_name = $name_array[0] ?? '';
+        $name_array = explode(' ', $data[7], 2);
+        $first_name = $name_array[0] ?? '';
+        $last_name = $name_array[1] ?? '';
         $professor = Professor::where('lastName', $last_name)->where('firstName', $first_name)->first();
         if ($professor) {
             echo 'Professor '.$first_name.' '.$last_name." found\n";
@@ -160,68 +164,70 @@ class ImportData extends Command
      */
     private function createGradeLineItem(int $course_ID, int $professor_ID, $data): void
     {
-        switch ($data[0]) {
-            case 'Fall10':
-                $year = 2010;
-                $semester = 'Fall';
-                break;
-            case 'Fall11':
-                $year = 2011;
-                $semester = 'Fall';
-                break;
-            case 'Fall12':
-                $year = 2012;
-                $semester = 'Fall';
-                break;
-            case 'Fall13':
-                $year = 2013;
-                $semester = 'Fall';
-                break;
-            case 'Fall14':
-                $year = 2014;
-                $semester = 'Fall';
-                break;
-            case 'Fall23':
-                $year = 2023;
-                $semester = 'Fall';
-                break;
-            case 'Spring10':
-                $year = 2010;
-                $semester = 'Spring';
-                break;
-            case 'Spring11':
-                $year = 2011;
-                $semester = 'Spring';
-                break;
-            case 'Spring12':
-                $year = 2012;
-                $semester = 'Spring';
-                break;
-            case 'Spring13':
-                $year = 2013;
-                $semester = 'Spring';
-                break;
-            case 'Spring14':
-                $year = 2014;
-                $semester = 'Spring';
-                break;
-            case 'Spring15':
-                $year = 2015;
-                $semester = 'Spring';
-                break;
-            default:
-                $year = 0;
-                $semester = '';
-                break;
-        }
+        // switch ($data[0]) {
+        //     case 'Fall10':
+        //         $year = 2010;
+        //         $semester = 'Fall';
+        //         break;
+        //     case 'Fall11':
+        //         $year = 2011;
+        //         $semester = 'Fall';
+        //         break;
+        //     case 'Fall12':
+        //         $year = 2012;
+        //         $semester = 'Fall';
+        //         break;
+        //     case 'Fall13':
+        //         $year = 2013;
+        //         $semester = 'Fall';
+        //         break;
+        //     case 'Fall14':
+        //         $year = 2014;
+        //         $semester = 'Fall';
+        //         break;
+        //     case 'Fall23':
+        //         $year = 2023;
+        //         $semester = 'Fall';
+        //         break;
+        //     case 'Spring10':
+        //         $year = 2010;
+        //         $semester = 'Spring';
+        //         break;
+        //     case 'Spring11':
+        //         $year = 2011;
+        //         $semester = 'Spring';
+        //         break;
+        //     case 'Spring12':
+        //         $year = 2012;
+        //         $semester = 'Spring';
+        //         break;
+        //     case 'Spring13':
+        //         $year = 2013;
+        //         $semester = 'Spring';
+        //         break;
+        //     case 'Spring14':
+        //         $year = 2014;
+        //         $semester = 'Spring';
+        //         break;
+        //     case 'Spring15':
+        //         $year = 2015;
+        //         $semester = 'Spring';
+        //         break;
+        //     default:
+        //         $year = 0;
+        //         $semester = '';
+        //         break;
+        // }
+        $year = $data[1];
+        $semester = $data[0];
         $line_items = DB::table('courses_x_professors_with_grades')
             ->where('course_ID', $course_ID)
             ->where('professor_ID', $professor_ID)
             ->where('semester', $semester)
             ->where('year', (int) $year)
-            ->where('quantity', (int) $data[6])
-            ->where('grade', $data[5])
-            ->where('section_number', (int) $data[3])
+            ->where('quantity', (int) $data[9])
+            ->where('grade', $data[8])
+            ->where('section_number', $data[4])
             ->get();
         if (count($line_items) == 0) {
 
@@ -229,9 +235,9 @@ class ImportData extends Command
                 'course_ID' => $course_ID,
                 'professor_ID' => $professor_ID,
                 'semester' => $semester,
-                'quantity' => (int) $data[6],
-                'grade' => $data[5],
-                'section_number' => (int) $data[3],
+                'quantity' => (int) $data[9],
+                'grade' => $data[8],
+                'section_number' => $data[4],
                 'year' => (int) $year,
             ]);
             echo "inserting grade line item \n";
