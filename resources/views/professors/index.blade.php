@@ -4,13 +4,13 @@
 
 <form class=" m-3 flex justify-center" action="{{route('professors.index')}}">
     @method('get')
-    <select class="border-2 p-2 border-black " name="department" hx-get="/professor_options_by_department" hx-target="#professorSelect">
+    <select class="border-2 p-2 border-black " name="department" hx-get="/professor_options_by_department" hx-target="#professorSelect" required>
         <option  value="{{null}}" >select department</option>
        @foreach ($departments as $department)
            <option value="{{$department["departmentCode"]}}" >{{$department["departmentCode"]}}</option>
        @endforeach
     </select>
-    <select class="border-2 p-2 border-black w-1/3" name="professor_id" id="professorSelect">
+    <select class="border-2 p-2 border-black w-1/3" name="professor_id" id="professorSelect" required>
         <option value="" >select professor</option>
     </select>
     <button class="p-2 border-2 border-black hover:bg-black hover:text-white" type="submit">Search</button>

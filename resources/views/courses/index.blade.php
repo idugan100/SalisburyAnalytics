@@ -6,14 +6,14 @@
 <form class=" mt-3 flex justify-center" action="{{route('courses.index')}}">
     @method('get')
 
-    <select class="border-2 p-2 border-black " name="department"  hx-get="/course_options_by_department" hx-target="#courseNumberSelect">
+    <select class="border-2 p-2 border-black " name="department"  hx-get="/course_options_by_department" hx-target="#courseNumberSelect" required>
         <option  value="{{null}}" >select department</option>
        @foreach ($departments as $department)
            <option value="{{$department["departmentCode"]}}" >{{$department["departmentCode"]}}</option>
        @endforeach
     </select>
 
-    <select class="border-2 p-2 border-black w-1/3" name="courseNumber" id="courseNumberSelect">
+    <select class="border-2 p-2 border-black w-1/3" name="courseNumber" id="courseNumberSelect" required>
         <option value="" >select course</option>
     </select>
     
