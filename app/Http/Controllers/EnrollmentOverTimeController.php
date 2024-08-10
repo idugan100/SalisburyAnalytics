@@ -23,14 +23,19 @@ class EnrollmentOverTimeController extends Controller
 
         $query =
             "Select sum(quantity) as 'Enrollment', semester, `year` from
-            (Select  quantity, `year`, semester
+            (Select  quantity, `year`, semester,
+                    CASE
+                        WHEN semester='Spring' THEN 1
+                        WHEN semester='Summer' THEN 2
+                        WHEN semester='Fall' THEN 3
+                        END as semester_sort
             from courses_x_professors_with_grades
             join courses on course_ID=courses.id
             where  departmentCode like ?)as `T`
             group by
             year, semester
             order by 
-            year, semester DESC;";
+            year, semester_sort;";
         $cache_key = 'enrollment_by_semester:'.$request->Department;
         $enrollment_by_semester = [];
 
