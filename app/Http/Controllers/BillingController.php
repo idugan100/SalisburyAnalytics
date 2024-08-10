@@ -29,7 +29,9 @@ class BillingController extends Controller
     {
         $request->user()->newSubscription(
             'default', env('PLAN_ID')
-        )->create($request->token);
+        )
+        ->trialDays(7)
+        ->create($request->token);
 
         return $request->user()->redirectToBillingPortal(route('courses.index'));
     }
