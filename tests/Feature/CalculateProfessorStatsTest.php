@@ -27,7 +27,7 @@ class CalculateProfessorStatsTest extends TestCase
             ['semester' => 'Fall', 'professor_ID' => $professor->id, 'course_ID' => $course2->id, 'quantity' => 2, 'grade' => 'A', 'year' => 2023],
             ['semester' => 'Fall', 'professor_ID' => $professor->id, 'course_ID' => $course2->id, 'quantity' => 1, 'grade' => 'B', 'year' => 2023],
             ['semester' => 'Fall', 'professor_ID' => $professor->id, 'course_ID' => $course2->id, 'quantity' => 1, 'grade' => 'C', 'year' => 2023],
-            ['semester' => 'Fall', 'professor_ID' => $professor->id, 'course_ID' => $course2->id, 'quantity' => 1, 'grade' => 'F', 'year' => 2023],
+            ['semester' => 'Fall', 'professor_ID' => $professor->id, 'course_ID' => $course2->id, 'quantity' => 1, 'grade' => 'E', 'year' => 2023],
 
         ]);
         $this->artisan('populate:professor-stats')
@@ -49,7 +49,7 @@ class CalculateProfessorStatsTest extends TestCase
             ['semester' => 'Fall', 'professor_ID' => $professor->id, 'course_ID' => $course2->id, 'quantity' => 2, 'grade' => 'A', 'year' => 2023],
             ['semester' => 'Fall', 'professor_ID' => $professor->id, 'course_ID' => $course2->id, 'quantity' => 1, 'grade' => 'B', 'year' => 2023],
             ['semester' => 'Fall', 'professor_ID' => $professor->id, 'course_ID' => $course2->id, 'quantity' => 1, 'grade' => 'C', 'year' => 2023],
-            ['semester' => 'Fall', 'professor_ID' => $professor->id, 'course_ID' => $course2->id, 'quantity' => 1, 'grade' => 'F', 'year' => 2023],
+            ['semester' => 'Fall', 'professor_ID' => $professor->id, 'course_ID' => $course2->id, 'quantity' => 1, 'grade' => 'E', 'year' => 2023],
 
         ]);
         $professor->calculate_statistics();
