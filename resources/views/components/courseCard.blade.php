@@ -8,7 +8,7 @@
     <div class=" py-1 px-2 m-2  text-md font-bold bg-gray-300 rounded border-3 boder-gray-300"> {{"Total Enrollment: " .  $course->total_enrollment}}</div>
     <div class="px-2 py-1 m-2  text-md font-bold bg-gray-300 rounded border-3 boder-gray-300"> {{"Number of Reviews: " . count($course->approved_reviews)}}</div>
     @if ($course->description!=null)
-    <div class="px-2 py-1 m-2  text-md font-bold bg-gray-300 rounded border-3 boder-gray-300"> {{$course->description}}</div>
+    <div class="px-2 py-1 m-2  text-md font-bold bg-gray-300 rounded border-3 boder-gray-300"> {!! $course->description !!}</div>
     @endif
 
     <div class="flex rounded-md">
