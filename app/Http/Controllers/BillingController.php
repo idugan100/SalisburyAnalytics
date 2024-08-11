@@ -6,9 +6,7 @@ use App\Services\TrackUsage;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Response;
-use Illuminate\Support\Facades\Storage;
-
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class BillingController extends Controller
 {
@@ -46,9 +44,10 @@ class BillingController extends Controller
         return view('billing.premium');
     }
 
-    public function apple_pay(Request $request)
+    public function apple_pay(): BinaryFileResponse
     {
         $path = storage_path('app/public/apple-developer-merchantid-domain-association');
+
         return response()->file($path);
     }
 }
