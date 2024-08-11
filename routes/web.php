@@ -92,6 +92,8 @@ Route::get('/billing-portal', [BillingController::class, 'billing_portal'])->mid
 Route::get('/product-checkout', [BillingController::class, 'checkout'])->middleware('auth')->name('checkout');
 Route::post('/create-subscription', [BillingController::class, 'create_subscription'])->middleware('auth');
 Route::get('/premium', [BillingController::class, 'premium_page'])->name('premium');
+Route::get('/.well-known/apple-developer-merchantid-domain-association', [BillingController::class, 'apple_pay']);
+
 
 //authentication routes
 Auth::routes([
