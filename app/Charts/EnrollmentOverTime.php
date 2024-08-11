@@ -28,7 +28,7 @@ class EnrollmentOverTime
 
         return $this->chart->lineChart()
             ->addData('Course Seats', $enrollment_array)
-            ->setTitle(' Enrollment Over Time')
+            ->setTitle('Cumulative Course Enrollment Over Time')
             ->setXAxis($semester_array)
             ->setHeight(350)
             ->setColors([env('CHART_MAIN')]);
