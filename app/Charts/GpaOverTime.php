@@ -40,7 +40,7 @@ class GpaOverTime
         return $this->chart->lineChart()
             ->addData(($department).' Courses', $gpa_array)
             ->addData('All Courses', $this->university_average_gpa)
-            ->setTitle(' Average GPA Over Time at SU')
+            ->setTitle(' Average GPA Over Time')
             ->setXAxis($this->all_semesters)
             ->setHeight(350)
             ->setColors([env('CHART_MAIN'), env('CHART_ACCENT')]);
