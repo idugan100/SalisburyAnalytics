@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta charset="UTF-8">
-    <meta name="description" content="Grade distribution and reviews for courses and professors at Salisbury University.">
-    <meta name="keywords" content="Salisbury, Grades, Distribution, Courses, Professors, Analytics">
+    <meta name="description" content="Grade distribution and reviews for courses and professors at Utah Valley University.">
+    <meta name="keywords" content="UVU,Utah Valley University,Reviews,Grades, Distribution, Courses, Professors, Analytics">
     <title>{{env("APP_NAME")}}</title>
 
     @vite('resources/css/app.css')
