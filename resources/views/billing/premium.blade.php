@@ -2,7 +2,7 @@
     <x-subHeader title="features"/>
 <div class="m-4">
     <div class="flex justify-center">
-        <h3 class="font-bold m-2">for $4 a month you can access:</h3>
+        <a href="{{route("register")}}" class="{{env("ACCENT_BG")}} w-96 p-3 rounded text-white font-bold flex justify-center">sign up for a trial to test out</a>
     </div>
     <ul class="flex justify-center flex-wrap">
         <div class="grid grid-cols-2">
@@ -39,8 +39,10 @@
             </em>
         </blockquote>
     </div>
+    
     <div class="flex justify-center">
-        <a href="{{route("register")}}" class="{{env("ACCENT_BG")}} w-96 p-3 rounded text-white font-bold flex justify-center">sign up for 1 week free trial :)</a>
+        <h3 class="font-bold m-2">access is only $4 a month after trial ends</h3>
     </div>
+
 </div>
 </x-header>
