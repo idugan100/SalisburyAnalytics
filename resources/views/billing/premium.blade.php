@@ -2,7 +2,7 @@
     <x-subHeader title="features"/>
 <div class="m-4">
     <div class="flex justify-center">
-        <a href="{{route("register")}}" class="{{env("ACCENT_BG")}} w-96 p-3 rounded text-white font-bold flex justify-center">sign up for a trial to test out</a>
+        <a href="{{route("register")}}" class="{{env("ACCENT_BG")}} w-96 p-3 rounded text-white font-bold flex justify-center">click here to sign up for a free trial”</a>
     </div>
     <ul class="flex justify-center flex-wrap">
         <div class="grid grid-cols-2">
