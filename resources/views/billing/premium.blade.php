@@ -1,48 +1,51 @@
 <x-header>
-    <x-subHeader title="features"/>
+    <x-subHeader title="the pitch"/>
 <div class="m-4">
-    <div class="flex justify-center">
-        <a href="{{route("register")}}" class="{{env("ACCENT_BG")}} w-96 p-3 rounded text-white font-bold flex justify-center">click here to sign up for a free trial</a>
-    </div>
-    <ul class="flex justify-center flex-wrap">
-        <div class="grid grid-cols-2">
-            <li class="m-2 border-black border-2 p-2  flex flex-col bg-white rounded">
-                grade distributions
-            </li>
-            <li class="m-2 border-black border-2 p-2  flex flex-col bg-white rounded">
-                professor reviews
-            </li>
-            <li class="m-2 border-black border-2 p-2  flex flex-col bg-white rounded">
-                average salaries
-            </li>
-            <li class="m-2 border-black border-2 p-2  flex flex-col bg-white rounded">
-                student demographics
-            </li>
-            <li class="m-2 border-black border-2 p-2  flex flex-col bg-white rounded">
-                average gpa
-            </li>
-            <li class="m-2 border-black border-2 p-2  flex flex-col bg-white rounded">
-                course times
-            </li>
-        </div>
-        
-    </ul>
-    
-    <x-carosel/>
+    <div class="flex flex-col items-center justify-center">
+        <div>
+            <h2 class="text-3xl m-3 bold">want to know ....</h2>
+            <div class="border border-black m-3 bg-white p-2 rounded">
+                <h3 class="text-2xl {{env("MAIN_BG")}} p-1 rounded">which professor is the easiest?</h3>
+                <div class="flex flex-col items-center">
+                    <h3 class="text-xl">checkout our data explorer</h3>
+                    <img src="{{URL::asset('query_tool.png')}}" height="400" width="400">
+                </div>
+            </div>
+            <div class="border border-black m-3 bg-white p-2 rounded">
+                <h3 class="text-2xl {{env("MAIN_BG")}} p-1 rounded">what major makes the most money?</h3>
+                <div class="flex flex-col items-center">
+                    <h3 class="text-xl">checkout our financial outcomes dashboard</h3>
+                    <img src="{{ URL::asset('financial_outcomes.png') }}" height="400" width="400">
+                </div>
+            </div>
+            <div class="border border-black m-3 bg-white p-2 rounded">
+                <h3 class="text-2xl {{env("MAIN_BG")}} p-1 rounded">what grades your classmates got?</h3>
+                <div class="flex flex-col items-center">
+                    <h3 class="text-xl">checkout our grade distributions</h3>
+                    <img src="{{ URL::asset('distribution.png') }}" height="400" width="400">
+                </div>
+            </div>
+            <div class="border border-black m-3 bg-white p-2 rounded">
+                <h3 class="text-2xl {{env("MAIN_BG")}} p-1 rounded">which major is the easiest?</h3>
+                <div class="flex flex-col items-center">
+                    <h3 class="text-xl">checkout our major gpa tracker</h3>
+                    <img src="{{ URL::asset('gpa_report.png') }}" height="400" width="400">
+                </div>
+            </div>
+            <div class="border border-black m-3 bg-white p-2 rounded flex flex-col items-center">
+                <p class="text-2xl m-1 {{env("ACCENT_TEXT_COLOR")}}">College is a time of decisions.</p>
+                <p class="text-2xl m-1 {{env("ACCENT_TEXT_COLOR")}}">Decisions about courses, professors, majors and more.</p>
+                <p class="text-2xl m-1 {{env("ACCENT_TEXT_COLOR")}}">We have the data you need to make these decisions.</p>
+                <a href="{{route("register")}}" class="{{env("ACCENT_BG")}} w-96 p-3 m-2 rounded text-white font-bold flex justify-center">click here for a trial</a>
 
-    <div class="flex justify-center ">
-        <blockquote class="mb-2 bg-white border-black border-2 p-2 rounded w-96">
-            <em>
-                "The mix of qualitative and quantitative information on this site is incredible. 
-                Last semester, I managed to take 18 credit hours while still having free time on weekends and evenings, thanks to this site helping me choose my classes. 
-                Using this software can truly make or break your semester." Anonymous User
-            </em>
-        </blockquote>
+            </div>
+        </div>
+       
+
+
     </div>
-    
-    <div class="flex justify-center">
-        <h3 class="font-bold m-2">access is only $4 a month after trial ends</h3>
-    </div>
+   <div class="flex justify-center m-2">
+   </div>
 
 </div>
 </x-header>
