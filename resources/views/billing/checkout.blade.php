@@ -29,8 +29,7 @@
                 </div>
                 <div class="flex justify-center"> 
                     <button id="card-button" class="{{env("MAIN_BG")}} p-2 w-96 mt-4 rounded hover:font-bold" data-secret="{{ $intent->client_secret }}">
-
-                        get premium :) 
+                        start your free trial :) 
                     </button>
                 </div>
                 <div class="m-1">
