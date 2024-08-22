@@ -1,6 +1,6 @@
 <x-header>
 
-    <x-subHeader title="query tool"/>
+    <x-subHeader title="data explorer"/>
     <form action="{{route("qtool")}}">
         @csrf
         <div class="p-2 flex justify-center content-center flex-wrap"  >
