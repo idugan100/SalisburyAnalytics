@@ -32,6 +32,11 @@
                         start your free trial :) 
                     </button>
                 </div>
+                <div class="m-1 flex justify-center">
+                    <p>
+                        you can cancel at any time!
+                    </p>
+                </div>
                 <div class="m-1">
                     already have a payment method? reactivate your subscription <a href="/billing-portal" class="{{env("ACCENT_TEXT_COLOR")}} font-bold underline"> here</a>
                 </div>
