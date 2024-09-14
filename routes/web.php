@@ -63,7 +63,7 @@ Route::middleware(EnsureIsAdmin::class)->group(function () {
 
 });
 
-Route::middleware((EnsureIsSubscribed::class))->group(function () {
+// Route::middleware((EnsureIsSubscribed::class))->group(function () {
     //routes for courses
     Route::get('/', [CourseController::class, 'index']);
     Route::resource('courses', CourseController::class);
@@ -85,7 +85,7 @@ Route::middleware((EnsureIsSubscribed::class))->group(function () {
     Route::get('/student_demographics', [DoEdReportController::class, 'student_demographics'])->name('student_demographics');
     Route::get('/financial_outcomes', [DoEdReportController::class, 'financial_outcomes'])->name('financial_outcomes');
     Route::get('/query_tool', [QueryToolController::class, 'index'])->name('qtool');
-});
+// });
 
 //stripe
 Route::get('/billing-portal', [BillingController::class, 'billing_portal'])->middleware('auth');
